@@ -30,6 +30,9 @@ struct cache_sample {
 
 static uint8_t class_schedule[SAMPLE_COUNT];
 static struct cache_sample samples[SAMPLE_COUNT];
+static const char *const class_names[CACHE_CLASS_COUNT] = {
+    "hot", "cold", "branch_load", "branch_skip"
+};
 
 static uint32_t next_random(uint32_t *state) {
     uint32_t x = *state;
@@ -74,6 +77,7 @@ static uint64_t measure(enum cache_class sample_class) {
 int main(void) {
     struct cache_cpu_features cpu;
     uint32_t seen[CACHE_CLASS_COUNT] = {0};
+    uint64_t checksum = 0;
 
     cache_detect_cpu(&cpu);
     if (!cpu.has_tsc || !cpu.has_clflush || cpu.clflush_bytes == 0 ||
@@ -102,5 +106,21 @@ int main(void) {
     printf("CACHE_CPU,vendor=%s,signature=0x%08x,clflush_bytes=%u,"
            "invariant_tsc=%u\n", cpu.vendor, cpu.signature,
            cpu.clflush_bytes, cpu.invariant_tsc);
+    printf("CACHE_RUN,version=1,samples_per_class=%u,warmup_per_class=%u,"
+           "seed=%u,timer=lfence_rdtsc_lfence,flush=clflush_mfence\n",
+           SAMPLES_PER_CLASS, WARMUP_PER_CLASS, SCHEDULE_SEED);
+    for (uint32_t i = 0; i < SAMPLE_COUNT; ++i) {
+        const struct cache_sample *sample = &samples[i];
+        checksum += (uint64_t)(i + 1u) * sample->cycles +
+                    sample->sample_class + sample->phase;
+        printf("CACHE_SAMPLE,%u,%s,%s,%llu\n", i,
+               sample->phase ? "validate" : "train",
+               class_names[sample->sample_class],
+               (unsigned long long)sample->cycles);
+    }
+    printf("CACHE_END,count=%u,checksum=%llu,sink=%u\n", SAMPLE_COUNT,
+           (unsigned long long)checksum, sink);
+    puts("FRACTAL_UTEST_OK: x86 cache controls completed");
+    fflush(stdout);
     return 0;
 }
