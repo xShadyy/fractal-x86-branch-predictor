@@ -73,6 +73,7 @@ static uint64_t measure(enum cache_class sample_class) {
 
 int main(void) {
     struct cache_cpu_features cpu;
+    uint32_t seen[CACHE_CLASS_COUNT] = {0};
 
     cache_detect_cpu(&cpu);
     if (!cpu.has_tsc || !cpu.has_clflush || cpu.clflush_bytes == 0 ||
@@ -83,7 +84,21 @@ int main(void) {
 
     sentinel[0] = 1;
     sink += cache_touch_line(sentinel);
-    sink += (uint32_t)measure(CACHE_HOT);
+    for (uint32_t warmup = 0; warmup < WARMUP_PER_CLASS; ++warmup) {
+        for (uint32_t sample_class = 0; sample_class < CACHE_CLASS_COUNT;
+             ++sample_class) {
+            (void)measure((enum cache_class)sample_class);
+        }
+    }
+
+    prepare_schedule();
+    for (uint32_t i = 0; i < SAMPLE_COUNT; ++i) {
+        uint8_t sample_class = class_schedule[i];
+        samples[i].sample_class = sample_class;
+        samples[i].phase = seen[sample_class]++ >= SAMPLES_PER_CLASS / 2u;
+        samples[i].cycles = measure((enum cache_class)sample_class);
+    }
+
     printf("CACHE_CPU,vendor=%s,signature=0x%08x,clflush_bytes=%u,"
            "invariant_tsc=%u\n", cpu.vendor, cpu.signature,
            cpu.clflush_bytes, cpu.invariant_tsc);
