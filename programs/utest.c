@@ -5,6 +5,11 @@
 #include <stdint.h>
 #include <stdio.h>
 
+#define SAMPLES_PER_CLASS 1024u
+#define WARMUP_PER_CLASS 32u
+#define SAMPLE_COUNT (SAMPLES_PER_CLASS * CACHE_CLASS_COUNT)
+#define SCHEDULE_SEED UINT32_C(0x71c4a925)
+
 /* A dedicated page keeps unrelated data outside the probed cache line. */
 static uint8_t sentinel[4096] __attribute__((aligned(4096)));
 static volatile uint32_t sink;
@@ -16,6 +21,37 @@ enum cache_class {
     BRANCH_SKIP = 3,
     CACHE_CLASS_COUNT = 4
 };
+
+struct cache_sample {
+    uint64_t cycles;
+    uint8_t sample_class;
+    uint8_t phase;
+};
+
+static uint8_t class_schedule[SAMPLE_COUNT];
+static struct cache_sample samples[SAMPLE_COUNT];
+
+static uint32_t next_random(uint32_t *state) {
+    uint32_t x = *state;
+    x ^= x << 13;
+    x ^= x >> 17;
+    x ^= x << 5;
+    *state = x;
+    return x;
+}
+
+static void prepare_schedule(void) {
+    uint32_t state = SCHEDULE_SEED;
+    for (uint32_t i = 0; i < SAMPLE_COUNT; ++i) {
+        class_schedule[i] = (uint8_t)(i % CACHE_CLASS_COUNT);
+    }
+    for (uint32_t i = SAMPLE_COUNT - 1; i > 0; --i) {
+        uint32_t j = next_random(&state) % (i + 1);
+        uint8_t swap = class_schedule[i];
+        class_schedule[i] = class_schedule[j];
+        class_schedule[j] = swap;
+    }
+}
 
 static uint64_t measure(enum cache_class sample_class) {
     uint8_t target_value = 0;
