@@ -20,8 +20,10 @@ done
 
 make -C "$upstream_dir" BOARD=QEMU x86
 mkdir -p "$upstream_dir/filesys/fs_x86_64/bin"
-x86_64-fractal-elf-gcc -std=c11 -O2 -Wall -Wextra -static \
+x86_64-fractal-elf-gcc -std=c11 -O2 -Wall -Wextra -Werror -static \
     "$project_root/programs/utest.c" \
+    "$project_root/programs/cpu_features.c" \
+    "$project_root/programs/cache_probe.S" \
     -o "$upstream_dir/filesys/fs_x86_64/bin/utest"
 
 # Upstream's filesystem Makefile watches the fs_x86_64 directory, not its contents.
