@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 from bisect import bisect_right
 from dataclasses import dataclass
+import json
 from pathlib import Path
 from statistics import median
 
@@ -158,21 +159,29 @@ def summarize(trace: Trace) -> dict[str, object]:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("trace", type=Path, help="captured serial output")
+    parser.add_argument("--json", action="store_true", help="emit a JSON summary")
+    parser.add_argument("--strict", action="store_true",
+                        help="fail if the held-out controls are inconclusive")
     args = parser.parse_args()
     try:
         trace = parse_trace(args.trace.read_text(encoding="utf-8"))
     except (OSError, ValueError, KeyError) as exc:
         parser.exit(2, f"Invalid cache-probe trace: {exc}\n")
     result = summarize(trace)
-    print(f"CPU: {trace.cpu['vendor']} signature {trace.cpu['signature']}")
-    print(f"Validated {len(trace.samples)} samples; threshold from training half: "
-          f"{result['threshold']} TSC ticks")
-    for kind in CLASSES:
-        print(f"{kind:12s} held-out median={result['median_validate_cycles'][kind]:>6} "
-              f"hit rate={result['hit_rates'][kind]:.1%}")
-    print("Architectural controls: " +
-          ("PASS" if result["controls_pass"] else "INCONCLUSIVE"))
-    return 0
+    if args.json:
+        print(json.dumps({"cpu": trace.cpu, "run": trace.run,
+                          "sample_count": len(trace.samples), **result},
+                         sort_keys=True))
+    else:
+        print(f"CPU: {trace.cpu['vendor']} signature {trace.cpu['signature']}")
+        print(f"Validated {len(trace.samples)} samples; threshold from training half: "
+              f"{result['threshold']} TSC ticks")
+        for kind in CLASSES:
+            print(f"{kind:12s} held-out median={result['median_validate_cycles'][kind]:>6} "
+                  f"hit rate={result['hit_rates'][kind]:.1%}")
+        print("Architectural controls: " +
+              ("PASS" if result["controls_pass"] else "INCONCLUSIVE"))
+    return 1 if args.strict and not result["controls_pass"] else 0
 
 
 if __name__ == "__main__":
