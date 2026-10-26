@@ -1,0 +1,25 @@
+# Downloaded upstream source, local builds, and machine inventories.
+/upstream/
+/build/
+/out/
+
+# Local project planning and unpublished notes.
+/docs/
+/notes/
+*.local.md
+
+# Generated binaries and archives.
+*.o
+*.elf
+*.iso
+*.ext2
+*.qcow2
+*.zip
+
+# Local editor and analysis state.
+.vscode/
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.DS_Store
