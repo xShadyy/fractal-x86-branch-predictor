@@ -4,8 +4,10 @@
 from __future__ import annotations
 
 import argparse
+from bisect import bisect_right
 from dataclasses import dataclass
 from pathlib import Path
+from statistics import median
 
 
 CLASSES = ("hot", "cold", "branch_load", "branch_skip")
@@ -110,6 +112,49 @@ def parse_trace(content: str) -> Trace:
     return Trace(cpu, run, samples)
 
 
+def select_threshold(hot: list[int], cold: list[int]) -> int:
+    if not hot or not cold:
+        raise ValueError("empty calibration class")
+    values = sorted(set(hot + cold))
+    candidates = [values[0] - 1]
+    candidates.extend((left + right) // 2 for left, right in
+                      zip(values, values[1:]))
+    candidates.append(values[-1])
+    ordered_hot, ordered_cold = sorted(hot), sorted(cold)
+    midpoint = (median(hot) + median(cold)) / 2
+
+    def rank(threshold: int) -> tuple[float, float]:
+        hot_hit = bisect_right(ordered_hot, threshold) / len(hot)
+        cold_miss = 1 - bisect_right(ordered_cold, threshold) / len(cold)
+        return (hot_hit + cold_miss) / 2, -abs(threshold - midpoint)
+
+    return max(candidates, key=rank)
+
+
+def summarize(trace: Trace) -> dict[str, object]:
+    groups = {
+        (kind, phase): [sample.cycles for sample in trace.samples
+                        if sample.kind == kind and sample.phase == phase]
+        for kind in CLASSES for phase in ("train", "validate")
+    }
+    threshold = select_threshold(groups["hot", "train"],
+                                 groups["cold", "train"])
+    rates = {
+        kind: sum(cycles <= threshold for cycles in groups[kind, "validate"])
+              / len(groups[kind, "validate"])
+        for kind in CLASSES
+    }
+    medians = {
+        kind: median(groups[kind, "validate"])
+        for kind in CLASSES
+    }
+    passed = (rates["hot"] >= 0.95 and rates["cold"] <= 0.05 and
+              rates["branch_load"] >= 0.95 and
+              rates["branch_skip"] <= 0.05)
+    return {"threshold": threshold, "hit_rates": rates,
+            "median_validate_cycles": medians, "controls_pass": passed}
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("trace", type=Path, help="captured serial output")
@@ -118,7 +163,15 @@ def main() -> int:
         trace = parse_trace(args.trace.read_text(encoding="utf-8"))
     except (OSError, ValueError, KeyError) as exc:
         parser.exit(2, f"Invalid cache-probe trace: {exc}\n")
-    print(f"Validated {len(trace.samples)} samples from {trace.cpu['vendor']}")
+    result = summarize(trace)
+    print(f"CPU: {trace.cpu['vendor']} signature {trace.cpu['signature']}")
+    print(f"Validated {len(trace.samples)} samples; threshold from training half: "
+          f"{result['threshold']} TSC ticks")
+    for kind in CLASSES:
+        print(f"{kind:12s} held-out median={result['median_validate_cycles'][kind]:>6} "
+              f"hit rate={result['hit_rates'][kind]:.1%}")
+    print("Architectural controls: " +
+          ("PASS" if result["controls_pass"] else "INCONCLUSIVE"))
     return 0
 
 
