@@ -13,7 +13,7 @@ On an x86 Linux machine with a C compiler and Python 3:
 ./scripts/check_native.sh
 ```
 
-The native check writes a raw trace under `out/` and reports the calibration result. Run the same program under Fractal after installing the pinned upstream toolchain:
+The native check writes a raw trace under `out/` and reports the calibration result. When `taskset` is installed, it pins the process to the first allowed logical CPU; set `CACHE_PROBE_CPU` to select another allowed CPU. Run the same program under Fractal after installing the pinned upstream toolchain:
 
 ```bash
 ./scripts/fetch_upstream.sh
