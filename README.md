@@ -1,5 +1,5 @@
-# Fractal OS Branch Predictor Evaluation
+# Fractal x86 Branch Predictor
 
-An independent x86 research project using [Fractal OS](https://github.com/jprx/fractal) as experimental infrastructure. The current code provides a pinned Fractal checkout and a QEMU boot test for an x86 userspace program. It does not yet implement a branch predictor experiment or report experimental results.
+An independent x86 microarchitecture study using [Fractal OS](https://github.com/jprx/fractal) as experimental infrastructure. The first measurement is a calibrated cache probe with architectural controls.
 
-Fractal was developed by Joseph Ravichandran and Mengjia Yan. This repository is independent of their project and does not include their source code.
+Fractal was developed by Joseph Ravichandran and Mengjia Yan. Their [paper](https://people.csail.mit.edu/mengjia/data/2026.SP.fractal.pdf) studies Apple M1. This repository contains independent x86 code and pins the upstream source revision without copying it into Git.
