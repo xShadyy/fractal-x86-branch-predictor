@@ -16,6 +16,16 @@ trace="$project_root/out/cache-probe-native-$(date -u +%Y%m%dT%H%M%SZ).log"
     "$project_root/programs/cache_probe.S" \
     -o "$binary"
 
-"$binary" > "$trace"
+if command -v taskset >/dev/null; then
+    affinity="$(taskset -pc "$$")"
+    allowed="${affinity##*: }"
+    first_allowed="${allowed%%[-,]*}"
+    cpu="${CACHE_PROBE_CPU:-$first_allowed}"
+    printf 'HOST_AFFINITY_CPU=%s\n' "$cpu" > "$trace"
+    taskset -c "$cpu" "$binary" >> "$trace"
+else
+    printf 'HOST_AFFINITY_CPU=unavailable\n' > "$trace"
+    "$binary" >> "$trace"
+fi
 python3 "$project_root/scripts/analyze_cache_probe.py" "$trace"
 printf 'Raw trace: %s\n' "$trace"
