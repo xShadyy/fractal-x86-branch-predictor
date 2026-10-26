@@ -38,4 +38,20 @@ cache_touch_line:
     ret
     .size cache_touch_line, .-cache_touch_line
 
+    .p2align 6
+    .globl cache_control_branch
+    .type cache_control_branch, @function
+cache_control_branch:
+    testl %esi, %esi
+    je .Lcontrol_skip
+    /* Keep misprediction from executing the control load transiently. */
+    lfence
+    movzbl (%rdi), %eax
+    ret
+.Lcontrol_skip:
+    lfence
+    xorl %eax, %eax
+    ret
+    .size cache_control_branch, .-cache_control_branch
+
     .section .note.GNU-stack,"",@progbits
