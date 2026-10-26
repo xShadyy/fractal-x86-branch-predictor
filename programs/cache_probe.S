@@ -30,4 +30,12 @@ cache_flush_line:
     ret
     .size cache_flush_line, .-cache_flush_line
 
+    .p2align 6
+    .globl cache_touch_line
+    .type cache_touch_line, @function
+cache_touch_line:
+    movzbl (%rdi), %eax
+    ret
+    .size cache_touch_line, .-cache_touch_line
+
     .section .note.GNU-stack,"",@progbits
