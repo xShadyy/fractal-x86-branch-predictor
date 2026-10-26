@@ -98,6 +98,16 @@ def parse_trace(content: str) -> Trace:
 
     if cpu is None or run is None or end is None or not completed:
         raise ValueError("incomplete cache-probe trace")
+    required_cpu = {"vendor", "signature", "clflush_bytes", "invariant_tsc"}
+    required_run = {"version", "samples_per_class", "warmup_per_class",
+                    "seed", "timer", "flush"}
+    if not required_cpu <= cpu.keys() or not required_run <= run.keys():
+        raise ValueError("missing CPU or run metadata")
+    if unsigned(cpu["clflush_bytes"], "CLFLUSH line size") == 0:
+        raise ValueError("invalid CLFLUSH line size")
+    unsigned(cpu["invariant_tsc"], "invariant TSC flag")
+    unsigned(run["warmup_per_class"], "warmup count")
+    unsigned(run["seed"], "schedule seed")
     count = unsigned(end["count"], "sample count")
     if count != len(samples) or unsigned(end["checksum"], "checksum") != checksum:
         raise ValueError("sample count or checksum mismatch")

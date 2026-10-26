@@ -63,7 +63,24 @@ class TraceTests(unittest.TestCase):
     def test_missing_class_or_phase_is_rejected(self):
         altered = serial_trace().replace("CACHE_SAMPLE,0,train,hot,40",
                                          "CACHE_SAMPLE,0,validate,hot,40")
-        with self.assertRaisesRegex(ValueError, "checksum|phase"):
+        rows = altered.splitlines()
+        # Recalculate rather than relying on checksum rejection.
+        checksum = sum((int(parts[1]) + 1) * int(parts[4]) +
+                       CLASSES.index(parts[3]) + (parts[2] == "validate")
+                       for row in rows if row.startswith("CACHE_SAMPLE,")
+                       for parts in (row.split(","),))
+        rows[-2] = f"CACHE_END,count=16,checksum={checksum},sink=4"
+        with self.assertRaisesRegex(ValueError, "phase"):
+            parse_trace("\n".join(rows))
+
+    def test_missing_cpu_metadata_is_rejected(self):
+        altered = serial_trace().replace("vendor=GenuineIntel,", "")
+        with self.assertRaisesRegex(ValueError, "missing CPU"):
+            parse_trace(altered)
+
+    def test_missing_run_metadata_is_rejected(self):
+        altered = serial_trace().replace("timer=lfence_rdtsc_lfence,", "")
+        with self.assertRaisesRegex(ValueError, "missing CPU or run"):
             parse_trace(altered)
 
 
