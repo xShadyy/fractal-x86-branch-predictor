@@ -21,4 +21,13 @@ cache_reload_cycles:
     ret
     .size cache_reload_cycles, .-cache_reload_cycles
 
+    .p2align 6
+    .globl cache_flush_line
+    .type cache_flush_line, @function
+cache_flush_line:
+    clflush (%rdi)
+    mfence
+    ret
+    .size cache_flush_line, .-cache_flush_line
+
     .section .note.GNU-stack,"",@progbits
