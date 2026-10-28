@@ -17,7 +17,9 @@
 *.zip
 
 # Local editor and analysis state.
-.vscode/
+/.vscode/*
+!/.vscode/tasks.json
+!/.vscode/extensions.json
 .venv/
 __pycache__/
 *.py[cod]
