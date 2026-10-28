@@ -16,6 +16,21 @@
       "problemMatcher": "$msCompile",
       "presentation": {"reveal": "always", "panel": "dedicated"},
       "windows": {}
+    },
+    {
+      "label": "Branch probe: build, run, analyze (Windows)",
+      "type": "process",
+      "command": "powershell.exe",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}\\scripts\\check_spec_windows.ps1"
+      ],
+      "problemMatcher": "$msCompile",
+      "presentation": {"reveal": "always", "panel": "dedicated"},
+      "windows": {}
     }
   ]
 }
