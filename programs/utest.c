@@ -5,13 +5,20 @@
 #include <stdint.h>
 #include <stdio.h>
 
+#if defined(_WIN32)
+#include <windows.h>
+#define CACHE_ALIGN_PAGE __declspec(align(4096))
+#else
+#define CACHE_ALIGN_PAGE __attribute__((aligned(4096)))
+#endif
+
 #define SAMPLES_PER_CLASS 1024u
 #define WARMUP_PER_CLASS 32u
 #define SAMPLE_COUNT (SAMPLES_PER_CLASS * CACHE_CLASS_COUNT)
 #define SCHEDULE_SEED UINT32_C(0x71c4a925)
 
 /* A dedicated page keeps unrelated data outside the probed cache line. */
-static uint8_t sentinel[4096] __attribute__((aligned(4096)));
+static CACHE_ALIGN_PAGE uint8_t sentinel[4096];
 static volatile uint32_t sink;
 
 enum cache_class {
@@ -74,12 +81,36 @@ static uint64_t measure(enum cache_class sample_class) {
     return cycles;
 }
 
+#if defined(_WIN32)
+static int pin_first_allowed_cpu(void) {
+    DWORD_PTR process_mask, system_mask;
+    DWORD_PTR chosen;
+    unsigned cpu = 0;
+    if (!GetProcessAffinityMask(GetCurrentProcess(), &process_mask, &system_mask) ||
+        process_mask == 0) {
+        fputs("CACHE_ERROR: cannot read process affinity\n", stderr);
+        return 0;
+    }
+    chosen = process_mask & (~process_mask + 1);
+    while ((chosen >> cpu) != 1) ++cpu;
+    if (!SetProcessAffinityMask(GetCurrentProcess(), chosen)) {
+        fputs("CACHE_ERROR: cannot pin process to a logical CPU\n", stderr);
+        return 0;
+    }
+    printf("HOST_AFFINITY_CPU=%u\n", cpu);
+    return 1;
+}
+#endif
+
 int main(void) {
     struct cache_cpu_features cpu;
     uint32_t seen[CACHE_CLASS_COUNT] = {0};
     uint64_t checksum = 0;
 
     cache_detect_cpu(&cpu);
+#if defined(_WIN32)
+    if (!pin_first_allowed_cpu()) return 1;
+#endif
     if (!cpu.has_tsc || !cpu.has_clflush || cpu.clflush_bytes == 0 ||
         cpu.clflush_bytes > sizeof(sentinel)) {
         puts("CACHE_ERROR: TSC and CLFLUSH with a valid line size are required");

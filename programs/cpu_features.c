@@ -2,12 +2,25 @@
 
 #include <string.h>
 
+#if defined(_MSC_VER)
+#include <intrin.h>
+#endif
+
 static void cpuid(uint32_t leaf, uint32_t subleaf, uint32_t *a,
                   uint32_t *b, uint32_t *c, uint32_t *d) {
+#if defined(_MSC_VER)
+    int registers[4];
+    __cpuidex(registers, (int)leaf, (int)subleaf);
+    *a = (uint32_t)registers[0];
+    *b = (uint32_t)registers[1];
+    *c = (uint32_t)registers[2];
+    *d = (uint32_t)registers[3];
+#else
     __asm__ __volatile__("cpuid"
                          : "=a"(*a), "=b"(*b), "=c"(*c), "=d"(*d)
                          : "a"(leaf), "c"(subleaf)
                          : "memory");
+#endif
 }
 
 void cache_detect_cpu(struct cache_cpu_features *features) {
