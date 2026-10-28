@@ -10,10 +10,10 @@
 #define TRAIN_CALLS 128u
 #define WARMUP_BLOCKS 32u
 #define SEED UINT32_C(0x5d17b4c3)
-#define CLASS_COUNT 4u
+#define CLASS_COUNT 6u
 
 enum sample_kind { TRAIN_TAKEN = 0, TRAIN_NOT_TAKEN = 1,
-                   HOT = 2, COLD = 3 };
+                   HOT = 2, COLD = 3, ARCH_LOAD = 4, ARCH_SKIP = 5 };
 
 struct sample {
     uint64_t cycles;
@@ -31,7 +31,7 @@ static uint8_t pair_order[BLOCKS];
 static struct sample samples[BLOCKS * CLASS_COUNT];
 static volatile uint32_t sink;
 static const char *const kind_names[CLASS_COUNT] = {
-    "train_taken", "train_not_taken", "hot", "cold"
+    "train_taken", "train_not_taken", "hot", "cold", "arch_load", "arch_skip"
 };
 
 static uint32_t next_random(uint32_t *state) {
@@ -97,12 +97,26 @@ static uint64_t calibration_trial(uint8_t hot) {
     return cycles;
 }
 
+/* Positive and negative controls through the exact assembly branch site. */
+static uint64_t branch_control_trial(uint8_t execute_target) {
+    uint8_t result;
+    uint64_t cycles;
+    condition_line[0] = execute_target;
+    cache_flush_line(condition_line);
+    cache_flush_line(sentinel_line);
+    result = spec_branch_site(condition_line, sentinel_line);
+    cycles = cache_reload_cycles(sentinel_line);
+    sink += result;
+    return cycles;
+}
+
 static void collect_block(uint32_t block, uint8_t order, int store) {
     uint32_t position;
     for (position = 0; position < CLASS_COUNT; ++position) {
         uint8_t kind = (uint8_t)(position < 2u ? (position ^ order) : position);
         uint64_t cycles = kind < 2u ? speculative_trial(kind == TRAIN_TAKEN) :
-                          calibration_trial(kind == HOT);
+                          kind < 4u ? calibration_trial(kind == HOT) :
+                          branch_control_trial(kind == ARCH_LOAD);
         if (store) {
             struct sample *entry = &samples[block * CLASS_COUNT + position];
             entry->cycles = cycles;
@@ -138,7 +152,7 @@ int main(void) {
     printf("SPEC_CPU,vendor=%s,signature=0x%08x,clflush_bytes=%u,"
            "invariant_tsc=%u\n", cpu.vendor, cpu.signature,
            cpu.clflush_bytes, cpu.invariant_tsc);
-    printf("SPEC_RUN,version=1,blocks=%u,training=%u,warmup_blocks=%u,seed=%u,"
+    printf("SPEC_RUN,version=2,blocks=%u,training=%u,warmup_blocks=%u,seed=%u,"
            "branch_addr=0x%llx,timer=lfence_rdtsc_lfence,flush=clflush_mfence\n",
            BLOCKS, TRAIN_CALLS, WARMUP_BLOCKS, SEED,
            (unsigned long long)(uintptr_t)spec_branch_site);

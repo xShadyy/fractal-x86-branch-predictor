@@ -13,7 +13,8 @@ from statistics import median
 from analyze_cache_probe import MAX_U64, fields, select_threshold, unsigned
 
 
-KINDS = ("train_taken", "train_not_taken", "hot", "cold")
+KINDS = ("train_taken", "train_not_taken", "hot", "cold",
+         "arch_load", "arch_skip")
 KIND_INDEX = {name: index for index, name in enumerate(KINDS)}
 
 
@@ -41,7 +42,7 @@ def parse_trace(content: str) -> Trace:
             if cpu is None or run is not None:
                 raise ValueError("missing SPEC_CPU or duplicate SPEC_RUN")
             run = fields(row, "SPEC_RUN")
-            if run.get("version") != "1":
+            if run.get("version") not in ("1", "2"):
                 raise ValueError("unsupported trace version")
         elif row.startswith("SPEC_SAMPLE,"):
             if run is None or end is not None:
@@ -56,7 +57,8 @@ def parse_trace(content: str) -> Trace:
             cycles = unsigned(parts[5], "cycles")
             if index != len(raw) or kind not in KIND_INDEX:
                 raise ValueError("sample order or class mismatch")
-            if block != index // 4 or position != index % 4:
+            class_count = 4 if run["version"] == "1" else len(KINDS)
+            if block != index // class_count or position != index % class_count:
                 raise ValueError("invalid block or position")
             raw.append((block, position, kind, cycles))
             checksum = (checksum + (index + 1) * cycles + block + position +
@@ -81,7 +83,8 @@ def parse_trace(content: str) -> Trace:
     unsigned(run["warmup_blocks"], "warmup blocks")
     unsigned(run["seed"], "seed")
     count = unsigned(run["blocks"], "blocks")
-    if count < 2 or count % 2 or len(raw) != count * 4:
+    class_count = 4 if run["version"] == "1" else len(KINDS)
+    if count < 2 or count % 2 or len(raw) != count * class_count:
         raise ValueError("missing or unbalanced blocks")
     if unsigned(end["count"], "sample count") != len(raw) or \
        unsigned(end["checksum"], "checksum") != checksum:
@@ -90,9 +93,9 @@ def parse_trace(content: str) -> Trace:
     blocks: list[dict[str, int]] = []
     first_taken = 0
     for block in range(count):
-        rows = raw[block * 4:(block + 1) * 4]
+        rows = raw[block * class_count:(block + 1) * class_count]
         classes = tuple(row[2] for row in rows)
-        if set(classes[:2]) != set(KINDS[:2]) or classes[2:] != KINDS[2:]:
+        if set(classes[:2]) != set(KINDS[:2]) or classes[2:] != KINDS[2:class_count]:
             raise ValueError(f"incorrect pair or controls in block {block}")
         first_taken += classes[0] == "train_taken"
         blocks.append({kind: cycles for _, _, kind, cycles in rows})
@@ -124,7 +127,7 @@ def summarize(trace: Trace) -> dict[str, object]:
     not_taken_rate = sum(v <= threshold for v in not_taken) / len(not_taken)
     paired = [(t <= threshold) - (n <= threshold)
               for t, n in zip(taken, not_taken)]
-    return {
+    result = {
         "threshold": threshold,
         "control_hit_rates": {"hot": hot_rate, "cold": cold_rate},
         "controls_pass": hot_rate >= 0.95 and cold_rate <= 0.05,
@@ -135,6 +138,17 @@ def summarize(trace: Trace) -> dict[str, object]:
         "paired_hit_difference": sum(paired) / len(paired),
         "paired_bootstrap_95": paired_interval(paired),
     }
+    if trace.run["version"] == "2":
+        arch_load = [b["arch_load"] for b in trace.blocks]
+        arch_skip = [b["arch_skip"] for b in trace.blocks]
+        load_rate = sum(v <= threshold for v in arch_load[half:]) / half
+        skip_rate = sum(v <= threshold for v in arch_skip[half:]) / half
+        result["same_branch_control_hit_rates"] = {
+            "arch_load": load_rate, "arch_skip": skip_rate,
+        }
+        result["same_branch_controls_pass"] = load_rate >= 0.95 and skip_rate <= 0.05
+        result["controls_pass"] = result["controls_pass"] and result["same_branch_controls_pass"]
+    return result
 
 
 def main() -> int:
@@ -159,7 +173,12 @@ def main() -> int:
         control = result["control_hit_rates"]
         print(f"Held-out controls: hot {control['hot']:.1%}, "
               f"cold {control['cold']:.1%} "
-              f"({'PASS' if result['controls_pass'] else 'INCONCLUSIVE'})")
+              f"({'PASS' if control['hot'] >= 0.95 and control['cold'] <= 0.05 else 'INCONCLUSIVE'})")
+        if "same_branch_control_hit_rates" in result:
+            branch_control = result["same_branch_control_hit_rates"]
+            print(f"Same branch site: executed target {branch_control['arch_load']:.1%}, "
+                  f"skipped target {branch_control['arch_skip']:.1%} "
+                  f"({'PASS' if result['same_branch_controls_pass'] else 'INCONCLUSIVE'})")
         rates = result["probe_hit_rates"]
         medians = result["probe_medians"]
         for kind in KINDS[:2]:

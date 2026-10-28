@@ -3,7 +3,6 @@
 OPTION CASEMAP:NONE
 PUBLIC spec_branch_site
 .code
-ALIGN 64
 spec_branch_site PROC
     movzx eax, byte ptr [rcx]
     test eax, eax

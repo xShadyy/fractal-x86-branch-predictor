@@ -18,9 +18,9 @@ The analyzer uses the first half of the hot and cold samples to fit a cache-hit 
 
 ## Paired branch experiment
 
-Each block runs 128 training calls at the same assembly branch address for each label. The measured call always skips the target. Its condition line and target line are flushed beforehand, and only the later target-line reload is timed. The two training labels appear in randomized, balanced order within 1,024 blocks. Hot and cold controls run in every block. Samples are buffered and include the branch address, CPU signature, seed, order, and raw cycles.
+Each block runs 128 training calls at the same assembly branch address for each label. The measured call always skips the target. Its condition line and target line are flushed beforehand, and only the later target-line reload is timed. The two training labels appear in randomized, balanced order within 1,024 blocks. Hot and cold controls run in every block. Two additional controls execute and skip the target at the same assembly branch site, without training. Samples are buffered and include the branch address, CPU signature, seed, order, and raw cycles.
 
-The branch analyzer chooses its threshold using hot and cold controls from the first half of blocks. It checks controls on the second half, then reports the paired difference in probe cache-hit rates and a within-run bootstrap interval. Repeat runs and inspect their raw traces before interpreting the effect. The task fails only when the controls are invalid or the trace is incomplete; a zero effect is a valid measurement.
+The branch analyzer chooses its threshold using hot and cold controls from the first half of blocks. It checks both these and the same-branch-site controls on the second half, then reports the paired difference in probe cache-hit rates and a within-run bootstrap interval. Repeat runs and inspect their raw traces before interpreting the effect. The task fails only when the controls are invalid or the trace is incomplete; a zero effect means this probe did not detect a difference. It cannot establish whether the branch was mispredicted or whether a transient target load could reach the cache.
 
 ## Linux development check
 
