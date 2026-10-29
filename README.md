@@ -28,6 +28,16 @@ If the branch probe detects no cache effect, choose **Terminal → Run Task → 
 
 For each measured outcome, the analyzer compares training that matches it against training that differs. It reports medians, paired differences and a within-run bootstrap interval in TSC ticks. A repeated timing difference consistent in both measured outcomes would support further investigation, but does not itself count mispredicted branches. It may include effects from other predictor state, instruction placement, the two return paths, or system noise. Keep a copy of each raw trace and inspect the optimized binary before interpreting the result.
 
+## Balanced branch predictability experiment
+
+Choose **Terminal → Run Task → Balanced branch patterns: build, run, analyze (Windows)**. This follow-up compares `0011` repeated against a fresh, deterministically shuffled sequence in each block. Both have exactly 4,096 zeroes and 4,096 ones, so the target executes the same number of times. Each 8,192-call batch reads the same condition address and calls the same assembly branch from one loop site. All input copying, pattern generation, and output formatting occur outside the timed interval. A single timer pair surrounds the complete batch.
+
+Every block also times both patterns through a branchless assembly control, which uses the same input and target addresses but has no conditional jump. It reads the target on every iteration, whereas the branch version reads it on only half; this comparator does not perfectly match memory traffic. A separate positive timer control inserts one `PAUSE` every 128 iterations. Six samples occur in each of 144 blocks, with balanced positions across each set of six blocks. The raw trace records all timings and their order, a deterministic seed, a verified pattern hash, the CPU signature and hypervisor bit, the branch addresses, and the executable's SHA-256 digest.
+
+The analyzer reports the paired random-minus-periodic timing difference, the corresponding branchless difference, and their interaction after subtracting the branchless difference. It uses a 10% trimmed mean, resamples complete six-block cycles for a within-run bootstrap interval, and reports the two halves separately. It requires a working positive timer control before a timing result can be considered interpretable. The branchless contrast indicates a possible input-pattern confound if it is detectable. An interaction is **not** a direct count of branch mispredictions, and a zero result cannot establish that predictions did not occur. Run the task multiple times under documented workload conditions and keep every raw trace, including null results.
+
+The earlier single-call latency trace on the Windows host contained only values divisible by 47 TSC ticks. Its cause is undetermined. [AMD uProf 5.3 release notes](https://docs.amd.com/r/en-US/63856-uProf-release-notes/6.1.-CPU-Profiling) document that EBP/IBS CPU profiling is disabled when Windows has Hyper-V enabled; interpret the balanced timing experiment within that constraint.
+
 ## Linux development check
 
 The same experiment can be built in an x86 Linux environment with a C compiler and Python 3:
