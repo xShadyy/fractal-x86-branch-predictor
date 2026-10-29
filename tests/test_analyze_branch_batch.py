@@ -1,6 +1,9 @@
 """Complete-block and control checks for the batched branch trace."""
 
+from contextlib import redirect_stdout
+from io import StringIO
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 from unittest.mock import patch
@@ -82,6 +85,24 @@ class BranchBatchTests(unittest.TestCase):
     def test_timer_positive_control_failure(self):
         result = summarize(parse_fixture(serial_trace(timer_extra=0)))
         self.assertFalse(result["timer_control"]["passes"])
+
+    def test_cli_labels_timer_estimator_and_branchless_magnitude(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "batch.log"
+            path.write_text(serial_trace(), encoding="utf-8")
+            output = StringIO()
+            with patch.object(batch, "EXPECTED_ITERATIONS", 8), \
+                 patch.object(batch, "EXPECTED_BLOCKS", 12), \
+                 patch.object(batch, "EXPECTED_SEED", 7), \
+                 patch.object(sys, "argv", ["analyze_branch_batch.py", str(path)]), \
+                 redirect_stdout(output):
+                self.assertEqual(batch.main(), 0)
+            lines = output.getvalue()
+            self.assertIn("slow - fast trimmed mean +300.0 ticks ", lines)
+            self.assertIn("paired median +300.0", lines)
+            self.assertIn("within this run; inspect its magnitude and repeat runs", lines)
+            self.assertIn("absolute point-estimate ratio to branch contrast: 25.00%", lines)
+            self.assertNotIn("interpretation is confounded", lines)
 
     def test_one_large_outlier_does_not_move_trimmed_point_estimate(self):
         result = summarize(parse_fixture(serial_trace(outlier=True)))

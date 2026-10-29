@@ -4,7 +4,12 @@ $root = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
 $out = Join-Path $root 'out'
 $binary = Join-Path $out 'branch-batch-windows.exe'
 $object = Join-Path $out 'spec_branch_windows.obj'
-$trace = Join-Path $out ('branch-batch-windows-{0}.log' -f (Get-Date).ToUniversalTime().ToString('yyyyMMddTHHmmssZ'))
+$runStamp = (Get-Date).ToUniversalTime().ToString('yyyyMMddTHHmmssZ')
+$trace = Join-Path $out ('branch-batch-windows-{0}.log' -f $runStamp)
+$archivedBinary = Join-Path $out ('branch-batch-windows-{0}.exe' -f $runStamp)
+if ((Test-Path $trace) -or (Test-Path $archivedBinary)) {
+    throw "Run timestamp collision: $runStamp"
+}
 
 $vswhere = Join-Path ${env:ProgramFiles(x86)} 'Microsoft Visual Studio\Installer\vswhere.exe'
 if (-not (Test-Path $vswhere)) { throw 'Install MSVC Build Tools with Desktop development with C++.' }
@@ -40,7 +45,8 @@ try {
 
 & $binary | Out-File -FilePath $trace -Encoding ascii
 if ($LASTEXITCODE -ne 0) { throw "Balanced branch run failed; inspect $trace" }
-$binaryHash = (Get-FileHash -Path $binary -Algorithm SHA256).Hash.ToLowerInvariant()
+Copy-Item -Path $binary -Destination $archivedBinary
+$binaryHash = (Get-FileHash -Path $archivedBinary -Algorithm SHA256).Hash.ToLowerInvariant()
 Add-Content -Path $trace -Value "BATCH_BINARY,sha256=$binaryHash" -Encoding ascii
 $analyzer = Join-Path $root 'scripts\analyze_branch_batch.py'
 if (Get-Command py.exe -ErrorAction SilentlyContinue) {
@@ -52,4 +58,5 @@ if (Get-Command py.exe -ErrorAction SilentlyContinue) {
 }
 if ($LASTEXITCODE -ne 0) { throw "Balanced branch trace validation failed; inspect $trace" }
 Write-Host "Binary SHA256: $binaryHash"
+Write-Host "Binary: $archivedBinary"
 Write-Host "Raw trace: $trace"

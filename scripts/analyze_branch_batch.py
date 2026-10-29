@@ -306,10 +306,11 @@ def main() -> int:
         print(f"Observed GCD of batch totals: {result['observed_tick_gcd']} TSC ticks")
         timer = result["timer_control"]
         timer_low, timer_high = timer["within_run_cycle_bootstrap_95_ticks"]
-        print(f"Timer positive control: slow - fast median "
-              f"{timer['paired_median_ticks']:+.1f} ticks "
+        print(f"Timer positive control: slow - fast trimmed mean "
+              f"{timer['paired_trimmed_mean_ticks']:+.1f} ticks "
               f"[within-run six-block cycle bootstrap 95%: "
               f"{timer_low:+.1f}, {timer_high:+.1f}]; "
+              f"paired median {timer['paired_median_ticks']:+.1f}; "
               f"positive in {timer['positive_fraction']:.1%} of blocks "
               f"({'PASS' if timer['passes'] else 'INCONCLUSIVE'})")
         for label in ("branch", "branchless", "adjusted"):
@@ -323,7 +324,14 @@ def main() -> int:
         print(f"Adjusted contrast first/second half: {first:+.3f}, "
               f"{second:+.3f} ticks/iteration")
         if result["branchless_contrast_detectable"]:
-            print("Branchless comparator also differs; timing interpretation is confounded.")
+            branch = abs(result["contrasts"]["branch"][
+                "paired_trimmed_mean_ticks_per_iteration"])
+            branchless = abs(result["contrasts"]["branchless"][
+                "paired_trimmed_mean_ticks_per_iteration"])
+            ratio = f"; absolute point-estimate ratio to branch contrast: {branchless / branch:.2%}" \
+                if branch else ""
+            print("Branchless comparator difference is statistically detectable "
+                  "within this run; inspect its magnitude and repeat runs" + ratio + ".")
         print("A timing contrast is not a count of branch mispredictions.")
     return 1 if args.strict and not result["timer_control"]["passes"] else 0
 
