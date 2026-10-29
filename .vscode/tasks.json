@@ -31,6 +31,21 @@
       "problemMatcher": "$msCompile",
       "presentation": {"reveal": "always", "panel": "dedicated"},
       "windows": {}
+    },
+    {
+      "label": "Branch latency: build, run, analyze (Windows)",
+      "type": "process",
+      "command": "powershell.exe",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}\\scripts\\check_branch_latency_windows.ps1"
+      ],
+      "problemMatcher": "$msCompile",
+      "presentation": {"reveal": "always", "panel": "dedicated"},
+      "windows": {}
     }
   ]
 }

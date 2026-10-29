@@ -22,6 +22,12 @@ Each block runs 128 training calls at the same assembly branch address for each 
 
 The branch analyzer chooses its threshold using hot and cold controls from the first half of blocks. It checks both these and the same-branch-site controls on the second half, then reports the paired difference in probe cache-hit rates and a within-run bootstrap interval. Repeat runs and inspect their raw traces before interpreting the effect. The task fails only when the controls are invalid or the trace is incomplete; a zero effect means this probe did not detect a difference. It cannot establish whether the branch was mispredicted or whether a transient target load could reach the cache.
 
+## Branch timing follow-up
+
+If the branch probe detects no cache effect, choose **Terminal → Run Task → Branch latency: build, run, analyze (Windows)**. This separate experiment trains the same assembly branch site with condition 0 or 1 for 128 calls, then times one call with condition 0 or 1. Both the condition and target lines remain cached. Each of 4,096 blocks contains all four train/probe combinations in shuffled order. The trace is saved under `out/` and validated before analysis.
+
+For each measured outcome, the analyzer compares training that matches it against training that differs. It reports medians, paired differences and a within-run bootstrap interval in TSC ticks. A repeated timing difference consistent in both measured outcomes would support further investigation, but does not itself count mispredicted branches. It may include effects from other predictor state, instruction placement, the two return paths, or system noise. Keep a copy of each raw trace and inspect the optimized binary before interpreting the result.
+
 ## Linux development check
 
 The same experiment can be built in an x86 Linux environment with a C compiler and Python 3:
