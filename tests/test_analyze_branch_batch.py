@@ -51,6 +51,45 @@ def serial_trace(*, branch_effect=80, branchless_effect=20, timer_extra=300,
     return "\r\n".join(rows) + "\r\n"
 
 
+def serial_trace_v2(*, seed=7, branch_effect=80, no_load_effect=48,
+                    branchless_effect=20, timer_extra=300):
+    kinds = batch.KINDS_V2
+    orders, pattern_hash = batch.replay_patterns(
+        8, 16, seed, kinds, batch.WARMUP_BLOCKS_V2)
+    rows = [
+        "HOST_AFFINITY_CPU=0",
+        "BATCH_CPU,vendor=AuthenticAMD,signature=0x00b40f40,"
+        "invariant_tsc=1,hypervisor=1",
+        "BATCH_RUN,version=2,blocks=16,iterations=8,warmup_blocks=8,"
+        f"seed={seed},branch_addr=0x140001560,"
+        "branch_no_load_addr=0x140001580,branchless_addr=0x140001590,"
+        "timer=lfence_rdtsc_lfence,"
+        "pattern=periodic0011_vs_fresh_balanced_shuffle,compiler=msvc_O2,"
+        f"pattern_hash={pattern_hash}",
+    ]
+    checksum = 0
+    index = 0
+    values = (1000, 1000 + branch_effect, 960, 960 + no_load_effect,
+              900, 900 + branchless_effect, 500, 500 + timer_extra)
+    kind_index = {kind: i for i, kind in enumerate(kinds)}
+    for block, order in enumerate(orders):
+        for position, kind in enumerate(order):
+            ticks = values[kind_index[kind]] + block * 3
+            rows.append(f"BATCH_SAMPLE,{index},{block},{position},{kind},{ticks}")
+            checksum += (index + 1) * ticks + block + position + kind_index[kind]
+            index += 1
+    rows.append(f"BATCH_END,count={index},checksum={checksum},sink=16")
+    rows.append("BATCH_HOST,windows_build=26100,run_utc=20261030T010203Z")
+    rows.append("BATCH_BINARY,sha256=" + "b" * 64)
+    return "\r\n".join(rows) + "\r\n"
+
+
+def parse_fixture_v2(content):
+    with patch.object(batch, "EXPECTED_ITERATIONS", 8), \
+         patch.object(batch, "EXPECTED_BLOCKS", 16):
+        return batch.parse_trace(content)
+
+
 class BranchBatchTests(unittest.TestCase):
     def test_production_seed_replay_vector(self):
         orders, pattern_hash = batch.replay_patterns(
@@ -184,6 +223,95 @@ class BranchBatchTests(unittest.TestCase):
                                        "BATCH_BINARY,sha256=" + "A" * 64)
         with self.assertRaisesRegex(ValueError, "invalid binary SHA256"):
             parse_fixture(trace)
+
+    def test_version_2_different_seeds_and_ablation(self):
+        first = parse_fixture_v2(serial_trace_v2(seed=7))
+        second = parse_fixture_v2(serial_trace_v2(seed=987654321))
+        self.assertNotEqual(first.run["pattern_hash"], second.run["pattern_hash"])
+        self.assertEqual(first.kinds, batch.KINDS_V2)
+        self.assertEqual(first.host["windows_build"], "26100")
+        result = summarize(first)
+        self.assertTrue(result["timer_control"]["passes"])
+        values = result["contrasts"]
+        for name, expected in (("branch", 10), ("branch_no_load", 6),
+                               ("branchless", 2.5), ("adjusted", 7.5),
+                               ("no_load_adjusted", 3.5),
+                               ("load_minus_no_load", 4)):
+            self.assertEqual(values[name]["paired_trimmed_mean_ticks_per_iteration"],
+                             expected)
+        self.assertEqual(result["split_half_no_load_trimmed_mean_ticks_per_iteration"],
+                         (6, 6))
+
+    def test_version_2_position_cycles_and_cli(self):
+        self.assertEqual(interval([0] * 8 + [100] * 8, cycle_size=8), (0, 100))
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "v2.log"
+            path.write_text(serial_trace_v2(seed=123), encoding="utf-8")
+            output = StringIO()
+            with patch.object(batch, "EXPECTED_ITERATIONS", 8), \
+                 patch.object(batch, "EXPECTED_BLOCKS", 16), \
+                 patch.object(sys, "argv", ["analyze_branch_batch.py", str(path)]), \
+                 redirect_stdout(output):
+                self.assertEqual(batch.main(), 0)
+            self.assertIn("trace version 2; seed 123", output.getvalue())
+            self.assertIn("within-run 8-block cycle bootstrap", output.getvalue())
+            self.assertIn("branch_no_load", output.getvalue())
+            self.assertIn("different addresses", output.getvalue())
+
+    def test_version_2_seed_range_and_replay_validation(self):
+        trace = serial_trace_v2(seed=7)
+        for replacement in ("0", str(1 << 32)):
+            with self.subTest(seed=replacement), self.assertRaisesRegex(
+                    ValueError, "invalid version 2 seed"):
+                parse_fixture_v2(trace.replace("seed=7,", f"seed={replacement},", 1))
+        with self.assertRaisesRegex(ValueError, "pattern hash"):
+            parse_fixture_v2(trace.replace("seed=7,", "seed=8,", 1))
+
+    def test_version_2_requires_distinct_no_load_branch_address(self):
+        trace = serial_trace_v2()
+        with self.assertRaisesRegex(ValueError, "branch addresses coincide"):
+            parse_fixture_v2(trace.replace("branch_no_load_addr=0x140001580",
+                                           "branch_no_load_addr=0x140001560"))
+        with self.assertRaisesRegex(ValueError, "missing no-load branch address"):
+            parse_fixture_v2(trace.replace(
+                "branch_no_load_addr=0x140001580,", ""))
+
+    def test_version_2_requires_valid_host_metadata(self):
+        trace = serial_trace_v2()
+        with self.assertRaisesRegex(ValueError, "missing BATCH_HOST"):
+            parse_fixture_v2(trace.replace(
+                "BATCH_HOST,windows_build=26100,run_utc=20261030T010203Z\r\n", ""))
+        with self.assertRaisesRegex(ValueError, "invalid Windows build"):
+            parse_fixture_v2(trace.replace("windows_build=26100", "windows_build=foo"))
+        with self.assertRaisesRegex(ValueError, "invalid BATCH_HOST timestamp"):
+            parse_fixture_v2(trace.replace("20261030T010203Z", "20261330T010203Z"))
+
+    def test_version_2_rejects_reordered_sample_with_recomputed_checksum(self):
+        lines = serial_trace_v2().splitlines()
+        first = 3 + len(batch.KINDS_V2)
+        rows = [line.split(",") for line in lines[first:first + 2]]
+        for position, row in enumerate(reversed(rows)):
+            row[1] = str(first - 3 + position)
+            row[3] = str(position)
+            lines[first + position] = ",".join(row)
+        indices = {kind: i for i, kind in enumerate(batch.KINDS_V2)}
+        checksum = 0
+        for line in lines:
+            if line.startswith("BATCH_SAMPLE,"):
+                _, index, block_id, position, kind, ticks = line.split(",")
+                checksum += (int(index) + 1) * int(ticks) + int(block_id) + \
+                    int(position) + indices[kind]
+        end = next(i for i, line in enumerate(lines) if line.startswith("BATCH_END,"))
+        lines[end] = f"BATCH_END,count=128,checksum={checksum},sink=16"
+        with self.assertRaisesRegex(ValueError, "class order does not match seed"):
+            parse_fixture_v2("\n".join(lines))
+
+    def test_version_2_ablation_can_be_null_independently(self):
+        result = summarize(parse_fixture_v2(serial_trace_v2(no_load_effect=0)))
+        self.assertEqual(result["contrasts"]["branch_no_load"][
+            "paired_trimmed_mean_ticks_per_iteration"], 0)
+        self.assertEqual(result["contrasts"]["branch"][
+            "paired_trimmed_mean_ticks_per_iteration"], 10)
 
 
 if __name__ == "__main__":

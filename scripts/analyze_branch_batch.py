@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 from dataclasses import dataclass
+from datetime import datetime
 from functools import reduce
 import json
 from math import gcd
@@ -16,10 +17,18 @@ from statistics import median
 from analyze_cache_probe import MAX_U64, fields, unsigned
 
 
-KINDS = (
+KINDS_V1 = (
     "branch_periodic", "branch_random", "branchless_periodic",
     "branchless_random", "timer_fast", "timer_slow",
 )
+KINDS_V2 = (
+    "branch_periodic", "branch_random",
+    "branch_no_load_periodic", "branch_no_load_random",
+    "branchless_periodic", "branchless_random", "timer_fast", "timer_slow",
+)
+KINDS_BY_VERSION = {"1": KINDS_V1, "2": KINDS_V2}
+# Keep the version 1 aliases so historical trace fixtures remain readable.
+KINDS = KINDS_V1
 KIND_INDEX = {kind: index for index, kind in enumerate(KINDS)}
 TIMER = "lfence_rdtsc_lfence"
 PATTERN = "periodic0011_vs_fresh_balanced_shuffle"
@@ -28,6 +37,7 @@ EXPECTED_SEED = 0x3127F49B
 EXPECTED_BLOCKS = 144
 EXPECTED_ITERATIONS = 8192
 WARMUP_BLOCKS = 6
+WARMUP_BLOCKS_V2 = 8
 FNV_OFFSET = 14695981039346656037
 FNV_PRIME = 1099511628211
 MAX_U32 = (1 << 32) - 1
@@ -40,6 +50,8 @@ class Trace:
     blocks: list[dict[str, int]]
     affinity_cpu: int | None
     binary_sha256: str
+    kinds: tuple[str, ...] = KINDS_V1
+    host: dict[str, str] | None = None
 
 
 def _address(value: str, name: str) -> int:
@@ -51,7 +63,9 @@ def _address(value: str, name: str) -> int:
     return address
 
 
-def replay_patterns(iterations: int, blocks: int, seed: int) -> tuple[list[tuple[str, ...]], int]:
+def replay_patterns(iterations: int, blocks: int, seed: int,
+                    kinds: tuple[str, ...] = KINDS_V1,
+                    warmup_blocks: int = WARMUP_BLOCKS) -> tuple[list[tuple[str, ...]], int]:
     """Reproduce both C xorshift shuffles and the FNV64 pattern commitment."""
     state = seed
     periodic = bytearray((i >> 1) & 1 for i in range(iterations))
@@ -76,18 +90,18 @@ def replay_patterns(iterations: int, blocks: int, seed: int) -> tuple[list[tuple
         if record:
             for value in shuffled:
                 pattern_hash = ((pattern_hash ^ value) * FNV_PRIME) & MAX_U64
-        if block % len(KINDS) == 0:
-            base = list(range(len(KINDS)))
-            for index in range(len(KINDS) - 1, 0, -1):
+        if block % len(kinds) == 0:
+            base = list(range(len(kinds)))
+            for index in range(len(kinds) - 1, 0, -1):
                 other = random32() % (index + 1)
                 base[index], base[other] = base[other], base[index]
         if record:
-            orders.append(tuple(KINDS[base[(position + block % len(KINDS)) %
-                                          len(KINDS)]]
-                                for position in range(len(KINDS))))
+            orders.append(tuple(kinds[base[(position + block % len(kinds)) %
+                                        len(kinds)]]
+                                for position in range(len(kinds))))
 
     base: list[int] = []
-    for block in range(WARMUP_BLOCKS):
+    for block in range(warmup_blocks):
         one_block(block, False)
     for block in range(blocks):
         one_block(block, True)
@@ -98,10 +112,13 @@ def parse_trace(content: str) -> Trace:
     cpu: dict[str, str] | None = None
     run: dict[str, str] | None = None
     end: dict[str, str] | None = None
+    host: dict[str, str] | None = None
     binary_sha256: str | None = None
     affinity_cpu: int | None = None
     raw: list[tuple[int, int, str, int]] = []
     checksum = 0
+    kinds: tuple[str, ...] | None = None
+    kind_index: dict[str, int] = {}
 
     for line in content.splitlines():
         row = line.strip()
@@ -117,8 +134,10 @@ def parse_trace(content: str) -> Trace:
             if cpu is None or run is not None:
                 raise ValueError("missing BATCH_CPU or duplicate BATCH_RUN")
             run = fields(row, "BATCH_RUN")
-            if run.get("version") != "1":
+            kinds = KINDS_BY_VERSION.get(run.get("version", ""))
+            if kinds is None:
                 raise ValueError("unsupported trace version")
+            kind_index = {kind: index for index, kind in enumerate(kinds)}
         elif row.startswith("BATCH_SAMPLE,"):
             if run is None or end is not None:
                 raise ValueError("sample outside an open run")
@@ -132,20 +151,35 @@ def parse_trace(content: str) -> Trace:
             ticks = unsigned(parts[5], "ticks")
             if ticks == 0:
                 raise ValueError("zero batch duration")
-            if kind not in KIND_INDEX or index != len(raw):
+            if kind not in kind_index or index != len(raw):
                 raise ValueError("sample order or class mismatch")
-            if block != index // len(KINDS) or position != index % len(KINDS):
+            if block != index // len(kinds) or position != index % len(kinds):
                 raise ValueError("invalid sample block or position")
             raw.append((block, position, kind, ticks))
             checksum = (checksum + (index + 1) * ticks + block + position +
-                        KIND_INDEX[kind]) & MAX_U64
+                        kind_index[kind]) & MAX_U64
         elif row.startswith("BATCH_END,"):
             if run is None or end is not None or binary_sha256 is not None:
                 raise ValueError("unexpected BATCH_END")
             end = fields(row, "BATCH_END")
+        elif row.startswith("BATCH_HOST,"):
+            if end is None or host is not None or binary_sha256 is not None or \
+               run is None or run["version"] != "2":
+                raise ValueError("unexpected BATCH_HOST")
+            host = fields(row, "BATCH_HOST")
+            if set(host) != {"windows_build", "run_utc"} or \
+               unsigned(host["windows_build"], "Windows build") == 0 or \
+               not re.fullmatch(r"\d{8}T\d{6}Z", host["run_utc"]):
+                raise ValueError("invalid BATCH_HOST")
+            try:
+                datetime.strptime(host["run_utc"], "%Y%m%dT%H%M%SZ")
+            except ValueError as exc:
+                raise ValueError("invalid BATCH_HOST timestamp") from exc
         elif row.startswith("BATCH_BINARY,"):
             if end is None or binary_sha256 is not None:
                 raise ValueError("missing BATCH_END or duplicate BATCH_BINARY")
+            if run is not None and run["version"] == "2" and host is None:
+                raise ValueError("missing BATCH_HOST")
             binary = fields(row, "BATCH_BINARY")
             if set(binary) != {"sha256"} or not re.fullmatch(
                     r"[0-9a-f]{64}", binary["sha256"]):
@@ -155,7 +189,8 @@ def parse_trace(content: str) -> Trace:
             raise ValueError(f"unexpected trace line: {row[:60]}")
 
     if cpu is None or run is None or end is None or affinity_cpu is None or \
-       binary_sha256 is None:
+       binary_sha256 is None or kinds is None or \
+       (run is not None and run["version"] == "2" and host is None):
         raise ValueError("incomplete batch trace")
     if not {"vendor", "signature", "invariant_tsc", "hypervisor"} <= cpu.keys():
         raise ValueError("missing CPU metadata")
@@ -172,43 +207,54 @@ def parse_trace(content: str) -> Trace:
     branchless = _address(run["branchless_addr"], "branchless address")
     if branch == branchless:
         raise ValueError("branch and branchless address coincide")
+    if run["version"] == "2":
+        if "branch_no_load_addr" not in run:
+            raise ValueError("missing no-load branch address")
+        no_load = _address(run["branch_no_load_addr"], "no-load branch address")
+        if no_load in (branch, branchless):
+            raise ValueError("branch addresses coincide")
     if run["timer"] != TIMER or run["pattern"] != PATTERN or \
        run["compiler"] != COMPILER:
         raise ValueError("unexpected timer, pattern or build settings")
     recorded_pattern_hash = unsigned(run["pattern_hash"], "pattern hash")
-    if unsigned(run["warmup_blocks"], "warmup blocks") != WARMUP_BLOCKS:
+    expected_warmup = WARMUP_BLOCKS if run["version"] == "1" else WARMUP_BLOCKS_V2
+    if unsigned(run["warmup_blocks"], "warmup blocks") != expected_warmup:
         raise ValueError("unexpected warmup block count")
     iterations = unsigned(run["iterations"], "iterations")
     blocks = unsigned(run["blocks"], "blocks")
     seed = unsigned(run["seed"], "seed")
-    if iterations != EXPECTED_ITERATIONS or blocks != EXPECTED_BLOCKS or \
-       seed != EXPECTED_SEED:
+    if iterations != EXPECTED_ITERATIONS or blocks != EXPECTED_BLOCKS:
+        raise ValueError("unexpected iteration or block setting")
+    if run["version"] == "1" and seed != EXPECTED_SEED:
         raise ValueError("unexpected version 1 iteration, block or seed setting")
-    if len(raw) != blocks * len(KINDS):
+    if run["version"] == "2" and not 0 < seed <= MAX_U32:
+        raise ValueError("invalid version 2 seed")
+    if len(raw) != blocks * len(kinds):
         raise ValueError("missing or extra samples")
     if unsigned(end["count"], "sample count") != len(raw) or \
        unsigned(end["checksum"], "checksum") != checksum:
         raise ValueError("sample count or checksum mismatch")
     unsigned(end["sink"], "sink")
 
-    expected_orders, expected_hash = replay_patterns(iterations, blocks, seed)
+    expected_orders, expected_hash = replay_patterns(
+        iterations, blocks, seed, kinds, expected_warmup)
     if recorded_pattern_hash != expected_hash:
         raise ValueError("pattern hash does not match seed and shuffle")
     parsed: list[dict[str, int]] = []
-    positions = {kind: [0] * len(KINDS) for kind in KINDS}
+    positions = {kind: [0] * len(kinds) for kind in kinds}
     for block in range(blocks):
-        rows = raw[block * len(KINDS):(block + 1) * len(KINDS)]
-        if {kind for _, _, kind, _ in rows} != set(KINDS):
+        rows = raw[block * len(kinds):(block + 1) * len(kinds)]
+        if {kind for _, _, kind, _ in rows} != set(kinds):
             raise ValueError(f"unbalanced conditions in block {block}")
         if tuple(kind for _, _, kind, _ in rows) != expected_orders[block]:
             raise ValueError(f"class order does not match seed in block {block}")
         for _, position, kind, _ in rows:
             positions[kind][position] += 1
         parsed.append({kind: ticks for _, _, kind, ticks in rows})
-    if any(count != blocks // len(KINDS) for counts in positions.values()
+    if any(count != blocks // len(kinds) for counts in positions.values()
            for count in counts):
         raise ValueError("unbalanced class positions across blocks")
-    return Trace(cpu, run, parsed, affinity_cpu, binary_sha256)
+    return Trace(cpu, run, parsed, affinity_cpu, binary_sha256, kinds, host)
 
 
 def trimmed_mean(values: list[int], fraction: float = 0.10) -> float:
@@ -219,13 +265,14 @@ def trimmed_mean(values: list[int], fraction: float = 0.10) -> float:
 
 
 def interval(differences: list[int], iterations: int = 2000,
-             seed: int = 0x723a) -> tuple[float, float]:
-    """Resample whole six-block position cycles, not individual observations."""
+             seed: int = 0x723a,
+             cycle_size: int = len(KINDS_V1)) -> tuple[float, float]:
+    """Resample whole position cycles, not individual observations."""
     rng = random.Random(seed)
-    cycles = [differences[i:i + len(KINDS)]
-              for i in range(0, len(differences), len(KINDS))]
-    if not cycles or any(len(cycle) != len(KINDS) for cycle in cycles):
-        raise ValueError("incomplete six-block position cycle")
+    cycles = [differences[i:i + cycle_size]
+              for i in range(0, len(differences), cycle_size)]
+    if not cycles or any(len(cycle) != cycle_size for cycle in cycles):
+        raise ValueError("incomplete position cycle")
     estimates = sorted(trimmed_mean([value
                                      for _ in cycles
                                      for value in cycles[rng.randrange(len(cycles))]])
@@ -235,16 +282,28 @@ def interval(differences: list[int], iterations: int = 2000,
 
 def summarize(trace: Trace) -> dict[str, object]:
     iterations = int(trace.run["iterations"])
+    cycle_size = len(trace.kinds)
     measured = [b["branch_random"] - b["branch_periodic"]
                 for b in trace.blocks]
     baseline = [b["branchless_random"] - b["branchless_periodic"]
                 for b in trace.blocks]
     interaction = [a - b for a, b in zip(measured, baseline)]
     timer = [b["timer_slow"] - b["timer_fast"] for b in trace.blocks]
+    comparisons = [("branch", measured), ("branchless", baseline),
+                   ("adjusted", interaction)]
+    no_load: list[int] | None = None
+    if trace.run["version"] == "2":
+        no_load = [b["branch_no_load_random"] - b["branch_no_load_periodic"]
+                   for b in trace.blocks]
+        comparisons.extend((
+            ("branch_no_load", no_load),
+            ("no_load_adjusted", [a - b for a, b in zip(no_load, baseline)]),
+            ("load_minus_no_load", [a - b for a, b in zip(measured, no_load)]),
+        ))
     contrasts = {}
-    for label, differences in (("branch", measured), ("branchless", baseline),
-                               ("adjusted", interaction)):
-        ci = interval(differences, seed=0x723a + len(contrasts))
+    for label, differences in comparisons:
+        ci = interval(differences, seed=0x723a + len(contrasts),
+                      cycle_size=cycle_size)
         contrasts[label] = {
             "paired_median_ticks_per_iteration": median(differences) / iterations,
             "paired_trimmed_mean_ticks_per_iteration":
@@ -252,16 +311,16 @@ def summarize(trace: Trace) -> dict[str, object]:
             "within_run_cycle_bootstrap_95_ticks_per_iteration":
                 (ci[0] / iterations, ci[1] / iterations),
         }
-    timer_ci = interval(timer, seed=0x723d)
+    timer_ci = interval(timer, seed=0x723d, cycle_size=cycle_size)
     positive_count = sum(value > 0 for value in timer)
     timer_pass = (positive_count / len(timer) >= 0.95 and timer_ci[0] > 0)
     branchless_low, branchless_high = contrasts["branchless"][
         "within_run_cycle_bootstrap_95_ticks_per_iteration"]
     half = len(trace.blocks) // 2
-    return {
+    result = {
         "class_median_ticks_per_iteration": {
             kind: median(b[kind] for b in trace.blocks) / iterations
-            for kind in KINDS[:4]
+            for kind in trace.kinds[:-2]
         },
         "contrasts": contrasts,
         "split_half_adjusted_trimmed_mean_ticks_per_iteration": (
@@ -279,6 +338,12 @@ def summarize(trace: Trace) -> dict[str, object]:
         "observed_tick_gcd": reduce(gcd, (value for block in trace.blocks
                                            for value in block.values())),
     }
+    if no_load is not None:
+        result["split_half_no_load_trimmed_mean_ticks_per_iteration"] = (
+            trimmed_mean(no_load[:half]) / iterations,
+            trimmed_mean(no_load[half:]) / iterations,
+        )
+    return result
 
 
 def main() -> int:
@@ -294,35 +359,53 @@ def main() -> int:
         parser.exit(2, f"Invalid batch trace: {exc}\n")
     result = summarize(trace)
     if args.json:
-        print(json.dumps({"cpu": trace.cpu, "run": trace.run,
+        print(json.dumps({"cpu": trace.cpu, "run": trace.run, "host": trace.host,
                           "binary_sha256": trace.binary_sha256, **result},
                          sort_keys=True))
     else:
         print(f"CPU: {trace.cpu['vendor']} signature {trace.cpu['signature']}; "
               f"hypervisor={trace.cpu['hypervisor']}")
+        if trace.host is not None:
+            print(f"Windows build {trace.host['windows_build']}; "
+                  f"run start UTC {trace.host['run_utc']}")
         print(f"Validated {len(trace.blocks)} randomized complete blocks, "
-              f"{trace.run['iterations']} iterations per condition")
+              f"{trace.run['iterations']} iterations per condition; "
+              f"trace version {trace.run['version']}; seed {trace.run['seed']}")
         print(f"Binary SHA256: {trace.binary_sha256}")
         print(f"Observed GCD of batch totals: {result['observed_tick_gcd']} TSC ticks")
         timer = result["timer_control"]
         timer_low, timer_high = timer["within_run_cycle_bootstrap_95_ticks"]
+        cycle_size = len(trace.kinds)
         print(f"Timer positive control: slow - fast trimmed mean "
               f"{timer['paired_trimmed_mean_ticks']:+.1f} ticks "
-              f"[within-run six-block cycle bootstrap 95%: "
+              f"[within-run {cycle_size}-block cycle bootstrap 95%: "
               f"{timer_low:+.1f}, {timer_high:+.1f}]; "
               f"paired median {timer['paired_median_ticks']:+.1f}; "
               f"positive in {timer['positive_fraction']:.1%} of blocks "
               f"({'PASS' if timer['passes'] else 'INCONCLUSIVE'})")
-        for label in ("branch", "branchless", "adjusted"):
+        labels = ["branch", "branchless", "adjusted"]
+        if trace.run["version"] == "2":
+            labels = ["branch", "branch_no_load", "branchless", "adjusted",
+                      "no_load_adjusted", "load_minus_no_load"]
+        for label in labels:
             value = result["contrasts"][label]
             low, high = value["within_run_cycle_bootstrap_95_ticks_per_iteration"]
-            print(f"{label:10s} random - periodic: "
+            comparison = ("loaded - no-load effect:" if label == "load_minus_no_load"
+                          else "random - periodic:")
+            print(f"{label:19s} {comparison} "
                   f"{value['paired_trimmed_mean_ticks_per_iteration']:+.3f} "
-                  f"TSC ticks/iteration [within-run six-block cycle bootstrap 95%: "
+                  f"TSC ticks/iteration [within-run {cycle_size}-block cycle bootstrap 95%: "
                   f"{low:+.3f}, {high:+.3f}]")
         first, second = result["split_half_adjusted_trimmed_mean_ticks_per_iteration"]
         print(f"Adjusted contrast first/second half: {first:+.3f}, "
               f"{second:+.3f} ticks/iteration")
+        if trace.run["version"] == "2":
+            first, second = result[
+                "split_half_no_load_trimmed_mean_ticks_per_iteration"]
+            print(f"No-load branch first/second half: {first:+.3f}, "
+                  f"{second:+.3f} ticks/iteration")
+            print("No-load and loaded branches occupy different addresses; "
+                  "their contrast is an ablation, not isolated target-load cost.")
         if result["branchless_contrast_detectable"]:
             branch = abs(result["contrasts"]["branch"][
                 "paired_trimmed_mean_ticks_per_iteration"])

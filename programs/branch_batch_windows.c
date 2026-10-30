@@ -1,22 +1,24 @@
 /* Balanced branch-predictability contrast with a branchless input control. */
 #include "cpu_features.h"
 
+#include <errno.h>
 #include <intrin.h>
 #include <stdint.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <windows.h>
 
 #define BLOCKS 144u
 #define ITERATIONS 8192u
-#define WARMUP_BLOCKS 6u
-#define CONDITIONS 6u
-#define SEED UINT32_C(0x3127f49b)
+#define WARMUP_BLOCKS 8u
+#define CONDITIONS 8u
 
 enum sample_kind {
     BRANCH_PERIODIC = 0, BRANCH_RANDOM = 1,
-    BRANCHLESS_PERIODIC = 2, BRANCHLESS_RANDOM = 3,
-    TIMER_FAST = 4, TIMER_SLOW = 5
+    BRANCH_NO_LOAD_PERIODIC = 2, BRANCH_NO_LOAD_RANDOM = 3,
+    BRANCHLESS_PERIODIC = 4, BRANCHLESS_RANDOM = 5,
+    TIMER_FAST = 6, TIMER_SLOW = 7
 };
 
 struct sample {
@@ -28,6 +30,8 @@ struct sample {
 
 extern uint8_t spec_branch_site(const volatile uint8_t *condition,
                                 const volatile uint8_t *target);
+extern uint8_t branch_no_load_site(const volatile uint8_t *condition,
+                                   const volatile uint8_t *target);
 extern uint8_t branchless_site(const volatile uint8_t *condition,
                                const volatile uint8_t *target);
 
@@ -38,10 +42,12 @@ static __declspec(align(64)) uint8_t periodic_template[ITERATIONS];
 static __declspec(align(64)) uint8_t random_template[ITERATIONS];
 static struct sample samples[BLOCKS * CONDITIONS];
 static volatile uint32_t sink;
+static volatile uint8_t timer_slow_flag;
 static int architectural_error;
 static const char *const labels[CONDITIONS] = {
-    "branch_periodic", "branch_random", "branchless_periodic",
-    "branchless_random", "timer_fast", "timer_slow"
+    "branch_periodic", "branch_random",
+    "branch_no_load_periodic", "branch_no_load_random",
+    "branchless_periodic", "branchless_random", "timer_fast", "timer_slow"
 };
 
 static uint32_t next_random(uint32_t *state) {
@@ -75,6 +81,15 @@ static __declspec(noinline) uint32_t run_branch(const uint8_t *values) {
     return sum;
 }
 
+static __declspec(noinline) uint32_t run_branch_no_load(const uint8_t *values) {
+    uint32_t i, sum = 0;
+    for (i = 0; i < ITERATIONS; ++i) {
+        condition_line[0] = values[i];
+        sum += branch_no_load_site(condition_line, target_line);
+    }
+    return sum;
+}
+
 static __declspec(noinline) uint32_t run_branchless(const uint8_t *values) {
     uint32_t i, sum = 0;
     for (i = 0; i < ITERATIONS; ++i) {
@@ -84,23 +99,14 @@ static __declspec(noinline) uint32_t run_branchless(const uint8_t *values) {
     return sum;
 }
 
-/* A known extra instruction every 128 iterations checks timer sensitivity. */
-static __declspec(noinline) uint32_t timer_control(const uint8_t *values,
-                                                   uint8_t slow) {
+/* One timer loop and call site; the volatile flag is assigned before timing. */
+static __declspec(noinline) uint32_t timer_control(const uint8_t *values) {
     uint32_t i, sum = 0;
     for (i = 0; i < ITERATIONS; ++i) {
         sum += values[i];
-        if (slow && (i & 127u) == 0u) _mm_pause();
+        if ((i & 127u) == 0u && timer_slow_flag) _mm_pause();
     }
     return sum;
-}
-
-static __declspec(noinline) uint32_t run_timer_fast(const uint8_t *values) {
-    return timer_control(values, 0);
-}
-
-static __declspec(noinline) uint32_t run_timer_slow(const uint8_t *values) {
-    return timer_control(values, 1);
 }
 
 static void prepare_random_template(uint32_t *state) {
@@ -125,15 +131,17 @@ static uint64_t measure(uint8_t kind) {
     uint32_t touched = 0, output, i;
     uint64_t start, end;
     uint32_t (*runner)(const uint8_t *) =
-        kind < 2u ? run_branch : kind < 4u ? run_branchless :
-        kind == TIMER_FAST ? run_timer_fast : run_timer_slow;
+        kind < 2u ? run_branch : kind < 4u ? run_branch_no_load :
+        kind < 6u ? run_branchless : timer_control;
     const uint8_t *source = (kind == BRANCH_RANDOM ||
+                             kind == BRANCH_NO_LOAD_RANDOM ||
                              kind == BRANCHLESS_RANDOM) ?
                             random_template : periodic_template;
 
     /* Copy outside the timed region: every class uses the same input address. */
     memcpy(pattern, source, ITERATIONS);
     condition_line[0] = 0;
+    timer_slow_flag = kind == TIMER_SLOW;
     for (i = 0; i < ITERATIONS; i += 64u) touched += pattern[i];
     sink += touched + target_line[0];
 
@@ -148,7 +156,7 @@ static uint64_t measure(uint8_t kind) {
     return end - start;
 }
 
-/* Rotate each shuffled permutation to balance position across six blocks. */
+/* Rotate each shuffled permutation to balance position across eight blocks. */
 static uint64_t collect_block(uint32_t block, uint32_t *state,
                               uint8_t base_order[CONDITIONS], int store,
                               uint64_t pattern_hash) {
@@ -178,13 +186,28 @@ static uint64_t collect_block(uint32_t block, uint32_t *state,
     return pattern_hash;
 }
 
-int main(void) {
+int main(int argc, char **argv) {
     struct cache_cpu_features cpu;
     int cpuid[4];
+    char *end_seed;
     uint8_t order[CONDITIONS] = { 0 };
-    uint32_t state = SEED, block, index, i;
+    uint32_t state, seed, block, index, i;
     uint64_t checksum = 0;
     uint64_t pattern_hash = UINT64_C(14695981039346656037);
+    unsigned long long parsed_seed;
+    if (argc != 2 || argv[1][0] == '-') {
+        fputs("Usage: branch-batch-windows.exe <nonzero decimal uint32 seed>\n", stderr);
+        return 1;
+    }
+    errno = 0;
+    parsed_seed = strtoull(argv[1], &end_seed, 10);
+    if (errno || end_seed == argv[1] || *end_seed != '\0' ||
+        parsed_seed == 0 || parsed_seed > UINT32_MAX) {
+        fputs("BATCH_ERROR: expected a nonzero decimal uint32 seed\n", stderr);
+        return 1;
+    }
+    seed = (uint32_t)parsed_seed;
+    state = seed;
     cache_detect_cpu(&cpu);
     if (!cpu.has_tsc || !cpu.invariant_tsc) {
         fputs("BATCH_ERROR: invariant TSC is required\n", stderr);
@@ -211,12 +234,14 @@ int main(void) {
     printf("BATCH_CPU,vendor=%s,signature=0x%08x,invariant_tsc=%u,hypervisor=%u\n",
            cpu.vendor, cpu.signature, cpu.invariant_tsc,
            ((uint32_t)cpuid[2] >> 31) & 1u);
-    printf("BATCH_RUN,version=1,blocks=%u,iterations=%u,warmup_blocks=%u,"
-           "seed=%u,branch_addr=0x%llx,branchless_addr=0x%llx,"
+    printf("BATCH_RUN,version=2,blocks=%u,iterations=%u,warmup_blocks=%u,"
+           "seed=%u,branch_addr=0x%llx,branch_no_load_addr=0x%llx,"
+           "branchless_addr=0x%llx,"
            "timer=lfence_rdtsc_lfence,pattern=periodic0011_vs_fresh_balanced_shuffle,"
            "compiler=msvc_O2,pattern_hash=%llu\n",
-           BLOCKS, ITERATIONS, WARMUP_BLOCKS, SEED,
+           BLOCKS, ITERATIONS, WARMUP_BLOCKS, seed,
            (unsigned long long)(uintptr_t)spec_branch_site,
+           (unsigned long long)(uintptr_t)branch_no_load_site,
            (unsigned long long)(uintptr_t)branchless_site,
            (unsigned long long)pattern_hash);
     for (index = 0; index < BLOCKS * CONDITIONS; ++index) {

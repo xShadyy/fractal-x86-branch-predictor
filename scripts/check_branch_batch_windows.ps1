@@ -1,15 +1,26 @@
 # Build and validate the balanced branch predictability experiment.
+param([uint32]$Seed = 0)
 $ErrorActionPreference = 'Stop'
 $root = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
 $out = Join-Path $root 'out'
 $binary = Join-Path $out 'branch-batch-windows.exe'
 $object = Join-Path $out 'spec_branch_windows.obj'
-$runStamp = (Get-Date).ToUniversalTime().ToString('yyyyMMddTHHmmssZ')
-$trace = Join-Path $out ('branch-batch-windows-{0}.log' -f $runStamp)
-$archivedBinary = Join-Path $out ('branch-batch-windows-{0}.exe' -f $runStamp)
-if ((Test-Path $trace) -or (Test-Path $archivedBinary)) {
-    throw "Run timestamp collision: $runStamp"
+if ($PSBoundParameters.ContainsKey('Seed')) {
+    if ($Seed -eq 0) { throw 'Specify a nonzero 32-bit seed.' }
+    $runSeed = $Seed
+} else {
+    $randomBytes = New-Object byte[] 4
+    $generator = [System.Security.Cryptography.RandomNumberGenerator]::Create()
+    try {
+        do {
+            $generator.GetBytes($randomBytes)
+            $runSeed = [BitConverter]::ToUInt32($randomBytes, 0)
+        } while ($runSeed -eq 0)
+    } finally {
+        $generator.Dispose()
+    }
 }
+Write-Host "Preselected run seed: $runSeed"
 
 $vswhere = Join-Path ${env:ProgramFiles(x86)} 'Microsoft Visual Studio\Installer\vswhere.exe'
 if (-not (Test-Path $vswhere)) { throw 'Install MSVC Build Tools with Desktop development with C++.' }
@@ -43,9 +54,20 @@ try {
     Pop-Location
 }
 
-& $binary | Out-File -FilePath $trace -Encoding ascii
+$runStamp = (Get-Date).ToUniversalTime().ToString('yyyyMMddTHHmmssZ')
+$trace = Join-Path $out ('branch-batch-windows-{0}.log' -f $runStamp)
+$archivedBinary = Join-Path $out ('branch-batch-windows-{0}.exe' -f $runStamp)
+if ((Test-Path $trace) -or (Test-Path $archivedBinary)) {
+    throw "Run timestamp collision: $runStamp"
+}
+& $binary ([string]$runSeed) | Out-File -FilePath $trace -Encoding ascii
 if ($LASTEXITCODE -ne 0) { throw "Balanced branch run failed; inspect $trace" }
 Copy-Item -Path $binary -Destination $archivedBinary
+$windowsBuild = (Get-CimInstance Win32_OperatingSystem -Property BuildNumber).BuildNumber
+if ([string]$windowsBuild -notmatch '^[0-9]+$') {
+    throw 'Could not record the Windows build number.'
+}
+Add-Content -Path $trace -Value "BATCH_HOST,windows_build=$windowsBuild,run_utc=$runStamp" -Encoding ascii
 $binaryHash = (Get-FileHash -Path $archivedBinary -Algorithm SHA256).Hash.ToLowerInvariant()
 Add-Content -Path $trace -Value "BATCH_BINARY,sha256=$binaryHash" -Encoding ascii
 $analyzer = Join-Path $root 'scripts\analyze_branch_batch.py'
