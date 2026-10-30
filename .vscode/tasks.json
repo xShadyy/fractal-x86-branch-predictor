@@ -61,6 +61,21 @@
       "problemMatcher": "$msCompile",
       "presentation": {"reveal": "always", "panel": "dedicated"},
       "windows": {}
+    },
+    {
+      "label": "Record Windows host snapshot",
+      "type": "process",
+      "command": "powershell.exe",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}\\scripts\\record_windows_host.ps1"
+      ],
+      "problemMatcher": [],
+      "presentation": {"reveal": "always", "panel": "dedicated"},
+      "windows": {}
     }
   ]
 }
