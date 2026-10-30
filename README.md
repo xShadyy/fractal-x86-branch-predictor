@@ -44,6 +44,10 @@ The [first physical version 2 pilot](results/2026-10-30-windows-v2-pilot/README.
 
 The [six-run version 2 replication](results/2026-10-30-windows-v2-replication/README.md) preserves three runs in each of two same-day sessions with six distinct seeds, matching executables and host snapshots. It reports run-level results, outlier sensitivity and limits on inference across sessions. The outcome-order timing effect persists at the no-target-load branch, but its cause is not identified by timing alone.
 
+## Two follow-up Windows studies
+
+The [study plan and run instructions](WINDOWS_BRANCH_STUDIES.md) describe two new native user-mode controls inspired by the training/probing methodology of the Fractal authors. **Decision source: build, run, analyze (Windows)** uses one branch instruction with a runtime-selected live or fixed-periodic decision stream while retaining the same live input. **Branch history crossover: build, run, analyze (Windows)** compares a fixed short probe after matched or mismatched training, with a branchless sham trainer. Both are separate experiments with independent trace formats, seeds, matching archived EXEs, predefined contrasts and controls. Their first Windows binaries and pilot results still need physical-host validation. These user-mode timing studies do not test Fractal's privilege switching or reproduce its Apple M1 results.
+
 The earlier single-call latency trace on the Windows host contained only values divisible by 47 TSC ticks. Its cause is undetermined. [AMD uProf 5.3 release notes](https://docs.amd.com/r/en-US/63856-uProf-release-notes/6.1.-CPU-Profiling) document that EBP/IBS CPU profiling is disabled when Windows has Hyper-V enabled; interpret the balanced timing experiment within that constraint.
 
 ## Linux development check

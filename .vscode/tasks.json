@@ -63,6 +63,36 @@
       "windows": {}
     },
     {
+      "label": "Decision source: build, run, analyze (Windows)",
+      "type": "process",
+      "command": "powershell.exe",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}\\scripts\\check_decision_source_windows.ps1"
+      ],
+      "problemMatcher": "$msCompile",
+      "presentation": {"reveal": "always", "panel": "dedicated"},
+      "windows": {}
+    },
+    {
+      "label": "Branch history crossover: build, run, analyze (Windows)",
+      "type": "process",
+      "command": "powershell.exe",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}\\scripts\\check_history_probe_windows.ps1"
+      ],
+      "problemMatcher": "$msCompile",
+      "presentation": {"reveal": "always", "panel": "dedicated"},
+      "windows": {}
+    },
+    {
       "label": "Record Windows host snapshot",
       "type": "process",
       "command": "powershell.exe",
