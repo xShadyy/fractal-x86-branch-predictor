@@ -1,0 +1,29 @@
+﻿{
+    "captured_utc":  "20261030T151944Z",
+    "os":  {
+               "Caption":  "Microsoft Windows 11 Pro",
+               "Version":  "10.0.26200",
+               "BuildNumber":  "26200",
+               "OSArchitecture":  "64-bit"
+           },
+    "processor":  {
+                      "Name":  "AMD Ryzen 7 9800X3D 8-Core Processor           ",
+                      "NumberOfCores":  8,
+                      "NumberOfLogicalProcessors":  16
+                  },
+    "baseboard":  {
+                      "Manufacturer":  "Gigabyte Technology Co., Ltd.",
+                      "Product":  "X870E AORUS ELITE WIFI7",
+                      "Version":  "Default string"
+                  },
+    "bios":  {
+                 "Manufacturer":  "American Megatrends International, LLC.",
+                 "SMBIOSBIOSVersion":  "FA9",
+                 "ReleaseDate":  "\/Date(1770249600000)\/"
+             },
+    "hypervisor":  {
+                       "HypervisorPresent":  true
+                   },
+    "active_power_plan":  "Power Scheme GUID: 381b4222-f694-41f0-9685-ff5bb260df2e  (Balanced)",
+    "note":  "Windows host inventory; microcode and mitigation configuration are not established by this record."
+}

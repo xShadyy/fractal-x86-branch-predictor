@@ -42,6 +42,8 @@ The [archived two-run Windows baseline](results/2026-10-30-windows-branch-batch/
 
 The [first physical version 2 pilot](results/2026-10-30-windows-v2-pilot/README.md) includes its raw trace, matched executable, host snapshot, outliers and analysis. Its no-load branch retains the outcome-order timing contrast. It is one run with one seed; inspect the documented limitations and collect the planned independent replications before making a broader claim.
 
+The [six-run version 2 replication](results/2026-10-30-windows-v2-replication/README.md) preserves three runs in each of two same-day sessions with six distinct seeds, matching executables and host snapshots. It reports run-level results, outlier sensitivity and limits on inference across sessions. The outcome-order timing effect persists at the no-target-load branch, but its cause is not identified by timing alone.
+
 The earlier single-call latency trace on the Windows host contained only values divisible by 47 TSC ticks. Its cause is undetermined. [AMD uProf 5.3 release notes](https://docs.amd.com/r/en-US/63856-uProf-release-notes/6.1.-CPU-Profiling) document that EBP/IBS CPU profiling is disabled when Windows has Hyper-V enabled; interpret the balanced timing experiment within that constraint.
 
 ## Linux development check

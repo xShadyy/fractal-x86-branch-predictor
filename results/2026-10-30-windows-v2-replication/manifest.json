@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "sessions": [
+    {
+      "id": "session-1",
+      "host": "session-1/host-windows-20261030T131525Z.json",
+      "runs": [
+        {
+          "trace": "session-1/branch-batch-windows-20261030T131602Z.log",
+          "exe": "session-1/branch-batch-windows-20261030T131602Z.exe"
+        },
+        {
+          "trace": "session-1/branch-batch-windows-20261030T131612Z.log",
+          "exe": "session-1/branch-batch-windows-20261030T131612Z.exe"
+        },
+        {
+          "trace": "session-1/branch-batch-windows-20261030T131620Z.log",
+          "exe": "session-1/branch-batch-windows-20261030T131620Z.exe"
+        }
+      ]
+    },
+    {
+      "id": "session-2",
+      "host": "session-2/host-windows-20261030T151944Z.json",
+      "runs": [
+        {
+          "trace": "session-2/branch-batch-windows-20261030T151954Z.log",
+          "exe": "session-2/branch-batch-windows-20261030T151954Z.exe"
+        },
+        {
+          "trace": "session-2/branch-batch-windows-20261030T152004Z.log",
+          "exe": "session-2/branch-batch-windows-20261030T152004Z.exe"
+        },
+        {
+          "trace": "session-2/branch-batch-windows-20261030T152013Z.log",
+          "exe": "session-2/branch-batch-windows-20261030T152013Z.exe"
+        }
+      ]
+    }
+  ]
+}
