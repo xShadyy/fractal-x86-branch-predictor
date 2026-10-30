@@ -4,7 +4,7 @@ $ErrorActionPreference = 'Stop'
 $root = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
 $out = Join-Path $root 'out'
 $binary = Join-Path $out 'history-probe-windows.exe'
-$object = Join-Path $out 'history_probe_windows.obj'
+$object = Join-Path $out 'history_probe_branch_site.obj'
 
 if ($PSBoundParameters.ContainsKey('Seed')) {
     if ($Seed -eq 0) { throw 'Specify a nonzero 32-bit seed.' }
