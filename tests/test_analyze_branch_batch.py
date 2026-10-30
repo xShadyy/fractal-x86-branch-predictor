@@ -257,6 +257,9 @@ class BranchBatchTests(unittest.TestCase):
             self.assertIn("within-run 8-block cycle bootstrap", output.getvalue())
             self.assertIn("branch_no_load", output.getvalue())
             self.assertIn("different addresses", output.getvalue())
+            self.assertIn("branchless          random - periodic: +2.500000", output.getvalue())
+            self.assertIn("Positive block contrasts: branch 16/16, "
+                          "branch_no_load 16/16, adjusted 16/16", output.getvalue())
 
     def test_version_2_seed_range_and_replay_validation(self):
         trace = serial_trace_v2(seed=7)

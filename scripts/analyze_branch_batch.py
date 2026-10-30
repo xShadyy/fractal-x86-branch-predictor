@@ -310,6 +310,8 @@ def summarize(trace: Trace) -> dict[str, object]:
                 trimmed_mean(differences) / iterations,
             "within_run_cycle_bootstrap_95_ticks_per_iteration":
                 (ci[0] / iterations, ci[1] / iterations),
+            "positive_blocks": sum(value > 0 for value in differences),
+            "total_blocks": len(differences),
         }
     timer_ci = interval(timer, seed=0x723d, cycle_size=cycle_size)
     positive_count = sum(value > 0 for value in timer)
@@ -392,14 +394,19 @@ def main() -> int:
             low, high = value["within_run_cycle_bootstrap_95_ticks_per_iteration"]
             comparison = ("loaded - no-load effect:" if label == "load_minus_no_load"
                           else "random - periodic:")
+            precision = 6 if label == "branchless" else 3
             print(f"{label:19s} {comparison} "
-                  f"{value['paired_trimmed_mean_ticks_per_iteration']:+.3f} "
+                  f"{value['paired_trimmed_mean_ticks_per_iteration']:+.{precision}f} "
                   f"TSC ticks/iteration [within-run {cycle_size}-block cycle bootstrap 95%: "
-                  f"{low:+.3f}, {high:+.3f}]")
+                  f"{low:+.{precision}f}, {high:+.{precision}f}]")
         first, second = result["split_half_adjusted_trimmed_mean_ticks_per_iteration"]
         print(f"Adjusted contrast first/second half: {first:+.3f}, "
               f"{second:+.3f} ticks/iteration")
         if trace.run["version"] == "2":
+            print("Positive block contrasts: " + ", ".join(
+                f"{label} {result['contrasts'][label]['positive_blocks']}/"
+                f"{result['contrasts'][label]['total_blocks']}"
+                for label in ("branch", "branch_no_load", "adjusted")))
             first, second = result[
                 "split_half_no_load_trimmed_mean_ticks_per_iteration"]
             print(f"No-load branch first/second half: {first:+.3f}, "
