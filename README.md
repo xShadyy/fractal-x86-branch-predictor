@@ -40,6 +40,8 @@ The analyzer reports paired random-minus-periodic contrasts for the loaded branc
 
 The [archived two-run Windows baseline](results/2026-10-30-windows-branch-batch/README.md) used the earlier six-condition, fixed-seed trace format. The current analyzer still validates those version 1 logs; version 2 adds the no-load branch and per-run seeds. The original branch-loaded contrast was repeatable in that baseline, but only physical version 2 measurements can evaluate the new control.
 
+The [first physical version 2 pilot](results/2026-10-30-windows-v2-pilot/README.md) includes its raw trace, matched executable, host snapshot, outliers and analysis. Its no-load branch retains the outcome-order timing contrast. It is one run with one seed; inspect the documented limitations and collect the planned independent replications before making a broader claim.
+
 The earlier single-call latency trace on the Windows host contained only values divisible by 47 TSC ticks. Its cause is undetermined. [AMD uProf 5.3 release notes](https://docs.amd.com/r/en-US/63856-uProf-release-notes/6.1.-CPU-Profiling) document that EBP/IBS CPU profiling is disabled when Windows has Hyper-V enabled; interpret the balanced timing experiment within that constraint.
 
 ## Linux development check
