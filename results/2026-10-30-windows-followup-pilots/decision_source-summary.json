@@ -1,0 +1,106 @@
+{
+  "binary_sha256": "f4b6e8e1970336781c018f70bc3f9360abf369a96faf657b1537c1b1f928fa03",
+  "contrasts": {
+    "branchless_pattern": {
+      "paired_median_ticks_per_iteration": 0.0,
+      "paired_trimmed_mean_ticks_per_iteration": -0.0012364880792025861,
+      "positive_blocks": 64,
+      "total_blocks": 144,
+      "within_run_eight_block_bootstrap_95_ticks_per_iteration": [
+        -0.013700287917564655,
+        0.0068748737203663795
+      ]
+    },
+    "fixed_pattern": {
+      "paired_median_ticks_per_iteration": -0.0057373046875,
+      "paired_trimmed_mean_ticks_per_iteration": -0.003511626144935345,
+      "positive_blocks": 32,
+      "total_blocks": 144,
+      "within_run_eight_block_bootstrap_95_ticks_per_iteration": [
+        -0.039221401872306036,
+        -0.0015332452182112068
+      ]
+    },
+    "live_pattern": {
+      "paired_median_ticks_per_iteration": 16.879150390625,
+      "paired_trimmed_mean_ticks_per_iteration": 16.90491880219558,
+      "positive_blocks": 141,
+      "total_blocks": 144,
+      "within_run_eight_block_bootstrap_95_ticks_per_iteration": [
+        16.840225745891704,
+        17.25291600720636
+      ]
+    },
+    "periodic_mode": {
+      "paired_median_ticks_per_iteration": 0.0,
+      "paired_trimmed_mean_ticks_per_iteration": -0.0015827047413793103,
+      "positive_blocks": 44,
+      "total_blocks": 144,
+      "within_run_eight_block_bootstrap_95_ticks_per_iteration": [
+        -0.011672447467672414,
+        0.0015827047413793103
+      ]
+    },
+    "primary_interaction": {
+      "paired_median_ticks_per_iteration": 16.8963623046875,
+      "paired_trimmed_mean_ticks_per_iteration": 17.08257740941541,
+      "positive_blocks": 141,
+      "total_blocks": 144,
+      "within_run_eight_block_bootstrap_95_ticks_per_iteration": [
+        16.874006600215516,
+        17.771004512392242
+      ]
+    }
+  },
+  "controls_pass": true,
+  "cpu": {
+    "hypervisor": "1",
+    "invariant_tsc": "1",
+    "signature": "0x00b40f40",
+    "vendor": "AuthenticAMD"
+  },
+  "host": {
+    "run_utc": "20261030T163709Z",
+    "windows_build": "26200"
+  },
+  "negative_control_tolerance_ticks_per_iteration": 0.5,
+  "negative_controls_within_tolerance": {
+    "branchless_pattern": true,
+    "fixed_pattern": true,
+    "periodic_mode": true
+  },
+  "observed_tick_gcd": 47,
+  "primary_positive_within_run": true,
+  "primary_split_halves_ticks_per_iteration": [
+    16.917135304418103,
+    17.297874713766163
+  ],
+  "run": {
+    "blocks": "144",
+    "branch_addr": "0x7ff6451c1bf0",
+    "branchless_addr": "0x7ff6451c1c09",
+    "compiler": "msvc_O2",
+    "control_addr": "0x7ff6451e3b40",
+    "decision": "runtime_cmov_live_vs_fixed_periodic",
+    "input_addr": "0x7ff6451e3b00",
+    "iterations": "8192",
+    "mode_addr": "0x7ff6451e3b80",
+    "pattern": "periodic0011_vs_fresh_balanced_shuffle",
+    "pattern_hash": "681444584166694787",
+    "seed": "1967219259",
+    "timer": "lfence_rdtsc_lfence",
+    "version": "1",
+    "warmup_blocks": "8"
+  },
+  "timer_control": {
+    "paired_median_ticks": 3807.0,
+    "paired_trimmed_mean_ticks": 3786.3362068965516,
+    "passes": true,
+    "positive_blocks": 141,
+    "total_blocks": 144,
+    "within_run_eight_block_bootstrap_95_ticks": [
+      3622.646551724138,
+      3902.2155172413795
+    ]
+  }
+}

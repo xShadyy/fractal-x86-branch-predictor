@@ -1,0 +1,117 @@
+{
+  "binary_sha256": "6e7575cb065c1828feaa7ef01b20ae9533a1c049b94f3b0df7181275887a45b3",
+  "contrasts": {
+    "adjusted0": {
+      "paired_median_ticks_per_probe": 1.46875,
+      "paired_trimmed_mean_ticks_per_probe": 0.919403076171875,
+      "positive_blocks": 188,
+      "total_blocks": 320,
+      "within_run_cycle_bootstrap_95_ticks_per_probe": [
+        -0.242401123046875,
+        2.020965576171875
+      ]
+    },
+    "adjusted1": {
+      "paired_median_ticks_per_probe": -0.3671875,
+      "paired_trimmed_mean_ticks_per_probe": -0.480499267578125,
+      "positive_blocks": 147,
+      "total_blocks": 320,
+      "within_run_cycle_bootstrap_95_ticks_per_probe": [
+        -1.2105712890625,
+        0.374359130859375
+      ]
+    },
+    "probe0": {
+      "paired_median_ticks_per_probe": 1.46875,
+      "paired_trimmed_mean_ticks_per_probe": 1.556243896484375,
+      "positive_blocks": 198,
+      "total_blocks": 320,
+      "within_run_cycle_bootstrap_95_ticks_per_probe": [
+        0.827606201171875,
+        2.184478759765625
+      ]
+    },
+    "probe1": {
+      "paired_median_ticks_per_probe": 0.0,
+      "paired_trimmed_mean_ticks_per_probe": -0.07745361328125,
+      "positive_blocks": 153,
+      "total_blocks": 320,
+      "within_run_cycle_bootstrap_95_ticks_per_probe": [
+        -0.598114013671875,
+        0.446075439453125
+      ]
+    },
+    "sham0": {
+      "paired_median_ticks_per_probe": 0.3671875,
+      "paired_trimmed_mean_ticks_per_probe": 0.5048828125,
+      "positive_blocks": 171,
+      "total_blocks": 320,
+      "within_run_cycle_bootstrap_95_ticks_per_probe": [
+        -0.12335205078125,
+        1.16180419921875
+      ]
+    },
+    "sham1": {
+      "paired_median_ticks_per_probe": 0.3671875,
+      "paired_trimmed_mean_ticks_per_probe": 0.309814453125,
+      "positive_blocks": 162,
+      "total_blocks": 320,
+      "within_run_cycle_bootstrap_95_ticks_per_probe": [
+        -0.195068359375,
+        0.784576416015625
+      ]
+    }
+  },
+  "cpu": {
+    "hypervisor": "1",
+    "invariant_tsc": "1",
+    "signature": "0x00b40f40",
+    "vendor": "AuthenticAMD"
+  },
+  "host": {
+    "run_utc": "20261030T163724Z",
+    "windows_build": "26200"
+  },
+  "observed_tick_gcd": 47,
+  "run": {
+    "blocks": "320",
+    "branch_addr": "0x7ff7cb0b1c80",
+    "compiler": "msvc_O2",
+    "episodes": "128",
+    "probe_calls": "16",
+    "protocol": "reset_train_fixed_probe_crossover",
+    "reset_calls": "256",
+    "schedule_hash": "18157557521572906577",
+    "seed": "2446820360",
+    "sham_addr": "0x7ff7cb0b1c8e",
+    "timer": "lfence_rdtsc_lfence",
+    "train_calls": "256",
+    "version": "1",
+    "warmup_blocks": "10"
+  },
+  "split_half_adjusted_ticks_per_probe": {
+    "probe0": [
+      0.9638671875,
+      0.82330322265625
+    ],
+    "probe1": [
+      -0.49627685546875,
+      -0.378662109375
+    ]
+  },
+  "timer_control": {
+    "paired_median_ticks_per_probe": 57.6484375,
+    "paired_trimmed_mean_ticks_per_probe": 57.27264404296875,
+    "paired_trimmed_mean_ticks_total": 7330.8984375,
+    "passes": true,
+    "positive_fraction": 0.984375,
+    "within_run_cycle_bootstrap_95_ticks_per_probe": [
+      55.928680419921875,
+      57.681427001953125
+    ],
+    "within_run_cycle_bootstrap_95_ticks_total": [
+      7158.87109375,
+      7383.22265625
+    ]
+  }
+}

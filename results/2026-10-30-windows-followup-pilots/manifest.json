@@ -1,0 +1,48 @@
+{
+  "schema": 1,
+  "source_commit": "84f6182",
+  "session": {
+    "host": "host-windows-20261030T163650Z.json",
+    "captured_utc": "20261030T163650Z",
+    "runs": [
+      {
+        "study": "decision_source",
+        "trace": "decision-source-windows-20261030T163709Z.log",
+        "exe": "decision-source-windows-20261030T163709Z.exe",
+        "analysis": "decision_source-summary.json",
+        "exe_text_sha256": "0f302df7d38b2c1e1eb840104cd4c51da4d0d802a8e540ee74fd8d20a11ec1e9",
+        "seed": 1967219259
+      },
+      {
+        "study": "history_probe",
+        "trace": "history-probe-windows-20261030T163724Z.log",
+        "exe": "history-probe-windows-20261030T163724Z.exe",
+        "analysis": "history_probe-summary.json",
+        "exe_text_sha256": "b7ee4707628ac45f621ffd281066efd0cff3652717324fe3baa7c592c8289e3b",
+        "seed": 2446820360
+      }
+    ]
+  },
+  "files": {
+    "host-windows-20261030T163650Z.json": {
+      "sha256": "3b9ff9ec35ad0b87cdece5425fcfd95013a91c99bc3427300f4228f0eff3552f",
+      "bytes": 1246
+    },
+    "decision-source-windows-20261030T163709Z.log": {
+      "sha256": "e2c8a5323bec0a388b902d3091ea292fcfd7dcda524a148b12e2bb1c8aacd363",
+      "bytes": 54469
+    },
+    "decision-source-windows-20261030T163709Z.exe": {
+      "sha256": "f4b6e8e1970336781c018f70bc3f9360abf369a96faf657b1537c1b1f928fa03",
+      "bytes": 148480
+    },
+    "history-probe-windows-20261030T163724Z.log": {
+      "sha256": "0c38d95f0c0029698041b808c1de7c056e30dfe8f8c2fa6bd41992ec86a9c02f",
+      "bytes": 131550
+    },
+    "history-probe-windows-20261030T163724Z.exe": {
+      "sha256": "6e7575cb065c1828feaa7ef01b20ae9533a1c049b94f3b0df7181275887a45b3",
+      "bytes": 147968
+    }
+  }
+}
