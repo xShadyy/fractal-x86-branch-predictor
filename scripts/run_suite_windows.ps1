@@ -1,4 +1,4 @@
-# Run calibration and baseline checks, then a complete exploratory Windows pilot.
+# Run calibration, all prior branch diagnostics, then the exploratory Windows pilot.
 # Every study script independently builds, archives its EXE/trace and runs strict trace analysis.
 param(
     [ValidateSet('Pilot', 'Followup')][string]$Phase = 'Pilot',
@@ -25,6 +25,8 @@ if ($LogicalCpu -ge 0) {
 $baselineStudies = @(
     [pscustomobject]@{ name = 'cache_controls'; script = 'check_windows.ps1'; prefix = 'cache-probe-windows-'; seeded = $false },
     [pscustomobject]@{ name = 'spec_cache_receiver'; script = 'check_spec_windows.ps1'; prefix = 'spec-probe-windows-'; seeded = $false },
+    [pscustomobject]@{ name = 'branch_batch'; script = 'check_branch_batch_windows.ps1'; prefix = 'branch-batch-windows-'; seeded = $true },
+    [pscustomobject]@{ name = 'single_branch_latency'; script = 'check_branch_latency_windows.ps1'; prefix = 'branch-latency-windows-'; seeded = $false },
     [pscustomobject]@{ name = 'decision_source_a'; script = 'check_decision_source_windows.ps1'; prefix = 'decision-source-windows-'; seeded = $true },
     [pscustomobject]@{ name = 'history_probe_b1'; script = 'check_history_probe_windows.ps1'; prefix = 'history-probe-windows-'; seeded = $true }
 )
@@ -42,6 +44,7 @@ $sourceFiles = @(
     'WINDOWS_MULTI_EXPERIMENT_SUITE.md', 'WINDOWS_RESEARCH_PROGRAM.md',
     'INDIRECT_TARGET_STUDY.md', 'INDIRECT_CACHE_STUDY.md',
     'programs/utest.c', 'programs/cache_probe_windows.c',
+    'programs/branch_batch_windows.c', 'programs/branch_latency_windows.c',
     'programs/spec_probe_windows.c', 'programs/spec_branch_windows.asm',
     'programs/decision_source_windows.c', 'programs/decision_source_windows.asm',
     'programs/history_probe_windows.c', 'programs/history_probe_windows.asm',
@@ -55,6 +58,8 @@ $sourceFiles = @(
     'programs/cache_probe.h', 'programs/cpu_features.c', 'programs/cpu_features.h',
     'scripts/check_windows.ps1', 'scripts/analyze_cache_probe.py',
     'scripts/check_spec_windows.ps1', 'scripts/analyze_spec_probe.py',
+    'scripts/check_branch_batch_windows.ps1', 'scripts/analyze_branch_batch.py',
+    'scripts/check_branch_latency_windows.ps1', 'scripts/analyze_branch_latency.py',
     'scripts/check_decision_source_windows.ps1', 'scripts/analyze_decision_source.py',
     'scripts/check_history_probe_windows.ps1', 'scripts/analyze_history_probe.py',
     'scripts/check_history_b2_windows.ps1', 'scripts/analyze_history_b2.py',
@@ -64,7 +69,6 @@ $sourceFiles = @(
     'scripts/check_address_sensitivity_windows.ps1', 'scripts/analyze_address_sensitivity.py',
     'scripts/check_indirect_target_windows.ps1', 'scripts/analyze_indirect_target.py',
     'scripts/check_indirect_cache_windows.ps1', 'scripts/analyze_indirect_cache.py',
-    'scripts/analyze_branch_batch.py',
     'scripts/record_windows_host.ps1', 'scripts/run_suite_windows.ps1',
     'scripts/package_suite_windows.ps1'
 )
