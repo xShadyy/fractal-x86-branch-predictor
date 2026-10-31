@@ -42,6 +42,8 @@ function Add-RecordedFile([string]$Candidate, [string]$ExpectedSha256 = '') {
 }
 
 Add-RecordedFile $sessionPath
+$previousSession = Join-Path $sessionDir 'session.previous.json'
+if (Test-Path $previousSession) { Add-RecordedFile $previousSession }
 if ($session.host_snapshot) {
     Add-RecordedFile $session.host_snapshot.path $session.host_snapshot.sha256
 }

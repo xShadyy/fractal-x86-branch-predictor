@@ -4,7 +4,12 @@ $root = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
 $out = Join-Path $root 'out'
 $binary = Join-Path $out 'spec-probe-windows.exe'
 $object = Join-Path $out 'spec_branch_windows.obj'
-$trace = Join-Path $out ('spec-probe-windows-{0}.log' -f (Get-Date).ToUniversalTime().ToString('yyyyMMddTHHmmssZ'))
+$runStamp = (Get-Date).ToUniversalTime().ToString('yyyyMMddTHHmmssZ')
+$trace = Join-Path $out ('spec-probe-windows-{0}.log' -f $runStamp)
+$archivedBinary = Join-Path $out ('spec-probe-windows-{0}.exe' -f $runStamp)
+if ((Test-Path $trace) -or (Test-Path $archivedBinary)) {
+    throw "Branch-probe timestamp collision: $runStamp"
+}
 
 $vswhere = Join-Path ${env:ProgramFiles(x86)} 'Microsoft Visual Studio\Installer\vswhere.exe'
 if (-not (Test-Path $vswhere)) { throw 'Install MSVC Build Tools with Desktop development with C++.' }
@@ -39,7 +44,9 @@ try {
     Pop-Location
 }
 
-& $binary | Out-File -FilePath $trace -Encoding ascii
+Copy-Item -Path $binary -Destination $archivedBinary
+$binaryHash = (Get-FileHash -Path $archivedBinary -Algorithm SHA256).Hash.ToLowerInvariant()
+& $archivedBinary | Out-File -FilePath $trace -Encoding ascii
 if ($LASTEXITCODE -ne 0) { throw "Speculative probe failed; inspect $trace" }
 $analyzer = Join-Path $root 'scripts\analyze_spec_probe.py'
 if (Get-Command py.exe -ErrorAction SilentlyContinue) {
@@ -50,4 +57,6 @@ if (Get-Command py.exe -ErrorAction SilentlyContinue) {
     throw 'Python 3 is required to analyze the raw trace.'
 }
 if ($LASTEXITCODE -ne 0) { throw "Branch trace validation failed; inspect $trace" }
+Write-Host "Binary SHA256: $binaryHash"
+Write-Host "Binary: $archivedBinary"
 Write-Host "Raw trace: $trace"

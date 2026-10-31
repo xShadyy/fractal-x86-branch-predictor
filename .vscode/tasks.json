@@ -93,7 +93,7 @@
       "windows": {}
     },
     {
-      "label": "Exploratory suite: pilot all three studies (Windows)",
+      "label": "Full branch research pilot: baseline and seven studies (Windows)",
       "type": "process",
       "command": "powershell.exe",
       "args": [
@@ -138,6 +138,54 @@
       "args": [
         "-NoProfile", "-ExecutionPolicy", "Bypass", "-File",
         "${workspaceFolder}\\scripts\\check_history_decay_windows.ps1"
+      ],
+      "problemMatcher": "$msCompile",
+      "presentation": {"reveal": "always", "panel": "dedicated"},
+      "windows": {}
+    },
+    {
+      "label": "Training dose: build, run, analyze (Windows)",
+      "type": "process",
+      "command": "powershell.exe",
+      "args": [
+        "-NoProfile", "-ExecutionPolicy", "Bypass", "-File",
+        "${workspaceFolder}\\scripts\\check_training_dose_windows.ps1"
+      ],
+      "problemMatcher": "$msCompile",
+      "presentation": {"reveal": "always", "panel": "dedicated"},
+      "windows": {}
+    },
+    {
+      "label": "Branch address sensitivity: build, run, analyze (Windows)",
+      "type": "process",
+      "command": "powershell.exe",
+      "args": [
+        "-NoProfile", "-ExecutionPolicy", "Bypass", "-File",
+        "${workspaceFolder}\\scripts\\check_address_sensitivity_windows.ps1"
+      ],
+      "problemMatcher": "$msCompile",
+      "presentation": {"reveal": "always", "panel": "dedicated"},
+      "windows": {}
+    },
+    {
+      "label": "Indirect target history: build, run, analyze (Windows)",
+      "type": "process",
+      "command": "powershell.exe",
+      "args": [
+        "-NoProfile", "-ExecutionPolicy", "Bypass", "-File",
+        "${workspaceFolder}\\scripts\\check_indirect_target_windows.ps1"
+      ],
+      "problemMatcher": "$msCompile",
+      "presentation": {"reveal": "always", "panel": "dedicated"},
+      "windows": {}
+    },
+    {
+      "label": "Indirect cache receiver: build, run, analyze (Windows)",
+      "type": "process",
+      "command": "powershell.exe",
+      "args": [
+        "-NoProfile", "-ExecutionPolicy", "Bypass", "-File",
+        "${workspaceFolder}\\scripts\\check_indirect_cache_windows.ps1"
       ],
       "problemMatcher": "$msCompile",
       "presentation": {"reveal": "always", "panel": "dedicated"},

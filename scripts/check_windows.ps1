@@ -3,7 +3,12 @@ $ErrorActionPreference = 'Stop'
 $projectRoot = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
 $outputDirectory = Join-Path $projectRoot 'out'
 $binary = Join-Path $outputDirectory 'cache-probe-windows.exe'
-$trace = Join-Path $outputDirectory ('cache-probe-windows-{0}.log' -f (Get-Date).ToUniversalTime().ToString('yyyyMMddTHHmmssZ'))
+$runStamp = (Get-Date).ToUniversalTime().ToString('yyyyMMddTHHmmssZ')
+$trace = Join-Path $outputDirectory ('cache-probe-windows-{0}.log' -f $runStamp)
+$archivedBinary = Join-Path $outputDirectory ('cache-probe-windows-{0}.exe' -f $runStamp)
+if ((Test-Path $trace) -or (Test-Path $archivedBinary)) {
+    throw "Cache-probe timestamp collision: $runStamp"
+}
 
 $vswhere = Join-Path ${env:ProgramFiles(x86)} 'Microsoft Visual Studio\Installer\vswhere.exe'
 if (-not (Test-Path $vswhere)) {
@@ -43,7 +48,9 @@ try {
     Pop-Location
 }
 
-& $binary | Out-File -FilePath $trace -Encoding ascii
+Copy-Item -Path $binary -Destination $archivedBinary
+$binaryHash = (Get-FileHash -Path $archivedBinary -Algorithm SHA256).Hash.ToLowerInvariant()
+& $archivedBinary | Out-File -FilePath $trace -Encoding ascii
 if ($LASTEXITCODE -ne 0) { throw "Cache probe failed; inspect $trace" }
 
 $analyzer = Join-Path $projectRoot 'scripts\analyze_cache_probe.py'
@@ -55,4 +62,6 @@ if (Get-Command py.exe -ErrorAction SilentlyContinue) {
     throw 'Python 3 is required to analyze the raw trace.'
 }
 if ($LASTEXITCODE -ne 0) { throw "Cache controls failed; inspect $trace" }
+Write-Host "Binary SHA256: $binaryHash"
+Write-Host "Binary: $archivedBinary"
 Write-Host "Raw trace: $trace"
