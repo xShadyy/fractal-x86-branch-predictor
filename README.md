@@ -50,6 +50,8 @@ The [study plan and run instructions](WINDOWS_BRANCH_STUDIES.md) describe two ne
 
 The [two-day follow-up series](results/2026-10-30-31-windows-followup-replication/README.md) preserves six runs per study on one Windows host, three per study on each of two different dates. The decision-source interaction recurs with all predefined controls passing. The history experiment has a positive sham-adjusted probe-0 contrast in every run but a mixed probe-1 contrast, so it does not establish the planned two-direction crossover. Its report includes raw traces, matched EXEs, snapshots, a manifest, run-level figure and reproducible series analysis.
 
+The [integrated research report](RESEARCH_REPORT.md) consolidates hypotheses, protocol chronology, all pilot and replication results, verified claims and limits. The [instruction audit appendix](results/2026-10-30-windows-followup-pilots/INSTRUCTION_AUDIT.md) records the optimized branch bytes and reproduction commands. A [separate B2 design proposal](EXPLORATORY_HISTORY_B2.md) describes the next exploratory history experiment; it is a protocol proposal and has no runnable task yet.
+
 The earlier single-call latency trace on the Windows host contained only values divisible by 47 TSC ticks. Its cause is undetermined. [AMD uProf 5.3 release notes](https://docs.amd.com/r/en-US/63856-uProf-release-notes/6.1.-CPU-Profiling) document that EBP/IBS CPU profiling is disabled when Windows has Hyper-V enabled; interpret the balanced timing experiment within that constraint.
 
 ## Linux development check

@@ -26,9 +26,9 @@ The same conditional branch follows a live periodic or freshly balanced shuffled
 | --- | ---: | ---: | ---: | ---: |
 | 30 Oct, 17:46:45 | 3307609659 | +16.850 | [+16.469, +16.962] | 142/144 |
 | 30 Oct, 17:46:55 | 1830731156 | +17.040 | [+16.854, +17.892] | 142/144 |
-| 30 Oct, 17:47:04 | 2051132703 | +17.167 | [+16.911, +17.772] | 140/144 |
+| 30 Oct, 17:47:04 | 2051132703 | +17.167 | [+16.910, +17.772] | 140/144 |
 | 31 Oct, 18:00:20 | 476165243 | +16.936 | [+16.858, +17.266] | 142/144 |
-| 31 Oct, 18:00:38 | 1308128947 | +17.047 | [+16.864, +17.477] | 139/144 |
+| 31 Oct, 18:00:38 | 1308128947 | +17.047 | [+16.863, +17.476] | 139/144 |
 | 31 Oct, 18:00:47 | 1015215205 | +17.064 | [+16.881, +17.528] | 139/144 |
 
 All 18 entire negative-control intervals, three per run, fit inside the prespecified ±0.5 tick/iteration tolerance. The largest absolute interval endpoint is 0.175. Every added-work timer control passes the ≥95% positive-block and positive lower-bound gates. The primary estimates span +16.850 to +17.167; the 30 and 31 October means are +17.019 and +17.016. An exploratory 20% trim gives +16.843 to +16.942 across the six runs. All raw blocks were preserved; none was removed after inspection.
@@ -41,7 +41,7 @@ Each episode runs a common periodic prelude at the conditional site, trains with
 
 | Day, UTC start | Seed | Adjusted probe 0, within-run 95% interval | Adjusted probe 1, within-run 95% interval | Timer-positive blocks |
 | --- | ---: | ---: | ---: | ---: |
-| 30 Oct, 17:47:49 | 1753270348 | +4.468 [+2.288, +7.314] | −1.257 [−3.910, +0.919] | 310/320 |
+| 30 Oct, 17:47:49 | 1753270348 | +4.468 [+2.288, +7.314] | −1.256 [−3.910, +0.919] | 310/320 |
 | 30 Oct, 17:48:02 | 1668170065 | +2.781 [+1.558, +3.977] | −0.123 [−1.120, +1.057] | 315/320 |
 | 30 Oct, 17:48:11 | 3138604200 | +2.048 [+0.274, +3.635] | +0.075 [−1.279, +1.824] | 315/320 |
 | 31 Oct, 17:58:36 | 675337818 | +2.555 [+1.667, +3.534] | +0.283 [−0.473, +1.152] | 315/320 |

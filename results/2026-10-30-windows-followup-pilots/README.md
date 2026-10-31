@@ -45,7 +45,7 @@ The separate `PAUSE` added-work control was positive in 315/320 blocks (98.4%) a
 
 The compiled history EXE has SHA-256 `6e7575cb065c1828feaa7ef01b20ae9533a1c049b94f3b0df7181275887a45b3`; its `.text` SHA-256 is `b7ee4707628ac45f621ffd281066efd0cff3652717324fe3baa7c592c8289e3b`. After accounting for ASLR, the reported conditional-site function entry maps to RVA `0x1c80`, its jump instruction to `0x1c85`, and the sham function entry to `0x1c8e`. The single in-loop direct call at RVA `0x1ae2` serves the prelude, real training and probe. The primary timed wrapper at RVA `0x1b50` has fenced TSC reads and no added-work branch; the slow timer wrapper at `0x1ba0` is separate. Sham and real training do have different outer caller sites. The 16 probe calls may also overwrite relevant trained state; that is a design limitation and a hypothesis, not an explanation proved by this pilot.
 
-**Interpretation:** the prespecified two-direction, sham-adjusted criterion is not met by this pilot. The result neither demonstrates history transfer nor rules out a smaller or shorter-lived effect.
+**Interpretation:** the pre-pilot plan specified two separate sham-adjusted outcomes, but no formal two-direction pass/fail gate. This pilot does not show the anticipated bidirectional pattern. It neither demonstrates history transfer nor rules out a smaller or shorter-lived effect.
 
 ## Next measurements
 

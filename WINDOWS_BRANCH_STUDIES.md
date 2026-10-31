@@ -62,3 +62,5 @@ The [30 October Windows pilot archive](results/2026-10-30-windows-followup-pilot
 ## Post-replication record
 
 The [30–31 October two-day archive](results/2026-10-30-31-windows-followup-replication/README.md) includes three new runs per study per day, matched executables and a host snapshot per day. Study A repeats near +17 TSC ticks per iteration with all predefined controls passing. Study B shows a consistently positive sham-adjusted probe-0 contrast, but probe 1 has mixed estimates with intervals that all include zero. This does not show the anticipated bidirectional pattern; no formal numerical gate for that pattern was prespecified. The linked report and series analysis retain the run-level results and distinguish exploratory next experiments from the frozen protocol.
+
+The initial protocol calls B's balanced `0011` prelude a "reset" for convenience. That sequence standardizes preceding activity; no trace here establishes that it erases predictor state. The historical pre-pilot wording above is retained so the chronology of methodological decisions remains visible.
