@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "sessions": [
+    {
+      "id": "session-1",
+      "host": "session-1/host-windows-20261030T174629Z.json",
+      "runs": [
+        {
+          "study": "decision_source",
+          "trace": "session-1/decision-source-windows-20261030T174645Z.log",
+          "exe": "session-1/decision-source-windows-20261030T174645Z.exe"
+        },
+        {
+          "study": "decision_source",
+          "trace": "session-1/decision-source-windows-20261030T174655Z.log",
+          "exe": "session-1/decision-source-windows-20261030T174655Z.exe"
+        },
+        {
+          "study": "decision_source",
+          "trace": "session-1/decision-source-windows-20261030T174704Z.log",
+          "exe": "session-1/decision-source-windows-20261030T174704Z.exe"
+        },
+        {
+          "study": "history_probe",
+          "trace": "session-1/history-probe-windows-20261030T174749Z.log",
+          "exe": "session-1/history-probe-windows-20261030T174749Z.exe"
+        },
+        {
+          "study": "history_probe",
+          "trace": "session-1/history-probe-windows-20261030T174802Z.log",
+          "exe": "session-1/history-probe-windows-20261030T174802Z.exe"
+        },
+        {
+          "study": "history_probe",
+          "trace": "session-1/history-probe-windows-20261030T174811Z.log",
+          "exe": "session-1/history-probe-windows-20261030T174811Z.exe"
+        }
+      ]
+    },
+    {
+      "id": "session-2",
+      "host": "session-2/host-windows-20261031T175821Z.json",
+      "runs": [
+        {
+          "study": "history_probe",
+          "trace": "session-2/history-probe-windows-20261031T175836Z.log",
+          "exe": "session-2/history-probe-windows-20261031T175836Z.exe"
+        },
+        {
+          "study": "history_probe",
+          "trace": "session-2/history-probe-windows-20261031T175845Z.log",
+          "exe": "session-2/history-probe-windows-20261031T175845Z.exe"
+        },
+        {
+          "study": "history_probe",
+          "trace": "session-2/history-probe-windows-20261031T175854Z.log",
+          "exe": "session-2/history-probe-windows-20261031T175854Z.exe"
+        },
+        {
+          "study": "decision_source",
+          "trace": "session-2/decision-source-windows-20261031T180020Z.log",
+          "exe": "session-2/decision-source-windows-20261031T180020Z.exe"
+        },
+        {
+          "study": "decision_source",
+          "trace": "session-2/decision-source-windows-20261031T180038Z.log",
+          "exe": "session-2/decision-source-windows-20261031T180038Z.exe"
+        },
+        {
+          "study": "decision_source",
+          "trace": "session-2/decision-source-windows-20261031T180047Z.log",
+          "exe": "session-2/decision-source-windows-20261031T180047Z.exe"
+        }
+      ]
+    }
+  ]
+}

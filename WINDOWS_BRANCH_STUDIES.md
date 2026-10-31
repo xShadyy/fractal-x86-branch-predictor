@@ -58,3 +58,7 @@ The tasks choose independent nonzero seeds before each build. To replay a record
 ## Post-pilot record
 
 The [30 October Windows pilot archive](results/2026-10-30-windows-followup-pilots/README.md) preserves the first physical traces, paired executables, host snapshot, raw-file digests, strict analyzer summaries and disassembly audit. This section was added after those measurements; the estimands and gates above remain the pre-pilot protocol. Study A passed its predefined controls and showed a positive primary interaction. Study B passed its timer gate, but its two prespecified sham-adjusted intervals each include zero and their point estimates have opposite signs. Replication and any separately versioned B redesign are discussed in the archive.
+
+## Post-replication record
+
+The [30–31 October two-day archive](results/2026-10-30-31-windows-followup-replication/README.md) includes three new runs per study per day, matched executables and a host snapshot per day. Study A repeats near +17 TSC ticks per iteration with all predefined controls passing. Study B shows a consistently positive sham-adjusted probe-0 contrast, but probe 1 has mixed estimates with intervals that all include zero. This does not show the anticipated bidirectional pattern; no formal numerical gate for that pattern was prespecified. The linked report and series analysis retain the run-level results and distinguish exploratory next experiments from the frozen protocol.

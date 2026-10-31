@@ -1,0 +1,111 @@
+{
+  "schema": 1,
+  "source_archive": "Days.zip",
+  "source_archive_sha256": "0b9f07a0f69a0b1397e4a14c2cdeee03d2896e5ee0dab8e624be2454560ab957",
+  "files": {
+    "session-1/decision-source-windows-20261030T174645Z.exe": {
+      "sha256": "cf387427679745120ba883bf9b87e8f90c695f08c0d31a94239f588d4032f5af",
+      "bytes": 148480
+    },
+    "session-1/decision-source-windows-20261030T174645Z.log": {
+      "sha256": "9488a32270fc887516737fca74c79c665ac618a5bf9e2353a118f577cde3ec90",
+      "bytes": 54458
+    },
+    "session-1/decision-source-windows-20261030T174655Z.exe": {
+      "sha256": "4a191bc5e3fb6b9abce5da4ef40d70f5af3e112644b20e4cc2987dc5b4f1839a",
+      "bytes": 148480
+    },
+    "session-1/decision-source-windows-20261030T174655Z.log": {
+      "sha256": "f70d27878d9a052aa29f4a31bb0e951bd4a570a9a16aeeba8f805a339119cd1b",
+      "bytes": 54460
+    },
+    "session-1/decision-source-windows-20261030T174704Z.exe": {
+      "sha256": "f8fb1827f075315ca5cd156ba38774ea234afcc7fdf37b836bd506c926664117",
+      "bytes": 148480
+    },
+    "session-1/decision-source-windows-20261030T174704Z.log": {
+      "sha256": "9d323cb43f1d983c98b6ad760fe824a185babc05fc848671999dd4c1e4a691c4",
+      "bytes": 54460
+    },
+    "session-1/history-probe-windows-20261030T174749Z.exe": {
+      "sha256": "34e0a99f68c3e3c6945ccf784f537d3edf6370f0dd2ac862e30a32901c0259b6",
+      "bytes": 147968
+    },
+    "session-1/history-probe-windows-20261030T174749Z.log": {
+      "sha256": "a80a1cc80aee82a0fd6251a7a937b71d7345d3e0100f3b11db47d9672b2bbf87",
+      "bytes": 131576
+    },
+    "session-1/history-probe-windows-20261030T174802Z.exe": {
+      "sha256": "cd7a12ab29096d1cb1947191fe80c89f2e475b94c283715f66e083c4a7e1fa3a",
+      "bytes": 147968
+    },
+    "session-1/history-probe-windows-20261030T174802Z.log": {
+      "sha256": "b60e7a09bb85fa8acf3a45692914a5e609a36e81c981dc59a7523f37c9c69026",
+      "bytes": 131555
+    },
+    "session-1/history-probe-windows-20261030T174811Z.exe": {
+      "sha256": "c09bce2f33097198b066f662e2b61b2ef2db91e10aa05a2a8561684fd6e3f055",
+      "bytes": 147968
+    },
+    "session-1/history-probe-windows-20261030T174811Z.log": {
+      "sha256": "069f88275f00d3df925f5b5c7595483903fcf8e2ff6cc81743218a88ea312b6b",
+      "bytes": 131547
+    },
+    "session-1/host-windows-20261030T174629Z.json": {
+      "sha256": "83614cac4eec46e197af9eb2555ebdec2c121c152bf1ed411c723b2dee8ba159",
+      "bytes": 1246
+    },
+    "session-2/decision-source-windows-20261031T180020Z.exe": {
+      "sha256": "ebd3fdf9787b7d0011baf3e3deea632534ded7c696007d29d74de9c1f084354d",
+      "bytes": 148480
+    },
+    "session-2/decision-source-windows-20261031T180020Z.log": {
+      "sha256": "1123be44a6a809ddd513251f8ecd6de7fd1832cfa5d8de53a4e193fa35d558c8",
+      "bytes": 54446
+    },
+    "session-2/decision-source-windows-20261031T180038Z.exe": {
+      "sha256": "a59de9316c44ea6d4b9eac9e1cbabae46c020da0961affc25e89713fd21148e5",
+      "bytes": 148480
+    },
+    "session-2/decision-source-windows-20261031T180038Z.log": {
+      "sha256": "b63e59e8295b4537af143f5218b453708e0178ff848d8efbd51a98b30b4d422d",
+      "bytes": 54452
+    },
+    "session-2/decision-source-windows-20261031T180047Z.exe": {
+      "sha256": "fe4293ce168f17271d9e80d0a6605f584add1042724280d1ec6ba80f0d793490",
+      "bytes": 148480
+    },
+    "session-2/decision-source-windows-20261031T180047Z.log": {
+      "sha256": "706cb2ba618b7d9de6c55c03960da47bfc0b4bd7b69122192ce7b669dfd172bc",
+      "bytes": 54458
+    },
+    "session-2/history-probe-windows-20261031T175836Z.exe": {
+      "sha256": "384bb3e5a9df3919b342343c5cae86db5c96acb674e1d6c0d3ed3a48488fc1b8",
+      "bytes": 147968
+    },
+    "session-2/history-probe-windows-20261031T175836Z.log": {
+      "sha256": "abcc908a8b2614eee4f0b1abf467c4bd93ca0d55799bc258a501e85b656fb2de",
+      "bytes": 131533
+    },
+    "session-2/history-probe-windows-20261031T175845Z.exe": {
+      "sha256": "62666188540921dc381f6ba3ac79ff2ca4d66ea7d265a356d8bcbb34ed2f6a7f",
+      "bytes": 147968
+    },
+    "session-2/history-probe-windows-20261031T175845Z.log": {
+      "sha256": "5f63305e6fbc7392c3f32ef736864317dadcfca5f55af6a4e6983e0cfcdc67a9",
+      "bytes": 131536
+    },
+    "session-2/history-probe-windows-20261031T175854Z.exe": {
+      "sha256": "6f9c7cb52f0d96b83c2f1debf89570f59fb9d5a7bc1f753cc2315e27d9ab0307",
+      "bytes": 147968
+    },
+    "session-2/history-probe-windows-20261031T175854Z.log": {
+      "sha256": "2baf6f58b17d35375a6a193be9973f36e55e1e1d5c0c90b293e70c7eda409adc",
+      "bytes": 131540
+    },
+    "session-2/host-windows-20261031T175821Z.json": {
+      "sha256": "260ea7af806022fc7407088c8b098596dc0357db8fa5528acc350636d9f6eff3",
+      "bytes": 1246
+    }
+  }
+}
