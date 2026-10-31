@@ -2,7 +2,7 @@
 # Every study script independently builds, archives its EXE/trace and runs strict trace analysis.
 param(
     [ValidateSet('Pilot', 'Followup')][string]$Phase = 'Pilot',
-    [ValidateRange(1, 7)][int]$Rounds = 1,
+    [ValidateRange(1, 8)][int]$Rounds = 1,
     [ValidateRange(-1, 62)][int]$LogicalCpu = -1
 )
 $ErrorActionPreference = 'Stop'
@@ -37,12 +37,14 @@ $studies = @(
     [pscustomobject]@{ name = 'training_dose'; script = 'check_training_dose_windows.ps1'; prefix = 'training-dose-windows-' },
     [pscustomobject]@{ name = 'address_sensitivity'; script = 'check_address_sensitivity_windows.ps1'; prefix = 'address-sensitivity-windows-' },
     [pscustomobject]@{ name = 'indirect_target'; script = 'check_indirect_target_windows.ps1'; prefix = 'indirect-target-windows-' },
-    [pscustomobject]@{ name = 'indirect_cache'; script = 'check_indirect_cache_windows.ps1'; prefix = 'indirect-cache-windows-' }
+    [pscustomobject]@{ name = 'indirect_cache'; script = 'check_indirect_cache_windows.ps1'; prefix = 'indirect-cache-windows-' },
+    [pscustomobject]@{ name = 'prelude_sweep'; script = 'check_prelude_sweep_windows.ps1'; prefix = 'prelude-sweep-windows-' }
 )
 $sourceFiles = @(
     '.vscode/tasks.json', 'README.md', 'EXPLORATORY_HISTORY_B2.md',
     'WINDOWS_MULTI_EXPERIMENT_SUITE.md', 'WINDOWS_RESEARCH_PROGRAM.md',
-    'INDIRECT_TARGET_STUDY.md', 'INDIRECT_CACHE_STUDY.md',
+    'PAPER_CLAIM_MATRIX.md', 'PHANTOM_FEASIBILITY.md',
+    'INDIRECT_TARGET_STUDY.md', 'INDIRECT_CACHE_STUDY.md', 'PRELUDE_SWEEP_STUDY.md',
     'programs/utest.c', 'programs/cache_probe_windows.c',
     'programs/branch_batch_windows.c', 'programs/branch_latency_windows.c',
     'programs/spec_probe_windows.c', 'programs/spec_branch_windows.asm',
@@ -55,6 +57,7 @@ $sourceFiles = @(
     'programs/address_sensitivity_windows.c', 'programs/address_sensitivity_windows.asm',
     'programs/indirect_target_windows.c', 'programs/indirect_target_windows.asm',
     'programs/indirect_cache_windows.c', 'programs/indirect_cache_windows.asm',
+    'programs/prelude_sweep_windows.c', 'programs/prelude_sweep_windows.asm',
     'programs/cache_probe.h', 'programs/cpu_features.c', 'programs/cpu_features.h',
     'scripts/check_windows.ps1', 'scripts/analyze_cache_probe.py',
     'scripts/check_spec_windows.ps1', 'scripts/analyze_spec_probe.py',
@@ -69,6 +72,8 @@ $sourceFiles = @(
     'scripts/check_address_sensitivity_windows.ps1', 'scripts/analyze_address_sensitivity.py',
     'scripts/check_indirect_target_windows.ps1', 'scripts/analyze_indirect_target.py',
     'scripts/check_indirect_cache_windows.ps1', 'scripts/analyze_indirect_cache.py',
+    'scripts/check_prelude_sweep_windows.ps1', 'scripts/analyze_prelude_sweep.py',
+    'scripts/audit_suite_evidence.py',
     'scripts/record_windows_host.ps1', 'scripts/run_suite_windows.ps1',
     'scripts/package_suite_windows.ps1'
 )

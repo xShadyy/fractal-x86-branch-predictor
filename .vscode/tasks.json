@@ -93,7 +93,7 @@
       "windows": {}
     },
     {
-      "label": "Full branch research pilot: baseline and seven studies (Windows)",
+      "label": "Complete Windows research pilot (all studies)",
       "type": "process",
       "command": "powershell.exe",
       "args": [
@@ -186,6 +186,18 @@
       "args": [
         "-NoProfile", "-ExecutionPolicy", "Bypass", "-File",
         "${workspaceFolder}\\scripts\\check_indirect_cache_windows.ps1"
+      ],
+      "problemMatcher": "$msCompile",
+      "presentation": {"reveal": "always", "panel": "dedicated"},
+      "windows": {}
+    },
+    {
+      "label": "Prelude pattern sweep: build, run, analyze (Windows)",
+      "type": "process",
+      "command": "powershell.exe",
+      "args": [
+        "-NoProfile", "-ExecutionPolicy", "Bypass", "-File",
+        "${workspaceFolder}\\scripts\\check_prelude_sweep_windows.ps1"
       ],
       "problemMatcher": "$msCompile",
       "presentation": {"reveal": "always", "panel": "dedicated"},
