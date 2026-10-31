@@ -108,6 +108,19 @@
       "windows": {}
     },
     {
+      "label": "Focused Windows follow-up session",
+      "type": "process",
+      "command": "powershell.exe",
+      "args": [
+        "-NoProfile", "-ExecutionPolicy", "Bypass", "-File",
+        "${workspaceFolder}\\scripts\\run_suite_windows.ps1",
+        "-Phase", "Followup", "-StudySet", "Focus", "-Rounds", "1"
+      ],
+      "problemMatcher": "$msCompile",
+      "presentation": {"reveal": "always", "panel": "dedicated"},
+      "windows": {}
+    },
+    {
       "label": "History B2: build, run, analyze (Windows)",
       "type": "process",
       "command": "powershell.exe",

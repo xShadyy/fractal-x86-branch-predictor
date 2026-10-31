@@ -1,6 +1,6 @@
 # Exploratory Windows indirect-target history study
 
-**Status:** source and analysis prepared after the A/B results; no physical Windows executable, timer calibration or measurement has been validated. This is a user-mode x86 timing study, not a test of speculative fetch or privilege isolation.
+**Status:** the [31 October physical pilot](results/2026-10-31-windows-suite-pilot/README.md) built and measured H. Its linked PE contains the intended indirect jump and small-work instructions inside the timed wrapper, but both few-tick sensitivity controls failed. This study is **inconclusive** under its original protocol. It is a user-mode x86 timing study, not a test of speculative fetch or privilege isolation.
 
 The [Fractal paper](https://people.csail.mit.edu/mengjia/data/2026.SP.fractal.pdf) develops same-domain indirect-branch train/receiver tests before comparing security domains on Apple M1. Here the question is narrower: **does the latency of one fixed indirect dispatch depend on the preceding architectural target sequence in this Windows executable?** A positive contrast would be a target-history association under one instruction sequence. It would not identify a particular predictor, count mispredictions, or reproduce the paper's cache-based or cross-domain result.
 

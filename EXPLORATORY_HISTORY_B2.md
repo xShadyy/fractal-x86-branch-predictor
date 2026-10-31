@@ -1,6 +1,6 @@
 # Proposed B2 history-probe pilot: probe length and same-site control
 
-**Status: exploratory protocol written after B1, now implemented as a Windows pilot task. No physical B2 executable, instruction audit or measurement exists yet.** This proposal is exploratory. Any measured B2 result must be distinguished from the frozen [B1 protocol](WINDOWS_BRANCH_STUDIES.md) and [B1 two-day archive](results/2026-10-30-31-windows-followup-replication/README.md); their estimates and intervals must not be pooled.
+**Status:** the [31 October physical pilot](results/2026-10-31-windows-suite-pilot/README.md) built and measured B2. The linked PE includes its shared branch and small-work instructions, but the probe-1 one-call timer missed the declared magnitude gate, so the pilot is **inconclusive** as a whole. Its probe-0 one-call contrast remains exploratory. Keep it separate from the frozen [B1 protocol](WINDOWS_BRANCH_STUDIES.md) and [B1 two-day archive](results/2026-10-30-31-windows-followup-replication/README.md); their estimates and intervals must not be pooled.
 
 ## Question and prior observation
 

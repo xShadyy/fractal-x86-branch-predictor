@@ -1,7 +1,10 @@
 # Study L: pre-training history preparation on Windows x86
 
-**Status:** source and analyzer prepared. No linked Windows executable, host
-measurement or instruction audit exists for this study yet.
+**Status:** the [31 October Windows pilot](results/2026-10-31-windows-suite-pilot/README.md)
+built and measured Study L. Four small-work and PAUSE timer pairs passed, but
+the fixed-trainer practical-equivalence intervals did not fit inside the
+prespecified ±1 tick/probe margin. The study remains **inconclusive** under
+its original protocol; the complete raw trace and executable are retained.
 
 The [Fractal paper, §7.1](https://people.csail.mit.edu/mengjia/data/2026.SP.fractal.pdf)
 uses 128 constant branches before training or probing its Apple M1 indirect
@@ -15,8 +18,10 @@ It does not assume that any prelude resets x86 predictor state.
 One MASM conditional instruction and one noinline C feeder serve every
 prelude, real/fixed training call and timed probe. The branch returns the
 live byte on both outcomes. A separate branchless sham has a different
-address and path, and is a secondary control. A physical Windows binary
-audit must verify the intended instruction and common feeder call site.
+address and path, and is a secondary control. The pilot's linked Windows PE
+shows a shared conditional site at RVA `0x1c60` for prelude, training and
+probe, with small work called inside the timed path. This instruction audit
+does not make a failed fixed-trainer control pass.
 
 The prelude always occurs **before** the immediately following 32-call
 training phase. Two lengths, 128 and 256 calls, each use four sequences:
@@ -75,15 +80,17 @@ positive in at least 95% of blocks. Those thresholds are **pilot checks**
 of this exact optimized binary, not promised hardware instruction costs.
 If controls fail, preserve all data and classify the study inconclusive.
 
-## First physical pilot and boundaries
+## Physical pilot and boundaries
 
 The integrated VS Code suite includes Study L. It is also independently
 available through `scripts/check_prelude_sweep_windows.ps1 -Seed <uint32>`.
 The script selects and prints a seed before building if omitted. It archives
 the timestamped EXE, raw trace, build log/provenance, full executable and
-`.text` hashes, and disassembly when available. Audit the **linked
-Windows PE** for the common call site, exact branch and sham paths,
-unintended compiler branches, and timer wrapper instructions. The test's
+`.text` hashes, and disassembly when available. The pilot's two predeclared
+balanced-history interactions were +0.441 [−3.039,+4.247] ticks/probe for
+probe 0 and +1.605 [−2.475,+5.968] for probe 1, both within-run intervals
+including zero. Its fixed-trainer gate failed; no prelude effect or null was
+validated. The test's
 short 32-call training itself can overwrite prelude-dependent state, and
 prelude pattern also changes the architectural work and branch outcomes.
 Fixed and sham trainers reduce, but do not remove, these confounds.

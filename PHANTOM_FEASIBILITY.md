@@ -12,7 +12,7 @@ The scientific question feasible to pose on this x86 host is narrower: after tra
 
 Two processes can use matching virtual addresses but introduce separate address spaces, scheduler handoff and potentially different mitigations. Two distinct sites in one process test address aliasing, not branch absence at the trained site. A single ordinary Windows process would need to modify executable bytes between training and probe. VirtualProtect, writing code and FlushInstructionCache introduce kernel transitions, cache changes and branch history before the probe. These operations may destroy the very state being tested. There is no trustworthy inference from a NOP null unless a matched, modified-but-still-branching control retains a label-dependent signal.
 
-The current data-cache receiver I is an unmeasured pilot. It cannot certify that a target *instruction line* was fetched. An instruction-cache fetch receiver with independently passing architectural hot, cold and no-probe controls must first succeed in a physical Windows executable. Until then, more iterations or a branchless C function cannot turn this into a Phantom test.
+The [measured data-cache receiver I](results/2026-10-31-windows-suite-pilot/README.md) passed architectural receiver controls but showed no convincing opposite-target data-line association. It cannot certify that a target *instruction line* was fetched. An instruction-cache fetch receiver with independently passing architectural hot, cold and no-probe controls must first succeed in a physical Windows executable. Until then, more iterations or a branchless C function cannot turn this into a Phantom test.
 
 ## Conditional protocol if the prerequisite passes
 
@@ -36,4 +36,4 @@ Flush the measured target instruction lines after training and patching, before 
 3. Disassembly and runtime byte audits show one site, equal instruction footprint, no architectural path to the target in the NOP arm, and no target-line access from the patch/flush/measurement machinery.
 4. Independent sessions with distinct preselected seeds repeat the pattern, with nulls and control failures retained. A positive NOP association remains a candidate for alternative-path investigation, not an automatic claim of the paper's M1 Phantom result.
 
-Given the current unmeasured instruction-cache receiver, there is no scientifically defensible Phantom assay to execute in the present one-click pilot. The prerequisite and patch-survival gates make a later version falsifiable without presenting a source-only control as a measured discovery.
+No instruction-cache receiver is implemented in this package, so there is no scientifically defensible Phantom assay in the one-click suite. The prerequisite and patch-survival gates make a later version falsifiable without presenting a source-only control as a measured discovery.

@@ -14,7 +14,7 @@ Table 1 contains **48 outcomes**: indirect or conditional branch predictor (IBP/
 | CBP | Removed | Same user, same ASID | Seen | Blocked | Seen | Blocked | The branch-versus-NOP [feasibility protocol](PHANTOM_FEASIBILITY.md) is unimplemented and requires one audited address and a working instruction-fetch receiver. |
 | CBP | Removed | User → kernel | Seen | Blocked | Seen | Blocked | Cannot isolate privilege with a normal Windows process. |
 | CBP | Removed | Different ASIDs | Seen | Blocked | Seen | Blocked | Cannot set or mirror ASIDs and preserve the rest of the path here. |
-| IBP | Present | Same user, same ASID | Seen | Seen | Seen | Seen | I is an unmeasured candidate data-cache receiver; J is unimplemented. H measures whole-probe latency only. No isolated I-cache receiver exists. |
+| IBP | Present | Same user, same ASID | Seen | Seen | Seen | Seen | I's first data-cache receiver pilot passed held-out receiver controls but showed no convincing opposite-target hit association. J is unimplemented. H measures whole-probe latency only and failed its small-work sensitivity gate. No isolated I-cache receiver exists. |
 | IBP | Present | User → kernel | Seen | Blocked | Seen | Blocked | Cannot isolate privilege with a normal Windows process. |
 | IBP | Present | Different ASIDs | Seen | Blocked | Seen | Blocked | Cannot set or mirror ASIDs and preserve the rest of the path here. |
 | IBP | Removed | Same user, same ASID | Seen | Blocked | Seen | Blocked | The branch-versus-NOP [feasibility protocol](PHANTOM_FEASIBILITY.md) is unimplemented and requires one audited address and a working instruction-fetch receiver. |
@@ -30,7 +30,7 @@ Ignoring the unavailable M1 core distinction and protected-domain transitions le
 | Same-domain x86 category | Current repository evidence | Requirement before a mechanism claim |
 | --- | --- | --- |
 | IBP, branch present, instruction fetch | J is unimplemented. No target-specific isolated instruction-cache receiver or J executable exists in this package. | Establish an independently calibrated instruction-cache-specific readout and physically audit the receiver before any fetch claim. Whole-call latency would not isolate L1I fetch. |
-| IBP, branch present, target execution | Study I implements an opposite-target data-cache receiver. Its first physical Windows run is pending. | Held-out hot/cold and train-matched no-probe gates, exact target-exclusive load audit, independent runs and alternative-cause analysis. |
+| IBP, branch present, target execution | Study I's [first physical pilot](results/2026-10-31-windows-suite-pilot/README.md) passed held-out hot/cold and train-matched no-call gates; adjusted opposite-target hit differences were −0.6% and +0.2%, with no convincing signal. | The linked PE review found distinct target data-page loads and no apparent architectural opposite-target load; independent runtime corroboration, repeat sessions and alternative-cause analysis are still required before a mechanism claim. |
 | CBP, branch present, instruction fetch | No target-specific instruction-cache receiver. | Same receiver calibration and target-only code placement with one verified conditional branch site. |
 | CBP, branch present, target execution | K is unimplemented. The older conditional probe has architectural controls, and its archived host trace was null. | A future candidate would need physical branch and exclusive-load audits, held-out hot/cold and no-probe controls. The older null does not prove absence of speculation. |
 | IBP, branch removed, instruction fetch | [Protocol proposal](PHANTOM_FEASIBILITY.md) only; no same-address branch/NOP experiment or validated fetch receiver. | First establish a sensitive ordinary-branch fetch receiver. A proposed whole-call J measure, even if implemented, would not supply this prerequisite. |
@@ -44,7 +44,7 @@ Ignoring the unavailable M1 core distinction and protected-domain transitions le
 
 | Paper stage or system feature | Current work | Boundary in this repository |
 | --- | --- | --- |
-| §6 stage 1: a working single-threaded branch train/receiver µtest | Six existing baselines; B2/C/D/E/F/L timing studies, H indirect timing, and I candidate data receiver. J and K are **unimplemented**. | New source is **not physically validated** on the Windows host. Static analyzer tests do not establish a working receiver. No isolated instruction-fetch receiver exists, and timing studies cannot serve as a data-cache receiver positive control. |
+| §6 stage 1: a working single-threaded branch train/receiver µtest | Six baselines and B2/C/D/E/F/H/I/L all produced paired Windows EXE/traces in the [31 October pilot](results/2026-10-31-windows-suite-pilot/README.md). Ten study scripts accepted their checks (the single-branch latency run remains only a diagnostic), while B2/E/H/L retained inconclusive traces after declared gates failed. J and K are **unimplemented**. | The pilot audited linked instruction topology, and I's architectural receiver controls passed without a convincing opposite-target signal. No isolated instruction-fetch receiver or validated transient-execution signal exists. Timing studies cannot serve as a data-cache receiver positive control. |
 | §6 stage 2: separate sender and receiver, recover the same-domain signal | No validated split-thread pair (G excluded). | Windows scheduler and handoff insert uncontrolled branches and cache work. A future feasibility pilot needs a working unsplit positive control, matched sham handoff, exact affinity verification and auditable timing outside the handoff. A null would remain weak. |
 | §6 stage 3 and §7.1–7.3: vary privilege or ASID while preserving code layout and order | No cross-domain study. | A normal user-mode process cannot switch to kernel privilege, assign an ASID, mirror full layouts between protected domains or suppress interrupts. A pair of Windows processes is not an isolated ASID intervention. |
 | §§1.2, 5.4: multi-privilege concurrency, cooperative/branchless switching, gmap and sparse mirrored addresses | This repository uses native Windows APIs; the earlier project also launched Fractal in QEMU. | Measuring these **Fractal OS properties** requires running or instrumenting Fractal, outside the requested VS Code Windows user-mode microarchitecture suite. VirtualAlloc RX copies in F are not Fractal's gmap. |
@@ -52,16 +52,43 @@ Ignoring the unavailable M1 core distinction and protected-domain transitions le
 
 ## Additional x86 questions beyond the paper's M1 result table
 
-The archived balanced-batch and decision-source measurements, plus unmeasured B2/C/D/E/F/H/L, ask about decision order, probe length, training dose, intervening work, whole-path virtual-address arrangement, indirect-target latency and the effect of **prelude pattern and length** on a later one-call timing association. L is a **source-only timing study** comparing two prelude lengths and four sequences while holding its declared work fixed within each length. It does **not** measure an AMD path-history-register length or prove that any sequence reset predictor state. These are bounded measurements **if** their small-work controls and physical instruction audits pass; none yields a predictor table size or misprediction count from time alone. J and K are gaps, not source code or host pilots in this package.
+The archived balanced-batch and decision-source measurements and the
+[31 October suite pilot](results/2026-10-31-windows-suite-pilot/README.md) ask
+about decision order, probe length, training dose, intervening work, whole-path
+virtual-address arrangement, indirect-target latency, and **prelude pattern
+and length** before a one-call timing probe. C's tested periodic run-length
+contrasts were near zero while its balanced shuffled-versus-periodic
+comparison was large, with controls passing; this is a new exploratory x86
+timing association, not a predictor capacity measurement. D's filler
+comparisons and F's planned site interactions included zero. I's calibrated
+receiver showed no convincing opposite-target cache signal. B2/E/H/L failed
+declared sensitivity or practical-equivalence controls and remain
+inconclusive. L compares two prelude lengths and four sequences; it does
+**not** measure an AMD path-history-register length or show a predictor
+reset. None of these timings yields a predictor table size, misprediction
+count, transient execution proof or M1 result. J and K remain implementation
+gaps.
 
-L's source varies prelude context. Further controlled questions could concern condition-line latency, address layout, or repeatability across logical CPUs and days. Those are research directions rather than implemented J/K receivers; each would require its own controls and physical code audit. Repeated blocks within one session are not independent host replications.
+L varies prelude context, but its fixed-trainer equivalence gate failed in the
+first pilot. The [focused follow-up](FOLLOWUP_2026_10_31.md) freezes a new,
+pilot-informed C comparison and retains A as a reference; E/H/L need
+separately versioned apparatus work. Further controlled questions could
+concern condition-line latency or repeatability across logical CPUs and days.
+Those are research directions rather than implemented J/K receivers; each
+would require its own controls and physical code audit. Repeated blocks within
+one session are not independent host replications.
 
 ## Evidence gates and stopping rule
 
-1. Preserve the source revision, planned conditions and seeds before the first host run. Archive each exact executable, raw trace, disassembly, tool versions, host metadata, and every failed-control attempt.
+1. Preserve the source revision, planned conditions and seeds before each host run. Archive each exact executable, raw trace, disassembly, tool versions, host metadata, and every failed-control attempt. The 31 October pilot follows this as a private evidence ZIP identified by hash in its audit report.
 2. Validate hot/cold, architectural target and no-probe controls on held-out samples **at the scale of the claimed effect**. Do not describe a target hit as speculative fetch or execution if the receiver or exclusive path has not passed.
 3. Check the *linked Windows PE* for the same physical branch address, target byte/line separation, actual stores and loads, fences, timer paths and the intended train/probe callsites. Source-level tests and MASM listings alone are insufficient.
 4. J, K and the branch-versus-NOP assay are **unimplemented**. A working physical receiver positive control is a prerequisite to a new claim. If the existing candidate receiver fails, retain the null or inconclusive pilot and stop escalation to cross-thread or cross-domain inference.
-5. Freeze a supported primary contrast only after the exploratory pilot, then repeat unchanged with independent seeds on separate sessions. Report both probe directions and all planned negative results; use complete runs as replication units.
+5. The [focused follow-up protocol](FOLLOWUP_2026_10_31.md) newly selects C's
+   shuffled-versus-period-32 contrast after seeing the pilot; it excludes the
+   pilot from confirmatory counts and requires distinct sessions on separate
+   UTC dates. Preserve C's original null period-2 contrast, both B2 probe
+   directions and all planned negative results. Use complete runs, not
+   blocks, as replication units.
 
 This matrix covers every **reported §7 evaluation category** and states the concrete measurement boundary. It does not claim to enumerate all future microarchitecture experiments, reproduce Apple M1 behavior on AMD, or establish Fractal's cross-domain findings using Windows user-mode code.

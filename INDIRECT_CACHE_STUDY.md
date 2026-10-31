@@ -1,6 +1,6 @@
 # Native Windows indirect target cache receiver (pilot I)
 
-**Status:** exploratory protocol; no physical Windows executable has been audited or measured for this study. Run it in the existing VS Code checkout. It runs as a normal user-mode Windows process; no USB boot, custom OS, kernel driver, or privileged performance counter is required.
+**Status:** the [31 October physical pilot](results/2026-10-31-windows-suite-pilot/README.md) built and measured I. Its held-out receiver and no-call controls passed, but its adjusted opposite-target hit changes were −0.6% and +0.2%, with intervals spanning zero. The linked PE review found separate target data-page loads and no apparent architectural opposite-line load; runtime corroboration and independent sessions are still needed. This is a user-mode Windows experiment and establishes no speculative-execution result.
 
 ## Scientific question
 

@@ -1,7 +1,8 @@
-# Run calibration, all prior branch diagnostics, then the exploratory Windows pilot.
+# Run the full Windows pilot or a recorded full/focused follow-up session.
 # Every study script independently builds, archives its EXE/trace and runs strict trace analysis.
 param(
     [ValidateSet('Pilot', 'Followup')][string]$Phase = 'Pilot',
+    [ValidateSet('Full', 'Focus')][string]$StudySet = 'Full',
     [ValidateRange(1, 8)][int]$Rounds = 1,
     [ValidateRange(-1, 62)][int]$LogicalCpu = -1
 )
@@ -9,7 +10,12 @@ $ErrorActionPreference = 'Stop'
 if ($Phase -eq 'Pilot' -and $Rounds -ne 1) {
     throw 'Run one physical pilot of each study, then inspect the controls and Windows binaries before follow-up rounds.'
 }
-
+if ($Phase -eq 'Pilot' -and $StudySet -ne 'Full') {
+    throw 'The first physical pilot must include the full study set.'
+}
+if ($StudySet -eq 'Focus' -and $Rounds -ne 1) {
+    throw 'Run one focused follow-up per session so each session remains a separate replication unit.'
+}
 $root = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
 $out = Join-Path $root 'out'
 New-Item -ItemType Directory -Path $out -Force | Out-Null
@@ -57,9 +63,21 @@ $studies = @(
     [pscustomobject]@{ name = 'indirect_cache'; script = 'check_indirect_cache_windows.ps1'; prefix = 'indirect-cache-windows-' },
     [pscustomobject]@{ name = 'prelude_sweep'; script = 'check_prelude_sweep_windows.ps1'; prefix = 'prelude-sweep-windows-' }
 )
+if ($StudySet -eq 'Focus') {
+    $focusBaselines = @('cache_controls', 'branch_batch', 'decision_source_a', 'history_probe_b1')
+    $focusStudies = @('pattern_complexity', 'history_b2', 'history_decay',
+                      'address_sensitivity', 'indirect_cache')
+    $baselineStudies = @($baselineStudies | Where-Object { $_.name -in $focusBaselines })
+    $studies = @($studies | Where-Object { $_.name -in $focusStudies })
+    if ($baselineStudies.Count -ne $focusBaselines.Count -or
+        $studies.Count -ne $focusStudies.Count) {
+        throw 'Focused follow-up study selection is incomplete.'
+    }
+}
 $sourceFiles = @(
     '.vscode/tasks.json', 'README.md', 'EXPLORATORY_HISTORY_B2.md',
     'WINDOWS_MULTI_EXPERIMENT_SUITE.md', 'WINDOWS_RESEARCH_PROGRAM.md',
+    'FOLLOWUP_2026_10_31.md',
     'PAPER_CLAIM_MATRIX.md', 'PHANTOM_FEASIBILITY.md',
     'INDIRECT_TARGET_STUDY.md', 'INDIRECT_CACHE_STUDY.md', 'PRELUDE_SWEEP_STUDY.md',
     'programs/utest.c', 'programs/cache_probe_windows.c',
@@ -91,6 +109,7 @@ $sourceFiles = @(
     'scripts/check_indirect_cache_windows.ps1', 'scripts/analyze_indirect_cache.py',
     'scripts/check_prelude_sweep_windows.ps1', 'scripts/analyze_prelude_sweep.py',
     'scripts/audit_suite_evidence.py',
+    'scripts/summarize_suite_followup.py',
     'scripts/record_windows_host.ps1', 'scripts/run_suite_windows.ps1',
     'scripts/package_suite_windows.ps1'
 )
@@ -175,6 +194,7 @@ $planPath = Join-Path $sessionDir 'session.json'
 $plan = [ordered]@{
     schema = 1
     phase = $Phase
+    study_set = $StudySet
     started_utc = $stamp
     suite_seed = [uint64]$suiteSeed
     git_head = $gitHead
@@ -198,7 +218,7 @@ function Save-Session {
 }
 Save-Session
 Write-Host "Preselected suite plan: $planPath"
-Write-Host "Phase: $Phase; exploratory study rounds: $Rounds; Git HEAD: $gitHead"
+Write-Host "Phase: $Phase; study set: $StudySet; exploratory study rounds: $Rounds; Git HEAD: $gitHead"
 foreach ($entry in $runs) {
     Write-Host ("Stage {0}, round {1}, position {2}: {3}, seed {4}" -f $entry.stage, $entry.round, $entry.position, $entry.study, $entry.seed)
 }
