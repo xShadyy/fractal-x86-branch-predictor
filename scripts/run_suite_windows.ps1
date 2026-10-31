@@ -13,6 +13,23 @@ if ($Phase -eq 'Pilot' -and $Rounds -ne 1) {
 $root = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
 $out = Join-Path $root 'out'
 New-Item -ItemType Directory -Path $out -Force | Out-Null
+# Each check script imports VsDevCmd.bat variables into this PowerShell process.
+# Without restoring the environment, later checks repeatedly expand PATH and
+# cmd.exe eventually rejects the developer-command invocation as too long.
+$initialEnvironment = [Environment]::GetEnvironmentVariables('Process')
+function Restore-InitialEnvironment {
+    $currentEnvironment = [Environment]::GetEnvironmentVariables('Process')
+    foreach ($name in @($currentEnvironment.Keys)) {
+        if ([string]$name -notmatch '^=' -and -not $initialEnvironment.Contains($name)) {
+            [Environment]::SetEnvironmentVariable([string]$name, $null, 'Process')
+        }
+    }
+    foreach ($name in @($initialEnvironment.Keys)) {
+        if ([string]$name -notmatch '^=') {
+            [Environment]::SetEnvironmentVariable([string]$name, [string]$initialEnvironment[$name], 'Process')
+        }
+    }
+}
 if ($LogicalCpu -ge 0) {
     if ([IntPtr]::Size -ne 8) { throw 'Use 64-bit Windows PowerShell for a requested logical CPU.' }
     $requestedMask = [int64](([uint64]1) -shl $LogicalCpu)
@@ -200,6 +217,7 @@ try {
     }
     Save-Session
     foreach ($entry in $runs) {
+        Restore-InitialEnvironment
         $tracePattern = '^' + [regex]::Escape($entry.prefix) + '\d{8}T\d{6}Z\.log$'
         $artifactPattern = '^' + [regex]::Escape($entry.prefix) + '\d{8}T\d{6}Z\.(log|exe|build\.json|build\.log|disasm\.txt)$'
         $beforeArtifacts = @(Get-ChildItem -Path $out -Filter ($entry.prefix + '*') -File |
@@ -332,8 +350,12 @@ try {
     Write-Warning "Suite interrupted; preserved session plan and failure at $planPath"
     throw
 } finally {
-    $plan.ended_utc = (Get-Date).ToUniversalTime().ToString('o')
-    Save-Session
+    try {
+        $plan.ended_utc = (Get-Date).ToUniversalTime().ToString('o')
+        Save-Session
+    } finally {
+        Restore-InitialEnvironment
+    }
 }
 Write-Host "Suite completed. Session record: $planPath"
 Write-Host 'Inspect each physical Windows EXE and its controls before interpreting the pilot or scheduling follow-up rounds.'
