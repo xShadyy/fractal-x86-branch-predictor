@@ -1,6 +1,6 @@
 # Proposed B2 history-probe pilot: probe length and same-site control
 
-**Status: design proposal, written after the B1 pilot and two-day series. No B2 code or Windows executable exists yet. Do not run a task under this name.** This proposal is exploratory. Any measured B2 result must be distinguished from the frozen [B1 protocol](WINDOWS_BRANCH_STUDIES.md) and [B1 two-day archive](results/2026-10-30-31-windows-followup-replication/README.md); their estimates and intervals must not be pooled.
+**Status: exploratory protocol written after B1, now implemented as a Windows pilot task. No physical B2 executable, instruction audit or measurement exists yet.** This proposal is exploratory. Any measured B2 result must be distinguished from the frozen [B1 protocol](WINDOWS_BRANCH_STUDIES.md) and [B1 two-day archive](results/2026-10-30-31-windows-followup-replication/README.md); their estimates and intervals must not be pooled.
 
 ## Question and prior observation
 
@@ -20,7 +20,7 @@ Three training arms use the same live bytes and retain their architectural outpu
 | `fixed` | The **same conditional jump** follows `0011`, selected at runtime without a data-dependent choice branch, while it still reads and returns the all-`t` live bytes. | Holds training-site instruction address, number of calls, and live input values while changing the branch-decision stream. It does not create a predictor-free baseline. |
 | `sham` | A separate branchless site reads and returns the all-`t` bytes. | Preserves a comparison with B1; its different address and call path remain limitations. |
 
-The proposed assembly function for `real` and `fixed` must always load both the live and periodic bytes, select the decision byte with a branchless operation such as `cmov`, execute one conditional jump, and return the live byte through a common return path. A single direct call instruction inside the C branch runner must serve the prelude, real/fixed training and both probe lengths. The branchless sham has its own site. All primary arms use the same fenced TSC wrapper for the probe, with the probe length passed as a count; training, input preparation and output formatting remain outside that interval. The mode and fixed stream must be set before the timed probe, and the probe always selects live decisions. These are intended properties to confirm in the **physical Windows EXE disassembly**, not assumptions established by source or Linux tests.
+The pilot assembly function for `real` and `fixed` must always load both the live and periodic bytes, select the decision byte with a branchless operation such as `cmov`, execute one conditional jump, and return the live byte through a common return path. A single direct call instruction inside the C branch runner must serve the prelude, real/fixed training and both probe lengths. The branchless sham has its own site. All primary arms use the same fenced TSC wrapper for the probe, with the probe length passed as a count; training, input preparation and output formatting remain outside that interval. The mode and fixed stream must be set before the timed probe, and the probe always selects live decisions. These are intended properties to confirm in the **physical Windows EXE disassembly**, not assumptions established by source or Linux tests.
 
 ## Complete condition set and schedule
 
