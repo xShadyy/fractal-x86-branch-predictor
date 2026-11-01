@@ -1,6 +1,6 @@
 # K2: condition-entry and scheduling diagnostic for a conditional receiver
 
-**Pre-physical protocol, version 1.** K2 is a new, pilot-informed experiment.
+**Pre-physical protocol, version 1.1.** K2 is a new, pilot-informed experiment.
 The [K1 physical pilot](results/2026-11-01-windows-conditional-receiver-pilot/README.md)
 was inconclusive because both architectural-skip hit rates exceeded its frozen
 5% gate. Its first five episodes per condition showed an exploratory spike.
@@ -48,7 +48,7 @@ Every recorded macroblock contains both schedule modes and every one of the
 | Grouped | Run all 64 episodes of one cell, then advance to the next cell. |
 | Interleaved | Run one episode of each cell in order, repeated for 64 rounds. |
 
-Use 16 warm-up macroblocks, then 128 recorded macroblocks. Preselect one
+Use 16 warm-up macroblocks, then 256 recorded macroblocks. Preselect one
 nonzero 32-bit seed before the build. A continuing xorshift state supplies a
 Fisher–Yates condition permutation at each 16-block cycle boundary,
 including warm-up; rotate the base order by `block % 16`. The first mode is
@@ -64,11 +64,13 @@ affinity, executable and linked disassembly in the evidence ZIP.
 
 ## Calibration and gates
 
-Use only the first 64 recorded macroblocks to choose four reload thresholds,
-one for each `(mode, p)` from its HOT and COLD distributions. Use the final
-64 blocks for every outcome and gate. A lower reload time than or equal to
-the threshold is a hit. For each mode and probe choice, require held-out
-HOT ≥95%, COLD ≤5%, same-branch architectural LOAD ≥95%, and each of the
+Use only the first 128 recorded macroblocks to choose two reload thresholds,
+one for each probe choice `p` from HOT and COLD samples **pooled across both
+scheduling modes**. Both modes therefore share the same threshold for a
+given `p`. Use the final 128 blocks for every outcome and gate. A lower
+reload time than or equal to the threshold is a hit. For each mode and probe
+choice, require held-out HOT ≥95%, COLD ≤5%, same-branch architectural LOAD
+≥95%, and each of the
 two training-matched NO-PROBE cells ≤5%. These are 20 apparatus gates in
 total. Do not gate on `arch_skip`, since it is a measured K2 outcome.
 An invalid trace or failed apparatus gate withholds K2 classification while
@@ -79,7 +81,7 @@ retaining its raw and descriptive results.
 For each held-out macroblock, compute the grouped `arch_skip_p0` hit rate
 for occurrence indices **0–4** and **5–63**. Their *within-block difference*
 is K2's sole primary endpoint, in percentage points. Its point estimate is
-the average of 64 held-out block differences. Report a 95% **within-run**
+the average of 128 held-out block differences. Report a 95% **within-run**
 bootstrap interval resampling complete 16-block position cycles. If all
 apparatus gates pass and the entire interval is above **+10 percentage
 points**, classify the outcome as a recurrence of a practically large
@@ -103,6 +105,11 @@ context and time order, so a difference does not by itself identify
 branch prediction, transient execution, prefetch, a cache level, or
 Fractal's cross-domain mechanism. A null does not prove those mechanisms
 absent. Keep all failed-control and null attempts.
+
+Version 1.1 pooled the calibration threshold across modes, strengthened
+the per-episode order hash and increased the run from 128 to 256 recorded
+macroblocks during source implementation, **before any K2 physical data**.
+The K1 pilot did not enter either K2 threshold.
 
 ## One Windows run
 
