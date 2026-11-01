@@ -193,6 +193,18 @@
       "windows": {}
     },
     {
+      "label": "K2 receiver order diagnostic (Windows)",
+      "type": "process",
+      "command": "powershell.exe",
+      "args": [
+        "-NoProfile", "-ExecutionPolicy", "Bypass", "-File",
+        "${workspaceFolder}\\scripts\\check_receiver_order_windows.ps1"
+      ],
+      "problemMatcher": "$msCompile",
+      "presentation": {"reveal": "always", "panel": "dedicated"},
+      "windows": {}
+    },
+    {
       "label": "Balanced run-length patterns: build, run, analyze (Windows)",
       "type": "process",
       "command": "powershell.exe",
