@@ -138,3 +138,8 @@ receiver. The figure below is descriptive and reproduced from the original
 ZIP by the accompanying plot script.
 
 ![Held-out K2 skip rates by occurrence and cycle](episode-hit-rates.svg)
+
+The [second same-day run and two-run comparison](../2026-11-01-windows-receiver-order-replication/README.md)
+was collected with a new seed and identical linked `.text` bytes. This
+first-run analysis remains the record of the initial pilot and its frozen
+classification.
