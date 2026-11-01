@@ -77,7 +77,7 @@ if ($StudySet -eq 'Focus') {
 $sourceFiles = @(
     '.vscode/tasks.json', 'README.md', 'EXPLORATORY_HISTORY_B2.md',
     'WINDOWS_MULTI_EXPERIMENT_SUITE.md', 'WINDOWS_RESEARCH_PROGRAM.md',
-    'FOLLOWUP_2026_10_31.md',
+    'FOLLOWUP_2026_10_31.md', 'FOLLOWUP_AMENDMENT_2026_11_01.md',
     'PAPER_CLAIM_MATRIX.md', 'PHANTOM_FEASIBILITY.md',
     'INDIRECT_TARGET_STUDY.md', 'INDIRECT_CACHE_STUDY.md', 'PRELUDE_SWEEP_STUDY.md',
     'programs/utest.c', 'programs/cache_probe_windows.c',
@@ -191,6 +191,8 @@ $stamp = (Get-Date).ToUniversalTime().ToString('yyyyMMddTHHmmssZ')
 $sessionDir = Join-Path $out ('suite-{0}-{1:x8}' -f $stamp, $suiteSeed)
 New-Item -ItemType Directory -Path $sessionDir -ErrorAction Stop | Out-Null
 $planPath = Join-Path $sessionDir 'session.json'
+$evidenceArchive = Join-Path $out ('suite-evidence-{0}.zip' -f (Split-Path $sessionDir -Leaf))
+$archiveError = $null
 $plan = [ordered]@{
     schema = 1
     phase = $Phase
@@ -373,11 +375,23 @@ try {
     try {
         $plan.ended_utc = (Get-Date).ToUniversalTime().ToString('o')
         Save-Session
+        try {
+            # Package the exact session, including failed-control attempts, after its final record is saved.
+            & (Join-Path $PSScriptRoot 'package_suite_windows.ps1') -SessionDirectory $sessionDir
+            if (-not (Test-Path -LiteralPath $evidenceArchive -PathType Leaf)) {
+                throw "Evidence packager did not create $evidenceArchive"
+            }
+            Write-Host "READY TO SHARE: $evidenceArchive"
+        } catch {
+            $archiveError = $_.Exception.Message
+            Write-Warning ("Automatic evidence packaging failed: {0}" -f $archiveError)
+        }
     } finally {
         Restore-InitialEnvironment
     }
 }
 Write-Host "Suite completed. Session record: $planPath"
+if ($archiveError) { throw "Session evidence ZIP unavailable: $archiveError" }
 Write-Host 'Inspect each physical Windows EXE and its controls before interpreting the pilot or scheduling follow-up rounds.'
 $failed = @($runs | Where-Object { $_.status -ne 'validated_trace_pending_binary_audit' })
 if ($failed.Count -gt 0) {
