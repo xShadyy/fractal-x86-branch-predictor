@@ -8,7 +8,7 @@ Table 1 contains **48 outcomes**: indirect or conditional branch predictor (IBP/
 
 | Predictor | Receiver branch | Sender → receiver | M1 p-core fetch | M1 p-core execution | M1 e-core fetch | M1 e-core execution | Windows x86 status |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| CBP | Present | Same user, same ASID | Seen | Seen | Seen | Seen | K1 source and protocol now exist but have no physical Windows result or linked PE audit. The older conditional data-cache probe had a null host trace; no instruction-fetch receiver exists. |
+| CBP | Present | Same user, same ASID | Seen | Seen | Seen | Seen | K1's [first physical pilot](results/2026-11-01-windows-conditional-receiver-pilot/README.md) built and its linked PE was audited, but both architectural-skip controls failed at about 8%, so its target-data result is inconclusive. The older conditional data-cache probe had a null host trace; no instruction-fetch receiver exists. |
 | CBP | Present | User → kernel | Seen | Seen | Seen | Seen | Cannot isolate privilege with a normal Windows process. |
 | CBP | Present | Different ASIDs | Seen | Seen | Seen | Seen | Cannot set or mirror ASIDs and preserve the rest of the path here. |
 | CBP | Removed | Same user, same ASID | Seen | Blocked | Seen | Blocked | The branch-versus-NOP [feasibility protocol](PHANTOM_FEASIBILITY.md) is unimplemented and requires one audited address and a working instruction-fetch receiver. |
@@ -32,7 +32,7 @@ Ignoring the unavailable M1 core distinction and protected-domain transitions le
 | IBP, branch present, instruction fetch | J is unimplemented. No target-specific isolated instruction-cache receiver or J executable exists in this package. | Establish an independently calibrated instruction-cache-specific readout and physically audit the receiver before any fetch claim. Whole-call latency would not isolate L1I fetch. |
 | IBP, branch present, target execution | Study I's [first physical pilot](results/2026-10-31-windows-suite-pilot/README.md) passed held-out hot/cold and train-matched no-call gates; adjusted opposite-target hit differences were −0.6% and +0.2%, with no convincing signal. | The linked PE review found distinct target data-page loads and no apparent architectural opposite-target load; independent runtime corroboration, repeat sessions and alternative-cause analysis are still required before a mechanism claim. |
 | CBP, branch present, instruction fetch | No target-specific instruction-cache receiver. | Same receiver calibration and target-only code placement with one verified conditional branch site. |
-| CBP, branch present, target execution | [K1](CONDITIONAL_RECEIVER_V1.md) now has source, held-out hot/cold and no-probe gates, but no physical Windows result. The older conditional probe's archived host trace was null. | Require the K1 physical gates and linked branch/exclusive-load audit before interpreting its first run. The older null does not prove absence of speculation. |
+| CBP, branch present, target execution | [K1's first physical pilot](results/2026-11-01-windows-conditional-receiver-pilot/README.md) built and passed hot/cold, architectural-load and no-probe checks, but architectural-skip exceeded its frozen ≤5% gate in both directions. Its candidate is inconclusive. | Preserve the failed gate; investigate the front-loaded skip hits and harness alternatives in a separately frozen experiment. The linked branch and exclusive architectural loads were audited, but a cache hit alone does not identify its cause. |
 | IBP, branch removed, instruction fetch | [Protocol proposal](PHANTOM_FEASIBILITY.md) only; no same-address branch/NOP experiment or validated fetch receiver. | First establish a sensitive ordinary-branch fetch receiver. A proposed whole-call J measure, even if implemented, would not supply this prerequisite. |
 | IBP, branch removed, target execution | No such receiver; the paper reports no M1 execution in this category. | A tested data-cache receiver and an audited branch-removed path. An x86 null would be bounded by receiver sensitivity. |
 | CBP, branch removed, instruction fetch | [Protocol proposal](PHANTOM_FEASIBILITY.md) only; no same-address branch/NOP experiment. | First establish a sensitive conditional instruction-fetch receiver and keep target line and code address controlled. |
@@ -44,7 +44,7 @@ Ignoring the unavailable M1 core distinction and protected-domain transitions le
 
 | Paper stage or system feature | Current work | Boundary in this repository |
 | --- | --- | --- |
-| §6 stage 1: a working single-threaded branch train/receiver µtest | Six baselines and B2/C/D/E/F/H/I/L all produced paired Windows EXE/traces in the [31 October pilot](results/2026-10-31-windows-suite-pilot/README.md). Ten study scripts accepted their checks (the single-branch latency run remains only a diagnostic), while B2/E/H/L retained inconclusive traces after declared gates failed. K1 has an unmeasured executable protocol; J remains a feasibility protocol. | The pilot audited linked instruction topology, and I's architectural receiver controls passed without a convincing opposite-target signal. No isolated instruction-fetch receiver or validated transient-execution signal exists. Timing studies cannot serve as a data-cache receiver positive control. |
+| §6 stage 1: a working single-threaded branch train/receiver µtest | Six baselines and B2/C/D/E/F/H/I/L produced paired Windows EXE/traces in the [31 October pilot](results/2026-10-31-windows-suite-pilot/README.md). Ten study scripts accepted their checks (the single-branch latency run remains only a diagnostic), while B2/E/H/L retained inconclusive traces after declared gates failed. K1's later physical pilot completed but failed both skip gates; J remains a feasibility protocol. | The pilots audited linked instruction topology, and I's architectural receiver controls passed without a convincing opposite-target signal. K1's linked path was audited, but its candidate is withheld because its skip controls failed. No isolated instruction-fetch receiver or validated transient-execution signal exists. |
 | §6 stage 2: separate sender and receiver, recover the same-domain signal | No validated split-thread pair (G excluded). | Windows scheduler and handoff insert uncontrolled branches and cache work. A future feasibility pilot needs a working unsplit positive control, matched sham handoff, exact affinity verification and auditable timing outside the handoff. A null would remain weak. |
 | §6 stage 3 and §7.1–7.3: vary privilege or ASID while preserving code layout and order | No cross-domain study. | A normal user-mode process cannot switch to kernel privilege, assign an ASID, mirror full layouts between protected domains or suppress interrupts. A pair of Windows processes is not an isolated ASID intervention. |
 | §§1.2, 5.4: multi-privilege concurrency, cooperative/branchless switching, gmap and sparse mirrored addresses | This repository uses native Windows APIs; the earlier project also launched Fractal in QEMU. | Measuring these **Fractal OS properties** requires running or instrumenting Fractal, outside the requested VS Code Windows user-mode microarchitecture suite. VirtualAlloc RX copies in F are not Fractal's gmap. |
@@ -67,7 +67,7 @@ inconclusive. L compares two prelude lengths and four sequences; it does
 **not** measure an AMD path-history-register length or show a predictor
 reset. None of these timings yields a predictor table size, misprediction
 count, transient execution proof or M1 result. J remains an implementation
-gap; K1 is implemented but unmeasured.
+gap; K1's first measured candidate is inconclusive under its frozen gates.
 
 The later, separately versioned [B2 v4 same-site outcome
 run](results/2026-11-01-windows-b2-outcome/README.md) does not repair or
@@ -81,7 +81,8 @@ same-process timing runs supply no target-specific cache receiver or
 privilege transition, so none of the paper's M1 evaluation cells changes
 status. The new K1 receiver's [initial build
 attempts](results/2026-11-01-windows-conditional-receiver-build/README.md)
-stopped at MASM before producing any physical trace.
+stopped at MASM. Its later [physical pilot](results/2026-11-01-windows-conditional-receiver-pilot/README.md)
+built and ran, but both skip controls failed, leaving the candidate inconclusive.
 
 L varies prelude context, but its fixed-trainer equivalence gate failed in the
 first pilot. The [focused follow-up](FOLLOWUP_2026_10_31.md) freezes a new,
@@ -97,7 +98,7 @@ one session are not independent host replications.
 1. Preserve the source revision, planned conditions and seeds before each host run. Archive each exact executable, raw trace, disassembly, tool versions, host metadata, and every failed-control attempt. The 31 October pilot follows this as a private evidence ZIP identified by hash in its audit report.
 2. Validate hot/cold, architectural target and no-probe controls on held-out samples **at the scale of the claimed effect**. Do not describe a target hit as speculative fetch or execution if the receiver or exclusive path has not passed.
 3. Check the *linked Windows PE* for the same physical branch address, target byte/line separation, actual stores and loads, fences, timer paths and the intended train/probe callsites. Source-level tests and MASM listings alone are insufficient.
-4. J and the branch-versus-NOP assay are **unimplemented**. K1 is an unmeasured standalone conditional data-receiver candidate. A working physical receiver positive control is a prerequisite to a new claim. If a candidate receiver fails, retain the null or inconclusive pilot and stop escalation to cross-thread or cross-domain inference.
+4. J and the branch-versus-NOP assay are **unimplemented**. K1's first measured conditional data-receiver pilot failed both architectural-skip gates. A working physical receiver positive control is a prerequisite to a new claim. Retain this inconclusive pilot and do not escalate its candidate to cross-thread or cross-domain inference.
 5. The [focused follow-up protocol](FOLLOWUP_2026_10_31.md) newly selects C's
    shuffled-versus-period-32 contrast after seeing the pilot; it excludes the
    pilot from confirmatory counts and requires distinct sessions on separate
