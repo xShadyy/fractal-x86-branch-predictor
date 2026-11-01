@@ -1,9 +1,11 @@
 # K1: same-process conditional target-data receiver
 
 **Status:** source and analysis protocol frozen before the first physical
-Windows run. The Windows executable, optimized instruction path and receiver
-controls have not yet been observed. Treat the first run as an engineering
-pilot. Preserve every null, failed-control and build attempt.
+Windows run. The first physical K1 pilot is now recorded separately in the
+[pilot result](results/2026-11-01-windows-conditional-receiver-pilot/README.md):
+its executable built and the linked path was audited, but both held-out
+architectural-skip gates failed. Retain the original K1 rules and preserve
+every null, failed-control and build attempt.
 
 ## Question and scope
 

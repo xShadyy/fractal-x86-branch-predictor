@@ -33,9 +33,11 @@ scopes those labels to the procedure, so the requested module-level exports
 were undefined. The corrected source ends the site `PROC` after the
 conditional jump and defines each target body as its own `PROC`/`ENDP`.
 This changes symbol scope, not the planned condition matrix or analysis.
-The fix has not yet been built on the Windows workstation. Its first
-successful EXE still needs the linked instruction, address and receiver
-control audit specified in [`CONDITIONAL_RECEIVER_V1.md`](../../CONDITIONAL_RECEIVER_V1.md).
+The target procedures were subsequently exported in their own `PROC PUBLIC`
+declarations at commit `b714b61`. Its first successful executable and
+inconclusive receiver controls are audited separately in the
+[physical K1 pilot report](../2026-11-01-windows-conditional-receiver-pilot/README.md).
+The earlier failed builds remain failed attempts, not physical receiver runs.
 
 Preserve both failed attempts in the attempt ledger. Do not replace their
 status with the later repaired version's measurements.
