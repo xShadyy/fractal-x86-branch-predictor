@@ -73,10 +73,15 @@ The later, separately versioned [B2 v4 same-site outcome
 run](results/2026-11-01-windows-b2-outcome/README.md) does not repair or
 replace the failed earlier B2 pilot. Its fresh apparatus passed all 16
 prespecified gates and its primary real-versus-fixed interaction was +0.136
-[+0.003,+0.272] TSC ticks per complete probe episode. This is below the
-frozen ±1-tick practical-association rule in one physical run. It supplies
-no target-specific cache receiver or privilege transition, so none of the
-paper's M1 evaluation cells changes status.
+[+0.003,+0.272] TSC ticks per complete probe episode. A subsequent
+[three-run same-day replication](results/2026-11-01-windows-b2-replication/README.md)
+also passed all 16 gates in every run; its primary points were -0.048,
++0.006 and +0.040, none beyond the frozen ±1-tick practical rule. These
+same-process timing runs supply no target-specific cache receiver or
+privilege transition, so none of the paper's M1 evaluation cells changes
+status. The new K1 receiver's [initial build
+attempts](results/2026-11-01-windows-conditional-receiver-build/README.md)
+stopped at MASM before producing any physical trace.
 
 L varies prelude context, but its fixed-trainer equivalence gate failed in the
 first pilot. The [focused follow-up](FOLLOWUP_2026_10_31.md) freezes a new,
