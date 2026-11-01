@@ -157,6 +157,18 @@
       "windows": {}
     },
     {
+      "label": "B2 v4 same-site outcome study (Windows)",
+      "type": "process",
+      "command": "powershell.exe",
+      "args": [
+        "-NoProfile", "-ExecutionPolicy", "Bypass", "-File",
+        "${workspaceFolder}\\scripts\\check_b2_outcome_windows.ps1"
+      ],
+      "problemMatcher": "$msCompile",
+      "presentation": {"reveal": "always", "panel": "dedicated"},
+      "windows": {}
+    },
+    {
       "label": "Balanced run-length patterns: build, run, analyze (Windows)",
       "type": "process",
       "command": "powershell.exe",
