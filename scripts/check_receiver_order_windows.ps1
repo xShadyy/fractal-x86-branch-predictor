@@ -47,7 +47,7 @@ $sourceFiles = @($assembly) + $sources + @($analyzer, (Join-Path $root 'scripts\
                                           (Join-Path $root 'programs\cache_probe.h'),
                                           (Join-Path $root 'programs\cpu_features.h'),
                                           (Join-Path $root '.vscode\tasks.json'),
-                                          (Join-Path $root 'RECEIVER_ORDER_K2.md'))
+                                          (Join-Path $root 'protocols\RECEIVER_ORDER_K2.md'))
 $provenance = [ordered]@{
     schema = 1
     study = 'receiver_order_k2_v1'

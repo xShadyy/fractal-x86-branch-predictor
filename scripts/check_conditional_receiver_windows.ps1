@@ -46,7 +46,7 @@ $sourceFiles = @($assembly) + $sources + @($analyzer, $MyInvocation.MyCommand.Pa
                                           (Join-Path $root 'programs\cpu_features.h'),
                                           (Join-Path $root 'scripts\analyze_cache_probe.py'),
                                           (Join-Path $root '.vscode\tasks.json'),
-                                          (Join-Path $root 'CONDITIONAL_RECEIVER_V1.md'))
+                                          (Join-Path $root 'protocols\CONDITIONAL_RECEIVER_V1.md'))
 $provenance = [ordered]@{
     schema = 1
     study = 'conditional_receiver_v1'

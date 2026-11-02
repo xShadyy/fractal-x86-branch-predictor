@@ -1,0 +1,1001 @@
+{
+  "schema_version": 1,
+  "historical_report_revision": "ff62c961542a8828d616dd20769c1eef9e45730c",
+  "scope": "Machine-readable digest of the 14 historical results README files and one unique instruction audit as of this revision. The original raw logs, EXEs, summaries and externally supplied ZIPs remain primary evidence.",
+  "inference_rules": [
+    "All intervals are bootstrap intervals within a run; runs and dates, not individual blocks or episodes, are replication units.",
+    "Pass describes only the predeclared apparatus/control gate, never proof of a specific hardware mechanism.",
+    "The host was AMD Ryzen 7 9800X3D, CPU signature 0x00b40f40, Windows build 26200, hypervisor present for the later recorded studies. No x86 work here tests Fractal OS privilege/ASID claims on Apple M1."
+  ],
+  "instruction_audit": {
+    "historical_report": {
+      "path_at_revision": "ff62c961542a8828d616dd20769c1eef9e45730c:results/2026-10-30-windows-followup-pilots/INSTRUCTION_AUDIT.md",
+      "sha256": "423730b4b6d7b8a1dc74ce0a4a80b4de1c48a7ff65fff985202eb6f24081715a"
+    },
+    "A_decision_source": {
+      "pilot_exe_sha256": "f4b6e8e1970336781c018f70bc3f9360abf369a96faf657b1537c1b1f928fa03",
+      "pe_text_sha256": "0f302df7d38b2c1e1eb840104cd4c51da4d0d802a8e540ee74fd8d20a11ec1e9",
+      "feeder_call_rva": "0x1a8a",
+      "site_rva": "0x1bf0",
+      "conditional_jump_rva": "0x1c05",
+      "site_hex": "0fb601440fb612450fb6184585db440f45d04585d2740190c3",
+      "branchless_site_rva": "0x1c09"
+    },
+    "B_history_probe": {
+      "pilot_exe_sha256": "6e7575cb065c1828feaa7ef01b20ae9533a1c049b94f3b0df7181275887a45b3",
+      "pe_text_sha256": "b7ee4707628ac45f621ffd281066efd0cff3652717324fe3baa7c592c8289e3b",
+      "feeder_call_rva": "0x1ae2",
+      "site_rva": "0x1c80",
+      "conditional_jump_rva": "0x1c85",
+      "site_hex": "0fb60185c07404b00190c333c0c3",
+      "sham_site_rva": "0x1c8e"
+    },
+    "scope": "Static PE and ASLR-adjusted trace inspection; matching .text across pilots and replications. Cannot prove source provenance or identify predictor mechanism."
+  },
+  "entries": [
+    {
+      "id": "branch-batch-v1-fixed-seed",
+      "historical_reports": [
+        {
+          "path_at_revision": "ff62c961542a8828d616dd20769c1eef9e45730c:results/2026-10-30-windows-branch-batch/README.md",
+          "sha256": "4205f14ed78fec17cb0292b53439f2d25197cb383c90e1e8a97eafeef7f7b985"
+        }
+      ],
+      "run_kind": "two same-day runs with identical seed and stimulus",
+      "recorded_source_revision": "366ec1f (experiment); 4c073cb (archival/reporting)",
+      "pe_text_sha256": "e81a36ff7a733a1b97e25ea213b86264dec677387fd56d837e19d82a782176ca",
+      "runs": [
+        {
+          "utc": "20261030T000304Z",
+          "seed": 824702107,
+          "exe_sha256": "6f982db3152f11800fef1024f8d18ae1b671060d436a01d402528e9dee77ddf1",
+          "trace": "results/2026-10-30-windows-branch-batch/branch-batch-windows-20261030T000304Z.log",
+          "primary_adjusted": {
+            "estimate": 16.082,
+            "within_run_95_ci": [
+              16.047,
+              16.134
+            ],
+            "unit": "TSC ticks/iteration"
+          },
+          "timer_gate": "pass"
+        },
+        {
+          "utc": "20261030T000321Z",
+          "seed": 824702107,
+          "exe_sha256": "1e964ddcba8cdbdaa70bc2eacbe3d533160176697434ed17c5af7e5ad84ae91c",
+          "trace": "results/2026-10-30-windows-branch-batch/branch-batch-windows-20261030T000321Z.log",
+          "primary_adjusted": {
+            "estimate": 16.093,
+            "within_run_95_ci": [
+              16.064,
+              16.127
+            ],
+            "unit": "TSC ticks/iteration"
+          },
+          "timer_gate": "pass"
+        }
+      ],
+      "limitation": "Same seed and only 17 seconds apart; branchless comparator differs in target reads; timing does not count mispredictions."
+    },
+    {
+      "id": "branch-batch-v2-pilot",
+      "historical_reports": [
+        {
+          "path_at_revision": "ff62c961542a8828d616dd20769c1eef9e45730c:results/2026-10-30-windows-v2-pilot/README.md",
+          "sha256": "b3559d9ceb287a019ba42f259e6f3fde7477065a8c85d1777946c7bdea1a078d"
+        }
+      ],
+      "associated_source_revision": "16cbdba",
+      "run_kind": "one independent-seed physical-host run",
+      "pe_text_sha256": "7ecae6f5ee8c9114e750f30c9c196b1c0685d9f0f0f302fb8d752296baa0d469",
+      "runs": [
+        {
+          "utc": "20261030T130133Z",
+          "seed": 1618039151,
+          "exe_sha256": "e0e6d0ef1c6c7ef18a000381ae6bdaccc00eb5e0106e50ef641fdf8b532200d1",
+          "trace": "results/2026-10-30-windows-v2-pilot/branch-batch-windows-20261030T130133Z.log",
+          "primary_adjusted": {
+            "estimate": 16.283,
+            "within_run_95_ci": [
+              16.227,
+              16.34
+            ],
+            "unit": "TSC ticks/iteration"
+          },
+          "no_load_branch": {
+            "estimate": 16.649,
+            "within_run_95_ci": [
+              16.609,
+              16.711
+            ],
+            "unit": "TSC ticks/iteration"
+          },
+          "timer_gate": "pass"
+        }
+      ],
+      "limitation": "Loaded and no-load branches have different addresses; their difference is not isolated target-load cost."
+    },
+    {
+      "id": "branch-batch-v2-replication",
+      "historical_reports": [
+        {
+          "path_at_revision": "ff62c961542a8828d616dd20769c1eef9e45730c:results/2026-10-30-windows-v2-replication/README.md",
+          "sha256": "3e51054e2e7e2bc3977545c5556722341e9ad7921e43d0a97cea7d6c3be902bc"
+        }
+      ],
+      "machine_analysis": "results/2026-10-30-windows-v2-replication/series-summary.json",
+      "manifest": "results/2026-10-30-windows-v2-replication/manifest.json",
+      "run_kind": "six distinct seeds in two sessions on one UTC date",
+      "pe_text_sha256": "7ecae6f5ee8c9114e750f30c9c196b1c0685d9f0f0f302fb8d752296baa0d469",
+      "runs": [
+        {
+          "session": "session-1",
+          "utc": "20261030T131602Z",
+          "seed": 3373702902,
+          "exe_sha256": "dba2005f908575dfcab77695a7582a18574bd3610d8856c125e2573583dce91b",
+          "trace": "results/2026-10-30-windows-v2-replication/session-1/branch-batch-windows-20261030T131602Z.log",
+          "primary_adjusted": {
+            "estimate": 16.3914794921875,
+            "within_run_95_ci": [
+              16.287020979256464,
+              16.62013086779364
+            ],
+            "unit": "TSC ticks/iteration"
+          },
+          "no_load_branch": {
+            "estimate": 16.68798933358028,
+            "within_run_95_ci": [
+              16.620427624932653,
+              16.800954884496228
+            ],
+            "unit": "TSC ticks/iteration"
+          },
+          "timer_gate": "pass"
+        },
+        {
+          "session": "session-1",
+          "utc": "20261030T131612Z",
+          "seed": 254117976,
+          "exe_sha256": "f157f6e48164548e599ef16b955f2dd5f6486b750439c4dbd53250cf82f8edb6",
+          "trace": "results/2026-10-30-windows-v2-replication/session-1/branch-batch-windows-20261030T131612Z.log",
+          "primary_adjusted": {
+            "estimate": 16.485600964776403,
+            "within_run_95_ci": [
+              16.283806110250538,
+              17.126794223127693
+            ],
+            "unit": "TSC ticks/iteration"
+          },
+          "no_load_branch": {
+            "estimate": 16.707624764278016,
+            "within_run_95_ci": [
+              16.616421403556036,
+              17.24431005017511
+            ],
+            "unit": "TSC ticks/iteration"
+          },
+          "timer_gate": "pass"
+        },
+        {
+          "session": "session-1",
+          "utc": "20261030T131620Z",
+          "seed": 2397148980,
+          "exe_sha256": "53ce636ec2d297ed6fa29c75843bd839724c57b4a6630c1f68c6e375efa2abe3",
+          "trace": "results/2026-10-30-windows-v2-replication/session-1/branch-batch-windows-20261030T131620Z.log",
+          "primary_adjusted": {
+            "estimate": 16.31298722891972,
+            "within_run_95_ci": [
+              16.251311203529095,
+              16.836516281654095
+            ],
+            "unit": "TSC ticks/iteration"
+          },
+          "no_load_branch": {
+            "estimate": 16.65742334826239,
+            "within_run_95_ci": [
+              16.61078301791487,
+              16.772416739628234
+            ],
+            "unit": "TSC ticks/iteration"
+          },
+          "timer_gate": "pass"
+        },
+        {
+          "session": "session-2",
+          "utc": "20261030T151954Z",
+          "seed": 3069940628,
+          "exe_sha256": "2f641d3cfa31dbaaac55e9c541c8975f7b3c56e4e4664596425f503e81608a42",
+          "trace": "results/2026-10-30-windows-v2-replication/session-2/branch-batch-windows-20261030T151954Z.log",
+          "primary_adjusted": {
+            "estimate": 16.564983499461206,
+            "within_run_95_ci": [
+              16.24700822501347,
+              17.250541950094288
+            ],
+            "unit": "TSC ticks/iteration"
+          },
+          "no_load_branch": {
+            "estimate": 16.750159954202587,
+            "within_run_95_ci": [
+              16.641645760371766,
+              16.984350796403557
+            ],
+            "unit": "TSC ticks/iteration"
+          },
+          "timer_gate": "pass"
+        },
+        {
+          "session": "session-2",
+          "utc": "20261030T152004Z",
+          "seed": 2578828063,
+          "exe_sha256": "3d05b4b0b0145bdedcc4eaed1d86d5e87a222ef5bd8777f400d595e0dc2d6f34",
+          "trace": "results/2026-10-30-windows-v2-replication/session-2/branch-batch-windows-20261030T152004Z.log",
+          "primary_adjusted": {
+            "estimate": 16.321098590719288,
+            "within_run_95_ci": [
+              16.27203474373653,
+              16.546238340180494
+            ],
+            "unit": "TSC ticks/iteration"
+          },
+          "no_load_branch": {
+            "estimate": 16.65717605064655,
+            "within_run_95_ci": [
+              16.598566515692347,
+              16.844034129175647
+            ],
+            "unit": "TSC ticks/iteration"
+          },
+          "timer_gate": "pass"
+        },
+        {
+          "session": "session-2",
+          "utc": "20261030T152013Z",
+          "seed": 925131770,
+          "exe_sha256": "62948aebdecc8d120b32a1258f143f6ddf1d76bb7e415bd9daebe5c87ab6d278",
+          "trace": "results/2026-10-30-windows-v2-replication/session-2/branch-batch-windows-20261030T152013Z.log",
+          "primary_adjusted": {
+            "estimate": 16.358588909280712,
+            "within_run_95_ci": [
+              16.27079825565733,
+              16.900566364156788
+            ],
+            "unit": "TSC ticks/iteration"
+          },
+          "no_load_branch": {
+            "estimate": 16.65910497205011,
+            "within_run_95_ci": [
+              16.605194091796875,
+              16.800559208310883
+            ],
+            "unit": "TSC ticks/iteration"
+          },
+          "timer_gate": "pass"
+        }
+      ],
+      "limitation": "Within-run intervals do not quantify independent-session uncertainty; same-day, same-host user-mode timing only."
+    },
+    {
+      "id": "decision-source-and-history-probe-pilots",
+      "historical_reports": [
+        {
+          "path_at_revision": "ff62c961542a8828d616dd20769c1eef9e45730c:results/2026-10-30-windows-followup-pilots/README.md",
+          "sha256": "2eb470b44a4fb90bef79dad218ef8cead6f8ae45e6d953dea8ff541ef52da28e"
+        }
+      ],
+      "recorded_source_revision": "84f6182",
+      "manifest": "results/2026-10-30-windows-followup-pilots/manifest.json",
+      "machine_analyses": [
+        "results/2026-10-30-windows-followup-pilots/decision_source-summary.json",
+        "results/2026-10-30-windows-followup-pilots/history_probe-summary.json"
+      ],
+      "runs": [
+        {
+          "study": "A_decision_source",
+          "seed": 1967219259,
+          "exe_sha256": "f4b6e8e1970336781c018f70bc3f9360abf369a96faf657b1537c1b1f928fa03",
+          "pe_text_sha256": "0f302df7d38b2c1e1eb840104cd4c51da4d0d802a8e540ee74fd8d20a11ec1e9",
+          "trace": "results/2026-10-30-windows-followup-pilots/decision-source-windows-20261030T163709Z.log",
+          "primary": {
+            "estimate": 17.08257740941541,
+            "within_run_95_ci": [
+              16.874006600215516,
+              17.771004512392242
+            ],
+            "unit": "TSC ticks/iteration"
+          },
+          "negative_and_timer_gates": "pass"
+        },
+        {
+          "study": "B_history_probe",
+          "seed": 2446820360,
+          "exe_sha256": "6e7575cb065c1828feaa7ef01b20ae9533a1c049b94f3b0df7181275887a45b3",
+          "pe_text_sha256": "b7ee4707628ac45f621ffd281066efd0cff3652717324fe3baa7c592c8289e3b",
+          "trace": "results/2026-10-30-windows-followup-pilots/history-probe-windows-20261030T163724Z.log",
+          "probe_0_adjusted": {
+            "estimate": 0.919403076171875,
+            "within_run_95_ci": [
+              -0.242401123046875,
+              2.020965576171875
+            ],
+            "unit": "TSC ticks/fixed 16-call probe"
+          },
+          "probe_1_adjusted": {
+            "estimate": -0.480499267578125,
+            "within_run_95_ci": [
+              -1.2105712890625,
+              0.374359130859375
+            ],
+            "unit": "TSC ticks/fixed 16-call probe"
+          },
+          "timer_gate": "pass",
+          "bidirectional_history_pattern": "not_observed"
+        }
+      ],
+      "limitation": "B sham has a different site; one run per study; no privilege transition or target-specific receiver."
+    },
+    {
+      "id": "two-day-followup-replication",
+      "historical_reports": [
+        {
+          "path_at_revision": "ff62c961542a8828d616dd20769c1eef9e45730c:results/2026-10-30-31-windows-followup-replication/README.md",
+          "sha256": "5aaa525de94fbde88e8891d441d08987392a88a51dfa652befc5e434e4486d50"
+        }
+      ],
+      "recorded_source_revision": "84f6182 (documented build association)",
+      "original_archive": {
+        "filename": "Days.zip",
+        "sha256": "0b9f07a0f69a0b1397e4a14c2cdeee03d2896e5ee0dab8e624be2454560ab957"
+      },
+      "manifest": "results/2026-10-30-31-windows-followup-replication/manifest.json",
+      "original_file_hashes": "results/2026-10-30-31-windows-followup-replication/original-file-sha256.json",
+      "machine_analysis": "results/2026-10-30-31-windows-followup-replication/series-summary.json",
+      "run_kind": "six A and six B runs, three of each on two UTC dates",
+      "runs": [
+        {
+          "study": "decision_source",
+          "session": "session-1",
+          "utc": "20261030T174645Z",
+          "seed": 3307609659,
+          "exe_sha256": "cf387427679745120ba883bf9b87e8f90c695f08c0d31a94239f588d4032f5af",
+          "pe_text_sha256": "0f302df7d38b2c1e1eb840104cd4c51da4d0d802a8e540ee74fd8d20a11ec1e9",
+          "trace": "results/2026-10-30-31-windows-followup-replication/session-1/decision-source-windows-20261030T174645Z.log",
+          "control_gate": "pass",
+          "primary": {
+            "estimate": 16.850167110048492,
+            "within_run_95_ci": [
+              16.468834186422413,
+              16.96154995622306
+            ],
+            "unit": "TSC ticks/iteration"
+          }
+        },
+        {
+          "study": "decision_source",
+          "session": "session-1",
+          "utc": "20261030T174655Z",
+          "seed": 1830731156,
+          "exe_sha256": "4a191bc5e3fb6b9abce5da4ef40d70f5af3e112644b20e4cc2987dc5b4f1839a",
+          "pe_text_sha256": "0f302df7d38b2c1e1eb840104cd4c51da4d0d802a8e540ee74fd8d20a11ec1e9",
+          "trace": "results/2026-10-30-31-windows-followup-replication/session-1/decision-source-windows-20261030T174655Z.log",
+          "control_gate": "pass",
+          "primary": {
+            "estimate": 17.039646543305494,
+            "within_run_95_ci": [
+              16.85432170999461,
+              17.89173520844558
+            ],
+            "unit": "TSC ticks/iteration"
+          }
+        },
+        {
+          "study": "decision_source",
+          "session": "session-1",
+          "utc": "20261030T174704Z",
+          "seed": 2051132703,
+          "exe_sha256": "f8fb1827f075315ca5cd156ba38774ea234afcc7fdf37b836bd506c926664117",
+          "pe_text_sha256": "0f302df7d38b2c1e1eb840104cd4c51da4d0d802a8e540ee74fd8d20a11ec1e9",
+          "trace": "results/2026-10-30-31-windows-followup-replication/session-1/decision-source-windows-20261030T174704Z.log",
+          "control_gate": "pass",
+          "primary": {
+            "estimate": 17.166757517847522,
+            "within_run_95_ci": [
+              16.91045826879041,
+              17.771746405239764
+            ],
+            "unit": "TSC ticks/iteration"
+          }
+        },
+        {
+          "study": "history_probe",
+          "session": "session-1",
+          "utc": "20261030T174749Z",
+          "seed": 1753270348,
+          "exe_sha256": "34e0a99f68c3e3c6945ccf784f537d3edf6370f0dd2ac862e30a32901c0259b6",
+          "pe_text_sha256": "b7ee4707628ac45f621ffd281066efd0cff3652717324fe3baa7c592c8289e3b",
+          "trace": "results/2026-10-30-31-windows-followup-replication/session-1/history-probe-windows-20261030T174749Z.log",
+          "control_gate": "pass",
+          "adjusted0": {
+            "estimate": 4.467926025390625,
+            "within_run_95_ci": [
+              2.287750244140625,
+              7.313629150390625
+            ],
+            "unit": "TSC ticks/fixed 16-call probe"
+          },
+          "adjusted1": {
+            "estimate": -1.2564697265625,
+            "within_run_95_ci": [
+              -3.90997314453125,
+              0.919403076171875
+            ],
+            "unit": "TSC ticks/fixed 16-call probe"
+          }
+        },
+        {
+          "study": "history_probe",
+          "session": "session-1",
+          "utc": "20261030T174802Z",
+          "seed": 1668170065,
+          "exe_sha256": "cd7a12ab29096d1cb1947191fe80c89f2e475b94c283715f66e083c4a7e1fa3a",
+          "pe_text_sha256": "b7ee4707628ac45f621ffd281066efd0cff3652717324fe3baa7c592c8289e3b",
+          "trace": "results/2026-10-30-31-windows-followup-replication/session-1/history-probe-windows-20261030T174802Z.log",
+          "control_gate": "pass",
+          "adjusted0": {
+            "estimate": 2.781158447265625,
+            "within_run_95_ci": [
+              1.55767822265625,
+              3.977386474609375
+            ],
+            "unit": "TSC ticks/fixed 16-call probe"
+          },
+          "adjusted1": {
+            "estimate": -0.12335205078125,
+            "within_run_95_ci": [
+              -1.120208740234375,
+              1.057098388671875
+            ],
+            "unit": "TSC ticks/fixed 16-call probe"
+          }
+        },
+        {
+          "study": "history_probe",
+          "session": "session-1",
+          "utc": "20261030T174811Z",
+          "seed": 3138604200,
+          "exe_sha256": "c09bce2f33097198b066f662e2b61b2ef2db91e10aa05a2a8561684fd6e3f055",
+          "pe_text_sha256": "b7ee4707628ac45f621ffd281066efd0cff3652717324fe3baa7c592c8289e3b",
+          "trace": "results/2026-10-30-31-windows-followup-replication/session-1/history-probe-windows-20261030T174811Z.log",
+          "control_gate": "pass",
+          "adjusted0": {
+            "estimate": 2.0482177734375,
+            "within_run_95_ci": [
+              0.273956298828125,
+              3.63458251953125
+            ],
+            "unit": "TSC ticks/fixed 16-call probe"
+          },
+          "adjusted1": {
+            "estimate": 0.0745849609375,
+            "within_run_95_ci": [
+              -1.2794189453125,
+              1.824462890625
+            ],
+            "unit": "TSC ticks/fixed 16-call probe"
+          }
+        },
+        {
+          "study": "history_probe",
+          "session": "session-2",
+          "utc": "20261031T175836Z",
+          "seed": 675337818,
+          "exe_sha256": "384bb3e5a9df3919b342343c5cae86db5c96acb674e1d6c0d3ed3a48488fc1b8",
+          "pe_text_sha256": "b7ee4707628ac45f621ffd281066efd0cff3652717324fe3baa7c592c8289e3b",
+          "trace": "results/2026-10-30-31-windows-followup-replication/session-2/history-probe-windows-20261031T175836Z.log",
+          "control_gate": "pass",
+          "adjusted0": {
+            "estimate": 2.554534912109375,
+            "within_run_95_ci": [
+              1.66668701171875,
+              3.5341796875
+            ],
+            "unit": "TSC ticks/fixed 16-call probe"
+          },
+          "adjusted1": {
+            "estimate": 0.282562255859375,
+            "within_run_95_ci": [
+              -0.47332763671875,
+              1.151763916015625
+            ],
+            "unit": "TSC ticks/fixed 16-call probe"
+          }
+        },
+        {
+          "study": "history_probe",
+          "session": "session-2",
+          "utc": "20261031T175845Z",
+          "seed": 2397628812,
+          "exe_sha256": "62666188540921dc381f6ba3ac79ff2ca4d66ea7d265a356d8bcbb34ed2f6a7f",
+          "pe_text_sha256": "b7ee4707628ac45f621ffd281066efd0cff3652717324fe3baa7c592c8289e3b",
+          "trace": "results/2026-10-30-31-windows-followup-replication/session-2/history-probe-windows-20261031T175845Z.log",
+          "control_gate": "pass",
+          "adjusted0": {
+            "estimate": 2.44122314453125,
+            "within_run_95_ci": [
+              1.300933837890625,
+              3.430908203125
+            ],
+            "unit": "TSC ticks/fixed 16-call probe"
+          },
+          "adjusted1": {
+            "estimate": 0.8319091796875,
+            "within_run_95_ci": [
+              -0.06884765625,
+              1.920562744140625
+            ],
+            "unit": "TSC ticks/fixed 16-call probe"
+          }
+        },
+        {
+          "study": "history_probe",
+          "session": "session-2",
+          "utc": "20261031T175854Z",
+          "seed": 2914531768,
+          "exe_sha256": "6f9c7cb52f0d96b83c2f1debf89570f59fb9d5a7bc1f753cc2315e27d9ab0307",
+          "pe_text_sha256": "b7ee4707628ac45f621ffd281066efd0cff3652717324fe3baa7c592c8289e3b",
+          "trace": "results/2026-10-30-31-windows-followup-replication/session-2/history-probe-windows-20261031T175854Z.log",
+          "control_gate": "pass",
+          "adjusted0": {
+            "estimate": 2.0482177734375,
+            "within_run_95_ci": [
+              1.014068603515625,
+              3.156951904296875
+            ],
+            "unit": "TSC ticks/fixed 16-call probe"
+          },
+          "adjusted1": {
+            "estimate": -0.589508056640625,
+            "within_run_95_ci": [
+              -1.250732421875,
+              0.053070068359375
+            ],
+            "unit": "TSC ticks/fixed 16-call probe"
+          }
+        },
+        {
+          "study": "decision_source",
+          "session": "session-2",
+          "utc": "20261031T180020Z",
+          "seed": 476165243,
+          "exe_sha256": "ebd3fdf9787b7d0011baf3e3deea632534ded7c696007d29d74de9c1f084354d",
+          "pe_text_sha256": "0f302df7d38b2c1e1eb840104cd4c51da4d0d802a8e540ee74fd8d20a11ec1e9",
+          "trace": "results/2026-10-30-31-windows-followup-replication/session-2/decision-source-windows-20261031T180020Z.log",
+          "control_gate": "pass",
+          "primary": {
+            "estimate": 16.936226680360992,
+            "within_run_95_ci": [
+              16.858179552801722,
+              17.266121699892242
+            ],
+            "unit": "TSC ticks/iteration"
+          }
+        },
+        {
+          "study": "decision_source",
+          "session": "session-2",
+          "utc": "20261031T180038Z",
+          "seed": 1308128947,
+          "exe_sha256": "a59de9316c44ea6d4b9eac9e1cbabae46c020da0961affc25e89713fd21148e5",
+          "pe_text_sha256": "0f302df7d38b2c1e1eb840104cd4c51da4d0d802a8e540ee74fd8d20a11ec1e9",
+          "trace": "results/2026-10-30-31-windows-followup-replication/session-2/decision-source-windows-20261031T180038Z.log",
+          "control_gate": "pass",
+          "primary": {
+            "estimate": 17.0466203360722,
+            "within_run_95_ci": [
+              16.863471721780712,
+              17.476473051926185
+            ],
+            "unit": "TSC ticks/iteration"
+          }
+        },
+        {
+          "study": "decision_source",
+          "session": "session-2",
+          "utc": "20261031T180047Z",
+          "seed": 1015215205,
+          "exe_sha256": "fe4293ce168f17271d9e80d0a6605f584add1042724280d1ec6ba80f0d793490",
+          "pe_text_sha256": "0f302df7d38b2c1e1eb840104cd4c51da4d0d802a8e540ee74fd8d20a11ec1e9",
+          "trace": "results/2026-10-30-31-windows-followup-replication/session-2/decision-source-windows-20261031T180047Z.log",
+          "control_gate": "pass",
+          "primary": {
+            "estimate": 17.06403008822737,
+            "within_run_95_ci": [
+              16.881128771551722,
+              17.52751527983567
+            ],
+            "unit": "TSC ticks/iteration"
+          }
+        }
+      ],
+      "interpretation": "A repeated same-host decision-order association. B probe 0 positive in all six, but probe 1 mixed; no bidirectional crossover. Neither identifies misprediction or cross-domain transfer."
+    },
+    {
+      "id": "windows-exploratory-suite-pilot",
+      "historical_reports": [
+        {
+          "path_at_revision": "ff62c961542a8828d616dd20769c1eef9e45730c:results/2026-10-31-windows-suite-pilot/README.md",
+          "sha256": "3a08c5e7caeb1a72a4db203d708e95af86d8dcd6e4529b2fbe3d06e5647b397f"
+        }
+      ],
+      "recorded_git_head": "8209c42a7a137599b286d24f2e08ae6e08e8365d",
+      "original_archive": {
+        "filename": "suite-evidence-suite-20261031T213948Z-8ee83ab7.zip",
+        "sha256": "e595d4fb38638961d4c9a2a8eb0ee1f25789b2899cb668a02989d4ec5e2ba40e"
+      },
+      "run_kind": "14 exploratory studies in one session; external ZIP not in repository",
+      "status_by_study": {
+        "cache_controls": "pass",
+        "conditional_cache_receiver": "pass_controls; no convincing opposite-target signal",
+        "branch_batch": "pass",
+        "single_branch_latency": "valid diagnostic; sensitivity not established",
+        "A_decision_source": "pass",
+        "B1_history_probe": "pass timer; bidirectional crossover not observed",
+        "L_prelude_sweep": "inconclusive: fixed-trainer equivalence failed",
+        "D_intervening_activity": "pass controls; no retention depth identified",
+        "E_training_dose": "inconclusive: sensitivity and equivalence gates failed",
+        "C_pattern_complexity": "pass",
+        "F_address_sensitivity": "pass controls; primary intervals include zero",
+        "I_indirect_cache_receiver": "pass receiver controls; no convincing opposite-target signal",
+        "H_indirect_target_timing": "inconclusive: small-work sensitivity failed",
+        "B2_probe_length": "inconclusive: one-call magnitude gate failed"
+      },
+      "key_outcomes": {
+        "A_decision_source": {
+          "estimate": 17.196,
+          "within_run_95_ci": [
+            16.857,
+            18.218
+          ],
+          "unit": "TSC ticks/iteration"
+        },
+        "branch_batch_adjusted": {
+          "estimate": 16.421,
+          "within_run_95_ci": [
+            16.283,
+            16.879
+          ],
+          "unit": "TSC ticks/iteration"
+        },
+        "C_shuffled_minus_period_32": {
+          "estimate": 18.261,
+          "within_run_95_ci": [
+            18.107,
+            18.388
+          ],
+          "unit": "TSC ticks/iteration"
+        },
+        "B1_probe0_adjusted": {
+          "estimate": 2.99,
+          "within_run_95_ci": [
+            1.04,
+            5.03
+          ],
+          "unit": "TSC ticks/fixed 16-call probe"
+        }
+      },
+      "limitation": "Exploratory single-session user-mode suite; four failed-control studies must remain inconclusive, not null findings."
+    },
+    {
+      "id": "B2-v2-calibration",
+      "historical_reports": [
+        {
+          "path_at_revision": "ff62c961542a8828d616dd20769c1eef9e45730c:results/2026-11-01-windows-b2-calibration/README.md",
+          "sha256": "621e9ef2bcac16575607e88f4986ed4914ca0122e81d7059c7c3d67d00ff4a33"
+        }
+      ],
+      "recorded_git_head": "938b7842fcfb94135fac2ba9713de126df65f39c",
+      "original_archive": {
+        "filename": "b2-calibration-windows-20261101T142148071Z.zip",
+        "sha256": "9c71dca5d33c1751bfedcf759aa9eb5e5789b53a40ce8b8e437da449c840abce"
+      },
+      "runs": [
+        {
+          "seed": 3929608376,
+          "exe_sha256": "0be911f040841e1d07c8b2c94301086e14fd37cc2543c685e3c14934d4597338",
+          "pe_text_sha256": "863b6031a5b75dc23d882d740799038ca17b3e550c5fded2a94f28fc54697cda",
+          "trace_sha256": "cecf09b98f8870afdc32d64996b547fb9276addc37392945e0f367d09df83a33",
+          "control_gates": "inconclusive: dose4 passes all four strata; three n16 baseline intervals fail ±1 equivalence",
+          "selected_timer_candidate": null
+        }
+      ],
+      "limitation": "Calibration only; no real-versus-fixed training contrast."
+    },
+    {
+      "id": "B2-v3-precision",
+      "historical_reports": [
+        {
+          "path_at_revision": "ff62c961542a8828d616dd20769c1eef9e45730c:results/2026-11-01-windows-b2-precision/README.md",
+          "sha256": "4159ba5d907187cb6f99f0307cce8048944f5cc3eb47a1a98deaa69cc54604a4"
+        }
+      ],
+      "recorded_git_head": "679070bf82f97ca11a2ab43144dda67104cd652f",
+      "original_archive": {
+        "filename": "b2-precision-windows-20261101T154326965Z.zip",
+        "sha256": "d956fc935b24e547154d1979eac1d6a873a7b9d7ce708f3920baf205f1cc88c1"
+      },
+      "runs": [
+        {
+          "seed": 2810554800,
+          "exe_sha256": "cd878d64459c57bd3545ccab8ab8124e4786295634e2990df9729c972ff9c567",
+          "pe_text_sha256": "9bfc7d8615690c65481e8c5ef365abf5e869faedeb7b22868f5846bbb104cc86",
+          "control_gates": "pass: 16/16"
+        }
+      ],
+      "limitation": "Apparatus precision only; no training outcome or cross-domain measurement."
+    },
+    {
+      "id": "B2-v4-initial-outcome",
+      "historical_reports": [
+        {
+          "path_at_revision": "ff62c961542a8828d616dd20769c1eef9e45730c:results/2026-11-01-windows-b2-outcome/README.md",
+          "sha256": "50bc6e675f5fe7e0a1329ceaa6bf5cc8ffc8aeb533a32636bfed00c1f2170af0"
+        }
+      ],
+      "recorded_git_head": "6ffb1989ac3487c1d191f36d0b711c8ba99f1740",
+      "original_archive": {
+        "filename": "b2-outcome-windows-20261101T155752221Z.zip",
+        "sha256": "2e52aaffa916e575976fbf81aab7d907173b35945c7985adc8c44d71d3005f35"
+      },
+      "runs": [
+        {
+          "seed": 4294791526,
+          "exe_sha256": "ee1085a210d9b2426991251dea4802b08239a077f7957689ca8149a17e56921b",
+          "pe_text_sha256": "1289fa0d276ca798fdf80b0319730d97fc19391e85f78d71c64e96f62c3b947e",
+          "control_gates": "pass: 16/16",
+          "primary_F_p0_n1": {
+            "estimate": 0.136,
+            "within_run_95_ci": [
+              0.003,
+              0.272
+            ],
+            "unit": "TSC ticks/complete probe episode"
+          },
+          "beyond_plus_or_minus_one_practical_rule": false
+        }
+      ],
+      "limitation": "Interval excludes zero in one run but remains below the frozen practical ±1 association rule; same-process user mode."
+    },
+    {
+      "id": "B2-v4-replication",
+      "historical_reports": [
+        {
+          "path_at_revision": "ff62c961542a8828d616dd20769c1eef9e45730c:results/2026-11-01-windows-b2-replication/README.md",
+          "sha256": "e332e413ed83deb790b21a29042ceb428549cac34210c27dd3deb99c4c0dd92e"
+        }
+      ],
+      "recorded_git_head": "8352e598331a2897b790958385976e5c421575cf",
+      "original_archive": {
+        "filename": "b2-replication-windows-20261101T164301064Z.zip",
+        "sha256": "805ff9fdb9a02d378e834d1dff0125c58a1c735df5d9c8390a1ecf7196ad5c6d"
+      },
+      "run_kind": "three prespecified distinct-seed same-day attempts",
+      "pe_text_sha256": "1289fa0d276ca798fdf80b0319730d97fc19391e85f78d71c64e96f62c3b947e",
+      "runs": [
+        {
+          "seed": 3844505995,
+          "primary_F_p0_n1": {
+            "estimate": -0.0479,
+            "within_run_95_ci": [
+              -0.1919,
+              0.0937
+            ],
+            "unit": "TSC ticks/complete probe episode"
+          },
+          "control_gates": "pass: 16/16",
+          "inner_archive": {
+            "filename": "b2-outcome-windows-20261101T164302285Z.zip",
+            "sha256": "a5b4cd76731e70628d4426d7b56c9b369b26b360c0792bd56ff73bd65b1902c0"
+          },
+          "exe_sha256": "f2f7d4e91774d913836f2c7dc00c491102a1002a6491295a7c1dfdebf37e70c3",
+          "trace_sha256": "1d37e75b5e16e32544b17a73af8d7e1c4653a7ede7b1b52b5382aefb893fad7f",
+          "pe_text_sha256": "1289fa0d276ca798fdf80b0319730d97fc19391e85f78d71c64e96f62c3b947e"
+        },
+        {
+          "seed": 283770299,
+          "primary_F_p0_n1": {
+            "estimate": 0.006,
+            "within_run_95_ci": [
+              -0.1219,
+              0.1308
+            ],
+            "unit": "TSC ticks/complete probe episode"
+          },
+          "control_gates": "pass: 16/16",
+          "inner_archive": {
+            "filename": "b2-outcome-windows-20261101T164358248Z.zip",
+            "sha256": "fa445e424b9eb43acebe2e02a5c5787644678497e0de2c38fa277dbb53a49e68"
+          },
+          "exe_sha256": "76ccb5e80d6d86e7d5a0a6d0c6637de077b1bcff28fb73b4cab69a038919b128",
+          "trace_sha256": "fd31cb92560fadac08dabeba3bf568d43fec4c2b38dc204903888f64ef3ccd52",
+          "pe_text_sha256": "1289fa0d276ca798fdf80b0319730d97fc19391e85f78d71c64e96f62c3b947e"
+        },
+        {
+          "seed": 1271025164,
+          "primary_F_p0_n1": {
+            "estimate": 0.0397,
+            "within_run_95_ci": [
+              -0.0692,
+              0.1454
+            ],
+            "unit": "TSC ticks/complete probe episode"
+          },
+          "control_gates": "pass: 16/16",
+          "inner_archive": {
+            "filename": "b2-outcome-windows-20261101T164453660Z.zip",
+            "sha256": "844bf8898e9b012b2f4524edd9013fe8bbbf304564682aef1f58ea76de1edfeb"
+          },
+          "exe_sha256": "01ea31fcd4024ea8654433c3c2a69818b4eeabd025c4bd7bebd0300de5ca1d3f",
+          "trace_sha256": "5d8cfc8b8d4860cf311a9aefb5471ad00267f8b7c6a89543048b778acca57f83",
+          "pe_text_sha256": "1289fa0d276ca798fdf80b0319730d97fc19391e85f78d71c64e96f62c3b947e"
+        }
+      ],
+      "limitation": "All three fail to cross the frozen ±1 practical rule; no cross-run interval or day-to-day generalization."
+    },
+    {
+      "id": "K1-failed-assembly",
+      "historical_reports": [
+        {
+          "path_at_revision": "ff62c961542a8828d616dd20769c1eef9e45730c:results/2026-11-01-windows-conditional-receiver-build/README.md",
+          "sha256": "2ab79ab8ebd0523c3a8ba81c118a198448a990569919934356e2cbcb60249d45"
+        }
+      ],
+      "attempts": [
+        {
+          "seed": 2759950707,
+          "recorded_git_head": "8352e598331a2897b790958385976e5c421575cf",
+          "original_archive": {
+            "filename": "conditional-receiver-windows-20261101T170058328Z.zip",
+            "sha256": "81ad2a549331531096356d20d3997a1e1556c6a6582bb595cd26a927328252b2"
+          },
+          "status": "failed assembly: MASM A2006 undefined target symbols; supplied ZIP verified"
+        },
+        {
+          "seed": 54826516,
+          "original_archive": {
+            "filename": "conditional-receiver-windows-20261101T170118406Z.zip",
+            "sha256": "58e2af84ee2d786451d9d555c0b161dbc32683f9b48ada7c56c3ab7ad66d7d92"
+          },
+          "status": "failed assembly: user-reported MASM A2006; ZIP not supplied for independent verification"
+        }
+      ],
+      "limitation": "Neither attempt produced a binary or a physical receiver measurement."
+    },
+    {
+      "id": "K1-conditional-receiver-pilot",
+      "historical_reports": [
+        {
+          "path_at_revision": "ff62c961542a8828d616dd20769c1eef9e45730c:results/2026-11-01-windows-conditional-receiver-pilot/README.md",
+          "sha256": "5e656a3ef8712556fdca97b343afc28c78782b5201f8d923f666c88c178e0525"
+        }
+      ],
+      "recorded_git_head": "b714b61ea11cdb54a610557dcd7c138b06937723",
+      "original_archive": {
+        "filename": "conditional-receiver-windows-20261101T172116138Z.zip",
+        "sha256": "4d5ce4aa5a4c13460abecfec4563e74a400203d452c134072697bfac6acf506f"
+      },
+      "runs": [
+        {
+          "seed": 2423705098,
+          "exe_sha256": "9ac4d2759994a3bb173c8c8f8709297d9ada9a620786dbf09c33ff8abe105fab",
+          "pe_text_sha256": "9e03d7d9d24d7439a9e1334f17bbd7cafe9b40e31094e15a6f2b0928f83ce809",
+          "control_gates": "fail: architectural-skip p0 8.25%, p1 8.06%, frozen maximum 5%; candidate inconclusive",
+          "candidate_adjusted_p0": {
+            "estimate": 0.75,
+            "within_run_95_ci": [
+              -1.97,
+              3.05
+            ],
+            "unit": "percentage points"
+          },
+          "candidate_adjusted_p1": {
+            "estimate": 2.66,
+            "within_run_95_ci": [
+              -1.82,
+              7.47
+            ],
+            "unit": "percentage points"
+          }
+        }
+      ],
+      "limitation": "Failed skip controls forbid eligible positive or null classification; first-five episode spike is post hoc."
+    },
+    {
+      "id": "K2-receiver-order-three-runs",
+      "historical_reports": [
+        {
+          "path_at_revision": "ff62c961542a8828d616dd20769c1eef9e45730c:results/2026-11-01-windows-receiver-order-pilot/README.md",
+          "sha256": "912be9eb12cfc0994945d93e99b5a75acb29bbd837bb1405325888c8c434008f"
+        },
+        {
+          "path_at_revision": "ff62c961542a8828d616dd20769c1eef9e45730c:results/2026-11-01-windows-receiver-order-replication/README.md",
+          "sha256": "4a8a14d7f24092e2e32f41e25dccdda068d9d795a0fd8322de3a3ba73d6b5c96"
+        }
+      ],
+      "run_kind": "two same-day runs plus one run on the next UTC date; same host, distinct seeds, unchanged linked .text",
+      "pe_text_sha256": "54d9af2ea69a7acff3ba2a57e1872550f15b2a3455b1d5046be49dd08fda12c8",
+      "runs": [
+        {
+          "utc": "20261101T183145Z",
+          "seed": 1992600106,
+          "recorded_git_head": "e745b2a6a6f146c0028176070bddee0062f849af",
+          "original_archive": {
+            "filename": "receiver-order-windows-20261101T183141068Z.zip",
+            "sha256": "7d464c02af3e13e0051ed771756bcf8c220143d0a40226e85d9e598b50260cb5"
+          },
+          "exe_sha256": "61bc5fad406462a640bc50e3dfc0647d687c70253de128083fdf7d1b6cd3b76c",
+          "control_gates": "pass: 20/20",
+          "primary_grouped_p0_early_minus_late": {
+            "estimate": 31.15,
+            "within_run_95_ci": [
+              10.99,
+              53.65
+            ],
+            "unit": "percentage points"
+          },
+          "interleaved_skip_p0_percent": 61.06,
+          "interleaved_skip_p1_percent": 46.15,
+          "candidate_label_intervals_include_zero": true
+        },
+        {
+          "utc": "20261101T192510Z",
+          "seed": 1644643828,
+          "recorded_git_head": "df88c60ae47b6ea662c5758746ea4c74248d4e0c",
+          "original_archive": {
+            "filename": "receiver-order-windows-20261101T192505058Z.zip",
+            "sha256": "46403c95f5c3754ec41dc729d514ee06ed050950dfe6791f1360ebfe23acb96c"
+          },
+          "exe_sha256": "ccd64957591ccf0d4cc87b99f4632f8ecadef8fe58be2dc47b41d943d76cd2eb",
+          "control_gates": "pass: 20/20",
+          "primary_grouped_p0_early_minus_late": {
+            "estimate": 50.37,
+            "within_run_95_ci": [
+              34.81,
+              63.63
+            ],
+            "unit": "percentage points"
+          },
+          "interleaved_skip_p0_percent": 57.68,
+          "interleaved_skip_p1_percent": 47.06,
+          "candidate_label_intervals_include_zero": true
+        },
+        {
+          "utc": "20261102T190523Z",
+          "seed": 2013934917,
+          "recorded_git_head": "bf486f1bfc606e0e818ac8ecc3e575799611f821",
+          "equivalent_reauthored_git_head": "3014413f7124e1a2dc24774372f4398a059ac563",
+          "original_archive": {
+            "filename": "receiver-order-windows-20261102T190518399Z.zip",
+            "sha256": "16065ccdac9bff43280fc48c1db89e236682f84940b95a42f25913d4e1326b4f"
+          },
+          "exe_sha256": "1614c8fffa039d10350781842ce5f4d91100c4e21d780f42787605bda5ea8815",
+          "pe_text_sha256": "54d9af2ea69a7acff3ba2a57e1872550f15b2a3455b1d5046be49dd08fda12c8",
+          "trace_sha256": "38266b5e10c786332c20fb0e222f72250edd6a1d944a821a1157fe96d294f5eb",
+          "control_gates": "pass: 20/20",
+          "primary_grouped_p0_early_minus_late": {
+            "estimate": 56.50688559322033,
+            "within_run_95_ci": [
+              42.394067796610166,
+              65.93220338983052
+            ],
+            "unit": "percentage points"
+          },
+          "interleaved_skip_p0_percent": 63.83056640625,
+          "interleaved_skip_p1_percent": 52.20947265625,
+          "candidate_label_intervals_include_zero": true
+        }
+      ],
+      "limitation": "Three sessions show schedule-sensitive cache heat, not target-specific recovery, misprediction count, or transient-execution proof. Third run is described from its original ZIP and postdates the 15 historical Markdown notes."
+    }
+  ]
+}

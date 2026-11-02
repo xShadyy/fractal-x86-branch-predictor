@@ -75,11 +75,7 @@ if ($StudySet -eq 'Focus') {
     }
 }
 $sourceFiles = @(
-    '.vscode/tasks.json', 'README.md', 'EXPLORATORY_HISTORY_B2.md',
-    'WINDOWS_MULTI_EXPERIMENT_SUITE.md', 'WINDOWS_RESEARCH_PROGRAM.md',
-    'FOLLOWUP_2026_10_31.md', 'FOLLOWUP_AMENDMENT_2026_11_01.md',
-    'PAPER_CLAIM_MATRIX.md', 'PHANTOM_FEASIBILITY.md',
-    'INDIRECT_TARGET_STUDY.md', 'INDIRECT_CACHE_STUDY.md', 'PRELUDE_SWEEP_STUDY.md',
+    '.vscode/tasks.json',
     'programs/utest.c', 'programs/cache_probe_windows.c',
     'programs/branch_batch_windows.c', 'programs/branch_latency_windows.c',
     'programs/spec_probe_windows.c', 'programs/spec_branch_windows.asm',

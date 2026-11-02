@@ -7,7 +7,7 @@ $out = Join-Path $root 'out'
 New-Item -ItemType Directory -Path $out -Force | Out-Null
 $runner = Join-Path $PSScriptRoot 'check_b2_outcome_windows.ps1'
 $analyzer = Join-Path $PSScriptRoot 'summarize_b2_outcome_replicates.py'
-$protocol = Join-Path $root 'B2_REPLICATION_V1.md'
+$protocol = Join-Path $root 'protocols\B2_REPLICATION_V1.md'
 $powershell = Join-Path $PSHOME 'powershell.exe'
 foreach ($path in @($runner, $analyzer, $protocol, $powershell)) {
     if (-not (Test-Path -LiteralPath $path)) { throw "Missing replication dependency: $path" }
@@ -59,7 +59,7 @@ if ($LASTEXITCODE -ne 0 -or $gitStatus.Count -ne 0) {
     throw 'Commit or stash source changes before the replication session.'
 }
 $sourceFiles = @($runner, $analyzer, $protocol, $MyInvocation.MyCommand.Path,
-                 (Join-Path $root 'B2_OUTCOME_V4.md'),
+                 (Join-Path $root 'protocols\B2_OUTCOME_V4.md'),
                  (Join-Path $root '.vscode\tasks.json'))
 $sourceHashes = [ordered]@{}
 foreach ($path in $sourceFiles) {

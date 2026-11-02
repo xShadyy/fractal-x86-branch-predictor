@@ -2,7 +2,7 @@
 
 **Status:** frozen protocol for one physical Windows run. The earlier B2 v2
 pilot failed three 16-call apparatus gates; its outcome estimates remain
-inconclusive. The independently collected [v3 precision diagnostic](results/2026-11-01-windows-b2-precision/README.md) passed all 16 specified
+inconclusive. The independently collected [v3 precision diagnostic](../RESEARCH_REPORT.md) passed all 16 specified
 apparatus gates and its linked instruction audit, but contained no real-arm
 outcome. This v4 executable collects a new outcome and repeats the controls
 inside that same physical binary. Nothing in v2 or v3 is reclassified.

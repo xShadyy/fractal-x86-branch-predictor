@@ -2,7 +2,7 @@
 
 **Status:** frozen follow-up protocol specified after the first B2 v4
 physical outcome, before this session's three new host runs. The original
-[v4 result](results/2026-11-01-windows-b2-outcome/README.md) was +0.136
+[v4 result](../RESEARCH_REPORT.md) was +0.136
 [+0.003,+0.272] TSC ticks per complete probe episode and did not cross its
 prespecified ±1 practical-association boundary. It is not included as one
 of these three replications. The earlier failed B2 v2 pilot and v3 apparatus

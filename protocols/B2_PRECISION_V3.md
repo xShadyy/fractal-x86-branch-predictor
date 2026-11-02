@@ -1,7 +1,7 @@
 # B2 v3: prospective adjacent-pair precision diagnostic
 
 **Status:** apparatus diagnostic to run on the physical Windows workstation.
-The completed [v2 pilot](results/2026-11-01-windows-b2-calibration/README.md)
+The completed [v2 pilot](../RESEARCH_REPORT.md)
 has ZIP SHA-256
 `9c71dca5d33c1751bfedcf759aa9eb5e5789b53a40ce8b8e437da449c840abce`.
 Its three 16-call baseline gates failed and its selected candidate was null.

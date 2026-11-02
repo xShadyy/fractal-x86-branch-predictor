@@ -45,7 +45,7 @@ $sourceFiles = @($assembly) + $sources + @($analyzer, $MyInvocation.MyCommand.Pa
                                           (Join-Path $root 'scripts\analyze_branch_batch.py'),
                                           (Join-Path $root 'scripts\analyze_cache_probe.py'),
                                           (Join-Path $root '.vscode\tasks.json'),
-                                          (Join-Path $root 'B2_CALIBRATION_V2.md'))
+                                          (Join-Path $root 'protocols\B2_CALIBRATION_V2.md'))
 $provenance = [ordered]@{
     schema = 1
     study = 'b2_v2_apparatus_calibration_only'
