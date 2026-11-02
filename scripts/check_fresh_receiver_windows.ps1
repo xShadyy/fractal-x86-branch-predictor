@@ -1,5 +1,5 @@
 # K3 fresh-marker engineering pilot. Retain nulls and every failed attempt.
-param([uint32]$Seed = 0)
+param([uint32]$Seed = 0, [switch]$RequireValidControls)
 $ErrorActionPreference = 'Stop'
 $root = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
 $out = Join-Path $root 'out'
@@ -28,6 +28,7 @@ $hostFile = "$prefix.host.json"
 $disassembly = "$prefix.disasm.txt"
 $analysisFile = "$prefix.analysis.json"
 $strictLog = "$prefix.strict.log"
+$diagnosticFile = "$prefix.diagnostics.json"
 $manifestFile = "$prefix.manifest.json"
 $sourceArchive = "$prefix.sources.zip"
 $archive = "$prefix.zip"
@@ -44,6 +45,7 @@ $sourceFiles = $sources + @(
     (Join-Path $root 'scripts\fresh_receiver_contract.py'),
     (Join-Path $root 'scripts\analyze_cache_probe.py'),
     (Join-Path $root 'scripts\verify_fresh_receiver_layout.py'),
+    (Join-Path $root 'scripts\diagnose_fresh_receiver.py'),
     (Join-Path $root 'protocols\FRESH_RECEIVER_K3.md'), $analyzer,
     $MyInvocation.MyCommand.Path, (Join-Path $root '.vscode\tasks.json'))
 $provenance = [ordered]@{
@@ -173,6 +175,14 @@ try {
         (-not $parsed.apparatus_controls_pass -and $strictExit -ne 1)) { throw 'Strict analysis mismatch.' }
     $provenance.control_status = if ($parsed.apparatus_controls_pass) { 'passed' } else { 'inconclusive' }
     $provenance['numerical_signature_detected'] = $parsed.numerical_signature_detected
+    $diagnostics = (& $python @pythonPrefix (Join-Path $root 'scripts\diagnose_fresh_receiver.py') $trace 2>&1 | Out-String)
+    if ($LASTEXITCODE -ne 0) { throw 'Diagnostic trace validation failed.' }
+    $null = $diagnostics | ConvertFrom-Json -ErrorAction Stop
+    $diagnostics | Set-Content -LiteralPath $diagnosticFile -Encoding UTF8
+    $provenance['run_outcome'] = if ($parsed.apparatus_controls_pass) {
+        if ($parsed.numerical_signature_detected) { 'completed_numerical_signature_review_pending' }
+        else { 'completed_eligible_null' }
+    } else { 'completed_inconclusive' }
     $provenance.build_runtime_status = 'analyzed'
     $provenance.collection_stage = 'complete'
 } catch {
@@ -184,7 +194,7 @@ try {
     $provenance['execution_end_utc'] = (Get-Date).ToUniversalTime().ToString('yyyyMMddTHHmmssZ')
     Save-Provenance
     $artifactPaths = @($binary, $trace, $nopCode, $cpuidCode, $buildLog, $provenanceFile,
-                       $hostFile, $disassembly, $analysisFile, $strictLog, $sourceArchive) |
+                       $hostFile, $disassembly, $analysisFile, $strictLog, $diagnosticFile, $sourceArchive) |
                        Where-Object { Test-Path -LiteralPath $_ }
     $hashes = [ordered]@{}
     foreach ($path in $artifactPaths) { $hashes[(Split-Path $path -Leaf)] = File-Hash $path }
@@ -199,4 +209,9 @@ try {
     Write-Host 'Mechanism review remains pending. One run does not establish a replicated physical result.'
 }
 if ($null -ne $failure) { throw "K3 failed: $failure. Retain ZIP: $archive" }
-if ($provenance.control_status -ne 'passed') { throw "K3 controls inconclusive. Retain ZIP: $archive" }
+if ($provenance.control_status -ne 'passed') {
+    if ($RequireValidControls) { throw "K3 controls inconclusive. Retain ZIP: $archive" }
+    Write-Warning "COLLECTION COMPLETE; SCIENTIFIC RESULT INCONCLUSIVE. Failed gates remain failed. Retain ZIP: $archive"
+    Write-Host 'Use -RequireValidControls for an automation gate that exits nonzero on inconclusive controls.'
+}
+exit 0

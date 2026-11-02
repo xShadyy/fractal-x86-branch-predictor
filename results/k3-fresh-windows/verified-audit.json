@@ -1,0 +1,1431 @@
+{
+  "analysis": {
+    "apparatus_controls_pass": false,
+    "artifact_audit": {
+      "executable_hash_verified": true,
+      "linked_harness_review": "pending",
+      "runtime_code_sha256": {
+        "cpuid": "011864c73d016e2ff479d9f30924d1f604203f47c473ae038a4b5f34a508e4f2",
+        "nop": "6f5a9cdea1044fa1e90e426017e879133e9101d2a62d7b5359c5019a8b43c586"
+      },
+      "runtime_snapshots_verified": true,
+      "template_present_in_linked_image": true
+    },
+    "binary_sha256": "80ff83876f351fabfe24ce58b9d74fd8c7472b496a60077b0f0dc93517d8263b",
+    "cpu": {
+      "clflush_bytes": "64",
+      "hypervisor": "1",
+      "invariant_tsc": "1",
+      "rdtscp": "1",
+      "signature": "0x00b40f40",
+      "vendor": "AuthenticAMD"
+    },
+    "cpuid_primary_equivalence": true,
+    "gates": {
+      "cpuid/arch_load_p0": true,
+      "cpuid/arch_load_p0/decoy": true,
+      "cpuid/arch_load_p1": true,
+      "cpuid/arch_load_p1/decoy": true,
+      "cpuid/candidate_t0_p0": true,
+      "cpuid/candidate_t0_p0/decoy": true,
+      "cpuid/candidate_t0_p1": true,
+      "cpuid/candidate_t0_p1/decoy": true,
+      "cpuid/candidate_t1_p0": true,
+      "cpuid/candidate_t1_p0/decoy": true,
+      "cpuid/candidate_t1_p1": true,
+      "cpuid/candidate_t1_p1/decoy": true,
+      "cpuid/cold_p0": true,
+      "cpuid/cold_p0/decoy": true,
+      "cpuid/cold_p1": true,
+      "cpuid/cold_p1/decoy": true,
+      "cpuid/hot_p0": true,
+      "cpuid/hot_p0/decoy": true,
+      "cpuid/hot_p1": true,
+      "cpuid/hot_p1/decoy": true,
+      "cpuid/no_probe_t0_p0": true,
+      "cpuid/no_probe_t0_p0/decoy": true,
+      "cpuid/no_probe_t0_p1": true,
+      "cpuid/no_probe_t0_p1/decoy": true,
+      "cpuid/no_probe_t1_p0": true,
+      "cpuid/no_probe_t1_p0/decoy": true,
+      "cpuid/no_probe_t1_p1": true,
+      "cpuid/no_probe_t1_p1/decoy": true,
+      "cpuid/warm_mismatch_p0/decoy": true,
+      "cpuid/warm_mismatch_p1/decoy": true,
+      "nop/arch_load_p0": true,
+      "nop/arch_load_p0/decoy": true,
+      "nop/arch_load_p1": true,
+      "nop/arch_load_p1/decoy": true,
+      "nop/candidate_t0_p0": false,
+      "nop/candidate_t0_p0/decoy": true,
+      "nop/candidate_t0_p1/decoy": true,
+      "nop/candidate_t1_p0/decoy": true,
+      "nop/candidate_t1_p1": false,
+      "nop/candidate_t1_p1/decoy": true,
+      "nop/cold_p0": true,
+      "nop/cold_p0/decoy": true,
+      "nop/cold_p1": true,
+      "nop/cold_p1/decoy": true,
+      "nop/hot_p0": true,
+      "nop/hot_p0/decoy": true,
+      "nop/hot_p1": true,
+      "nop/hot_p1/decoy": true,
+      "nop/no_probe_t0_p0": true,
+      "nop/no_probe_t0_p0/decoy": true,
+      "nop/no_probe_t0_p1": true,
+      "nop/no_probe_t0_p1/decoy": true,
+      "nop/no_probe_t1_p0": true,
+      "nop/no_probe_t1_p0/decoy": true,
+      "nop/no_probe_t1_p1": true,
+      "nop/no_probe_t1_p1/decoy": true,
+      "nop/warm_mismatch_p0/decoy": true,
+      "nop/warm_mismatch_p1/decoy": true
+    },
+    "heldout_decoy_hit_rates": {
+      "cpuid": {
+        "arch_load_p0": 0,
+        "arch_load_p1": 0,
+        "candidate_t0_p0": 0,
+        "candidate_t0_p1": 0,
+        "candidate_t1_p0": 0,
+        "candidate_t1_p1": 0,
+        "cold_p0": 0,
+        "cold_p1": 0,
+        "hot_p0": 0,
+        "hot_p1": 0,
+        "no_probe_t0_p0": 0,
+        "no_probe_t0_p1": 0,
+        "no_probe_t1_p0": 0,
+        "no_probe_t1_p1": 0,
+        "warm_mismatch_p0": 0,
+        "warm_mismatch_p1": 0
+      },
+      "nop": {
+        "arch_load_p0": 0,
+        "arch_load_p1": 0,
+        "candidate_t0_p0": 0,
+        "candidate_t0_p1": 0,
+        "candidate_t1_p0": 0,
+        "candidate_t1_p1": 0,
+        "cold_p0": 0,
+        "cold_p1": 0,
+        "hot_p0": 0.00048828125,
+        "hot_p1": 0,
+        "no_probe_t0_p0": 0.00048828125,
+        "no_probe_t0_p1": 0,
+        "no_probe_t1_p0": 0,
+        "no_probe_t1_p1": 0,
+        "warm_mismatch_p0": 0,
+        "warm_mismatch_p1": 0
+      }
+    },
+    "heldout_hit_rates": {
+      "cpuid": {
+        "arch_load_p0": 0.9990234375,
+        "arch_load_p1": 0.9990234375,
+        "candidate_t0_p0": 0,
+        "candidate_t0_p1": 0,
+        "candidate_t1_p0": 0,
+        "candidate_t1_p1": 0,
+        "cold_p0": 0,
+        "cold_p1": 0,
+        "hot_p0": 0.99853515625,
+        "hot_p1": 1,
+        "no_probe_t0_p0": 0,
+        "no_probe_t0_p1": 0,
+        "no_probe_t1_p0": 0,
+        "no_probe_t1_p1": 0,
+        "warm_mismatch_p0": 0,
+        "warm_mismatch_p1": 0
+      },
+      "nop": {
+        "arch_load_p0": 0.998046875,
+        "arch_load_p1": 0.99951171875,
+        "candidate_t0_p0": 0.08935546875,
+        "candidate_t0_p1": 0.1015625,
+        "candidate_t1_p0": 0.13427734375,
+        "candidate_t1_p1": 0.09521484375,
+        "cold_p0": 0,
+        "cold_p1": 0,
+        "hot_p0": 1,
+        "hot_p1": 0.99951171875,
+        "no_probe_t0_p0": 0.00048828125,
+        "no_probe_t0_p1": 0.00048828125,
+        "no_probe_t1_p0": 0,
+        "no_probe_t1_p1": 0,
+        "warm_mismatch_p0": 0.056640625,
+        "warm_mismatch_p1": 0.03125
+      }
+    },
+    "host": {
+      "run_utc": "20261102T224952Z",
+      "windows_build": "26200"
+    },
+    "limitation": "Fresh-marker, training and barrier contrasts constrain explanations; they do not attest host conditions or a privilege-boundary mechanism.",
+    "mechanism_conclusion": "withheld_pending_linked_harness_review_and_independent_host_replication",
+    "numerical_signature_detected": false,
+    "occurrence_hit_rates": {
+      "cpuid": {
+        "arch_load_p0": [
+          1,
+          1,
+          0.9921875,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0.9921875,
+          1,
+          1
+        ],
+        "arch_load_p1": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0.984375,
+          1,
+          1,
+          1,
+          1
+        ],
+        "candidate_t0_p0": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "candidate_t0_p1": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "candidate_t1_p0": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "candidate_t1_p1": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "cold_p0": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "cold_p1": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "hot_p0": [
+          0.9921875,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0.9921875,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0.9921875,
+          1
+        ],
+        "hot_p1": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "no_probe_t0_p0": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "no_probe_t0_p1": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "no_probe_t1_p0": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "no_probe_t1_p1": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "warm_mismatch_p0": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "warm_mismatch_p1": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "nop": {
+        "arch_load_p0": [
+          1,
+          0.9921875,
+          1,
+          1,
+          1,
+          0.984375,
+          1,
+          1,
+          1,
+          1,
+          0.9921875,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "arch_load_p1": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0.9921875,
+          1,
+          1
+        ],
+        "candidate_t0_p0": [
+          0.4140625,
+          0.3203125,
+          0.2734375,
+          0.203125,
+          0.0703125,
+          0.0390625,
+          0.015625,
+          0.015625,
+          0.015625,
+          0.0078125,
+          0.03125,
+          0.0078125,
+          0.0078125,
+          0,
+          0,
+          0.0078125
+        ],
+        "candidate_t0_p1": [
+          0.4453125,
+          0.40625,
+          0.390625,
+          0.3046875,
+          0.0546875,
+          0.0078125,
+          0.0078125,
+          0,
+          0,
+          0,
+          0,
+          0.0078125,
+          0,
+          0,
+          0,
+          0
+        ],
+        "candidate_t1_p0": [
+          0.5703125,
+          0.4453125,
+          0.4296875,
+          0.3125,
+          0.140625,
+          0.046875,
+          0.0234375,
+          0.0234375,
+          0.0234375,
+          0.03125,
+          0,
+          0.015625,
+          0.03125,
+          0.015625,
+          0.0234375,
+          0.015625
+        ],
+        "candidate_t1_p1": [
+          0.4453125,
+          0.3671875,
+          0.3203125,
+          0.2421875,
+          0.078125,
+          0.0234375,
+          0.015625,
+          0,
+          0,
+          0,
+          0.0078125,
+          0.0078125,
+          0.0078125,
+          0,
+          0,
+          0.0078125
+        ],
+        "cold_p0": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "cold_p1": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "hot_p0": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "hot_p1": [
+          1,
+          1,
+          1,
+          1,
+          0.9921875,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "no_probe_t0_p0": [
+          0,
+          0,
+          0,
+          0,
+          0.0078125,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "no_probe_t0_p1": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0.0078125,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "no_probe_t1_p0": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "no_probe_t1_p1": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "warm_mismatch_p0": [
+          0.2265625,
+          0.2265625,
+          0.1484375,
+          0.1953125,
+          0.0625,
+          0.0234375,
+          0,
+          0,
+          0,
+          0,
+          0.0078125,
+          0.0078125,
+          0,
+          0.0078125,
+          0,
+          0
+        ],
+        "warm_mismatch_p1": [
+          0.1796875,
+          0.09375,
+          0.078125,
+          0.09375,
+          0.046875,
+          0,
+          0.0078125,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    "outcomes": {
+      "p0": {
+        "components": {
+          "cpuid": {
+            "candidate": {
+              "ci95": [
+                0,
+                0
+              ],
+              "cycle_differences": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "hit_rate_difference": 0,
+              "interval_scope": "within_run_16_block_cycles"
+            },
+            "no_probe": {
+              "ci95": [
+                0,
+                0
+              ],
+              "cycle_differences": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "hit_rate_difference": 0,
+              "interval_scope": "within_run_16_block_cycles"
+            }
+          },
+          "nop": {
+            "candidate": {
+              "ci95": [
+                -0.0673828125,
+                0.15576171875
+              ],
+              "cycle_differences": [
+                0.05078125,
+                -0.18359375,
+                0.23828125,
+                -0.203125,
+                0.234375,
+                -0.01953125,
+                0.02734375,
+                0.21484375
+              ],
+              "hit_rate_difference": 0.044921875,
+              "interval_scope": "within_run_16_block_cycles"
+            },
+            "no_probe": {
+              "ci95": [
+                -0.00146484375,
+                0
+              ],
+              "cycle_differences": [
+                -0.00390625,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "hit_rate_difference": -0.00048828125,
+              "interval_scope": "within_run_16_block_cycles"
+            }
+          }
+        },
+        "cpuid_adjusted": {
+          "ci95": [
+            0,
+            0
+          ],
+          "cycle_differences": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "hit_rate_difference": 0,
+          "interval_scope": "within_run_16_block_cycles"
+        },
+        "interaction": {
+          "ci95": [
+            -0.06689453125,
+            0.15625
+          ],
+          "cycle_differences": [
+            0.0546875,
+            -0.18359375,
+            0.23828125,
+            -0.203125,
+            0.234375,
+            -0.01953125,
+            0.02734375,
+            0.21484375
+          ],
+          "hit_rate_difference": 0.04541015625,
+          "interval_scope": "within_run_16_block_cycles"
+        },
+        "nop_adjusted": {
+          "ci95": [
+            -0.06689453125,
+            0.15625
+          ],
+          "cycle_differences": [
+            0.0546875,
+            -0.18359375,
+            0.23828125,
+            -0.203125,
+            0.234375,
+            -0.01953125,
+            0.02734375,
+            0.21484375
+          ],
+          "hit_rate_difference": 0.04541015625,
+          "interval_scope": "within_run_16_block_cycles"
+        }
+      },
+      "p1": {
+        "components": {
+          "cpuid": {
+            "candidate": {
+              "ci95": [
+                0,
+                0
+              ],
+              "cycle_differences": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "hit_rate_difference": 0,
+              "interval_scope": "within_run_16_block_cycles"
+            },
+            "no_probe": {
+              "ci95": [
+                0,
+                0
+              ],
+              "cycle_differences": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "hit_rate_difference": 0,
+              "interval_scope": "within_run_16_block_cycles"
+            }
+          },
+          "nop": {
+            "candidate": {
+              "ci95": [
+                -0.07275390625,
+                0.0869140625
+              ],
+              "cycle_differences": [
+                -0.01171875,
+                0.01953125,
+                -0.15234375,
+                0.12109375,
+                0.0390625,
+                -0.16015625,
+                -0.00390625,
+                0.19921875
+              ],
+              "hit_rate_difference": 0.00634765625,
+              "interval_scope": "within_run_16_block_cycles"
+            },
+            "no_probe": {
+              "ci95": [
+                0,
+                0.00146484375
+              ],
+              "cycle_differences": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0.00390625,
+                0,
+                0
+              ],
+              "hit_rate_difference": 0.00048828125,
+              "interval_scope": "within_run_16_block_cycles"
+            }
+          }
+        },
+        "cpuid_adjusted": {
+          "ci95": [
+            0,
+            0
+          ],
+          "cycle_differences": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "hit_rate_difference": 0,
+          "interval_scope": "within_run_16_block_cycles"
+        },
+        "interaction": {
+          "ci95": [
+            -0.07373046875,
+            0.0869140625
+          ],
+          "cycle_differences": [
+            -0.01171875,
+            0.01953125,
+            -0.15234375,
+            0.12109375,
+            0.0390625,
+            -0.1640625,
+            -0.00390625,
+            0.19921875
+          ],
+          "hit_rate_difference": 0.005859375,
+          "interval_scope": "within_run_16_block_cycles"
+        },
+        "nop_adjusted": {
+          "ci95": [
+            -0.07373046875,
+            0.0869140625
+          ],
+          "cycle_differences": [
+            -0.01171875,
+            0.01953125,
+            -0.15234375,
+            0.12109375,
+            0.0390625,
+            -0.1640625,
+            -0.00390625,
+            0.19921875
+          ],
+          "hit_rate_difference": 0.005859375,
+          "interval_scope": "within_run_16_block_cycles"
+        }
+      }
+    },
+    "practical_margin": 0.05,
+    "primary_endpoint": "p0_adjusted_training_contrast_nop_minus_cpuid",
+    "receiver_order_hit_rates": {
+      "cpuid": {
+        "arch_load_p0": {
+          "0": 0.9980372914622179,
+          "1": 1
+        },
+        "arch_load_p1": {
+          "0": 0.998989898989899,
+          "1": 0.999054820415879
+        },
+        "candidate_t0_p0": {
+          "0": 0,
+          "1": 0
+        },
+        "candidate_t0_p1": {
+          "0": 0,
+          "1": 0
+        },
+        "candidate_t1_p0": {
+          "0": 0,
+          "1": 0
+        },
+        "candidate_t1_p1": {
+          "0": 0,
+          "1": 0
+        },
+        "cold_p0": {
+          "0": 0,
+          "1": 0
+        },
+        "cold_p1": {
+          "0": 0,
+          "1": 0
+        },
+        "hot_p0": {
+          "0": 0.9990662931839402,
+          "1": 0.9979529170931423
+        },
+        "hot_p1": {
+          "0": 1,
+          "1": 1
+        },
+        "no_probe_t0_p0": {
+          "0": 0,
+          "1": 0
+        },
+        "no_probe_t0_p1": {
+          "0": 0,
+          "1": 0
+        },
+        "no_probe_t1_p0": {
+          "0": 0,
+          "1": 0
+        },
+        "no_probe_t1_p1": {
+          "0": 0,
+          "1": 0
+        },
+        "warm_mismatch_p0": {
+          "0": 0,
+          "1": 0
+        },
+        "warm_mismatch_p1": {
+          "0": 0,
+          "1": 0
+        }
+      },
+      "nop": {
+        "arch_load_p0": {
+          "0": 0.9959919839679359,
+          "1": 1
+        },
+        "arch_load_p1": {
+          "0": 1,
+          "1": 0.999034749034749
+        },
+        "candidate_t0_p0": {
+          "0": 0.0832517140058766,
+          "1": 0.09542356377799416
+        },
+        "candidate_t0_p1": {
+          "0": 0.10561370123691723,
+          "1": 0.09729187562688064
+        },
+        "candidate_t1_p0": {
+          "0": 0.13165829145728644,
+          "1": 0.13675213675213677
+        },
+        "candidate_t1_p1": {
+          "0": 0.08019323671497584,
+          "1": 0.11056268509378085
+        },
+        "cold_p0": {
+          "0": 0,
+          "1": 0
+        },
+        "cold_p1": {
+          "0": 0,
+          "1": 0
+        },
+        "hot_p0": {
+          "0": 1,
+          "1": 1
+        },
+        "hot_p1": {
+          "0": 1,
+          "1": 0.9990108803165183
+        },
+        "no_probe_t0_p0": {
+          "0": 0,
+          "1": 0.0009881422924901185
+        },
+        "no_probe_t0_p1": {
+          "0": 0,
+          "1": 0.0009699321047526673
+        },
+        "no_probe_t1_p0": {
+          "0": 0,
+          "1": 0
+        },
+        "no_probe_t1_p1": {
+          "0": 0,
+          "1": 0
+        },
+        "warm_mismatch_p0": {
+          "0": 0.062186559679037114,
+          "1": 0.05137963843958135
+        },
+        "warm_mismatch_p1": {
+          "0": 0.02738336713995943,
+          "1": 0.03483992467043315
+        }
+      }
+    },
+    "run": {
+      "affinity_cpu": "0",
+      "bank0_addr": "0x7ff6e0e9c000",
+      "bank1_addr": "0x7ff6e0edc000",
+      "blocks": "256",
+      "code_addr": "0x1bfd7a90000",
+      "condition_addr": "0x7ff6e0e99000",
+      "conditions": "16",
+      "episodes": "16",
+      "modes": "2",
+      "pages": "64",
+      "platform": "windows",
+      "prelude_calls": "128",
+      "protocol": "fresh_marker_k3_v1",
+      "seed": "70098319",
+      "stride": "4096",
+      "timer": "cpuid_outside_rdtscp_load_rdtscp",
+      "token0_addr": "0x7ff6e0e9a000",
+      "token1_addr": "0x7ff6e0e9b000",
+      "train_calls": "256",
+      "version": "1",
+      "warmup_blocks": "16"
+    },
+    "runtime_bytes_match_contract": true,
+    "sample_count": 131072,
+    "study": "fresh_marker_k3_v1",
+    "thresholds": {
+      "p0": 399,
+      "p1": 399
+    },
+    "windows_collection": true
+  },
+  "archive_name": "fresh-receiver-windows-20261102T224945699Z.zip",
+  "archive_sha256": "f163cb4d912ff33a06edd9660fb95a481ec0d89dfe10359ba9a67162b260d8d9",
+  "archived_analysis_reproduced_exactly": true,
+  "diagnostics": {
+    "episode_split": {
+      "first": [
+        0,
+        3
+      ],
+      "remaining": [
+        4,
+        15
+      ]
+    },
+    "failed_gates": [
+      {
+        "gate": "nop/candidate_t0_p0",
+        "observed_hit_rate": 0.08935546875
+      },
+      {
+        "gate": "nop/candidate_t1_p1",
+        "observed_hit_rate": 0.09521484375
+      }
+    ],
+    "heldout_episode_profiles": {
+      "cpuid": {
+        "arch_load_p0": {
+          "first_quarter_count": 512,
+          "first_quarter_hit_rate": 0.998046875,
+          "remaining_count": 1536,
+          "remaining_hit_rate": 0.9993489583333334
+        },
+        "arch_load_p1": {
+          "first_quarter_count": 512,
+          "first_quarter_hit_rate": 1,
+          "remaining_count": 1536,
+          "remaining_hit_rate": 0.9986979166666666
+        },
+        "candidate_t0_p0": {
+          "first_quarter_count": 512,
+          "first_quarter_hit_rate": 0,
+          "remaining_count": 1536,
+          "remaining_hit_rate": 0
+        },
+        "candidate_t0_p1": {
+          "first_quarter_count": 512,
+          "first_quarter_hit_rate": 0,
+          "remaining_count": 1536,
+          "remaining_hit_rate": 0
+        },
+        "candidate_t1_p0": {
+          "first_quarter_count": 512,
+          "first_quarter_hit_rate": 0,
+          "remaining_count": 1536,
+          "remaining_hit_rate": 0
+        },
+        "candidate_t1_p1": {
+          "first_quarter_count": 512,
+          "first_quarter_hit_rate": 0,
+          "remaining_count": 1536,
+          "remaining_hit_rate": 0
+        },
+        "cold_p0": {
+          "first_quarter_count": 512,
+          "first_quarter_hit_rate": 0,
+          "remaining_count": 1536,
+          "remaining_hit_rate": 0
+        },
+        "cold_p1": {
+          "first_quarter_count": 512,
+          "first_quarter_hit_rate": 0,
+          "remaining_count": 1536,
+          "remaining_hit_rate": 0
+        },
+        "hot_p0": {
+          "first_quarter_count": 512,
+          "first_quarter_hit_rate": 0.998046875,
+          "remaining_count": 1536,
+          "remaining_hit_rate": 0.9986979166666666
+        },
+        "hot_p1": {
+          "first_quarter_count": 512,
+          "first_quarter_hit_rate": 1,
+          "remaining_count": 1536,
+          "remaining_hit_rate": 1
+        },
+        "no_probe_t0_p0": {
+          "first_quarter_count": 512,
+          "first_quarter_hit_rate": 0,
+          "remaining_count": 1536,
+          "remaining_hit_rate": 0
+        },
+        "no_probe_t0_p1": {
+          "first_quarter_count": 512,
+          "first_quarter_hit_rate": 0,
+          "remaining_count": 1536,
+          "remaining_hit_rate": 0
+        },
+        "no_probe_t1_p0": {
+          "first_quarter_count": 512,
+          "first_quarter_hit_rate": 0,
+          "remaining_count": 1536,
+          "remaining_hit_rate": 0
+        },
+        "no_probe_t1_p1": {
+          "first_quarter_count": 512,
+          "first_quarter_hit_rate": 0,
+          "remaining_count": 1536,
+          "remaining_hit_rate": 0
+        },
+        "warm_mismatch_p0": {
+          "first_quarter_count": 512,
+          "first_quarter_hit_rate": 0,
+          "remaining_count": 1536,
+          "remaining_hit_rate": 0
+        },
+        "warm_mismatch_p1": {
+          "first_quarter_count": 512,
+          "first_quarter_hit_rate": 0,
+          "remaining_count": 1536,
+          "remaining_hit_rate": 0
+        }
+      },
+      "nop": {
+        "arch_load_p0": {
+          "first_quarter_count": 512,
+          "first_quarter_hit_rate": 0.998046875,
+          "remaining_count": 1536,
+          "remaining_hit_rate": 0.998046875
+        },
+        "arch_load_p1": {
+          "first_quarter_count": 512,
+          "first_quarter_hit_rate": 1,
+          "remaining_count": 1536,
+          "remaining_hit_rate": 0.9993489583333334
+        },
+        "candidate_t0_p0": {
+          "first_quarter_count": 512,
+          "first_quarter_hit_rate": 0.302734375,
+          "remaining_count": 1536,
+          "remaining_hit_rate": 0.018229166666666668
+        },
+        "candidate_t0_p1": {
+          "first_quarter_count": 512,
+          "first_quarter_hit_rate": 0.38671875,
+          "remaining_count": 1536,
+          "remaining_hit_rate": 0.006510416666666667
+        },
+        "candidate_t1_p0": {
+          "first_quarter_count": 512,
+          "first_quarter_hit_rate": 0.439453125,
+          "remaining_count": 1536,
+          "remaining_hit_rate": 0.032552083333333336
+        },
+        "candidate_t1_p1": {
+          "first_quarter_count": 512,
+          "first_quarter_hit_rate": 0.34375,
+          "remaining_count": 1536,
+          "remaining_hit_rate": 0.012369791666666666
+        },
+        "cold_p0": {
+          "first_quarter_count": 512,
+          "first_quarter_hit_rate": 0,
+          "remaining_count": 1536,
+          "remaining_hit_rate": 0
+        },
+        "cold_p1": {
+          "first_quarter_count": 512,
+          "first_quarter_hit_rate": 0,
+          "remaining_count": 1536,
+          "remaining_hit_rate": 0
+        },
+        "hot_p0": {
+          "first_quarter_count": 512,
+          "first_quarter_hit_rate": 1,
+          "remaining_count": 1536,
+          "remaining_hit_rate": 1
+        },
+        "hot_p1": {
+          "first_quarter_count": 512,
+          "first_quarter_hit_rate": 1,
+          "remaining_count": 1536,
+          "remaining_hit_rate": 0.9993489583333334
+        },
+        "no_probe_t0_p0": {
+          "first_quarter_count": 512,
+          "first_quarter_hit_rate": 0,
+          "remaining_count": 1536,
+          "remaining_hit_rate": 0.0006510416666666666
+        },
+        "no_probe_t0_p1": {
+          "first_quarter_count": 512,
+          "first_quarter_hit_rate": 0,
+          "remaining_count": 1536,
+          "remaining_hit_rate": 0.0006510416666666666
+        },
+        "no_probe_t1_p0": {
+          "first_quarter_count": 512,
+          "first_quarter_hit_rate": 0,
+          "remaining_count": 1536,
+          "remaining_hit_rate": 0
+        },
+        "no_probe_t1_p1": {
+          "first_quarter_count": 512,
+          "first_quarter_hit_rate": 0,
+          "remaining_count": 1536,
+          "remaining_hit_rate": 0
+        },
+        "warm_mismatch_p0": {
+          "first_quarter_count": 512,
+          "first_quarter_hit_rate": 0.19921875,
+          "remaining_count": 1536,
+          "remaining_hit_rate": 0.009114583333333334
+        },
+        "warm_mismatch_p1": {
+          "first_quarter_count": 512,
+          "first_quarter_hit_rate": 0.111328125,
+          "remaining_count": 1536,
+          "remaining_hit_rate": 0.004557291666666667
+        }
+      }
+    },
+    "hypervisor_reported": true,
+    "interpretation": [
+      "Episode-position differences are exploratory; all episodes remain in the frozen analysis.",
+      "Architectural returns verify committed paths, not transient predictor targets.",
+      "Hypervisor presence and a timing lattice do not identify the source of the cache hits.",
+      "No linked-harness or physical-mechanism approval is inferred from these diagnostics."
+    ],
+    "observed_tick_gcd": 47,
+    "status": "descriptive_only_no_reclassification",
+    "study": "fresh_marker_k3_v1"
+  },
+  "git_head": "6e824deb74249191839d943e7819195f60487c2c",
+  "internal_consistency_verified": true,
+  "linked_listing_audit": {
+    "bytes_checked": 107360,
+    "instruction_records_checked": 31330,
+    "listing_matches_linked_pe": true,
+    "scope": "byte_correspondence_only_not_control_flow_or_exclusivity_proof"
+  },
+  "manifest_files_checked": 11,
+  "physical_mechanism_proven": false,
+  "source_files_checked": 12
+}

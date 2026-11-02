@@ -1,0 +1,34 @@
+{
+  "study": "fresh_marker_k3_v1",
+  "source_revision": "6e824deb74249191839d943e7819195f60487c2c",
+  "original_archive": "fresh-receiver-windows-20261102T224945699Z.zip",
+  "original_archive_sha256": "f163cb4d912ff33a06edd9660fb95a481ec0d89dfe10359ba9a67162b260d8d9",
+  "collection_status": "complete",
+  "scientific_status": "inconclusive_failed_controls",
+  "apparatus_gates_passed": 56,
+  "apparatus_gates_total": 58,
+  "numerical_signature_detected": false,
+  "trained_target_identified": false,
+  "transient_execution_established": false,
+  "privilege_boundary_tested": false,
+  "primary": {
+    "ci95": [
+      -0.06689453125,
+      0.15625
+    ],
+    "cycle_differences": [
+      0.0546875,
+      -0.18359375,
+      0.23828125,
+      -0.203125,
+      0.234375,
+      -0.01953125,
+      0.02734375,
+      0.21484375
+    ],
+    "hit_rate_difference": 0.04541015625,
+    "interval_scope": "within_run_16_block_cycles"
+  },
+  "audit_file": "verified-audit.json",
+  "interval_scope": "within_one_run_not_independent_sessions_or_hosts"
+}
