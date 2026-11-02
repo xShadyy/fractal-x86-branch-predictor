@@ -10,6 +10,12 @@ The K2 conditional-receiver diagnostic has three physical runs with different se
 
 The [research report](RESEARCH_REPORT.md) gives the measured results, links to raw evidence and analysis code, instruction audits, limits and a claim ledger. Frozen protocols for [K1](protocols/CONDITIONAL_RECEIVER_V1.md), [K2](protocols/RECEIVER_ORDER_K2.md), and the [B2 outcome](protocols/B2_OUTCOME_V4.md) and [replication](protocols/B2_REPLICATION_V1.md) studies retain the decisions made before their respective measurements. Original evidence ZIPs should be kept unchanged.
 
+## K3 implementation awaiting Windows validation
+
+[K3](protocols/FRESH_RECEIVER_K3.md) adds fresh per-episode, target-dependent marker pages, matched no-probe and decoy controls, INT3 after returns, and a CPUID intervention at the same target addresses. It is designed to test training specificity and serialization sensitivity directly. It has not been measured on the Ryzen workstation. Local virtual-server checks validate implementation and trace handling only; their failed controls and nulls are not physical Windows evidence.
+
+Run **K3 fresh target markers (Windows)** in VS Code and retain the full ZIP it prints, including failed-control or null runs. A numerical signature still needs linked harness inspection and independent host sessions. The archived K1/K2 conclusions remain unchanged.
+
 ## Run on Windows in VS Code
 
 1. Install [VS Code](https://code.visualstudio.com/), Visual Studio Build Tools with **Desktop development with C++** and a Windows SDK, and Python 3.

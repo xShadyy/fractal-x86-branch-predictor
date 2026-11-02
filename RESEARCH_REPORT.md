@@ -2,6 +2,10 @@
 
 **Evidence through 2 November 2026.** These are native Windows x86 experiments on one AMD Ryzen 7 9800X3D workstation. The strongest observations are repeatable, controlled **same-host timing associations** and a three-run **receiver scheduling association**. No experiment has recovered a trained target, counted mispredictions, established transient execution, or tested a privilege boundary. A passing apparatus gate makes an outcome eligible under its own protocol; it does not identify a hardware mechanism.
 
+## K3 implementation status
+
+The [K3 protocol](protocols/FRESH_RECEIVER_K3.md) adds a new target-dependent receiver with post-training tokens, separate marker banks, decoys, post-return INT3, and same-address NOP/CPUID target-entry patches. It requires a training-specific fresh-marker contrast that is reduced by serialization, with held-out positive, negative and architectural controls. No Windows K3 trace has been collected or audited. Development execution on a virtual AMD server tests byte layout, returns and replay only. It does not advance the physical claim ledger above. The first Windows run must be treated as an engineering pilot, including failed controls or a null.
+
 ## Relationship to Fractal
 
 [Ravichandran and Yan's *Fractal* paper](https://people.csail.mit.edu/mengjia/data/2026.SP.fractal.pdf) develops an OS for low-noise microarchitecture reverse engineering and evaluates Apple M1 branch predictors with instruction-fetch and data-execution receivers across security domains. Its Table 1 reports 48 M1 outcomes: conditional/indirect predictor × performance/efficiency core × ordinary/branch-removed receiver × same user and ASID/user-to-kernel/different ASID × fetch/execution. Those are the authors' findings. The [pinned upstream revision](UPSTREAM_FRACTAL_REVISION) identifies the separate upstream project.
