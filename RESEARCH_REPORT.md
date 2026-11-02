@@ -1,10 +1,14 @@
 # Native x86 branch studies: consolidated research record
 
-**Evidence through 2 November 2026.** These are native Windows x86 experiments on one AMD Ryzen 7 9800X3D workstation. The strongest observations are repeatable, controlled **same-host timing associations** and a three-run **receiver scheduling association**. No experiment has recovered a trained target, counted mispredictions, established transient execution, or tested a privilege boundary. A passing apparatus gate makes an outcome eligible under its own protocol; it does not identify a hardware mechanism.
+**Evidence through 2 November 2026; K3 audit and follow-up design updated 3 November 2026.** These are native Windows x86 experiments on one AMD Ryzen 7 9800X3D workstation. The strongest observations are repeatable, controlled **same-host timing associations** and a three-run **receiver scheduling association**. No experiment has recovered a trained target, counted mispredictions, established transient execution, or tested a privilege boundary. A passing apparatus gate makes an outcome eligible under its own protocol; it does not identify a hardware mechanism.
 
-## K3 implementation status
+## K3 first Windows pilot and prospective K4
 
-The [K3 protocol](protocols/FRESH_RECEIVER_K3.md) adds a new target-dependent receiver with post-training tokens, separate marker banks, decoys, post-return INT3, and same-address NOP/CPUID target-entry patches. It requires a training-specific fresh-marker contrast that is reduced by serialization, with held-out positive, negative and architectural controls. No Windows K3 trace has been collected or audited. Development execution on a virtual AMD server tests byte layout, returns and replay only. It does not advance the physical claim ledger above. The first Windows run must be treated as an engineering pilot, including failed controls or a null.
+The [first K3 Windows pilot](results/k3-fresh-windows/README.md), seed 70098319, completed 131,072 samples. Its original ZIP SHA256 is `f163cb4d912ff33a06edd9660fb95a481ec0d89dfe10359ba9a67162b260d8d9`. All archived hashes, source snapshots, trace replay, architectural returns and RX code snapshots verify. Frozen reanalysis reproduces the archived result exactly: **56/58 gates, inconclusive**, with matched-training NOP receiver rates of 8.936% (p0) and 9.521% (p1), above the <=5% negative limits. The p0 adjusted NOP and interaction estimates are +4.541 percentage points, 95% within-run interval [-6.689,+15.625]. CPUID is 0.000 [0.000,0.000]. The frozen numerical signature is false.
+
+Exploratory episode-position profiles show matched as well as mismatched NOP heat concentrated at grouped-cell entry. These profiles do not replace the primary or justify excluding early samples. The linked-path review verifies the intended architectural invocation/reload structure but also finds different preceding paths into training and probing. It cannot identify the transient predictor target or eliminate alternative cache-fill mechanisms. The runner's original exit 1 was its intentional failed-control check after successful collection.
+
+The [K4 protocol](protocols/CONTEXT_RECEIVER_K4.md) separately fixes a 256-branch local prefix before each conditional invocation, interleaves conditions, and specifies 512 blocks. It is a prospective apparatus diagnostic informed by K3. A full native development check collected and replayed 262,144 rows but failed the two matched-training negatives, so the revised apparatus is not validated. Those development measurements do not count as Windows hardware evidence. The first Windows K4 pilot, linked-binary inspection and any subsequent fixed session plan remain necessary; no positive result is promised.
 
 ## Relationship to Fractal
 
@@ -14,7 +18,7 @@ This repository runs ordinary user-mode code in one Windows process on AMD x86. 
 
 | Paper category | Local measurement status |
 | --- | --- |
-| Conditional branch present, same-domain data execution | Conditional cache baseline and K1/K2 pilots. K1 fails frozen skip gates. K2 detects schedule-sensitive skip-line heat without trained-label specificity. |
+| Conditional branch present, same-domain data execution | Conditional cache baseline and K1/K2 pilots. K1 fails frozen skip gates. K2 detects schedule-sensitive skip-line heat without trained-label specificity. K3 fails matched-training negatives. |
 | Indirect branch present, same-domain data execution | I calibrates its receiver but shows no convincing opposite-target signal; H's small-work sensitivity fails. |
 | Instruction fetch, including proposed J | No target-specific isolated instruction-cache receiver. J is unimplemented; whole-call timing would not isolate fetch. |
 | Branch removed / Phantom | No audited same-address branch-to-NOP receiver experiment. Unimplemented. |

@@ -2,6 +2,18 @@
   "version": "2.0.0",
   "tasks": [
     {
+      "label": "K4 context-prefix diagnostic (Windows)",
+      "type": "process",
+      "command": "powershell.exe",
+      "args": [
+        "-NoProfile", "-ExecutionPolicy", "Bypass", "-File",
+        "${workspaceFolder}\\scripts\\check_context_receiver_windows.ps1"
+      ],
+      "problemMatcher": "$msCompile",
+      "presentation": {"reveal": "always", "panel": "dedicated"},
+      "windows": {}
+    },
+    {
       "label": "K3 fresh target markers (Windows)",
       "type": "process",
       "command": "powershell.exe",

@@ -10,21 +10,25 @@ The K2 conditional-receiver diagnostic has three physical runs with different se
 
 The [research report](RESEARCH_REPORT.md) gives the measured results, links to raw evidence and analysis code, instruction audits, limits and a claim ledger. Frozen protocols for [K1](protocols/CONDITIONAL_RECEIVER_V1.md), [K2](protocols/RECEIVER_ORDER_K2.md), and the [B2 outcome](protocols/B2_OUTCOME_V4.md) and [replication](protocols/B2_REPLICATION_V1.md) studies retain the decisions made before their respective measurements. Original evidence ZIPs should be kept unchanged.
 
-## K3 implementation awaiting Windows validation
+## K3 Windows pilot and K4 diagnostic
 
-[K3](protocols/FRESH_RECEIVER_K3.md) adds fresh per-episode, target-dependent marker pages, matched no-probe and decoy controls, INT3 after returns, and a CPUID intervention at the same target addresses. It is designed to test training specificity and serialization sensitivity directly. It has not been measured on the Ryzen workstation. Local virtual-server checks validate implementation and trace handling only; their failed controls and nulls are not physical Windows evidence.
+The first [K3 Windows pilot](results/k3-fresh-windows/README.md) completed 131,072 samples. Its original ZIP, source snapshot and frozen analysis verify, but two matched-training negatives failed: 8.94% and 9.52% hits against a 5% maximum. The primary interval includes zero. K3 remains inconclusive. Cache hits cluster near grouped-cell entry, including with matched training; the linked harness also reaches training and probing through different preceding branch paths.
 
-Run **K3 fresh target markers (Windows)** in VS Code and retain the full ZIP it prints, including failed-control or null runs. A numerical signature still needs linked harness inspection and independent host sessions. The archived K1/K2 conclusions remain unchanged.
+The separate [K4 protocol](protocols/CONTEXT_RECEIVER_K4.md) adds an identical 256-branch prefix to every training and probe call and interleaves the conditions. It tests a revised apparatus; it does not establish a predictor reset or a mechanism. A full native development check replayed all 262,144 samples but still failed the two matched-candidate gates. K4 is an experimental diagnostic, not a verified apparatus fix. Windows collection and linked-binary review are still required.
+
+Run **K4 context-prefix diagnostic (Windows)** in VS Code and retain its complete ZIP, including failed controls or a null. It runs one pilot with 262,144 recorded samples. K3 can still be reproduced without changing its collector or decision rules.
+
+Both runners report collection status separately from scientific validity. An inconclusive completed run prints its failed gates and returns zero by default; add `-RequireValidControls` to make it a failing automation gate. Build, runtime and invalid-evidence errors remain failures. No exit code establishes transient execution.
 
 ## Run on Windows in VS Code
 
 1. Install [VS Code](https://code.visualstudio.com/), Visual Studio Build Tools with **Desktop development with C++** and a Windows SDK, and Python 3.
-2. Open this repository in VS Code. Select **Terminal → Run Task → K2 receiver order diagnostic (Windows)** for the current conditional-receiver test.
-3. At completion, retain the full `out\receiver-order-windows-*.zip` printed after `READY TO SHARE:`. It contains the executable, raw trace, linked disassembly, build provenance and analysis. A failed control also produces an evidence ZIP and must be kept.
+2. Open this repository in VS Code. Select **Terminal → Run Task → K4 context-prefix diagnostic (Windows)** for the current apparatus follow-up.
+3. At completion, retain the full `out\context-receiver-windows-*.zip` printed after `READY TO SHARE:`. It contains the executable, raw trace, linked disassembly, build provenance and analysis. A failed control also produces an evidence ZIP and must be kept.
 
 For the broader baseline and exploratory suite, select **Complete Windows research pilot (all studies)**. That task writes a single `out\suite-evidence-*.zip`. Other named tasks in `.vscode/tasks.json` run individual studies. The `out/` directory is ignored by Git; review host inventory files before sharing them.
 
-The K2 task selects a fresh seed, builds with MSVC and MASM, pins the process to an allowed logical CPU, validates a complete trace, calibrates on the first half and evaluates outcomes on the held-out half. Repeat complete runs with distinct seeds and report failed controls and null results. Its within-run bootstrap interval does not describe variability across days or hosts.
+The K4 task selects a fresh seed, builds with MSVC, pins the measurement thread to an allowed logical CPU, validates a complete trace, calibrates on the first half and evaluates outcomes on the held-out half. Review the first pilot before writing a fixed subsequent session plan; retain failed controls and null results. Its within-run bootstrap interval does not describe variability across days or hosts.
 
 ## Repository layout
 
