@@ -628,7 +628,6 @@
           "sha256": "3a08c5e7caeb1a72a4db203d708e95af86d8dcd6e4529b2fbe3d06e5647b397f"
         }
       ],
-      "recorded_git_head": "8209c42a7a137599b286d24f2e08ae6e08e8365d",
       "original_archive": {
         "filename": "suite-evidence-suite-20261031T213948Z-8ee83ab7.zip",
         "sha256": "e595d4fb38638961d4c9a2a8eb0ee1f25789b2899cb668a02989d4ec5e2ba40e"
@@ -694,7 +693,6 @@
           "sha256": "621e9ef2bcac16575607e88f4986ed4914ca0122e81d7059c7c3d67d00ff4a33"
         }
       ],
-      "recorded_git_head": "938b7842fcfb94135fac2ba9713de126df65f39c",
       "original_archive": {
         "filename": "b2-calibration-windows-20261101T142148071Z.zip",
         "sha256": "9c71dca5d33c1751bfedcf759aa9eb5e5789b53a40ce8b8e437da449c840abce"
@@ -719,7 +717,6 @@
           "sha256": "4159ba5d907187cb6f99f0307cce8048944f5cc3eb47a1a98deaa69cc54604a4"
         }
       ],
-      "recorded_git_head": "679070bf82f97ca11a2ab43144dda67104cd652f",
       "original_archive": {
         "filename": "b2-precision-windows-20261101T154326965Z.zip",
         "sha256": "d956fc935b24e547154d1979eac1d6a873a7b9d7ce708f3920baf205f1cc88c1"
@@ -742,7 +739,6 @@
           "sha256": "50bc6e675f5fe7e0a1329ceaa6bf5cc8ffc8aeb533a32636bfed00c1f2170af0"
         }
       ],
-      "recorded_git_head": "6ffb1989ac3487c1d191f36d0b711c8ba99f1740",
       "original_archive": {
         "filename": "b2-outcome-windows-20261101T155752221Z.zip",
         "sha256": "2e52aaffa916e575976fbf81aab7d907173b35945c7985adc8c44d71d3005f35"
@@ -774,7 +770,6 @@
           "sha256": "e332e413ed83deb790b21a29042ceb428549cac34210c27dd3deb99c4c0dd92e"
         }
       ],
-      "recorded_git_head": "8352e598331a2897b790958385976e5c421575cf",
       "original_archive": {
         "filename": "b2-replication-windows-20261101T164301064Z.zip",
         "sha256": "805ff9fdb9a02d378e834d1dff0125c58a1c735df5d9c8390a1ecf7196ad5c6d"
@@ -853,7 +848,6 @@
       "attempts": [
         {
           "seed": 2759950707,
-          "recorded_git_head": "8352e598331a2897b790958385976e5c421575cf",
           "original_archive": {
             "filename": "conditional-receiver-windows-20261101T170058328Z.zip",
             "sha256": "81ad2a549331531096356d20d3997a1e1556c6a6582bb595cd26a927328252b2"
@@ -879,7 +873,6 @@
           "sha256": "5e656a3ef8712556fdca97b343afc28c78782b5201f8d923f666c88c178e0525"
         }
       ],
-      "recorded_git_head": "b714b61ea11cdb54a610557dcd7c138b06937723",
       "original_archive": {
         "filename": "conditional-receiver-windows-20261101T172116138Z.zip",
         "sha256": "4d5ce4aa5a4c13460abecfec4563e74a400203d452c134072697bfac6acf506f"
@@ -928,7 +921,6 @@
         {
           "utc": "20261101T183145Z",
           "seed": 1992600106,
-          "recorded_git_head": "e745b2a6a6f146c0028176070bddee0062f849af",
           "original_archive": {
             "filename": "receiver-order-windows-20261101T183141068Z.zip",
             "sha256": "7d464c02af3e13e0051ed771756bcf8c220143d0a40226e85d9e598b50260cb5"
@@ -950,7 +942,6 @@
         {
           "utc": "20261101T192510Z",
           "seed": 1644643828,
-          "recorded_git_head": "df88c60ae47b6ea662c5758746ea4c74248d4e0c",
           "original_archive": {
             "filename": "receiver-order-windows-20261101T192505058Z.zip",
             "sha256": "46403c95f5c3754ec41dc729d514ee06ed050950dfe6791f1360ebfe23acb96c"
@@ -972,8 +963,6 @@
         {
           "utc": "20261102T190523Z",
           "seed": 2013934917,
-          "recorded_git_head": "bf486f1bfc606e0e818ac8ecc3e575799611f821",
-          "equivalent_reauthored_git_head": "3014413f7124e1a2dc24774372f4398a059ac563",
           "original_archive": {
             "filename": "receiver-order-windows-20261102T190518399Z.zip",
             "sha256": "16065ccdac9bff43280fc48c1db89e236682f84940b95a42f25913d4e1326b4f"
@@ -995,7 +984,7 @@
           "candidate_label_intervals_include_zero": true
         }
       ],
-      "limitation": "Three sessions show schedule-sensitive cache heat, not target-specific recovery, misprediction count, or transient-execution proof. Third run is described from its original ZIP and postdates the 15 historical Markdown notes."
+      "limitation": "Three sessions show schedule-sensitive cache heat, not target-specific recovery, misprediction count, or transient-execution proof."
     }
   ]
 }
