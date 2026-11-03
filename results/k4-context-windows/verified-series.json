@@ -1,0 +1,5546 @@
+{
+  "all_four_recorded_samples": 1048576,
+  "comparable_recorded_conditions": true,
+  "comparison_with_pilot": {
+    "git_head": true,
+    "linked_text_raw_sha256": true,
+    "reported_host_inventory": true,
+    "source_sha256": true,
+    "toolchain": true
+  },
+  "followup_primary_descriptive_mean": 0.9970703125,
+  "followup_primary_descriptive_range": [
+    0.9951171875,
+    0.998779296875
+  ],
+  "followup_recorded_samples": 786432,
+  "physical_mechanism_proven": false,
+  "pilot": {
+    "analysis": {
+      "apparatus_controls_pass": true,
+      "artifact_audit": {
+        "executable_hash_verified": true,
+        "linked_harness_review": "pending",
+        "runtime_code_sha256": {
+          "cpuid": "4d44ff504ad7322468c27e23b41b54f7872515f906540afb0fe3a9b165402af2",
+          "nop": "c55574e2616b0c2927256581e5cf047499b507b0975ae0672fe320c10d35925a"
+        },
+        "runtime_snapshots_verified": true,
+        "template_present_in_linked_image": true
+      },
+      "binary_sha256": "f44bb8fb42fe99a145e982f1f1a3aa6f1fe02bb6617d3bb6d2da777b0bf06e34",
+      "cpu": {
+        "clflush_bytes": "64",
+        "hypervisor": "1",
+        "invariant_tsc": "1",
+        "rdtscp": "1",
+        "signature": "0x00b40f40",
+        "vendor": "AuthenticAMD"
+      },
+      "cpuid_primary_equivalence": true,
+      "gates": {
+        "cpuid/arch_load_p0": true,
+        "cpuid/arch_load_p0/decoy": true,
+        "cpuid/arch_load_p1": true,
+        "cpuid/arch_load_p1/decoy": true,
+        "cpuid/candidate_t0_p0": true,
+        "cpuid/candidate_t0_p0/decoy": true,
+        "cpuid/candidate_t0_p1": true,
+        "cpuid/candidate_t0_p1/decoy": true,
+        "cpuid/candidate_t1_p0": true,
+        "cpuid/candidate_t1_p0/decoy": true,
+        "cpuid/candidate_t1_p1": true,
+        "cpuid/candidate_t1_p1/decoy": true,
+        "cpuid/cold_p0": true,
+        "cpuid/cold_p0/decoy": true,
+        "cpuid/cold_p1": true,
+        "cpuid/cold_p1/decoy": true,
+        "cpuid/hot_p0": true,
+        "cpuid/hot_p0/decoy": true,
+        "cpuid/hot_p1": true,
+        "cpuid/hot_p1/decoy": true,
+        "cpuid/no_probe_t0_p0": true,
+        "cpuid/no_probe_t0_p0/decoy": true,
+        "cpuid/no_probe_t0_p1": true,
+        "cpuid/no_probe_t0_p1/decoy": true,
+        "cpuid/no_probe_t1_p0": true,
+        "cpuid/no_probe_t1_p0/decoy": true,
+        "cpuid/no_probe_t1_p1": true,
+        "cpuid/no_probe_t1_p1/decoy": true,
+        "cpuid/warm_mismatch_p0/decoy": true,
+        "cpuid/warm_mismatch_p1/decoy": true,
+        "nop/arch_load_p0": true,
+        "nop/arch_load_p0/decoy": true,
+        "nop/arch_load_p1": true,
+        "nop/arch_load_p1/decoy": true,
+        "nop/candidate_t0_p0": true,
+        "nop/candidate_t0_p0/decoy": true,
+        "nop/candidate_t0_p1/decoy": true,
+        "nop/candidate_t1_p0/decoy": true,
+        "nop/candidate_t1_p1": true,
+        "nop/candidate_t1_p1/decoy": true,
+        "nop/cold_p0": true,
+        "nop/cold_p0/decoy": true,
+        "nop/cold_p1": true,
+        "nop/cold_p1/decoy": true,
+        "nop/hot_p0": true,
+        "nop/hot_p0/decoy": true,
+        "nop/hot_p1": true,
+        "nop/hot_p1/decoy": true,
+        "nop/no_probe_t0_p0": true,
+        "nop/no_probe_t0_p0/decoy": true,
+        "nop/no_probe_t0_p1": true,
+        "nop/no_probe_t0_p1/decoy": true,
+        "nop/no_probe_t1_p0": true,
+        "nop/no_probe_t1_p0/decoy": true,
+        "nop/no_probe_t1_p1": true,
+        "nop/no_probe_t1_p1/decoy": true,
+        "nop/warm_mismatch_p0/decoy": true,
+        "nop/warm_mismatch_p1/decoy": true
+      },
+      "heldout_decoy_hit_rates": {
+        "cpuid": {
+          "arch_load_p0": 0,
+          "arch_load_p1": 0,
+          "candidate_t0_p0": 0,
+          "candidate_t0_p1": 0,
+          "candidate_t1_p0": 0,
+          "candidate_t1_p1": 0,
+          "cold_p0": 0.000244140625,
+          "cold_p1": 0,
+          "hot_p0": 0,
+          "hot_p1": 0,
+          "no_probe_t0_p0": 0,
+          "no_probe_t0_p1": 0,
+          "no_probe_t1_p0": 0,
+          "no_probe_t1_p1": 0,
+          "warm_mismatch_p0": 0,
+          "warm_mismatch_p1": 0
+        },
+        "nop": {
+          "arch_load_p0": 0,
+          "arch_load_p1": 0,
+          "candidate_t0_p0": 0,
+          "candidate_t0_p1": 0,
+          "candidate_t1_p0": 0,
+          "candidate_t1_p1": 0,
+          "cold_p0": 0,
+          "cold_p1": 0,
+          "hot_p0": 0,
+          "hot_p1": 0,
+          "no_probe_t0_p0": 0,
+          "no_probe_t0_p1": 0.000244140625,
+          "no_probe_t1_p0": 0,
+          "no_probe_t1_p1": 0,
+          "warm_mismatch_p0": 0,
+          "warm_mismatch_p1": 0
+        }
+      },
+      "heldout_hit_rates": {
+        "cpuid": {
+          "arch_load_p0": 0.999267578125,
+          "arch_load_p1": 0.999755859375,
+          "candidate_t0_p0": 0,
+          "candidate_t0_p1": 0,
+          "candidate_t1_p0": 0,
+          "candidate_t1_p1": 0.000244140625,
+          "cold_p0": 0,
+          "cold_p1": 0,
+          "hot_p0": 0.99951171875,
+          "hot_p1": 1,
+          "no_probe_t0_p0": 0,
+          "no_probe_t0_p1": 0,
+          "no_probe_t1_p0": 0,
+          "no_probe_t1_p1": 0,
+          "warm_mismatch_p0": 0,
+          "warm_mismatch_p1": 0
+        },
+        "nop": {
+          "arch_load_p0": 0.99951171875,
+          "arch_load_p1": 0.999267578125,
+          "candidate_t0_p0": 0.001953125,
+          "candidate_t0_p1": 0.99853515625,
+          "candidate_t1_p0": 0.999267578125,
+          "candidate_t1_p1": 0.00048828125,
+          "cold_p0": 0,
+          "cold_p1": 0,
+          "hot_p0": 0.9990234375,
+          "hot_p1": 0.99951171875,
+          "no_probe_t0_p0": 0,
+          "no_probe_t0_p1": 0,
+          "no_probe_t1_p0": 0,
+          "no_probe_t1_p1": 0,
+          "warm_mismatch_p0": 0.204345703125,
+          "warm_mismatch_p1": 0.179443359375
+        }
+      },
+      "host": {
+        "run_utc": "20261102T233316Z",
+        "windows_build": "26200"
+      },
+      "limitation": "A fixed history prefix is an apparatus intervention, not a predictor reset. Same-process data cannot establish a privilege-boundary mechanism.",
+      "mechanism_conclusion": "withheld_pending_k4_windows_pilot_review_and_independent_sessions",
+      "numerical_signature_detected": true,
+      "occurrence_hit_rates": {
+        "cpuid": {
+          "arch_load_p0": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0.99609375,
+            0.99609375,
+            0.99609375,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "arch_load_p1": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0.99609375,
+            1,
+            1
+          ],
+          "candidate_t0_p0": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "candidate_t0_p1": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "candidate_t1_p0": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "candidate_t1_p1": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0.00390625,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "cold_p0": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "cold_p1": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "hot_p0": [
+            1,
+            0.99609375,
+            1,
+            0.99609375,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "hot_p1": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "no_probe_t0_p0": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "no_probe_t0_p1": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "no_probe_t1_p0": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "no_probe_t1_p1": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "warm_mismatch_p0": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "warm_mismatch_p1": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "nop": {
+          "arch_load_p0": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0.99609375,
+            1,
+            0.99609375,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "arch_load_p1": [
+            1,
+            1,
+            1,
+            0.99609375,
+            1,
+            1,
+            1,
+            1,
+            0.99609375,
+            0.99609375,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "candidate_t0_p0": [
+            0,
+            0.0078125,
+            0,
+            0.00390625,
+            0,
+            0,
+            0.00390625,
+            0,
+            0,
+            0.00390625,
+            0.00390625,
+            0,
+            0.00390625,
+            0,
+            0,
+            0.00390625
+          ],
+          "candidate_t0_p1": [
+            1,
+            0.99609375,
+            1,
+            1,
+            0.99609375,
+            1,
+            1,
+            0.99609375,
+            1,
+            1,
+            0.9921875,
+            1,
+            1,
+            1,
+            0.99609375,
+            1
+          ],
+          "candidate_t1_p0": [
+            1,
+            1,
+            1,
+            0.99609375,
+            1,
+            1,
+            1,
+            1,
+            0.99609375,
+            1,
+            1,
+            1,
+            0.99609375,
+            1,
+            1,
+            1
+          ],
+          "candidate_t1_p1": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0.00390625,
+            0,
+            0,
+            0,
+            0,
+            0.00390625,
+            0,
+            0,
+            0,
+            0
+          ],
+          "cold_p0": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "cold_p1": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "hot_p0": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0.99609375,
+            0.9921875,
+            1,
+            0.99609375,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "hot_p1": [
+            1,
+            1,
+            1,
+            0.99609375,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0.99609375,
+            1,
+            1,
+            1
+          ],
+          "no_probe_t0_p0": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "no_probe_t0_p1": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "no_probe_t1_p0": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "no_probe_t1_p1": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "warm_mismatch_p0": [
+            0.20703125,
+            0.23046875,
+            0.18359375,
+            0.16796875,
+            0.2265625,
+            0.18359375,
+            0.1875,
+            0.21484375,
+            0.1796875,
+            0.203125,
+            0.19140625,
+            0.16796875,
+            0.26171875,
+            0.24609375,
+            0.1953125,
+            0.22265625
+          ],
+          "warm_mismatch_p1": [
+            0.2109375,
+            0.171875,
+            0.17578125,
+            0.16796875,
+            0.2265625,
+            0.1796875,
+            0.171875,
+            0.1796875,
+            0.16015625,
+            0.1953125,
+            0.1875,
+            0.1875,
+            0.16796875,
+            0.1796875,
+            0.1875,
+            0.12109375
+          ]
+        }
+      },
+      "outcomes": {
+        "p0": {
+          "components": {
+            "cpuid": {
+              "candidate": {
+                "ci95": [
+                  0,
+                  0
+                ],
+                "cycle_differences": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "hit_rate_difference": 0,
+                "interval_scope": "within_run_16_block_cycles"
+              },
+              "no_probe": {
+                "ci95": [
+                  0,
+                  0
+                ],
+                "cycle_differences": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "hit_rate_difference": 0,
+                "interval_scope": "within_run_16_block_cycles"
+              }
+            },
+            "nop": {
+              "candidate": {
+                "ci95": [
+                  0.99609375,
+                  0.998291015625
+                ],
+                "cycle_differences": [
+                  1,
+                  1,
+                  1,
+                  0.99609375,
+                  1,
+                  0.99609375,
+                  0.9921875,
+                  1,
+                  0.99609375,
+                  0.99609375,
+                  0.99609375,
+                  0.99609375,
+                  0.99609375,
+                  0.99609375,
+                  1,
+                  0.99609375
+                ],
+                "hit_rate_difference": 0.997314453125,
+                "interval_scope": "within_run_16_block_cycles"
+              },
+              "no_probe": {
+                "ci95": [
+                  0,
+                  0
+                ],
+                "cycle_differences": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "hit_rate_difference": 0,
+                "interval_scope": "within_run_16_block_cycles"
+              }
+            }
+          },
+          "cpuid_adjusted": {
+            "ci95": [
+              0,
+              0
+            ],
+            "cycle_differences": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "hit_rate_difference": 0,
+            "interval_scope": "within_run_16_block_cycles"
+          },
+          "interaction": {
+            "ci95": [
+              0.99609375,
+              0.998291015625
+            ],
+            "cycle_differences": [
+              1,
+              1,
+              1,
+              0.99609375,
+              1,
+              0.99609375,
+              0.9921875,
+              1,
+              0.99609375,
+              0.99609375,
+              0.99609375,
+              0.99609375,
+              0.99609375,
+              0.99609375,
+              1,
+              0.99609375
+            ],
+            "hit_rate_difference": 0.997314453125,
+            "interval_scope": "within_run_16_block_cycles"
+          },
+          "nop_adjusted": {
+            "ci95": [
+              0.99609375,
+              0.998291015625
+            ],
+            "cycle_differences": [
+              1,
+              1,
+              1,
+              0.99609375,
+              1,
+              0.99609375,
+              0.9921875,
+              1,
+              0.99609375,
+              0.99609375,
+              0.99609375,
+              0.99609375,
+              0.99609375,
+              0.99609375,
+              1,
+              0.99609375
+            ],
+            "hit_rate_difference": 0.997314453125,
+            "interval_scope": "within_run_16_block_cycles"
+          }
+        },
+        "p1": {
+          "components": {
+            "cpuid": {
+              "candidate": {
+                "ci95": [
+                  -0.000732421875,
+                  0
+                ],
+                "cycle_differences": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  -0.00390625,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "hit_rate_difference": -0.000244140625,
+                "interval_scope": "within_run_16_block_cycles"
+              },
+              "no_probe": {
+                "ci95": [
+                  0,
+                  0
+                ],
+                "cycle_differences": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "hit_rate_difference": 0,
+                "interval_scope": "within_run_16_block_cycles"
+              }
+            },
+            "nop": {
+              "candidate": {
+                "ci95": [
+                  0.99658203125,
+                  0.999267578125
+                ],
+                "cycle_differences": [
+                  0.9921875,
+                  0.99609375,
+                  0.99609375,
+                  1,
+                  1,
+                  0.9921875,
+                  1,
+                  1,
+                  0.99609375,
+                  1,
+                  1,
+                  1,
+                  0.99609375,
+                  1,
+                  1,
+                  1
+                ],
+                "hit_rate_difference": 0.998046875,
+                "interval_scope": "within_run_16_block_cycles"
+              },
+              "no_probe": {
+                "ci95": [
+                  0,
+                  0
+                ],
+                "cycle_differences": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "hit_rate_difference": 0,
+                "interval_scope": "within_run_16_block_cycles"
+              }
+            }
+          },
+          "cpuid_adjusted": {
+            "ci95": [
+              -0.000732421875,
+              0
+            ],
+            "cycle_differences": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              -0.00390625,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "hit_rate_difference": -0.000244140625,
+            "interval_scope": "within_run_16_block_cycles"
+          },
+          "interaction": {
+            "ci95": [
+              0.996826171875,
+              0.999755859375
+            ],
+            "cycle_differences": [
+              0.9921875,
+              0.99609375,
+              0.99609375,
+              1,
+              1,
+              0.9921875,
+              1.00390625,
+              1,
+              0.99609375,
+              1,
+              1,
+              1,
+              0.99609375,
+              1,
+              1,
+              1
+            ],
+            "hit_rate_difference": 0.998291015625,
+            "interval_scope": "within_run_16_block_cycles"
+          },
+          "nop_adjusted": {
+            "ci95": [
+              0.99658203125,
+              0.999267578125
+            ],
+            "cycle_differences": [
+              0.9921875,
+              0.99609375,
+              0.99609375,
+              1,
+              1,
+              0.9921875,
+              1,
+              1,
+              0.99609375,
+              1,
+              1,
+              1,
+              0.99609375,
+              1,
+              1,
+              1
+            ],
+            "hit_rate_difference": 0.998046875,
+            "interval_scope": "within_run_16_block_cycles"
+          }
+        }
+      },
+      "practical_margin": 0.05,
+      "primary_endpoint": "p0_adjusted_training_contrast_nop_minus_cpuid",
+      "receiver_order_hit_rates": {
+        "cpuid": {
+          "arch_load_p0": {
+            "0": 0.9985315712187959,
+            "1": 1
+          },
+          "arch_load_p1": {
+            "0": 1,
+            "1": 0.9995240361732508
+          },
+          "candidate_t0_p0": {
+            "0": 0,
+            "1": 0
+          },
+          "candidate_t0_p1": {
+            "0": 0,
+            "1": 0
+          },
+          "candidate_t1_p0": {
+            "0": 0,
+            "1": 0
+          },
+          "candidate_t1_p1": {
+            "0": 0,
+            "1": 0.00048520135856380397
+          },
+          "cold_p0": {
+            "0": 0,
+            "1": 0
+          },
+          "cold_p1": {
+            "0": 0,
+            "1": 0
+          },
+          "hot_p0": {
+            "0": 0.9995119570522206,
+            "1": 0.9995114802149487
+          },
+          "hot_p1": {
+            "0": 1,
+            "1": 1
+          },
+          "no_probe_t0_p0": {
+            "0": 0,
+            "1": 0
+          },
+          "no_probe_t0_p1": {
+            "0": 0,
+            "1": 0
+          },
+          "no_probe_t1_p0": {
+            "0": 0,
+            "1": 0
+          },
+          "no_probe_t1_p1": {
+            "0": 0,
+            "1": 0
+          },
+          "warm_mismatch_p0": {
+            "0": 0,
+            "1": 0
+          },
+          "warm_mismatch_p1": {
+            "0": 0,
+            "1": 0
+          }
+        },
+        "nop": {
+          "arch_load_p0": {
+            "0": 0.9995164410058027,
+            "1": 0.9995069033530573
+          },
+          "arch_load_p1": {
+            "0": 1,
+            "1": 0.9985126425384234
+          },
+          "candidate_t0_p0": {
+            "0": 0.0009784735812133072,
+            "1": 0.0029239766081871343
+          },
+          "candidate_t0_p1": {
+            "0": 0.9975429975429976,
+            "1": 0.9995147986414362
+          },
+          "candidate_t1_p0": {
+            "0": 0.9990248659190639,
+            "1": 0.9995110024449878
+          },
+          "candidate_t1_p1": {
+            "0": 0,
+            "1": 0.0010045203415369162
+          },
+          "cold_p0": {
+            "0": 0,
+            "1": 0
+          },
+          "cold_p1": {
+            "0": 0,
+            "1": 0
+          },
+          "hot_p0": {
+            "0": 0.9990253411306043,
+            "1": 0.9990215264187867
+          },
+          "hot_p1": {
+            "0": 0.9990176817288802,
+            "1": 1
+          },
+          "no_probe_t0_p0": {
+            "0": 0,
+            "1": 0
+          },
+          "no_probe_t0_p1": {
+            "0": 0,
+            "1": 0
+          },
+          "no_probe_t1_p0": {
+            "0": 0,
+            "1": 0
+          },
+          "no_probe_t1_p1": {
+            "0": 0,
+            "1": 0
+          },
+          "warm_mismatch_p0": {
+            "0": 0.20201053135471517,
+            "1": 0.20677628300946688
+          },
+          "warm_mismatch_p1": {
+            "0": 0.18888888888888888,
+            "1": 0.16979269496544916
+          }
+        }
+      },
+      "run": {
+        "affinity_cpu": "0",
+        "bank0_addr": "0x7ff791e5c000",
+        "bank1_addr": "0x7ff791e9c000",
+        "blocks": "512",
+        "code_addr": "0x292b8b80000",
+        "condition_addr": "0x7ff791e59000",
+        "conditions": "16",
+        "episodes": "16",
+        "history_prefix_branches": "256",
+        "modes": "2",
+        "pages": "64",
+        "platform": "windows",
+        "prelude_calls": "128",
+        "protocol": "context_marker_k4_v1",
+        "schedule": "interleaved_round_shuffle",
+        "seed": "888890949",
+        "stride": "4096",
+        "timer": "cpuid_outside_rdtscp_load_rdtscp",
+        "token0_addr": "0x7ff791e5a000",
+        "token1_addr": "0x7ff791e5b000",
+        "train_calls": "256",
+        "version": "1",
+        "warmup_blocks": "16"
+      },
+      "runtime_bytes_match_contract": true,
+      "sample_count": 262144,
+      "study": "context_marker_k4_v1",
+      "thresholds": {
+        "p0": 352,
+        "p1": 399
+      },
+      "windows_collection": true
+    },
+    "archive_name": "context-receiver-windows-20261102T233310118Z.zip",
+    "archive_sha256": "48a26cabb7935b3550c7894fc69bf359088281dee4ec72daec90aadd4dd7e085",
+    "archived_analysis_reproduced_exactly": true,
+    "git_clean_reported": true,
+    "git_head": "ee8422ffe6d466c4f51b1b550224ac63e30c96b4",
+    "independent_primary_reproduced_exactly": true,
+    "linked_listing_audit": {
+      "bytes_checked": 107120,
+      "instruction_records_checked": 31282,
+      "listing_matches_linked_pe": true,
+      "scope": "byte_correspondence_only_not_control_flow_or_exclusivity_proof"
+    },
+    "linked_text_raw_sha256": "586dfb46074aa49327bb6d1b80070140759d560669d93e996f166cbd228b1b1b",
+    "manifest_files_verified": 11,
+    "reported_host_inventory": {
+      "bios": {
+        "ReleaseDate": "/Date(1770249600000)/",
+        "SMBIOSBIOSVersion": "FA9"
+      },
+      "cpu": [
+        {
+          "Manufacturer": "AuthenticAMD",
+          "Name": "AMD Ryzen 7 9800X3D 8-Core Processor           ",
+          "NumberOfCores": 8,
+          "NumberOfLogicalProcessors": 16,
+          "Revision": 17408
+        }
+      ],
+      "environment_assertion": "Host inventory, not independent attestation of a bare-metal machine.",
+      "microcode_registry_update_revision": {
+        "Count": 4,
+        "value": [
+          53,
+          64,
+          64,
+          11
+        ]
+      },
+      "os": {
+        "BuildNumber": "26200",
+        "Caption": "Microsoft Windows 11 Pro",
+        "Version": "10.0.26200"
+      },
+      "virtualization": {
+        "HypervisorPresent": true
+      }
+    },
+    "seed": 888890949,
+    "source_files_verified": 13,
+    "source_sha256": {
+      ".vscode/tasks.json": "1893b0bf3d6da618a58c32952a2003afca9b1a2cf6247a7a6e001a8957bff967",
+      "programs/context_receiver.c": "6aa61b3b9956de53f4fd67eeb86bb42c03f21d93bde73ba4631c46686d1ea205",
+      "programs/context_receiver_code.h": "e756ca3a1bb562cd0b60aabee20ec20cf59a3b88f7932322c430b5eaa43aec06",
+      "programs/context_receiver_layout.S": "4dbad58447ef03553f80ecbb4c741c55da0419415ca7c4f9f406285f2a047b5e",
+      "programs/cpu_features.c": "d20d0e73c0078c07202493a22ac1187a50e98d2f73b431e02534e8463733370a",
+      "programs/cpu_features.h": "60aeace9e1b812f10c1de5454e9db9536360d15c9254eebc0ec4a8d4b88d07da",
+      "protocols/CONTEXT_RECEIVER_K4.md": "6b3ec956c9e74e22a42cca3cc671bcb4f36643561658bd2530da5498242dfe35",
+      "scripts/analyze_cache_probe.py": "8d119ec1679bcb98463f429d9eaa95daeec405eae470353301038c7e1cf2079c",
+      "scripts/analyze_context_receiver.py": "a88900919af4767ae6cd591169e1cde0919e56731dad4174ba20af8a1e856171",
+      "scripts/check_context_receiver_windows.ps1": "74432c6b99a086d1e91ad4397113631cd03053fa92d7b77d8e59d684cbf39d02",
+      "scripts/context_receiver_contract.py": "e5949d3ba1f471444371cfa0c779c821a40c077b19f976abb0012d8a5182fc27",
+      "scripts/fresh_receiver_contract.py": "3dd4bbd3a5409b668566d1bbd8895e92dc661113f4faf3a9713b30be68786f53",
+      "scripts/verify_context_receiver_layout.py": "11b88a64e38698044b2ad48046c15d89808e4b13ab8eaf3b5c63f2d2c3724e27"
+    },
+    "toolchain": {
+      "cl.exe": {
+        "file_version": "19.51.36260.0",
+        "path": "C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\VC\\Tools\\MSVC\\14.51.36231\\bin\\HostX64\\x64\\cl.exe"
+      },
+      "dumpbin.exe": {
+        "file_version": "14.51.36260.0",
+        "path": "C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\VC\\Tools\\MSVC\\14.51.36231\\bin\\HostX64\\x64\\dumpbin.exe"
+      },
+      "link.exe": {
+        "file_version": "14.51.36260.0",
+        "path": "C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\VC\\Tools\\MSVC\\14.51.36231\\bin\\HostX64\\x64\\link.exe"
+      }
+    },
+    "trace_sha256": "1e0916e94d485b5581d9ea6b772d36dc7373760403dd336f1155f5d73feee9a2"
+  },
+  "plan_record": "count and seeds specified in chat after the pilot and before these sessions; no new pooled test is claimed",
+  "planned_sessions": [
+    {
+      "analysis": {
+        "apparatus_controls_pass": true,
+        "artifact_audit": {
+          "executable_hash_verified": true,
+          "linked_harness_review": "pending",
+          "runtime_code_sha256": {
+            "cpuid": "4d44ff504ad7322468c27e23b41b54f7872515f906540afb0fe3a9b165402af2",
+            "nop": "c55574e2616b0c2927256581e5cf047499b507b0975ae0672fe320c10d35925a"
+          },
+          "runtime_snapshots_verified": true,
+          "template_present_in_linked_image": true
+        },
+        "binary_sha256": "3fa2e7107595e974af698e8794dc8c17170b10a92d72ed7a8aae77d19f53634a",
+        "cpu": {
+          "clflush_bytes": "64",
+          "hypervisor": "1",
+          "invariant_tsc": "1",
+          "rdtscp": "1",
+          "signature": "0x00b40f40",
+          "vendor": "AuthenticAMD"
+        },
+        "cpuid_primary_equivalence": true,
+        "gates": {
+          "cpuid/arch_load_p0": true,
+          "cpuid/arch_load_p0/decoy": true,
+          "cpuid/arch_load_p1": true,
+          "cpuid/arch_load_p1/decoy": true,
+          "cpuid/candidate_t0_p0": true,
+          "cpuid/candidate_t0_p0/decoy": true,
+          "cpuid/candidate_t0_p1": true,
+          "cpuid/candidate_t0_p1/decoy": true,
+          "cpuid/candidate_t1_p0": true,
+          "cpuid/candidate_t1_p0/decoy": true,
+          "cpuid/candidate_t1_p1": true,
+          "cpuid/candidate_t1_p1/decoy": true,
+          "cpuid/cold_p0": true,
+          "cpuid/cold_p0/decoy": true,
+          "cpuid/cold_p1": true,
+          "cpuid/cold_p1/decoy": true,
+          "cpuid/hot_p0": true,
+          "cpuid/hot_p0/decoy": true,
+          "cpuid/hot_p1": true,
+          "cpuid/hot_p1/decoy": true,
+          "cpuid/no_probe_t0_p0": true,
+          "cpuid/no_probe_t0_p0/decoy": true,
+          "cpuid/no_probe_t0_p1": true,
+          "cpuid/no_probe_t0_p1/decoy": true,
+          "cpuid/no_probe_t1_p0": true,
+          "cpuid/no_probe_t1_p0/decoy": true,
+          "cpuid/no_probe_t1_p1": true,
+          "cpuid/no_probe_t1_p1/decoy": true,
+          "cpuid/warm_mismatch_p0/decoy": true,
+          "cpuid/warm_mismatch_p1/decoy": true,
+          "nop/arch_load_p0": true,
+          "nop/arch_load_p0/decoy": true,
+          "nop/arch_load_p1": true,
+          "nop/arch_load_p1/decoy": true,
+          "nop/candidate_t0_p0": true,
+          "nop/candidate_t0_p0/decoy": true,
+          "nop/candidate_t0_p1/decoy": true,
+          "nop/candidate_t1_p0/decoy": true,
+          "nop/candidate_t1_p1": true,
+          "nop/candidate_t1_p1/decoy": true,
+          "nop/cold_p0": true,
+          "nop/cold_p0/decoy": true,
+          "nop/cold_p1": true,
+          "nop/cold_p1/decoy": true,
+          "nop/hot_p0": true,
+          "nop/hot_p0/decoy": true,
+          "nop/hot_p1": true,
+          "nop/hot_p1/decoy": true,
+          "nop/no_probe_t0_p0": true,
+          "nop/no_probe_t0_p0/decoy": true,
+          "nop/no_probe_t0_p1": true,
+          "nop/no_probe_t0_p1/decoy": true,
+          "nop/no_probe_t1_p0": true,
+          "nop/no_probe_t1_p0/decoy": true,
+          "nop/no_probe_t1_p1": true,
+          "nop/no_probe_t1_p1/decoy": true,
+          "nop/warm_mismatch_p0/decoy": true,
+          "nop/warm_mismatch_p1/decoy": true
+        },
+        "heldout_decoy_hit_rates": {
+          "cpuid": {
+            "arch_load_p0": 0,
+            "arch_load_p1": 0,
+            "candidate_t0_p0": 0,
+            "candidate_t0_p1": 0,
+            "candidate_t1_p0": 0,
+            "candidate_t1_p1": 0,
+            "cold_p0": 0,
+            "cold_p1": 0,
+            "hot_p0": 0,
+            "hot_p1": 0,
+            "no_probe_t0_p0": 0,
+            "no_probe_t0_p1": 0,
+            "no_probe_t1_p0": 0,
+            "no_probe_t1_p1": 0,
+            "warm_mismatch_p0": 0,
+            "warm_mismatch_p1": 0
+          },
+          "nop": {
+            "arch_load_p0": 0,
+            "arch_load_p1": 0,
+            "candidate_t0_p0": 0.000732421875,
+            "candidate_t0_p1": 0,
+            "candidate_t1_p0": 0,
+            "candidate_t1_p1": 0,
+            "cold_p0": 0,
+            "cold_p1": 0,
+            "hot_p0": 0,
+            "hot_p1": 0,
+            "no_probe_t0_p0": 0,
+            "no_probe_t0_p1": 0,
+            "no_probe_t1_p0": 0.00048828125,
+            "no_probe_t1_p1": 0,
+            "warm_mismatch_p0": 0,
+            "warm_mismatch_p1": 0
+          }
+        },
+        "heldout_hit_rates": {
+          "cpuid": {
+            "arch_load_p0": 0.999267578125,
+            "arch_load_p1": 0.99951171875,
+            "candidate_t0_p0": 0,
+            "candidate_t0_p1": 0,
+            "candidate_t1_p0": 0,
+            "candidate_t1_p1": 0,
+            "cold_p0": 0,
+            "cold_p1": 0,
+            "hot_p0": 0.999755859375,
+            "hot_p1": 0.9990234375,
+            "no_probe_t0_p0": 0,
+            "no_probe_t0_p1": 0,
+            "no_probe_t1_p0": 0,
+            "no_probe_t1_p1": 0,
+            "warm_mismatch_p0": 0,
+            "warm_mismatch_p1": 0
+          },
+          "nop": {
+            "arch_load_p0": 0.999755859375,
+            "arch_load_p1": 0.999267578125,
+            "candidate_t0_p0": 0.00048828125,
+            "candidate_t0_p1": 0.99755859375,
+            "candidate_t1_p0": 0.999267578125,
+            "candidate_t1_p1": 0.000244140625,
+            "cold_p0": 0,
+            "cold_p1": 0.000244140625,
+            "hot_p0": 0.99951171875,
+            "hot_p1": 0.999755859375,
+            "no_probe_t0_p0": 0,
+            "no_probe_t0_p1": 0.000244140625,
+            "no_probe_t1_p0": 0,
+            "no_probe_t1_p1": 0,
+            "warm_mismatch_p0": 0.23193359375,
+            "warm_mismatch_p1": 0.198974609375
+          }
+        },
+        "host": {
+          "run_utc": "20261102T234138Z",
+          "windows_build": "26200"
+        },
+        "limitation": "A fixed history prefix is an apparatus intervention, not a predictor reset. Same-process data cannot establish a privilege-boundary mechanism.",
+        "mechanism_conclusion": "withheld_pending_k4_windows_pilot_review_and_independent_sessions",
+        "numerical_signature_detected": true,
+        "occurrence_hit_rates": {
+          "cpuid": {
+            "arch_load_p0": [
+              1,
+              1,
+              1,
+              0.99609375,
+              0.99609375,
+              1,
+              0.99609375,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "arch_load_p1": [
+              1,
+              0.99609375,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              0.99609375,
+              1,
+              1,
+              1,
+              1
+            ],
+            "candidate_t0_p0": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "candidate_t0_p1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "candidate_t1_p0": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "candidate_t1_p1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "cold_p0": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "cold_p1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "hot_p0": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              0.99609375,
+              1,
+              1
+            ],
+            "hot_p1": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              0.99609375,
+              1,
+              0.99609375,
+              1,
+              1,
+              1,
+              1,
+              0.99609375,
+              0.99609375
+            ],
+            "no_probe_t0_p0": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "no_probe_t0_p1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "no_probe_t1_p0": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "no_probe_t1_p1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "warm_mismatch_p0": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "warm_mismatch_p1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "nop": {
+            "arch_load_p0": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              0.99609375,
+              1,
+              1
+            ],
+            "arch_load_p1": [
+              1,
+              0.99609375,
+              1,
+              1,
+              1,
+              1,
+              0.99609375,
+              0.99609375,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "candidate_t0_p0": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0.00390625,
+              0.00390625,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "candidate_t0_p1": [
+              0.9921875,
+              0.99609375,
+              1,
+              0.99609375,
+              1,
+              0.99609375,
+              1,
+              1,
+              0.99609375,
+              0.99609375,
+              1,
+              1,
+              0.9921875,
+              0.99609375,
+              1,
+              1
+            ],
+            "candidate_t1_p0": [
+              0.99609375,
+              1,
+              1,
+              1,
+              1,
+              1,
+              0.99609375,
+              1,
+              0.99609375,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "candidate_t1_p1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0.00390625,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "cold_p0": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "cold_p1": [
+              0.00390625,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "hot_p0": [
+              1,
+              1,
+              0.99609375,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              0.99609375,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "hot_p1": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              0.99609375
+            ],
+            "no_probe_t0_p0": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "no_probe_t0_p1": [
+              0.00390625,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "no_probe_t1_p0": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "no_probe_t1_p1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "warm_mismatch_p0": [
+              0.21484375,
+              0.2265625,
+              0.26171875,
+              0.1953125,
+              0.1875,
+              0.2265625,
+              0.25390625,
+              0.27734375,
+              0.20703125,
+              0.24609375,
+              0.20703125,
+              0.26171875,
+              0.25390625,
+              0.25390625,
+              0.21875,
+              0.21875
+            ],
+            "warm_mismatch_p1": [
+              0.2265625,
+              0.17578125,
+              0.1875,
+              0.2421875,
+              0.1796875,
+              0.1953125,
+              0.23828125,
+              0.21484375,
+              0.171875,
+              0.21875,
+              0.2109375,
+              0.16015625,
+              0.16796875,
+              0.1875,
+              0.19140625,
+              0.21484375
+            ]
+          }
+        },
+        "outcomes": {
+          "p0": {
+            "components": {
+              "cpuid": {
+                "candidate": {
+                  "ci95": [
+                    0,
+                    0
+                  ],
+                  "cycle_differences": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "hit_rate_difference": 0,
+                  "interval_scope": "within_run_16_block_cycles"
+                },
+                "no_probe": {
+                  "ci95": [
+                    0,
+                    0
+                  ],
+                  "cycle_differences": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "hit_rate_difference": 0,
+                  "interval_scope": "within_run_16_block_cycles"
+                }
+              },
+              "nop": {
+                "candidate": {
+                  "ci95": [
+                    0.99755859375,
+                    0.999755859375
+                  ],
+                  "cycle_differences": [
+                    1,
+                    1,
+                    0.99609375,
+                    1,
+                    1,
+                    0.99609375,
+                    1,
+                    1,
+                    1,
+                    0.9921875,
+                    1,
+                    1,
+                    1,
+                    0.99609375,
+                    1,
+                    1
+                  ],
+                  "hit_rate_difference": 0.998779296875,
+                  "interval_scope": "within_run_16_block_cycles"
+                },
+                "no_probe": {
+                  "ci95": [
+                    0,
+                    0
+                  ],
+                  "cycle_differences": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "hit_rate_difference": 0,
+                  "interval_scope": "within_run_16_block_cycles"
+                }
+              }
+            },
+            "cpuid_adjusted": {
+              "ci95": [
+                0,
+                0
+              ],
+              "cycle_differences": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "hit_rate_difference": 0,
+              "interval_scope": "within_run_16_block_cycles"
+            },
+            "interaction": {
+              "ci95": [
+                0.99755859375,
+                0.999755859375
+              ],
+              "cycle_differences": [
+                1,
+                1,
+                0.99609375,
+                1,
+                1,
+                0.99609375,
+                1,
+                1,
+                1,
+                0.9921875,
+                1,
+                1,
+                1,
+                0.99609375,
+                1,
+                1
+              ],
+              "hit_rate_difference": 0.998779296875,
+              "interval_scope": "within_run_16_block_cycles"
+            },
+            "nop_adjusted": {
+              "ci95": [
+                0.99755859375,
+                0.999755859375
+              ],
+              "cycle_differences": [
+                1,
+                1,
+                0.99609375,
+                1,
+                1,
+                0.99609375,
+                1,
+                1,
+                1,
+                0.9921875,
+                1,
+                1,
+                1,
+                0.99609375,
+                1,
+                1
+              ],
+              "hit_rate_difference": 0.998779296875,
+              "interval_scope": "within_run_16_block_cycles"
+            }
+          },
+          "p1": {
+            "components": {
+              "cpuid": {
+                "candidate": {
+                  "ci95": [
+                    0,
+                    0
+                  ],
+                  "cycle_differences": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "hit_rate_difference": 0,
+                  "interval_scope": "within_run_16_block_cycles"
+                },
+                "no_probe": {
+                  "ci95": [
+                    0,
+                    0
+                  ],
+                  "cycle_differences": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "hit_rate_difference": 0,
+                  "interval_scope": "within_run_16_block_cycles"
+                }
+              },
+              "nop": {
+                "candidate": {
+                  "ci95": [
+                    0.99609375,
+                    0.998291015625
+                  ],
+                  "cycle_differences": [
+                    1,
+                    0.99609375,
+                    0.99609375,
+                    0.99609375,
+                    0.9921875,
+                    1,
+                    0.99609375,
+                    1,
+                    1,
+                    1,
+                    0.99609375,
+                    1,
+                    0.99609375,
+                    0.99609375,
+                    0.99609375,
+                    0.99609375
+                  ],
+                  "hit_rate_difference": 0.997314453125,
+                  "interval_scope": "within_run_16_block_cycles"
+                },
+                "no_probe": {
+                  "ci95": [
+                    0,
+                    0.000732421875
+                  ],
+                  "cycle_differences": [
+                    0.00390625,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "hit_rate_difference": 0.000244140625,
+                  "interval_scope": "within_run_16_block_cycles"
+                }
+              }
+            },
+            "cpuid_adjusted": {
+              "ci95": [
+                0,
+                0
+              ],
+              "cycle_differences": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "hit_rate_difference": 0,
+              "interval_scope": "within_run_16_block_cycles"
+            },
+            "interaction": {
+              "ci95": [
+                0.99609375,
+                0.998046875
+              ],
+              "cycle_differences": [
+                0.99609375,
+                0.99609375,
+                0.99609375,
+                0.99609375,
+                0.9921875,
+                1,
+                0.99609375,
+                1,
+                1,
+                1,
+                0.99609375,
+                1,
+                0.99609375,
+                0.99609375,
+                0.99609375,
+                0.99609375
+              ],
+              "hit_rate_difference": 0.9970703125,
+              "interval_scope": "within_run_16_block_cycles"
+            },
+            "nop_adjusted": {
+              "ci95": [
+                0.99609375,
+                0.998046875
+              ],
+              "cycle_differences": [
+                0.99609375,
+                0.99609375,
+                0.99609375,
+                0.99609375,
+                0.9921875,
+                1,
+                0.99609375,
+                1,
+                1,
+                1,
+                0.99609375,
+                1,
+                0.99609375,
+                0.99609375,
+                0.99609375,
+                0.99609375
+              ],
+              "hit_rate_difference": 0.9970703125,
+              "interval_scope": "within_run_16_block_cycles"
+            }
+          }
+        },
+        "practical_margin": 0.05,
+        "primary_endpoint": "p0_adjusted_training_contrast_nop_minus_cpuid",
+        "receiver_order_hit_rates": {
+          "cpuid": {
+            "arch_load_p0": {
+              "0": 0.9990239141044412,
+              "1": 0.9995114802149487
+            },
+            "arch_load_p1": {
+              "0": 0.99951171875,
+              "1": 0.99951171875
+            },
+            "candidate_t0_p0": {
+              "0": 0,
+              "1": 0
+            },
+            "candidate_t0_p1": {
+              "0": 0,
+              "1": 0
+            },
+            "candidate_t1_p0": {
+              "0": 0,
+              "1": 0
+            },
+            "candidate_t1_p1": {
+              "0": 0,
+              "1": 0
+            },
+            "cold_p0": {
+              "0": 0,
+              "1": 0
+            },
+            "cold_p1": {
+              "0": 0,
+              "1": 0
+            },
+            "hot_p0": {
+              "0": 1,
+              "1": 0.9994984954864594
+            },
+            "hot_p1": {
+              "0": 0.99950884086444,
+              "1": 0.9985436893203884
+            },
+            "no_probe_t0_p0": {
+              "0": 0,
+              "1": 0
+            },
+            "no_probe_t0_p1": {
+              "0": 0,
+              "1": 0
+            },
+            "no_probe_t1_p0": {
+              "0": 0,
+              "1": 0
+            },
+            "no_probe_t1_p1": {
+              "0": 0,
+              "1": 0
+            },
+            "warm_mismatch_p0": {
+              "0": 0,
+              "1": 0
+            },
+            "warm_mismatch_p1": {
+              "0": 0,
+              "1": 0
+            }
+          },
+          "nop": {
+            "arch_load_p0": {
+              "0": 0.9995171414775471,
+              "1": 1
+            },
+            "arch_load_p1": {
+              "0": 0.9985372988785958,
+              "1": 1
+            },
+            "candidate_t0_p0": {
+              "0": 0.0004982561036372695,
+              "1": 0.0004786979415988511
+            },
+            "candidate_t0_p1": {
+              "0": 0.998565965583174,
+              "1": 0.9965069860279441
+            },
+            "candidate_t1_p0": {
+              "0": 0.9990281827016521,
+              "1": 0.9995093228655545
+            },
+            "candidate_t1_p1": {
+              "0": 0.0005030181086519115,
+              "1": 0
+            },
+            "cold_p0": {
+              "0": 0,
+              "1": 0
+            },
+            "cold_p1": {
+              "0": 0,
+              "1": 0.0004938271604938272
+            },
+            "hot_p0": {
+              "0": 0.99951171875,
+              "1": 0.99951171875
+            },
+            "hot_p1": {
+              "0": 1,
+              "1": 0.9995244888254874
+            },
+            "no_probe_t0_p0": {
+              "0": 0,
+              "1": 0
+            },
+            "no_probe_t0_p1": {
+              "0": 0,
+              "1": 0.0004789272030651341
+            },
+            "no_probe_t1_p0": {
+              "0": 0,
+              "1": 0
+            },
+            "no_probe_t1_p1": {
+              "0": 0,
+              "1": 0
+            },
+            "warm_mismatch_p0": {
+              "0": 0.23887814313346228,
+              "1": 0.22485207100591717
+            },
+            "warm_mismatch_p1": {
+              "0": 0.1980440097799511,
+              "1": 0.19990248659190638
+            }
+          }
+        },
+        "run": {
+          "affinity_cpu": "0",
+          "bank0_addr": "0x7ff697cdc000",
+          "bank1_addr": "0x7ff697d1c000",
+          "blocks": "512",
+          "code_addr": "0x20c186a0000",
+          "condition_addr": "0x7ff697cd9000",
+          "conditions": "16",
+          "episodes": "16",
+          "history_prefix_branches": "256",
+          "modes": "2",
+          "pages": "64",
+          "platform": "windows",
+          "prelude_calls": "128",
+          "protocol": "context_marker_k4_v1",
+          "schedule": "interleaved_round_shuffle",
+          "seed": "830217184",
+          "stride": "4096",
+          "timer": "cpuid_outside_rdtscp_load_rdtscp",
+          "token0_addr": "0x7ff697cda000",
+          "token1_addr": "0x7ff697cdb000",
+          "train_calls": "256",
+          "version": "1",
+          "warmup_blocks": "16"
+        },
+        "runtime_bytes_match_contract": true,
+        "sample_count": 262144,
+        "study": "context_marker_k4_v1",
+        "thresholds": {
+          "p0": 399,
+          "p1": 376
+        },
+        "windows_collection": true
+      },
+      "archive_name": "context-receiver-windows-20261102T234133431Z.zip",
+      "archive_sha256": "eed1622f5685f2f930ebaf0d4986b1d216665416dbce4304d25ec106d70f4130",
+      "archived_analysis_reproduced_exactly": true,
+      "git_clean_reported": true,
+      "git_head": "ee8422ffe6d466c4f51b1b550224ac63e30c96b4",
+      "independent_primary_reproduced_exactly": true,
+      "linked_listing_audit": {
+        "bytes_checked": 107120,
+        "instruction_records_checked": 31282,
+        "listing_matches_linked_pe": true,
+        "scope": "byte_correspondence_only_not_control_flow_or_exclusivity_proof"
+      },
+      "linked_text_raw_sha256": "586dfb46074aa49327bb6d1b80070140759d560669d93e996f166cbd228b1b1b",
+      "manifest_files_verified": 11,
+      "reported_host_inventory": {
+        "bios": {
+          "ReleaseDate": "/Date(1770249600000)/",
+          "SMBIOSBIOSVersion": "FA9"
+        },
+        "cpu": [
+          {
+            "Manufacturer": "AuthenticAMD",
+            "Name": "AMD Ryzen 7 9800X3D 8-Core Processor           ",
+            "NumberOfCores": 8,
+            "NumberOfLogicalProcessors": 16,
+            "Revision": 17408
+          }
+        ],
+        "environment_assertion": "Host inventory, not independent attestation of a bare-metal machine.",
+        "microcode_registry_update_revision": {
+          "Count": 4,
+          "value": [
+            53,
+            64,
+            64,
+            11
+          ]
+        },
+        "os": {
+          "BuildNumber": "26200",
+          "Caption": "Microsoft Windows 11 Pro",
+          "Version": "10.0.26200"
+        },
+        "virtualization": {
+          "HypervisorPresent": true
+        }
+      },
+      "seed": 830217184,
+      "source_files_verified": 13,
+      "source_sha256": {
+        ".vscode/tasks.json": "1893b0bf3d6da618a58c32952a2003afca9b1a2cf6247a7a6e001a8957bff967",
+        "programs/context_receiver.c": "6aa61b3b9956de53f4fd67eeb86bb42c03f21d93bde73ba4631c46686d1ea205",
+        "programs/context_receiver_code.h": "e756ca3a1bb562cd0b60aabee20ec20cf59a3b88f7932322c430b5eaa43aec06",
+        "programs/context_receiver_layout.S": "4dbad58447ef03553f80ecbb4c741c55da0419415ca7c4f9f406285f2a047b5e",
+        "programs/cpu_features.c": "d20d0e73c0078c07202493a22ac1187a50e98d2f73b431e02534e8463733370a",
+        "programs/cpu_features.h": "60aeace9e1b812f10c1de5454e9db9536360d15c9254eebc0ec4a8d4b88d07da",
+        "protocols/CONTEXT_RECEIVER_K4.md": "6b3ec956c9e74e22a42cca3cc671bcb4f36643561658bd2530da5498242dfe35",
+        "scripts/analyze_cache_probe.py": "8d119ec1679bcb98463f429d9eaa95daeec405eae470353301038c7e1cf2079c",
+        "scripts/analyze_context_receiver.py": "a88900919af4767ae6cd591169e1cde0919e56731dad4174ba20af8a1e856171",
+        "scripts/check_context_receiver_windows.ps1": "74432c6b99a086d1e91ad4397113631cd03053fa92d7b77d8e59d684cbf39d02",
+        "scripts/context_receiver_contract.py": "e5949d3ba1f471444371cfa0c779c821a40c077b19f976abb0012d8a5182fc27",
+        "scripts/fresh_receiver_contract.py": "3dd4bbd3a5409b668566d1bbd8895e92dc661113f4faf3a9713b30be68786f53",
+        "scripts/verify_context_receiver_layout.py": "11b88a64e38698044b2ad48046c15d89808e4b13ab8eaf3b5c63f2d2c3724e27"
+      },
+      "toolchain": {
+        "cl.exe": {
+          "file_version": "19.51.36260.0",
+          "path": "C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\VC\\Tools\\MSVC\\14.51.36231\\bin\\HostX64\\x64\\cl.exe"
+        },
+        "dumpbin.exe": {
+          "file_version": "14.51.36260.0",
+          "path": "C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\VC\\Tools\\MSVC\\14.51.36231\\bin\\HostX64\\x64\\dumpbin.exe"
+        },
+        "link.exe": {
+          "file_version": "14.51.36260.0",
+          "path": "C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\VC\\Tools\\MSVC\\14.51.36231\\bin\\HostX64\\x64\\link.exe"
+        }
+      },
+      "trace_sha256": "54cf06fc3f47049b0959d999133ac11d34489119c15857af8223339364243706"
+    },
+    {
+      "analysis": {
+        "apparatus_controls_pass": true,
+        "artifact_audit": {
+          "executable_hash_verified": true,
+          "linked_harness_review": "pending",
+          "runtime_code_sha256": {
+            "cpuid": "4d44ff504ad7322468c27e23b41b54f7872515f906540afb0fe3a9b165402af2",
+            "nop": "c55574e2616b0c2927256581e5cf047499b507b0975ae0672fe320c10d35925a"
+          },
+          "runtime_snapshots_verified": true,
+          "template_present_in_linked_image": true
+        },
+        "binary_sha256": "05a7d0b910c1b78c21bc8394c932c6656820d19fc90f701a38464d9535b019d0",
+        "cpu": {
+          "clflush_bytes": "64",
+          "hypervisor": "1",
+          "invariant_tsc": "1",
+          "rdtscp": "1",
+          "signature": "0x00b40f40",
+          "vendor": "AuthenticAMD"
+        },
+        "cpuid_primary_equivalence": true,
+        "gates": {
+          "cpuid/arch_load_p0": true,
+          "cpuid/arch_load_p0/decoy": true,
+          "cpuid/arch_load_p1": true,
+          "cpuid/arch_load_p1/decoy": true,
+          "cpuid/candidate_t0_p0": true,
+          "cpuid/candidate_t0_p0/decoy": true,
+          "cpuid/candidate_t0_p1": true,
+          "cpuid/candidate_t0_p1/decoy": true,
+          "cpuid/candidate_t1_p0": true,
+          "cpuid/candidate_t1_p0/decoy": true,
+          "cpuid/candidate_t1_p1": true,
+          "cpuid/candidate_t1_p1/decoy": true,
+          "cpuid/cold_p0": true,
+          "cpuid/cold_p0/decoy": true,
+          "cpuid/cold_p1": true,
+          "cpuid/cold_p1/decoy": true,
+          "cpuid/hot_p0": true,
+          "cpuid/hot_p0/decoy": true,
+          "cpuid/hot_p1": true,
+          "cpuid/hot_p1/decoy": true,
+          "cpuid/no_probe_t0_p0": true,
+          "cpuid/no_probe_t0_p0/decoy": true,
+          "cpuid/no_probe_t0_p1": true,
+          "cpuid/no_probe_t0_p1/decoy": true,
+          "cpuid/no_probe_t1_p0": true,
+          "cpuid/no_probe_t1_p0/decoy": true,
+          "cpuid/no_probe_t1_p1": true,
+          "cpuid/no_probe_t1_p1/decoy": true,
+          "cpuid/warm_mismatch_p0/decoy": true,
+          "cpuid/warm_mismatch_p1/decoy": true,
+          "nop/arch_load_p0": true,
+          "nop/arch_load_p0/decoy": true,
+          "nop/arch_load_p1": true,
+          "nop/arch_load_p1/decoy": true,
+          "nop/candidate_t0_p0": true,
+          "nop/candidate_t0_p0/decoy": true,
+          "nop/candidate_t0_p1/decoy": true,
+          "nop/candidate_t1_p0/decoy": true,
+          "nop/candidate_t1_p1": true,
+          "nop/candidate_t1_p1/decoy": true,
+          "nop/cold_p0": true,
+          "nop/cold_p0/decoy": true,
+          "nop/cold_p1": true,
+          "nop/cold_p1/decoy": true,
+          "nop/hot_p0": true,
+          "nop/hot_p0/decoy": true,
+          "nop/hot_p1": true,
+          "nop/hot_p1/decoy": true,
+          "nop/no_probe_t0_p0": true,
+          "nop/no_probe_t0_p0/decoy": true,
+          "nop/no_probe_t0_p1": true,
+          "nop/no_probe_t0_p1/decoy": true,
+          "nop/no_probe_t1_p0": true,
+          "nop/no_probe_t1_p0/decoy": true,
+          "nop/no_probe_t1_p1": true,
+          "nop/no_probe_t1_p1/decoy": true,
+          "nop/warm_mismatch_p0/decoy": true,
+          "nop/warm_mismatch_p1/decoy": true
+        },
+        "heldout_decoy_hit_rates": {
+          "cpuid": {
+            "arch_load_p0": 0,
+            "arch_load_p1": 0,
+            "candidate_t0_p0": 0,
+            "candidate_t0_p1": 0,
+            "candidate_t1_p0": 0,
+            "candidate_t1_p1": 0,
+            "cold_p0": 0.000244140625,
+            "cold_p1": 0,
+            "hot_p0": 0,
+            "hot_p1": 0,
+            "no_probe_t0_p0": 0,
+            "no_probe_t0_p1": 0,
+            "no_probe_t1_p0": 0,
+            "no_probe_t1_p1": 0,
+            "warm_mismatch_p0": 0,
+            "warm_mismatch_p1": 0
+          },
+          "nop": {
+            "arch_load_p0": 0,
+            "arch_load_p1": 0,
+            "candidate_t0_p0": 0,
+            "candidate_t0_p1": 0,
+            "candidate_t1_p0": 0,
+            "candidate_t1_p1": 0.000244140625,
+            "cold_p0": 0,
+            "cold_p1": 0,
+            "hot_p0": 0,
+            "hot_p1": 0,
+            "no_probe_t0_p0": 0.000244140625,
+            "no_probe_t0_p1": 0.000244140625,
+            "no_probe_t1_p0": 0,
+            "no_probe_t1_p1": 0,
+            "warm_mismatch_p0": 0,
+            "warm_mismatch_p1": 0
+          }
+        },
+        "heldout_hit_rates": {
+          "cpuid": {
+            "arch_load_p0": 1,
+            "arch_load_p1": 0.999755859375,
+            "candidate_t0_p0": 0,
+            "candidate_t0_p1": 0,
+            "candidate_t1_p0": 0,
+            "candidate_t1_p1": 0,
+            "cold_p0": 0,
+            "cold_p1": 0,
+            "hot_p0": 0.999267578125,
+            "hot_p1": 0.99951171875,
+            "no_probe_t0_p0": 0,
+            "no_probe_t0_p1": 0,
+            "no_probe_t1_p0": 0,
+            "no_probe_t1_p1": 0,
+            "warm_mismatch_p0": 0,
+            "warm_mismatch_p1": 0
+          },
+          "nop": {
+            "arch_load_p0": 0.99951171875,
+            "arch_load_p1": 0.99951171875,
+            "candidate_t0_p0": 0.001953125,
+            "candidate_t0_p1": 0.997802734375,
+            "candidate_t1_p0": 0.9970703125,
+            "candidate_t1_p1": 0.00048828125,
+            "cold_p0": 0.000244140625,
+            "cold_p1": 0,
+            "hot_p0": 1,
+            "hot_p1": 1,
+            "no_probe_t0_p0": 0,
+            "no_probe_t0_p1": 0,
+            "no_probe_t1_p0": 0,
+            "no_probe_t1_p1": 0,
+            "warm_mismatch_p0": 0.1689453125,
+            "warm_mismatch_p1": 0.141845703125
+          }
+        },
+        "host": {
+          "run_utc": "20261102T234225Z",
+          "windows_build": "26200"
+        },
+        "limitation": "A fixed history prefix is an apparatus intervention, not a predictor reset. Same-process data cannot establish a privilege-boundary mechanism.",
+        "mechanism_conclusion": "withheld_pending_k4_windows_pilot_review_and_independent_sessions",
+        "numerical_signature_detected": true,
+        "occurrence_hit_rates": {
+          "cpuid": {
+            "arch_load_p0": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "arch_load_p1": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              0.99609375,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "candidate_t0_p0": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "candidate_t0_p1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "candidate_t1_p0": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "candidate_t1_p1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "cold_p0": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "cold_p1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "hot_p0": [
+              1,
+              0.99609375,
+              1,
+              1,
+              1,
+              1,
+              1,
+              0.99609375,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              0.99609375,
+              1
+            ],
+            "hot_p1": [
+              1,
+              1,
+              0.99609375,
+              0.99609375,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "no_probe_t0_p0": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "no_probe_t0_p1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "no_probe_t1_p0": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "no_probe_t1_p1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "warm_mismatch_p0": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "warm_mismatch_p1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "nop": {
+            "arch_load_p0": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              0.99609375,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              0.99609375,
+              1
+            ],
+            "arch_load_p1": [
+              1,
+              1,
+              0.99609375,
+              1,
+              1,
+              1,
+              1,
+              0.99609375,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "candidate_t0_p0": [
+              0.00390625,
+              0,
+              0,
+              0,
+              0.00390625,
+              0,
+              0,
+              0.00390625,
+              0.00390625,
+              0.00390625,
+              0,
+              0.00390625,
+              0.00390625,
+              0,
+              0.00390625,
+              0
+            ],
+            "candidate_t0_p1": [
+              1,
+              1,
+              0.9921875,
+              0.99609375,
+              0.99609375,
+              1,
+              1,
+              0.99609375,
+              0.9921875,
+              1,
+              0.9921875,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "candidate_t1_p0": [
+              0.99609375,
+              0.99609375,
+              1,
+              0.9921875,
+              1,
+              0.99609375,
+              1,
+              1,
+              0.99609375,
+              0.9921875,
+              0.99609375,
+              1,
+              0.99609375,
+              1,
+              0.99609375,
+              0.99609375
+            ],
+            "candidate_t1_p1": [
+              0,
+              0,
+              0,
+              0.00390625,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0.00390625,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "cold_p0": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0.00390625,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "cold_p1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "hot_p0": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "hot_p1": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "no_probe_t0_p0": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "no_probe_t0_p1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "no_probe_t1_p0": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "no_probe_t1_p1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "warm_mismatch_p0": [
+              0.1171875,
+              0.19140625,
+              0.16015625,
+              0.16015625,
+              0.17578125,
+              0.171875,
+              0.16796875,
+              0.140625,
+              0.19921875,
+              0.15625,
+              0.18359375,
+              0.16796875,
+              0.1796875,
+              0.1796875,
+              0.16015625,
+              0.19140625
+            ],
+            "warm_mismatch_p1": [
+              0.1328125,
+              0.1484375,
+              0.125,
+              0.16015625,
+              0.140625,
+              0.15234375,
+              0.12890625,
+              0.15625,
+              0.1171875,
+              0.13671875,
+              0.16015625,
+              0.171875,
+              0.16015625,
+              0.09765625,
+              0.1640625,
+              0.1171875
+            ]
+          }
+        },
+        "outcomes": {
+          "p0": {
+            "components": {
+              "cpuid": {
+                "candidate": {
+                  "ci95": [
+                    0,
+                    0
+                  ],
+                  "cycle_differences": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "hit_rate_difference": 0,
+                  "interval_scope": "within_run_16_block_cycles"
+                },
+                "no_probe": {
+                  "ci95": [
+                    0,
+                    0
+                  ],
+                  "cycle_differences": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "hit_rate_difference": 0,
+                  "interval_scope": "within_run_16_block_cycles"
+                }
+              },
+              "nop": {
+                "candidate": {
+                  "ci95": [
+                    0.992919921875,
+                    0.9970703125
+                  ],
+                  "cycle_differences": [
+                    1,
+                    1,
+                    0.99609375,
+                    0.984375,
+                    0.99609375,
+                    0.99609375,
+                    1,
+                    0.99609375,
+                    1,
+                    0.98828125,
+                    0.9921875,
+                    0.99609375,
+                    0.99609375,
+                    0.9921875,
+                    0.99609375,
+                    0.9921875
+                  ],
+                  "hit_rate_difference": 0.9951171875,
+                  "interval_scope": "within_run_16_block_cycles"
+                },
+                "no_probe": {
+                  "ci95": [
+                    0,
+                    0
+                  ],
+                  "cycle_differences": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "hit_rate_difference": 0,
+                  "interval_scope": "within_run_16_block_cycles"
+                }
+              }
+            },
+            "cpuid_adjusted": {
+              "ci95": [
+                0,
+                0
+              ],
+              "cycle_differences": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "hit_rate_difference": 0,
+              "interval_scope": "within_run_16_block_cycles"
+            },
+            "interaction": {
+              "ci95": [
+                0.992919921875,
+                0.9970703125
+              ],
+              "cycle_differences": [
+                1,
+                1,
+                0.99609375,
+                0.984375,
+                0.99609375,
+                0.99609375,
+                1,
+                0.99609375,
+                1,
+                0.98828125,
+                0.9921875,
+                0.99609375,
+                0.99609375,
+                0.9921875,
+                0.99609375,
+                0.9921875
+              ],
+              "hit_rate_difference": 0.9951171875,
+              "interval_scope": "within_run_16_block_cycles"
+            },
+            "nop_adjusted": {
+              "ci95": [
+                0.992919921875,
+                0.9970703125
+              ],
+              "cycle_differences": [
+                1,
+                1,
+                0.99609375,
+                0.984375,
+                0.99609375,
+                0.99609375,
+                1,
+                0.99609375,
+                1,
+                0.98828125,
+                0.9921875,
+                0.99609375,
+                0.99609375,
+                0.9921875,
+                0.99609375,
+                0.9921875
+              ],
+              "hit_rate_difference": 0.9951171875,
+              "interval_scope": "within_run_16_block_cycles"
+            }
+          },
+          "p1": {
+            "components": {
+              "cpuid": {
+                "candidate": {
+                  "ci95": [
+                    0,
+                    0
+                  ],
+                  "cycle_differences": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "hit_rate_difference": 0,
+                  "interval_scope": "within_run_16_block_cycles"
+                },
+                "no_probe": {
+                  "ci95": [
+                    0,
+                    0
+                  ],
+                  "cycle_differences": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "hit_rate_difference": 0,
+                  "interval_scope": "within_run_16_block_cycles"
+                }
+              },
+              "nop": {
+                "candidate": {
+                  "ci95": [
+                    0.99560546875,
+                    0.998779296875
+                  ],
+                  "cycle_differences": [
+                    1,
+                    0.99609375,
+                    0.9921875,
+                    1,
+                    1,
+                    1,
+                    0.99609375,
+                    0.99609375,
+                    1,
+                    1,
+                    1,
+                    0.99609375,
+                    0.99609375,
+                    0.98828125,
+                    1,
+                    0.99609375
+                  ],
+                  "hit_rate_difference": 0.997314453125,
+                  "interval_scope": "within_run_16_block_cycles"
+                },
+                "no_probe": {
+                  "ci95": [
+                    0,
+                    0
+                  ],
+                  "cycle_differences": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "hit_rate_difference": 0,
+                  "interval_scope": "within_run_16_block_cycles"
+                }
+              }
+            },
+            "cpuid_adjusted": {
+              "ci95": [
+                0,
+                0
+              ],
+              "cycle_differences": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "hit_rate_difference": 0,
+              "interval_scope": "within_run_16_block_cycles"
+            },
+            "interaction": {
+              "ci95": [
+                0.99560546875,
+                0.998779296875
+              ],
+              "cycle_differences": [
+                1,
+                0.99609375,
+                0.9921875,
+                1,
+                1,
+                1,
+                0.99609375,
+                0.99609375,
+                1,
+                1,
+                1,
+                0.99609375,
+                0.99609375,
+                0.98828125,
+                1,
+                0.99609375
+              ],
+              "hit_rate_difference": 0.997314453125,
+              "interval_scope": "within_run_16_block_cycles"
+            },
+            "nop_adjusted": {
+              "ci95": [
+                0.99560546875,
+                0.998779296875
+              ],
+              "cycle_differences": [
+                1,
+                0.99609375,
+                0.9921875,
+                1,
+                1,
+                1,
+                0.99609375,
+                0.99609375,
+                1,
+                1,
+                1,
+                0.99609375,
+                0.99609375,
+                0.98828125,
+                1,
+                0.99609375
+              ],
+              "hit_rate_difference": 0.997314453125,
+              "interval_scope": "within_run_16_block_cycles"
+            }
+          }
+        },
+        "practical_margin": 0.05,
+        "primary_endpoint": "p0_adjusted_training_contrast_nop_minus_cpuid",
+        "receiver_order_hit_rates": {
+          "cpuid": {
+            "arch_load_p0": {
+              "0": 1,
+              "1": 1
+            },
+            "arch_load_p1": {
+              "0": 1,
+              "1": 0.9995061728395062
+            },
+            "candidate_t0_p0": {
+              "0": 0,
+              "1": 0
+            },
+            "candidate_t0_p1": {
+              "0": 0,
+              "1": 0
+            },
+            "candidate_t1_p0": {
+              "0": 0,
+              "1": 0
+            },
+            "candidate_t1_p1": {
+              "0": 0,
+              "1": 0
+            },
+            "cold_p0": {
+              "0": 0,
+              "1": 0
+            },
+            "cold_p1": {
+              "0": 0,
+              "1": 0
+            },
+            "hot_p0": {
+              "0": 0.9995071463775259,
+              "1": 0.9990324141267537
+            },
+            "hot_p1": {
+              "0": 0.99950884086444,
+              "1": 0.9995145631067961
+            },
+            "no_probe_t0_p0": {
+              "0": 0,
+              "1": 0
+            },
+            "no_probe_t0_p1": {
+              "0": 0,
+              "1": 0
+            },
+            "no_probe_t1_p0": {
+              "0": 0,
+              "1": 0
+            },
+            "no_probe_t1_p1": {
+              "0": 0,
+              "1": 0
+            },
+            "warm_mismatch_p0": {
+              "0": 0,
+              "1": 0
+            },
+            "warm_mismatch_p1": {
+              "0": 0,
+              "1": 0
+            }
+          },
+          "nop": {
+            "arch_load_p0": {
+              "0": 1,
+              "1": 0.9990494296577946
+            },
+            "arch_load_p1": {
+              "0": 1,
+              "1": 0.9990176817288802
+            },
+            "candidate_t0_p0": {
+              "0": 0.0014641288433382138,
+              "1": 0.002442598925256473
+            },
+            "candidate_t0_p1": {
+              "0": 0.9990243902439024,
+              "1": 0.9965786901270772
+            },
+            "candidate_t1_p0": {
+              "0": 0.9980334316617503,
+              "1": 0.9961202715809894
+            },
+            "candidate_t1_p1": {
+              "0": 0.00048426150121065375,
+              "1": 0.0004923682914820286
+            },
+            "cold_p0": {
+              "0": 0,
+              "1": 0.0004870920603994155
+            },
+            "cold_p1": {
+              "0": 0,
+              "1": 0
+            },
+            "hot_p0": {
+              "0": 1,
+              "1": 1
+            },
+            "hot_p1": {
+              "0": 1,
+              "1": 1
+            },
+            "no_probe_t0_p0": {
+              "0": 0,
+              "1": 0
+            },
+            "no_probe_t0_p1": {
+              "0": 0,
+              "1": 0
+            },
+            "no_probe_t1_p0": {
+              "0": 0,
+              "1": 0
+            },
+            "no_probe_t1_p1": {
+              "0": 0,
+              "1": 0
+            },
+            "warm_mismatch_p0": {
+              "0": 0.15641646489104116,
+              "1": 0.18168389955686853
+            },
+            "warm_mismatch_p1": {
+              "0": 0.14122681883024252,
+              "1": 0.14249874560963371
+            }
+          }
+        },
+        "run": {
+          "affinity_cpu": "0",
+          "bank0_addr": "0x7ff7511dc000",
+          "bank1_addr": "0x7ff75121c000",
+          "blocks": "512",
+          "code_addr": "0x1dd18140000",
+          "condition_addr": "0x7ff7511d9000",
+          "conditions": "16",
+          "episodes": "16",
+          "history_prefix_branches": "256",
+          "modes": "2",
+          "pages": "64",
+          "platform": "windows",
+          "prelude_calls": "128",
+          "protocol": "context_marker_k4_v1",
+          "schedule": "interleaved_round_shuffle",
+          "seed": "4108945320",
+          "stride": "4096",
+          "timer": "cpuid_outside_rdtscp_load_rdtscp",
+          "token0_addr": "0x7ff7511da000",
+          "token1_addr": "0x7ff7511db000",
+          "train_calls": "256",
+          "version": "1",
+          "warmup_blocks": "16"
+        },
+        "runtime_bytes_match_contract": true,
+        "sample_count": 262144,
+        "study": "context_marker_k4_v1",
+        "thresholds": {
+          "p0": 352,
+          "p1": 352
+        },
+        "windows_collection": true
+      },
+      "archive_name": "context-receiver-windows-20261102T234220965Z.zip",
+      "archive_sha256": "14009b7bf51fbeb4f96ada80f5363324a88c43eebc7c5e5a6b1e36e465445172",
+      "archived_analysis_reproduced_exactly": true,
+      "git_clean_reported": true,
+      "git_head": "ee8422ffe6d466c4f51b1b550224ac63e30c96b4",
+      "independent_primary_reproduced_exactly": true,
+      "linked_listing_audit": {
+        "bytes_checked": 107120,
+        "instruction_records_checked": 31282,
+        "listing_matches_linked_pe": true,
+        "scope": "byte_correspondence_only_not_control_flow_or_exclusivity_proof"
+      },
+      "linked_text_raw_sha256": "586dfb46074aa49327bb6d1b80070140759d560669d93e996f166cbd228b1b1b",
+      "manifest_files_verified": 11,
+      "reported_host_inventory": {
+        "bios": {
+          "ReleaseDate": "/Date(1770249600000)/",
+          "SMBIOSBIOSVersion": "FA9"
+        },
+        "cpu": [
+          {
+            "Manufacturer": "AuthenticAMD",
+            "Name": "AMD Ryzen 7 9800X3D 8-Core Processor           ",
+            "NumberOfCores": 8,
+            "NumberOfLogicalProcessors": 16,
+            "Revision": 17408
+          }
+        ],
+        "environment_assertion": "Host inventory, not independent attestation of a bare-metal machine.",
+        "microcode_registry_update_revision": {
+          "Count": 4,
+          "value": [
+            53,
+            64,
+            64,
+            11
+          ]
+        },
+        "os": {
+          "BuildNumber": "26200",
+          "Caption": "Microsoft Windows 11 Pro",
+          "Version": "10.0.26200"
+        },
+        "virtualization": {
+          "HypervisorPresent": true
+        }
+      },
+      "seed": 4108945320,
+      "source_files_verified": 13,
+      "source_sha256": {
+        ".vscode/tasks.json": "1893b0bf3d6da618a58c32952a2003afca9b1a2cf6247a7a6e001a8957bff967",
+        "programs/context_receiver.c": "6aa61b3b9956de53f4fd67eeb86bb42c03f21d93bde73ba4631c46686d1ea205",
+        "programs/context_receiver_code.h": "e756ca3a1bb562cd0b60aabee20ec20cf59a3b88f7932322c430b5eaa43aec06",
+        "programs/context_receiver_layout.S": "4dbad58447ef03553f80ecbb4c741c55da0419415ca7c4f9f406285f2a047b5e",
+        "programs/cpu_features.c": "d20d0e73c0078c07202493a22ac1187a50e98d2f73b431e02534e8463733370a",
+        "programs/cpu_features.h": "60aeace9e1b812f10c1de5454e9db9536360d15c9254eebc0ec4a8d4b88d07da",
+        "protocols/CONTEXT_RECEIVER_K4.md": "6b3ec956c9e74e22a42cca3cc671bcb4f36643561658bd2530da5498242dfe35",
+        "scripts/analyze_cache_probe.py": "8d119ec1679bcb98463f429d9eaa95daeec405eae470353301038c7e1cf2079c",
+        "scripts/analyze_context_receiver.py": "a88900919af4767ae6cd591169e1cde0919e56731dad4174ba20af8a1e856171",
+        "scripts/check_context_receiver_windows.ps1": "74432c6b99a086d1e91ad4397113631cd03053fa92d7b77d8e59d684cbf39d02",
+        "scripts/context_receiver_contract.py": "e5949d3ba1f471444371cfa0c779c821a40c077b19f976abb0012d8a5182fc27",
+        "scripts/fresh_receiver_contract.py": "3dd4bbd3a5409b668566d1bbd8895e92dc661113f4faf3a9713b30be68786f53",
+        "scripts/verify_context_receiver_layout.py": "11b88a64e38698044b2ad48046c15d89808e4b13ab8eaf3b5c63f2d2c3724e27"
+      },
+      "toolchain": {
+        "cl.exe": {
+          "file_version": "19.51.36260.0",
+          "path": "C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\VC\\Tools\\MSVC\\14.51.36231\\bin\\HostX64\\x64\\cl.exe"
+        },
+        "dumpbin.exe": {
+          "file_version": "14.51.36260.0",
+          "path": "C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\VC\\Tools\\MSVC\\14.51.36231\\bin\\HostX64\\x64\\dumpbin.exe"
+        },
+        "link.exe": {
+          "file_version": "14.51.36260.0",
+          "path": "C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\VC\\Tools\\MSVC\\14.51.36231\\bin\\HostX64\\x64\\link.exe"
+        }
+      },
+      "trace_sha256": "e17ea9db36d993f5b7131c924346eff965916fdbd74c353c1929acf9eb2ada15"
+    },
+    {
+      "analysis": {
+        "apparatus_controls_pass": true,
+        "artifact_audit": {
+          "executable_hash_verified": true,
+          "linked_harness_review": "pending",
+          "runtime_code_sha256": {
+            "cpuid": "4d44ff504ad7322468c27e23b41b54f7872515f906540afb0fe3a9b165402af2",
+            "nop": "c55574e2616b0c2927256581e5cf047499b507b0975ae0672fe320c10d35925a"
+          },
+          "runtime_snapshots_verified": true,
+          "template_present_in_linked_image": true
+        },
+        "binary_sha256": "06054e628b0b2d88b13b262137f56fd2dacbea08169253eca07dd2f072a1c61f",
+        "cpu": {
+          "clflush_bytes": "64",
+          "hypervisor": "1",
+          "invariant_tsc": "1",
+          "rdtscp": "1",
+          "signature": "0x00b40f40",
+          "vendor": "AuthenticAMD"
+        },
+        "cpuid_primary_equivalence": true,
+        "gates": {
+          "cpuid/arch_load_p0": true,
+          "cpuid/arch_load_p0/decoy": true,
+          "cpuid/arch_load_p1": true,
+          "cpuid/arch_load_p1/decoy": true,
+          "cpuid/candidate_t0_p0": true,
+          "cpuid/candidate_t0_p0/decoy": true,
+          "cpuid/candidate_t0_p1": true,
+          "cpuid/candidate_t0_p1/decoy": true,
+          "cpuid/candidate_t1_p0": true,
+          "cpuid/candidate_t1_p0/decoy": true,
+          "cpuid/candidate_t1_p1": true,
+          "cpuid/candidate_t1_p1/decoy": true,
+          "cpuid/cold_p0": true,
+          "cpuid/cold_p0/decoy": true,
+          "cpuid/cold_p1": true,
+          "cpuid/cold_p1/decoy": true,
+          "cpuid/hot_p0": true,
+          "cpuid/hot_p0/decoy": true,
+          "cpuid/hot_p1": true,
+          "cpuid/hot_p1/decoy": true,
+          "cpuid/no_probe_t0_p0": true,
+          "cpuid/no_probe_t0_p0/decoy": true,
+          "cpuid/no_probe_t0_p1": true,
+          "cpuid/no_probe_t0_p1/decoy": true,
+          "cpuid/no_probe_t1_p0": true,
+          "cpuid/no_probe_t1_p0/decoy": true,
+          "cpuid/no_probe_t1_p1": true,
+          "cpuid/no_probe_t1_p1/decoy": true,
+          "cpuid/warm_mismatch_p0/decoy": true,
+          "cpuid/warm_mismatch_p1/decoy": true,
+          "nop/arch_load_p0": true,
+          "nop/arch_load_p0/decoy": true,
+          "nop/arch_load_p1": true,
+          "nop/arch_load_p1/decoy": true,
+          "nop/candidate_t0_p0": true,
+          "nop/candidate_t0_p0/decoy": true,
+          "nop/candidate_t0_p1/decoy": true,
+          "nop/candidate_t1_p0/decoy": true,
+          "nop/candidate_t1_p1": true,
+          "nop/candidate_t1_p1/decoy": true,
+          "nop/cold_p0": true,
+          "nop/cold_p0/decoy": true,
+          "nop/cold_p1": true,
+          "nop/cold_p1/decoy": true,
+          "nop/hot_p0": true,
+          "nop/hot_p0/decoy": true,
+          "nop/hot_p1": true,
+          "nop/hot_p1/decoy": true,
+          "nop/no_probe_t0_p0": true,
+          "nop/no_probe_t0_p0/decoy": true,
+          "nop/no_probe_t0_p1": true,
+          "nop/no_probe_t0_p1/decoy": true,
+          "nop/no_probe_t1_p0": true,
+          "nop/no_probe_t1_p0/decoy": true,
+          "nop/no_probe_t1_p1": true,
+          "nop/no_probe_t1_p1/decoy": true,
+          "nop/warm_mismatch_p0/decoy": true,
+          "nop/warm_mismatch_p1/decoy": true
+        },
+        "heldout_decoy_hit_rates": {
+          "cpuid": {
+            "arch_load_p0": 0,
+            "arch_load_p1": 0,
+            "candidate_t0_p0": 0,
+            "candidate_t0_p1": 0,
+            "candidate_t1_p0": 0,
+            "candidate_t1_p1": 0,
+            "cold_p0": 0,
+            "cold_p1": 0,
+            "hot_p0": 0,
+            "hot_p1": 0,
+            "no_probe_t0_p0": 0,
+            "no_probe_t0_p1": 0,
+            "no_probe_t1_p0": 0,
+            "no_probe_t1_p1": 0,
+            "warm_mismatch_p0": 0,
+            "warm_mismatch_p1": 0
+          },
+          "nop": {
+            "arch_load_p0": 0,
+            "arch_load_p1": 0,
+            "candidate_t0_p0": 0,
+            "candidate_t0_p1": 0,
+            "candidate_t1_p0": 0,
+            "candidate_t1_p1": 0.000244140625,
+            "cold_p0": 0,
+            "cold_p1": 0,
+            "hot_p0": 0,
+            "hot_p1": 0,
+            "no_probe_t0_p0": 0,
+            "no_probe_t0_p1": 0,
+            "no_probe_t1_p0": 0.000244140625,
+            "no_probe_t1_p1": 0.000244140625,
+            "warm_mismatch_p0": 0,
+            "warm_mismatch_p1": 0
+          }
+        },
+        "heldout_hit_rates": {
+          "cpuid": {
+            "arch_load_p0": 0.999755859375,
+            "arch_load_p1": 0.999755859375,
+            "candidate_t0_p0": 0,
+            "candidate_t0_p1": 0,
+            "candidate_t1_p0": 0,
+            "candidate_t1_p1": 0,
+            "cold_p0": 0,
+            "cold_p1": 0,
+            "hot_p0": 0.999755859375,
+            "hot_p1": 0.9990234375,
+            "no_probe_t0_p0": 0,
+            "no_probe_t0_p1": 0,
+            "no_probe_t1_p0": 0,
+            "no_probe_t1_p1": 0,
+            "warm_mismatch_p0": 0,
+            "warm_mismatch_p1": 0
+          },
+          "nop": {
+            "arch_load_p0": 0.999267578125,
+            "arch_load_p1": 0.999755859375,
+            "candidate_t0_p0": 0.001953125,
+            "candidate_t0_p1": 0.997802734375,
+            "candidate_t1_p0": 0.999267578125,
+            "candidate_t1_p1": 0,
+            "cold_p0": 0,
+            "cold_p1": 0.000244140625,
+            "hot_p0": 0.999267578125,
+            "hot_p1": 0.999755859375,
+            "no_probe_t0_p0": 0,
+            "no_probe_t0_p1": 0,
+            "no_probe_t1_p0": 0,
+            "no_probe_t1_p1": 0,
+            "warm_mismatch_p0": 0.2099609375,
+            "warm_mismatch_p1": 0.201416015625
+          }
+        },
+        "host": {
+          "run_utc": "20261102T234315Z",
+          "windows_build": "26200"
+        },
+        "limitation": "A fixed history prefix is an apparatus intervention, not a predictor reset. Same-process data cannot establish a privilege-boundary mechanism.",
+        "mechanism_conclusion": "withheld_pending_k4_windows_pilot_review_and_independent_sessions",
+        "numerical_signature_detected": true,
+        "occurrence_hit_rates": {
+          "cpuid": {
+            "arch_load_p0": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              0.99609375
+            ],
+            "arch_load_p1": [
+              1,
+              1,
+              0.99609375,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "candidate_t0_p0": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "candidate_t0_p1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "candidate_t1_p0": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "candidate_t1_p1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "cold_p0": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "cold_p1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "hot_p0": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              0.99609375,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "hot_p1": [
+              1,
+              1,
+              0.99609375,
+              0.99609375,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              0.9921875,
+              1,
+              1,
+              1,
+              1
+            ],
+            "no_probe_t0_p0": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "no_probe_t0_p1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "no_probe_t1_p0": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "no_probe_t1_p1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "warm_mismatch_p0": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "warm_mismatch_p1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "nop": {
+            "arch_load_p0": [
+              1,
+              1,
+              1,
+              1,
+              0.99609375,
+              1,
+              1,
+              0.9921875,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "arch_load_p1": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              0.99609375
+            ],
+            "candidate_t0_p0": [
+              0,
+              0.00390625,
+              0.0078125,
+              0,
+              0,
+              0.00390625,
+              0,
+              0,
+              0.0078125,
+              0.00390625,
+              0.00390625,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "candidate_t0_p1": [
+              0.9921875,
+              1,
+              1,
+              1,
+              0.9921875,
+              1,
+              1,
+              1,
+              0.99609375,
+              1,
+              0.9921875,
+              1,
+              1,
+              0.9921875,
+              1,
+              1
+            ],
+            "candidate_t1_p0": [
+              1,
+              1,
+              0.99609375,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              0.9921875
+            ],
+            "candidate_t1_p1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "cold_p0": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "cold_p1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0.00390625,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "hot_p0": [
+              1,
+              1,
+              1,
+              0.99609375,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              0.99609375,
+              0.99609375,
+              1,
+              1,
+              1
+            ],
+            "hot_p1": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              0.99609375,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "no_probe_t0_p0": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "no_probe_t0_p1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "no_probe_t1_p0": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "no_probe_t1_p1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "warm_mismatch_p0": [
+              0.1796875,
+              0.19140625,
+              0.25,
+              0.21484375,
+              0.17578125,
+              0.20703125,
+              0.234375,
+              0.2109375,
+              0.18359375,
+              0.21484375,
+              0.16796875,
+              0.2265625,
+              0.21484375,
+              0.234375,
+              0.265625,
+              0.1875
+            ],
+            "warm_mismatch_p1": [
+              0.14453125,
+              0.234375,
+              0.17578125,
+              0.20703125,
+              0.19921875,
+              0.16796875,
+              0.21875,
+              0.20703125,
+              0.19140625,
+              0.1953125,
+              0.21875,
+              0.25,
+              0.19921875,
+              0.16796875,
+              0.2421875,
+              0.203125
+            ]
+          }
+        },
+        "outcomes": {
+          "p0": {
+            "components": {
+              "cpuid": {
+                "candidate": {
+                  "ci95": [
+                    0,
+                    0
+                  ],
+                  "cycle_differences": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "hit_rate_difference": 0,
+                  "interval_scope": "within_run_16_block_cycles"
+                },
+                "no_probe": {
+                  "ci95": [
+                    0,
+                    0
+                  ],
+                  "cycle_differences": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "hit_rate_difference": 0,
+                  "interval_scope": "within_run_16_block_cycles"
+                }
+              },
+              "nop": {
+                "candidate": {
+                  "ci95": [
+                    0.99609375,
+                    0.99853515625
+                  ],
+                  "cycle_differences": [
+                    1,
+                    0.9921875,
+                    1,
+                    1,
+                    0.99609375,
+                    0.9921875,
+                    0.99609375,
+                    0.99609375,
+                    0.99609375,
+                    1,
+                    1,
+                    1,
+                    0.99609375,
+                    0.99609375,
+                    0.99609375,
+                    1
+                  ],
+                  "hit_rate_difference": 0.997314453125,
+                  "interval_scope": "within_run_16_block_cycles"
+                },
+                "no_probe": {
+                  "ci95": [
+                    0,
+                    0
+                  ],
+                  "cycle_differences": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "hit_rate_difference": 0,
+                  "interval_scope": "within_run_16_block_cycles"
+                }
+              }
+            },
+            "cpuid_adjusted": {
+              "ci95": [
+                0,
+                0
+              ],
+              "cycle_differences": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "hit_rate_difference": 0,
+              "interval_scope": "within_run_16_block_cycles"
+            },
+            "interaction": {
+              "ci95": [
+                0.99609375,
+                0.99853515625
+              ],
+              "cycle_differences": [
+                1,
+                0.9921875,
+                1,
+                1,
+                0.99609375,
+                0.9921875,
+                0.99609375,
+                0.99609375,
+                0.99609375,
+                1,
+                1,
+                1,
+                0.99609375,
+                0.99609375,
+                0.99609375,
+                1
+              ],
+              "hit_rate_difference": 0.997314453125,
+              "interval_scope": "within_run_16_block_cycles"
+            },
+            "nop_adjusted": {
+              "ci95": [
+                0.99609375,
+                0.99853515625
+              ],
+              "cycle_differences": [
+                1,
+                0.9921875,
+                1,
+                1,
+                0.99609375,
+                0.9921875,
+                0.99609375,
+                0.99609375,
+                0.99609375,
+                1,
+                1,
+                1,
+                0.99609375,
+                0.99609375,
+                0.99609375,
+                1
+              ],
+              "hit_rate_difference": 0.997314453125,
+              "interval_scope": "within_run_16_block_cycles"
+            }
+          },
+          "p1": {
+            "components": {
+              "cpuid": {
+                "candidate": {
+                  "ci95": [
+                    0,
+                    0
+                  ],
+                  "cycle_differences": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "hit_rate_difference": 0,
+                  "interval_scope": "within_run_16_block_cycles"
+                },
+                "no_probe": {
+                  "ci95": [
+                    0,
+                    0
+                  ],
+                  "cycle_differences": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "hit_rate_difference": 0,
+                  "interval_scope": "within_run_16_block_cycles"
+                }
+              },
+              "nop": {
+                "candidate": {
+                  "ci95": [
+                    0.996337890625,
+                    0.9990234375
+                  ],
+                  "cycle_differences": [
+                    0.99609375,
+                    0.99609375,
+                    0.9921875,
+                    1,
+                    0.99609375,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    0.9921875,
+                    0.99609375,
+                    1,
+                    0.99609375,
+                    1,
+                    1
+                  ],
+                  "hit_rate_difference": 0.997802734375,
+                  "interval_scope": "within_run_16_block_cycles"
+                },
+                "no_probe": {
+                  "ci95": [
+                    0,
+                    0
+                  ],
+                  "cycle_differences": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "hit_rate_difference": 0,
+                  "interval_scope": "within_run_16_block_cycles"
+                }
+              }
+            },
+            "cpuid_adjusted": {
+              "ci95": [
+                0,
+                0
+              ],
+              "cycle_differences": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "hit_rate_difference": 0,
+              "interval_scope": "within_run_16_block_cycles"
+            },
+            "interaction": {
+              "ci95": [
+                0.996337890625,
+                0.9990234375
+              ],
+              "cycle_differences": [
+                0.99609375,
+                0.99609375,
+                0.9921875,
+                1,
+                0.99609375,
+                1,
+                1,
+                1,
+                1,
+                1,
+                0.9921875,
+                0.99609375,
+                1,
+                0.99609375,
+                1,
+                1
+              ],
+              "hit_rate_difference": 0.997802734375,
+              "interval_scope": "within_run_16_block_cycles"
+            },
+            "nop_adjusted": {
+              "ci95": [
+                0.996337890625,
+                0.9990234375
+              ],
+              "cycle_differences": [
+                0.99609375,
+                0.99609375,
+                0.9921875,
+                1,
+                0.99609375,
+                1,
+                1,
+                1,
+                1,
+                1,
+                0.9921875,
+                0.99609375,
+                1,
+                0.99609375,
+                1,
+                1
+              ],
+              "hit_rate_difference": 0.997802734375,
+              "interval_scope": "within_run_16_block_cycles"
+            }
+          }
+        },
+        "practical_margin": 0.05,
+        "primary_endpoint": "p0_adjusted_training_contrast_nop_minus_cpuid",
+        "receiver_order_hit_rates": {
+          "cpuid": {
+            "arch_load_p0": {
+              "0": 1,
+              "1": 0.9995095635115253
+            },
+            "arch_load_p1": {
+              "0": 0.9995256166982922,
+              "1": 1
+            },
+            "candidate_t0_p0": {
+              "0": 0,
+              "1": 0
+            },
+            "candidate_t0_p1": {
+              "0": 0,
+              "1": 0
+            },
+            "candidate_t1_p0": {
+              "0": 0,
+              "1": 0
+            },
+            "candidate_t1_p1": {
+              "0": 0,
+              "1": 0
+            },
+            "cold_p0": {
+              "0": 0,
+              "1": 0
+            },
+            "cold_p1": {
+              "0": 0,
+              "1": 0
+            },
+            "hot_p0": {
+              "0": 0.999496475327291,
+              "1": 1
+            },
+            "hot_p1": {
+              "0": 0.9985243482538121,
+              "1": 0.9995152690256908
+            },
+            "no_probe_t0_p0": {
+              "0": 0,
+              "1": 0
+            },
+            "no_probe_t0_p1": {
+              "0": 0,
+              "1": 0
+            },
+            "no_probe_t1_p0": {
+              "0": 0,
+              "1": 0
+            },
+            "no_probe_t1_p1": {
+              "0": 0,
+              "1": 0
+            },
+            "warm_mismatch_p0": {
+              "0": 0,
+              "1": 0
+            },
+            "warm_mismatch_p1": {
+              "0": 0,
+              "1": 0
+            }
+          },
+          "nop": {
+            "arch_load_p0": {
+              "0": 0.9990324141267537,
+              "1": 0.9995071463775259
+            },
+            "arch_load_p1": {
+              "0": 0.9995159728944821,
+              "1": 1
+            },
+            "candidate_t0_p0": {
+              "0": 0.0028721876495931067,
+              "1": 0.000996512207274539
+            },
+            "candidate_t0_p1": {
+              "0": 0.9975810353168844,
+              "1": 0.9980285855101035
+            },
+            "candidate_t1_p0": {
+              "0": 0.9990421455938697,
+              "1": 0.9995019920318725
+            },
+            "candidate_t1_p1": {
+              "0": 0,
+              "1": 0
+            },
+            "cold_p0": {
+              "0": 0,
+              "1": 0
+            },
+            "cold_p1": {
+              "0": 0,
+              "1": 0.00048496605237633366
+            },
+            "hot_p0": {
+              "0": 0.9995157384987894,
+              "1": 0.999015263417036
+            },
+            "hot_p1": {
+              "0": 1,
+              "1": 0.9995121951219512
+            },
+            "no_probe_t0_p0": {
+              "0": 0,
+              "1": 0
+            },
+            "no_probe_t0_p1": {
+              "0": 0,
+              "1": 0
+            },
+            "no_probe_t1_p0": {
+              "0": 0,
+              "1": 0
+            },
+            "no_probe_t1_p1": {
+              "0": 0,
+              "1": 0
+            },
+            "warm_mismatch_p0": {
+              "0": 0.21913733267228558,
+              "1": 0.20105820105820105
+            },
+            "warm_mismatch_p1": {
+              "0": 0.2051035146846413,
+              "1": 0.1976225854383358
+            }
+          }
+        },
+        "run": {
+          "affinity_cpu": "0",
+          "bank0_addr": "0x7ff69f2cc000",
+          "bank1_addr": "0x7ff69f30c000",
+          "blocks": "512",
+          "code_addr": "0x219f52e0000",
+          "condition_addr": "0x7ff69f2c9000",
+          "conditions": "16",
+          "episodes": "16",
+          "history_prefix_branches": "256",
+          "modes": "2",
+          "pages": "64",
+          "platform": "windows",
+          "prelude_calls": "128",
+          "protocol": "context_marker_k4_v1",
+          "schedule": "interleaved_round_shuffle",
+          "seed": "3039835034",
+          "stride": "4096",
+          "timer": "cpuid_outside_rdtscp_load_rdtscp",
+          "token0_addr": "0x7ff69f2ca000",
+          "token1_addr": "0x7ff69f2cb000",
+          "train_calls": "256",
+          "version": "1",
+          "warmup_blocks": "16"
+        },
+        "runtime_bytes_match_contract": true,
+        "sample_count": 262144,
+        "study": "context_marker_k4_v1",
+        "thresholds": {
+          "p0": 352,
+          "p1": 352
+        },
+        "windows_collection": true
+      },
+      "archive_name": "context-receiver-windows-20261102T234310535Z.zip",
+      "archive_sha256": "ba97bb5a8f54f986300b2d944a6ffb1e19957587d2c0bf00eff766fe338622e2",
+      "archived_analysis_reproduced_exactly": true,
+      "git_clean_reported": true,
+      "git_head": "ee8422ffe6d466c4f51b1b550224ac63e30c96b4",
+      "independent_primary_reproduced_exactly": true,
+      "linked_listing_audit": {
+        "bytes_checked": 107120,
+        "instruction_records_checked": 31282,
+        "listing_matches_linked_pe": true,
+        "scope": "byte_correspondence_only_not_control_flow_or_exclusivity_proof"
+      },
+      "linked_text_raw_sha256": "586dfb46074aa49327bb6d1b80070140759d560669d93e996f166cbd228b1b1b",
+      "manifest_files_verified": 11,
+      "reported_host_inventory": {
+        "bios": {
+          "ReleaseDate": "/Date(1770249600000)/",
+          "SMBIOSBIOSVersion": "FA9"
+        },
+        "cpu": [
+          {
+            "Manufacturer": "AuthenticAMD",
+            "Name": "AMD Ryzen 7 9800X3D 8-Core Processor           ",
+            "NumberOfCores": 8,
+            "NumberOfLogicalProcessors": 16,
+            "Revision": 17408
+          }
+        ],
+        "environment_assertion": "Host inventory, not independent attestation of a bare-metal machine.",
+        "microcode_registry_update_revision": {
+          "Count": 4,
+          "value": [
+            53,
+            64,
+            64,
+            11
+          ]
+        },
+        "os": {
+          "BuildNumber": "26200",
+          "Caption": "Microsoft Windows 11 Pro",
+          "Version": "10.0.26200"
+        },
+        "virtualization": {
+          "HypervisorPresent": true
+        }
+      },
+      "seed": 3039835034,
+      "source_files_verified": 13,
+      "source_sha256": {
+        ".vscode/tasks.json": "1893b0bf3d6da618a58c32952a2003afca9b1a2cf6247a7a6e001a8957bff967",
+        "programs/context_receiver.c": "6aa61b3b9956de53f4fd67eeb86bb42c03f21d93bde73ba4631c46686d1ea205",
+        "programs/context_receiver_code.h": "e756ca3a1bb562cd0b60aabee20ec20cf59a3b88f7932322c430b5eaa43aec06",
+        "programs/context_receiver_layout.S": "4dbad58447ef03553f80ecbb4c741c55da0419415ca7c4f9f406285f2a047b5e",
+        "programs/cpu_features.c": "d20d0e73c0078c07202493a22ac1187a50e98d2f73b431e02534e8463733370a",
+        "programs/cpu_features.h": "60aeace9e1b812f10c1de5454e9db9536360d15c9254eebc0ec4a8d4b88d07da",
+        "protocols/CONTEXT_RECEIVER_K4.md": "6b3ec956c9e74e22a42cca3cc671bcb4f36643561658bd2530da5498242dfe35",
+        "scripts/analyze_cache_probe.py": "8d119ec1679bcb98463f429d9eaa95daeec405eae470353301038c7e1cf2079c",
+        "scripts/analyze_context_receiver.py": "a88900919af4767ae6cd591169e1cde0919e56731dad4174ba20af8a1e856171",
+        "scripts/check_context_receiver_windows.ps1": "74432c6b99a086d1e91ad4397113631cd03053fa92d7b77d8e59d684cbf39d02",
+        "scripts/context_receiver_contract.py": "e5949d3ba1f471444371cfa0c779c821a40c077b19f976abb0012d8a5182fc27",
+        "scripts/fresh_receiver_contract.py": "3dd4bbd3a5409b668566d1bbd8895e92dc661113f4faf3a9713b30be68786f53",
+        "scripts/verify_context_receiver_layout.py": "11b88a64e38698044b2ad48046c15d89808e4b13ab8eaf3b5c63f2d2c3724e27"
+      },
+      "toolchain": {
+        "cl.exe": {
+          "file_version": "19.51.36260.0",
+          "path": "C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\VC\\Tools\\MSVC\\14.51.36231\\bin\\HostX64\\x64\\cl.exe"
+        },
+        "dumpbin.exe": {
+          "file_version": "14.51.36260.0",
+          "path": "C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\VC\\Tools\\MSVC\\14.51.36231\\bin\\HostX64\\x64\\dumpbin.exe"
+        },
+        "link.exe": {
+          "file_version": "14.51.36260.0",
+          "path": "C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\VC\\Tools\\MSVC\\14.51.36231\\bin\\HostX64\\x64\\link.exe"
+        }
+      },
+      "trace_sha256": "40b6d60b63091faefdf7a653e3c2164a3b1d8b29f4cf79398b9354653c967ea1"
+    }
+  ],
+  "pooled_confidence_interval": null,
+  "privilege_boundary_tested": false,
+  "scope": "one reported host; separate processes within minutes; no independent days, boots or hosts",
+  "study": "context_marker_k4_v1",
+  "three_planned_session_signatures_repeated": true
+}

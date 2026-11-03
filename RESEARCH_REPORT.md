@@ -1,14 +1,24 @@
 # Native x86 branch studies: consolidated research record
 
-**Evidence through 2 November 2026; K3 audit and follow-up design updated 3 November 2026.** These are native Windows x86 experiments on one AMD Ryzen 7 9800X3D workstation. The strongest observations are repeatable, controlled **same-host timing associations** and a three-run **receiver scheduling association**. No experiment has recovered a trained target, counted mispredictions, established transient execution, or tested a privilege boundary. A passing apparatus gate makes an outcome eligible under its own protocol; it does not identify a hardware mechanism.
+**Evidence reported through 2 November 2026 UTC; K4 series reviewed 3 November 2026.** These are Windows x86 experiments on one reported AMD Ryzen 7 9800X3D workstation. K4 now shows a repeated, training-specific, serialization-sensitive fresh-marker cache signature in a pilot and three planned follow-up process sessions. Earlier timing and scheduling associations remain separate findings. No branch-misprediction counter was measured, mechanism attribution remains incomplete, and no privilege boundary was tested. A passing apparatus gate does not by itself identify a hardware mechanism.
 
-## K3 first Windows pilot and prospective K4
+## K3 first Windows pilot and K4 same-host recurrence
 
 The [first K3 Windows pilot](results/k3-fresh-windows/README.md), seed 70098319, completed 131,072 samples. Its original ZIP SHA256 is `f163cb4d912ff33a06edd9660fb95a481ec0d89dfe10359ba9a67162b260d8d9`. All archived hashes, source snapshots, trace replay, architectural returns and RX code snapshots verify. Frozen reanalysis reproduces the archived result exactly: **56/58 gates, inconclusive**, with matched-training NOP receiver rates of 8.936% (p0) and 9.521% (p1), above the <=5% negative limits. The p0 adjusted NOP and interaction estimates are +4.541 percentage points, 95% within-run interval [-6.689,+15.625]. CPUID is 0.000 [0.000,0.000]. The frozen numerical signature is false.
 
 Exploratory episode-position profiles show matched as well as mismatched NOP heat concentrated at grouped-cell entry. These profiles do not replace the primary or justify excluding early samples. The linked-path review verifies the intended architectural invocation/reload structure but also finds different preceding paths into training and probing. It cannot identify the transient predictor target or eliminate alternative cache-fill mechanisms. The runner's original exit 1 was its intentional failed-control check after successful collection.
 
-The [K4 protocol](protocols/CONTEXT_RECEIVER_K4.md) separately fixes a 256-branch local prefix before each conditional invocation, interleaves conditions, and specifies 512 blocks. It is a prospective apparatus diagnostic informed by K3. A full native development check collected and replayed 262,144 rows but failed the two matched-training negatives, so the revised apparatus is not validated. Those development measurements do not count as Windows hardware evidence. The first Windows K4 pilot, linked-binary inspection and any subsequent fixed session plan remain necessary; no positive result is promised.
+The [K4 protocol](protocols/CONTEXT_RECEIVER_K4.md) fixes a 256-branch local prefix before each conditional invocation, interleaves conditions and specifies 512 blocks. Its first Windows pilot, seed 888890949, passed 58/58 gates with primary +99.731 [+99.609,+99.829] percentage points. Three follow-up process sessions were then specified in chat using unchanged code and seeds 830217184, 4108945320 and 3039835034. All three also pass 58/58 and detect the frozen numerical signature:
+
+| Follow-up seed | Primary interaction, percentage points | 95% within-run interval |
+| --- | --- | --- |
+| 830217184 | +99.878 | [+99.756,+99.976] |
+| 4108945320 | +99.512 | [+99.292,+99.707] |
+| 3039835034 | +99.731 | [+99.609,+99.854] |
+
+The [full K4 record](results/k4-context-windows/README.md) preserves all four original ZIPs, hashes, bounded linked-path review and the distinction between a repeated signature and mechanism attribution. Source snapshots, toolchain records, linked `.text` and RX snapshots match across runs. Every frozen analysis and an independent raw-row primary calculation reproduce exactly. The 786,432 follow-up episodes are dependent measurements within three processes on one reported host, not independent host or day replications. The session count and seeds were fixed before those follow-ups; no additional pooled hypothesis test is claimed. No interval is formed by pooling all episodes across runs.
+
+Training now selects the fresh-marker response at both named target banks, and the CPUID intervention suppresses that response. This supports the transient-execution interpretation, while CPUID's wider effects, host behavior and alternative cache-fill explanations still need further controls. A full native server development check previously failed two gates; that observation remains in the record and is not Windows hardware evidence.
 
 ## Relationship to Fractal
 
@@ -18,7 +28,7 @@ This repository runs ordinary user-mode code in one Windows process on AMD x86. 
 
 | Paper category | Local measurement status |
 | --- | --- |
-| Conditional branch present, same-domain data execution | Conditional cache baseline and K1/K2 pilots. K1 fails frozen skip gates. K2 detects schedule-sensitive skip-line heat without trained-label specificity. K3 fails matched-training negatives. |
+| Conditional branch present, same-domain data execution | Conditional cache baseline and K1/K2 pilots. K1 fails frozen skip gates. K2 detects schedule-sensitive skip-line heat without trained-label specificity. K3 fails matched-training negatives. K4 repeats training-specific fresh-marker and serialization-sensitive signatures in four Windows runs. |
 | Indirect branch present, same-domain data execution | I calibrates its receiver but shows no convincing opposite-target signal; H's small-work sensitivity fails. |
 | Instruction fetch, including proposed J | No target-specific isolated instruction-cache receiver. J is unimplemented; whole-call timing would not isolate fetch. |
 | Branch removed / Phantom | No audited same-address branch-to-NOP receiver experiment. Unimplemented. |
@@ -108,4 +118,4 @@ The three linked `.text` sections are byte-identical, SHA-256 `54d9af2ea69a7acff
 
 Raw A/B and branch-batch traces/binaries, JSON summaries, plot scripts and original-file ledgers are under [results/](results/). The suite/B2/K1/K2 original ZIPs were supplied separately; their exact hashes appear here and in the [results ledger](results/RESULTS_LEDGER.json). For an original ZIP, verify SHA-256 and manifest, replay the matching `scripts/analyze_*.py` against its `.log` at the recorded source tree, and compare executable and linked `.text` hashes. `scripts/summarize_followup_series.py` recomputes A/B from raw files, and `scripts/summarize_b2_outcome_replicates.py` reads the B2 outer ZIP. Unit tests check parsing and analysis, not physical host execution.
 
-The supported observations are A's repeated same-host decision-order timing association, B's probe-0 association without the intended probe-1 crossover, a B2 same-site interaction below its practical rule, K1 inconclusive after failed skip gates, and K2's repeated schedule-sensitive cache-hit pattern without trained-target specificity. Together they establish no predictor table size, path-history-register length, misprediction count, speculative fetch/execution, domain transfer, Phantom effect, or M1 finding. A future mechanism assay needs a validated exclusive target-specific receiver, complete retention of failed attempts, linked-code and alternative-cache-path audit, and a separately controlled intervention.
+The supported observations include the earlier A/B timing and K2 scheduling associations, the retained B2/K1/K3 limits, and K4's repeated training-specific fresh-marker signature with CPUID sensitivity. K4 provides stronger target selectivity than the earlier receiver studies and supports the transient-execution interpretation. Mechanism attribution remains bounded by CPUID/host and alternative-cache-path questions. No predictor table size, path-history-register length, misprediction count, privilege/ASID transfer, Phantom effect or M1 finding is established. The next stage requires a distinct mechanism control and, for the original Fractal question, a same-domain-validated physical Fractal receiver before changing privilege.
