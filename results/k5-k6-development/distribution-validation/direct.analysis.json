@@ -1,0 +1,52 @@
+{
+  "study": "fractal_privilege_k6_v1",
+  "cpu": {
+    "vendor": "AuthenticAMD",
+    "signature": "0x663",
+    "clflush_bytes": "64",
+    "invariant_tsc": "0",
+    "rdtscp": "1",
+    "hypervisor": "1"
+  },
+  "run": {
+    "version": "1",
+    "protocol": "fractal_privilege_k6_v1",
+    "scope": "development_only",
+    "blocks": "2",
+    "episodes": "1",
+    "warmup": "1",
+    "prelude": "8",
+    "train": "8",
+    "seed": "2180673261",
+    "code_addr": "0x40b000",
+    "branch_offset": "1393",
+    "code_bytes": "1743",
+    "domains": "4",
+    "modes": "3",
+    "conditions": "16",
+    "controller_cpl": "3",
+    "condition_addr": "0x48e000",
+    "token0_addr": "0x48d000",
+    "token1_addr": "0x48c000",
+    "bank0_addr": "0x40c000",
+    "bank1_addr": "0x44c000",
+    "upstream": "03ad1c5b7c33621e7529ac6403eb9b1de4f8722f"
+  },
+  "samples": 384,
+  "actual_cpl_counts": {
+    "0->0": 96,
+    "0->3": 96,
+    "3->3": 96,
+    "3->0": 96
+  },
+  "same_measured_instruction_address_verified": true,
+  "all_runtime_code_snapshots_verified": true,
+  "upstream_revision": "03ad1c5b7c33621e7529ac6403eb9b1de4f8722f",
+  "observed_cr4": "0x220",
+  "physical_mechanism_proven": false,
+  "scope": "functional_validation_only",
+  "hardware_eligible": false,
+  "numerical_outcomes": null,
+  "user_to_kernel_numerical_signature_detected": false,
+  "interpretation": "CPL0/CPL3 transitions and trace logic verified in emulation; no physical branch-predictor inference"
+}

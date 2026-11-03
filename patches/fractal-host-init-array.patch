@@ -1,0 +1,12 @@
+diff --git a/target/x86.qemu.ld b/target/x86.qemu.ld
+index 73d1566..930eeec 100644
+--- a/target/x86.qemu.ld
++++ b/target/x86.qemu.ld
+@@ -76,6 +76,7 @@ SECTIONS {
+ 	.ctors ALIGN(PAGE_SIZE) : AT(ADDR(.ctors) - KERNEL_LINK_ADDRESS) {
+ 		PROVIDE(_init_array_begin = .);
+ 		*(.ctors);
++		*(.init_array);
+ 		PROVIDE(_init_array_end = .);
+ 	}
+ 	/* Basic stack for bringup tasks, after setting up paging */

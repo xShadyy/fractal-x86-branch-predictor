@@ -6,6 +6,15 @@ The Windows studies in this repository run in one ordinary user-mode process. Th
 
 ## Current evidence
 
+[K5](protocols/DEPENDENCY_RECEIVER_K5.md) adds a distinct resolved-condition
+marker-address dependency alongside plain and CPUID modes. Its Windows pilot is
+pending. [K6](protocols/FRACTAL_PRIVILEGE_K6.md) supplies a pinned Fractal x86
+payload for user/user, kernel/kernel, user/kernel and kernel/user pairs. The
+recorded [QEMU smoke](results/k5-k6-development/README.md) verifies actual CPLs
+and a common measured instruction address across all four pairs. Physical K6
+collection and user-to-kernel influence remain untested; emulation is not
+branch-predictor evidence. The new runners preserve all nulls and failures.
+
 [K4](results/k4-context-windows/README.md) now has one Windows pilot and three preselected follow-up process sessions. All four pass 58/58 controls and detect the frozen training-specific fresh-marker signature. Follow-up primary effects are +99.878, +99.512 and +99.731 percentage points. They establish recurrence on one reported host within minutes; mechanism attribution and the Fractal privilege-boundary question remain open.
 
 The K2 conditional-receiver diagnostic has three physical runs with different seeds on one Windows host, spanning two UTC dates. All 20 apparatus gates passed in each run. Its prespecified grouped condition-entry contrast recurred, while the candidate comparisons did not establish which target had been trained. The unexpectedly high interleaved architectural-skip hit rate remains unexplained. The earlier K1 receiver failed its separate skip-control gate and remains inconclusive.

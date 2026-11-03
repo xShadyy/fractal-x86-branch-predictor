@@ -1,0 +1,16 @@
+qemu-system-x86_64: multiboot knows VBE. we don't
+
+Fractal Bootloader
+Jumping to long mode...
+[?7h#### FRACTAL STARTED
+CPU: x86_64
+Board: qemu
+Variant: release
+Kernel: fractal
+Version: fractal-x86_64-HEAD-1
+ASIDs V2: DISABLED
+K6_ERROR: physical pilot requires documented Ryzen, invariant TSC and no reported hypervisor
+
+init task returned 1
+shutting down!
+qemu-system-x86_64: terminating on signal 15 from pid 5 (/bin/bash)

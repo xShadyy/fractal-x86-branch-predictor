@@ -1,6 +1,24 @@
 # Native x86 branch studies: consolidated research record
 
-**Evidence reported through 2 November 2026 UTC; K4 series reviewed 3 November 2026.** These are Windows x86 experiments on one reported AMD Ryzen 7 9800X3D workstation. K4 now shows a repeated, training-specific, serialization-sensitive fresh-marker cache signature in a pilot and three planned follow-up process sessions. Earlier timing and scheduling associations remain separate findings. No branch-misprediction counter was measured, mechanism attribution remains incomplete, and no privilege boundary was tested. A passing apparatus gate does not by itself identify a hardware mechanism.
+**Physical evidence reported through 2 November 2026 UTC; K4 series and K5/K6 development reviewed 3 November 2026.** These are Windows x86 measurements on one reported AMD Ryzen 7 9800X3D workstation, plus separate Linux/QEMU development checks. K4 shows a repeated, training-specific, serialization-sensitive fresh-marker cache signature in a pilot and three planned follow-up process sessions. No branch-misprediction counter was measured, mechanism attribution remains incomplete, and no physical privilege-boundary influence was measured. A passing apparatus gate does not by itself identify a hardware mechanism.
+
+## Prospective distinct control and privilege harness
+
+[K5](protocols/DEPENDENCY_RECEIVER_K5.md) introduces a resolved-condition
+marker-address dependency as a distinct intervention alongside CPUID. Its native
+development smoke completed with two failed plain matched-training gates and
+remains inconclusive; no K5 Windows result is available. The failed developmental
+PC-recording build was corrected without collecting or reclassifying Windows data.
+
+[K6](protocols/FRACTAL_PRIVILEGE_K6.md) uses actual user and kernel fthreads in
+the pinned upstream Fractal x86 OS. The [development record](results/k5-k6-development/README.md)
+preserves a complete QEMU TCG smoke: 384 rows, 96 per UU/KK/UK/KU pair, recorded
+CS.RPL values 3 and 0 inside the measured routine, common conditional address,
+matching runtime bytes, replay and architectural checks. These results validate
+the software path only. The physical payload has separate dimensions and rejects
+the reported emulation platform. A physical UK interpretation additionally requires
+positive UU and KK controls and its own masking/CPUID criteria. No physical K6
+signature, production-OS security result, or M1 replication is claimed.
 
 ## K3 first Windows pilot and K4 same-host recurrence
 

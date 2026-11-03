@@ -1,0 +1,12 @@
+test_actual_cpl_and_instruction_address_corruption_rejected (test_analyze_fractal_privilege.FractalPrivilegeTests.test_actual_cpl_and_instruction_address_corruption_rejected) ... ok
+test_bios_and_uefi_multiboot2_recordings_validate (test_analyze_fractal_privilege.FractalPrivilegeTests.test_bios_and_uefi_multiboot2_recordings_validate) ... ok
+test_emulation_cannot_be_promoted_to_physical_result (test_analyze_fractal_privilege.FractalPrivilegeTests.test_emulation_cannot_be_promoted_to_physical_result) ... ok
+test_full_physical_protocol_with_synthetic_timings_exercises_outcome_path (test_analyze_fractal_privilege.FractalPrivilegeTests.test_full_physical_protocol_with_synthetic_timings_exercises_outcome_path) ... ok
+test_incomplete_or_corrupted_collection_rejected (test_analyze_fractal_privilege.FractalPrivilegeTests.test_incomplete_or_corrupted_collection_rejected) ... ok
+test_recorded_guest_really_changes_cpl_at_same_measured_pc (test_analyze_fractal_privilege.FractalPrivilegeTests.test_recorded_guest_really_changes_cpl_at_same_measured_pc) ... ok
+test_user_to_kernel_claim_requires_same_domain_positive_controls (test_analyze_fractal_privilege.FractalPrivilegeTests.test_user_to_kernel_claim_requires_same_domain_positive_controls) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 10.989s
+
+OK

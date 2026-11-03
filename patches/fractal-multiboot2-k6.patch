@@ -1,0 +1,130 @@
+diff --git a/src/arch/x86/cpu.cc b/src/arch/x86/cpu.cc
+index 982ef47..146400e 100644
+--- a/src/arch/x86/cpu.cc
++++ b/src/arch/x86/cpu.cc
+@@ -24,6 +24,46 @@
+ 
+ extern FRACTALCORE_CLASS global_cpu;
+ extern u64 global_multiboot_ptr;
++extern u64 global_multiboot_magic;
++
++/* K6 boot compatibility only: normalize bounded MB2 module tags to the
++ * existing MB1 interface and obtain ACPI through the bootloader on UEFI.
++ * No measured fthread, syscall or predictor path is changed. */
++static RSDPv1 *k6_boot_rsdp;
++static multiboot_info_t *k6_boot_info() {
++    if (global_multiboot_magic != 0x36d76289u)
++        return (multiboot_info_t *)KERN_P2V(global_multiboot_ptr);
++    static multiboot_info_t info;
++    static multiboot_mod_t module;
++    static bool ready;
++    if (ready) return &info;
++    const u8 *base = (const u8 *)KERN_P2V(global_multiboot_ptr);
++    u32 total = *(const u32 *)base;
++    if (total < 16 || total > (16u << 20)) panic("invalid MB2 size");
++    bool ended = false;
++    for (u32 offset = 8; offset <= total - 8;) {
++        const u8 *tag = base + offset;
++        u32 type = *(const u32 *)tag, size = *(const u32 *)(tag + 4);
++        if (size < 8 || size > total - offset) panic("invalid MB2 tag bounds");
++        if (type == 0) { if (size != 8) panic("invalid MB2 end tag"); ended = true; break; }
++        if (type == 3) {
++            if (size < 16 || info.mods_count) panic("exactly one MB2 module required");
++            module.mod_start = *(const u32 *)(tag + 8);
++            module.mod_end = *(const u32 *)(tag + 12);
++            if (module.mod_end <= module.mod_start) panic("invalid MB2 module range");
++            info.mods_count = 1;
++            info.mods_addr = (u32)((usize)&module & ~KERNEL_VIRT_MASK);
++        }
++        if ((type == 14 || type == 15) && size >= 8 + sizeof(RSDPv1)) {
++            if (!k6_boot_rsdp || type == 15) k6_boot_rsdp = (RSDPv1 *)(tag + 8);
++        }
++        offset += (size + 7u) & ~7u;
++    }
++    if (!ended || info.mods_count != 1 || !k6_boot_rsdp) panic("missing MB2 initrd or ACPI tags");
++    ready = true;
++    return &info;
++}
++
+ extern FractalGPU *global_gpu;
+ 
+ #define I8259A_PIC1_CMD  ((0x20))
+@@ -78,7 +118,8 @@ kret_t FRACTALCORE_CLASS::InitializeInterrupts() {
+     // requires parsing the multiboot headers.
+     // Multiboot 2 gives the RSDP for free, but Multiboot 1 (required to boot
+     // in Qemu with -kernel) doesn't tell us where it is.
+-    RSDPv1 *rsdp = FindRSDP(X86_ACPI_RSDP_SEARCH_BEGIN, X86_ACPI_RSDP_SEARCH_END);
++    (void)k6_boot_info();
++    RSDPv1 *rsdp = k6_boot_rsdp ? k6_boot_rsdp : FindRSDP(X86_ACPI_RSDP_SEARCH_BEGIN, X86_ACPI_RSDP_SEARCH_END);
+     MADT *madt = NULL;
+     LAPIC *lapic = NULL;
+     IOAPIC *ioapic = NULL;
+@@ -303,7 +344,7 @@ void *FRACTALCORE_CLASS::FindInitrd() {
+     // start64 populates the multiboot info pointer before jumping to fractal main
+     // if start.s or start64.s ever clobbers ebx/rbx, we will not be able to detect the multiboot struct
+     // We assume only 1 multiboot module- the initrd
+-    multiboot_info_t *info = (multiboot_info_t *)(KERN_P2V(global_multiboot_ptr));
++    multiboot_info_t *info = k6_boot_info();
+ 
+     if (0 == info->mods_count) {
+         printf("Multiboot Info: 0x%X\r\n", global_multiboot_ptr);
+@@ -322,7 +363,7 @@ void *FRACTALCORE_CLASS::FindInitrd() {
+ }
+ 
+ kret_t FRACTALCORE_CLASS::DetectHardwareFramebuffer() {
+-    multiboot_info_t *info = (multiboot_info_t *)(KERN_P2V(global_multiboot_ptr));
++    multiboot_info_t *info = k6_boot_info();
+ 
+     if ((info->flags & MULTIBOOT_FRAMEBUFFER_PRESENT_FLAG) == 0) {
+         // Multiboot info says no framebuffer
+diff --git a/src/arch/x86/start.s b/src/arch/x86/start.s
+index 60014c1..62c5662 100644
+--- a/src/arch/x86/start.s
++++ b/src/arch/x86/start.s
+@@ -8,6 +8,8 @@
+ .code32
+ 
+ fractal_start:
++    // Preserve the boot protocol magic across the 32-bit bringup.
++    mov esi, eax
+     // ebx holds the multiboot info struct here
+     lea esp, bringup_stack_bottom
+ #ifndef QUIET_BOOTLOADER
+diff --git a/src/arch/x86/start64.s b/src/arch/x86/start64.s
+index 1d9bfa8..9204cee 100644
+--- a/src/arch/x86/start64.s
++++ b/src/arch/x86/start64.s
+@@ -14,6 +14,8 @@ fractal_start64:
+     //or rax, CR4_FSGSBASE
+     //mov cr4, rax
+ 
++    lea rax, [rip + global_multiboot_magic]
++    mov [rax], rsi
+     lea rax, [rip + global_multiboot_ptr]
+     mov [rax], rbx
+     lea rax, [rip + _stack_bottom_lma]
+@@ -28,3 +30,7 @@ get_current_sp:
+ .global global_multiboot_ptr
+ .align 8
+ global_multiboot_ptr: .quad 0
++
++.global global_multiboot_magic
++.align 8
++global_multiboot_magic: .quad 0
+diff --git a/target/x86.qemu.ld b/target/x86.qemu.ld
+index 930eeec..6fabf07 100644
+--- a/target/x86.qemu.ld
++++ b/target/x86.qemu.ld
+@@ -60,6 +60,12 @@ SECTIONS {
+ 		LONG(GRAPHICS_DEPTH);
+ 	}
+ 
++	/* K6 boot compatibility: retain MB1 for QEMU -kernel; add MB2 for UEFI GRUB. */
++	.multiboot2_header : ALIGN(8) {
++		LONG(0xE85250D6); LONG(0); LONG(24); LONG(-(0xE85250D6 + 24));
++		SHORT(0); SHORT(0); LONG(8);
++	}
++
+ 	/* .text.start switches from protected mode -> long mode and sets up paging */
+ 	. += PAGE_SIZE;
+ 	.text.start : ALIGN(PAGE_SIZE) {*(.text.start);}

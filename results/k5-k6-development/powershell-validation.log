@@ -1,0 +1,3 @@
+PowerShell 7 Linux packaging integration; Windows-style executable-name shims used for Python.
+READY TO SHARE (including nulls or failures): /workspace/scratch/1cafec770870/fractal-x86-branch-predictor/out/fractal-k6-physical-20261103T011228634Z.zip
+PASS: emulation rejected by physical packaging, raw trace retained.

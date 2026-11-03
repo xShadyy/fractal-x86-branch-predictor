@@ -1,0 +1,32 @@
+[2J[01;01H[=3h[2J[01;01H[2J[01;01H[=3h[2J[01;01H[2J[01;01H[=3h[2J[01;01HBdsDxe: loading Boot0001 "UEFI QEMU DVD-ROM QM00005 " from PciRoot(0x0)/Pci(0x1F,0x2)/Sata(0x2,0xFFFF,0x0)
+BdsDxe: starting Boot0001 "UEFI QEMU DVD-ROM QM00005 " from PciRoot(0x0)/Pci(0x1F,0x2)/Sata(0x2,0xFFFF,0x0)
+[H[J[1;1H[?25l[m[H[J[1;1H[2;30HGNU GRUB  version 2.12
+
+[m[4;2H+----------------------------------------------------------------------------+[5;2H|[5;79H|[6;2H|[6;79H|[7;2H|[7;79H|[8;2H|[8;79H|[9;2H|[9;79H|[10;2H|[10;79H|[11;2H|[11;79H|[12;2H|[12;79H|[13;2H|[13;79H|[14;2H|[14;79H|[15;2H|[15;79H|[16;2H|[16;79H|[17;2H+----------------------------------------------------------------------------+[m[18;2H[19;2H[m     Use the ^ and v keys to select which entry is highlighted.          
+      Press enter to boot the selected OS, `e' to edit the commands       
+      before booting or `c' for a command-line.                           [5;80H [7m[5;3H*K6 functional smoke (emulation only)                                       [m[5;78H[m[m[6;3H K6 physical Ryzen pilot: requires serial capture                           [m[6;78H[m[m[7;3H                                                                            [m[7;78H[m[m[8;3H                                                                            [m[8;78H[m[m[9;3H                                                                            [m[9;78H[m[m[10;3H                                                                            [m[10;78H[m[m[11;3H                                                                            [m[11;78H[m[m[12;3H                                                                            [m[12;78H[m[m[13;3H                                                                            [m[13;78H[m[m[14;3H                                                                            [m[14;78H[m[m[15;3H                                                                            [m[15;78H[m[m[16;3H                                                                            [m[16;78H[m[16;80H [5;78H[0m[30m[40m[2J[01;01H[0m[37m[40m[02;40HGNU GRUB  version 2.12
+
+[04;02H┌────────────────────────────────────────────────────────────────────────────────────────────────┐[05;02H││[06;02H││[07;02H││[08;02H││[09;02H││[10;02H││[11;02H││[12;02H││[13;02H││[14;02H││[15;02H││[16;02H││[17;02H││[18;02H││[19;02H││[20;02H││[21;02H││[22;02H││[23;02H││[24;02H└────────────────────────────────────────────────────────────────────────────────────────────────┘[25;02H[26;02H     Use the ▲ and ▼ keys to select which entry is highlighted.                              
+      Press enter to boot the selected OS, `e' to edit the commands before booting or `c' for 
+      a command-line.                                                                          [0m[30m[47m[05;03H*K6 functional smoke (emulation only)                                                           [0m[37m[40m[06;03H K6 physical Ryzen pilot: requires serial capture                                               [07;03H                                                                                                [08;03H                                                                                                [09;03H                                                                                                [10;03H                                                                                                [11;03H                                                                                                [12;03H                                                                                                [13;03H                                                                                                [14;03H                                                                                                [15;03H                                                                                                [16;03H                                                                                                [17;03H                                                                                                [18;03H                                                                                                [19;03H                                                                                                [20;03H                                                                                                [21;03H                                                                                                [22;03H                                                                                                [23;03H                                                                                                 [29;01H                                                                                                   [30;01H                                                                                                   [22;1H                                                                               [23;1H                                                                               [5;78H[0m[30m[40m[2J[01;01H[0m[37m[40m[?25h[H[J[1;1H[H[J[1;1H[0m[30m[40m[2J[01;01H[0m[37m[40merror: no suitable video mode found.
+error: no suitable video mode found.
+
+Fractal Bootloader
+Jumping to long mode...
+[?7h#### FRACTAL STARTED
+CPU: x86_64
+Board: qemu
+Variant: release
+Kernel: fractal
+Version: fractal-x86_64-HEAD-1
+ASIDs V2: DISABLED
+panic: Couldn't find RSDP
+pc:  0xFFFF800000110F8F
+rax: 0x0000000000000000    rbx: 0xFFFF80000013E080    rcx: 0x0000000000000010    rdx: 0xFFFF8000001141AB
+rdi: 0xFFFF800000130EC8    rsi: 0xFFFF800003CA0F80    rbp: 0xFFFF8000001105B0    rsp: 0xFFFF800003CA0F98
+r8:  0x0000000000000000    r9:  0x0000000000000007    r10: 0x0000000000000001    r11: 0x0000000003A8955C
+r12: 0x0000000000000000    r13: 0x000000007BCDE0A0    r14: 0x000000007E76E6CC    r15: 0xFFFF800003B9F3C0
+err: 0x0000000000000000    rip: 0xFFFF800000110F8F    cs:  0x0000000000000008    rfl: 0x0000000000200083
+rsp: 0xFFFF800003CA0F98    ss:  0x0000000000000010
+cr2: 0x0000000000000000
+qemu-system-x86_64: terminating on signal 15 from pid 5 (/bin/bash)
