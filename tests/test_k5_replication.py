@@ -9,7 +9,8 @@ import subprocess
 import sys
 import tempfile
 import unittest
-from unittest.mock import patch
+from types import SimpleNamespace
+from unittest.mock import Mock, patch
 import zipfile
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -81,6 +82,62 @@ class ReplicationTests(unittest.TestCase):
         plan=self.create()
         self.assertEqual(len(set(plan['seeds'])),3)
         self.assertNotIn(1143445439,plan['seeds'])
+        self.assertFalse(list(self.folder.glob('session-*')))
+
+    def test_store_python_alias_is_not_opened_when_hashing_loaded_runtime(self):
+        image=Path(self.temp.name)/'real Python runtime.exe';image.write_bytes(b'SOFTWARE EXECUTABLE FIXTURE')
+        alias=r'C:\Users\Shadyy\AppData\Local\Microsoft\WindowsApps\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\python.exe'
+        def loaded_image(module,buffer,size):
+            self.assertIsNone(module);buffer.value=str(image);return len(str(image))
+        api=Mock(side_effect=loaded_image)
+        with patch.object(rep.sys,'platform','win32'),patch.object(rep.sys,'executable',alias), \
+                patch('ctypes.WinDLL',return_value=SimpleNamespace(GetModuleFileNameW=api),create=True):
+            runtime=rep.python_runtime()
+        self.assertEqual(runtime['executable_sha256'],rep.digest(image.read_bytes()))
+        self.assertEqual(runtime['executable_path'],str(image.resolve()))
+        api.assert_called_once()
+
+    def test_ordinary_runtime_still_requires_executable_bytes(self):
+        image=Path(self.temp.name)/'python';image.write_bytes(b'ORDINARY RUNTIME FIXTURE')
+        with patch.object(rep.sys,'platform','linux'),patch.object(rep.sys,'executable',str(image)):
+            self.assertEqual(rep.python_runtime()['executable_sha256'],rep.digest(image.read_bytes()))
+            image.unlink()
+            with self.assertRaises(OSError):rep.python_runtime()
+
+    def test_native_runtime_lookup_failure_does_not_use_unverified_alias(self):
+        api=Mock(return_value=0)
+        with patch.object(rep.sys,'platform','win32'), \
+                patch('ctypes.WinDLL',return_value=SimpleNamespace(GetModuleFileNameW=api),create=True):
+            with self.assertRaisesRegex(ValueError,'could not locate'):rep.python_runtime()
+
+    def test_truncated_native_runtime_path_is_rejected(self):
+        api=Mock(side_effect=lambda module,buffer,size:size)
+        with patch.object(rep.sys,'platform','win32'), \
+                patch('ctypes.WinDLL',return_value=SimpleNamespace(GetModuleFileNameW=api),create=True):
+            with self.assertRaisesRegex(ValueError,'truncated'):rep.python_runtime()
+
+    def test_runtime_change_blocks_collection_without_consuming_attempt(self):
+        image=Path(self.temp.name)/'python';image.write_bytes(b'ORIGINAL RUNTIME FIXTURE')
+        with patch.object(rep,'runtime_executable',return_value=image):
+            self.create();saved=(self.folder/'plan.json').read_bytes()
+            image.write_bytes(b'CHANGED RUNTIME FIXTURE');self.fresh_boot()
+            with self.assertRaisesRegex(ValueError,'Python runtime changed'):
+                rep.prepare(self.repo,self.folder,self.meta)
+        self.assertEqual((self.folder/'plan.json').read_bytes(),saved)
+        self.assertFalse(list(self.folder.glob('session-*')))
+
+    def test_startup_alias_failure_recovery_preserves_logs_and_progress_archive(self):
+        self.folder.mkdir(parents=True)
+        log=self.folder/'controller-error-before-repair.json';log.write_text('{"error":"alias read failed"}')
+        previous=self.repo/'out/k5-replication-evidence-before-repair.zip'
+        previous.write_bytes(b'EXISTING PROGRESS ZIP FIXTURE')
+        with patch.object(rep,'python_runtime',side_effect=OSError(22,'Invalid argument','WindowsApps/python.exe')):
+            with self.assertRaises(OSError):rep.prepare(self.repo,self.folder,self.meta)
+        self.assertFalse((self.folder/'plan.json').exists())
+        self.assertFalse(list(self.folder.glob('session-*')))
+        self.create()
+        self.assertEqual(log.read_text(),'{"error":"alias read failed"}')
+        self.assertEqual(previous.read_bytes(),b'EXISTING PROGRESS ZIP FIXTURE')
         self.assertFalse(list(self.folder.glob('session-*')))
 
     def test_plan_cannot_be_reseeded_by_repeated_invocation(self):

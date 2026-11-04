@@ -92,8 +92,32 @@ def validate_host(meta, policy):
     return env
 
 
+def runtime_executable():
+    """Locate the loaded image, not a Microsoft Store app-execution alias."""
+    if sys.platform != 'win32':
+        return Path(sys.executable).resolve(strict=True)
+    import ctypes
+    from ctypes import wintypes
+    kernel32 = ctypes.WinDLL('kernel32', use_last_error=True)
+    module_name = kernel32.GetModuleFileNameW
+    module_name.argtypes = (wintypes.HMODULE, wintypes.LPWSTR, wintypes.DWORD)
+    module_name.restype = wintypes.DWORD
+    buffer = ctypes.create_unicode_buffer(32768)
+    count = module_name(None, buffer, len(buffer))
+    if count == 0:
+        raise ValueError('Windows could not locate the loaded Python executable (GetModuleFileNameW).')
+    if count >= len(buffer):
+        raise ValueError('Windows returned a truncated Python executable path.')
+    return Path(buffer.value).resolve(strict=True)
+
+
 def python_runtime():
-    return dict(version=sys.version, executable_sha256=digest(Path(sys.executable).read_bytes()))
+    image = runtime_executable()
+    try:
+        hashed = digest(image.read_bytes())
+    except OSError as exc:
+        raise ValueError(f'Cannot hash the loaded Python executable {image}: {exc}') from exc
+    return dict(version=sys.version, executable_sha256=hashed, executable_path=str(image))
 
 
 def load_plan(folder):

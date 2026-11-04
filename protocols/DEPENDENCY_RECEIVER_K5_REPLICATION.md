@@ -32,6 +32,11 @@ Compiler, linker and disassembler versions and hashes are recorded before and
 after collection; Python's version/executable hash is fixed for the series.
 Inherited CL/_CL_ compiler-option overrides are rejected. Address layouts may
 vary across boots, while each run must retain its single measured branch PC.
+On Windows, the Python fingerprint hashes the loaded process executable located
+by GetModuleFileNameW, with its resolved path recorded. This supports Microsoft
+Store launch aliases without weakening the executable-byte check. A setup
+failure before plan creation consumes no attempt; retain its logs and progress
+archive when applying the compatibility repair. Existing plans are not migrated.
 Use Windows Restart between attempts; sleep or hibernation does not create a
 new boot. The runner does not reboot the computer or change security settings.
 
