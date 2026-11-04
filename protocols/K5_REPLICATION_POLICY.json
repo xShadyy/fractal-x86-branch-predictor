@@ -1,0 +1,38 @@
+{
+  "baseline_environment": {
+    "bios_version": "FA9",
+    "cores": 8,
+    "cpu_name": "AMD Ryzen 7 9800X3D 8-Core Processor",
+    "cpu_vendor": "AuthenticAMD",
+    "hypervisor_present": true,
+    "logical_processors": 16,
+    "microcode_update_revision_hex": "3540400b",
+    "windows_build": "26200",
+    "windows_version": "10.0.26200"
+  },
+  "core_sha256_lf": {
+    "programs/cpu_features.c": "d20d0e73c0078c07202493a22ac1187a50e98d2f73b431e02534e8463733370a",
+    "programs/cpu_features.h": "60aeace9e1b812f10c1de5454e9db9536360d15c9254eebc0ec4a8d4b88d07da",
+    "programs/dependency_receiver.c": "56898953b25f173ee681f3e21bb8fe49060578dd3feb5ebb535128e795b7104b",
+    "programs/dependency_receiver_code.h": "8c78e6273a1caf9eab31c1108cab218f531ca0018f2c21670d14370bdd6bf17d",
+    "programs/dependency_receiver_layout.S": "1ab4b1de69639c57dc080e55dfc27e2204bdebf42b5d751bd784afe0f4b2290e",
+    "protocols/DEPENDENCY_RECEIVER_K5.md": "b224bd833d1d9c73be1ffce9ed28ec2fab7f471c7da13a9541adf2ebe500a6ea",
+    "scripts/analyze_cache_probe.py": "8d119ec1679bcb98463f429d9eaa95daeec405eae470353301038c7e1cf2079c",
+    "scripts/analyze_dependency_receiver.py": "92d393aa6915a0fc601a56cfed11516b26232af3d5c07075d91ef67694acd724",
+    "scripts/check_dependency_receiver_windows.ps1": "40a605df94689142661adfae4f0be7e364cc5c783dff3708e39effad35bb0b0a",
+    "scripts/dependency_receiver_contract.py": "bfac9c9cd1ed9c3e24b5a78d519f46bd59283a0f54f16b6f3953d655624093e6",
+    "scripts/verify_dependency_receiver_layout.py": "d5457723f359109e16cb71a9b524b273ca2399603dafe0601de4af263f3c7abe"
+  },
+  "expected_cpuid_signature": "0x00b40f40",
+  "exploratory_pilot_seed": 1143445439,
+  "fractal_paper_claims_reproduced": false,
+  "mechanism_proven": false,
+  "numerical_margin_pp": 5,
+  "pilot_in_confirmatory_set": false,
+  "primary_endpoint": "p0_adjusted_training_contrast_plain_minus_dependency",
+  "required_gates_per_run": 88,
+  "run_count": 3,
+  "schema": 1,
+  "sessions_after_new_windows_boots": true,
+  "study": "k5_windows_three_boot_replication_v1"
+}

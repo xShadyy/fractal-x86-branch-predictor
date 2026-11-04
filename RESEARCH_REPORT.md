@@ -1,14 +1,33 @@
 # Native x86 branch studies: consolidated research record
 
-**Physical evidence reported through 2 November 2026 UTC; K4 series and K5/K6 development reviewed 3 November 2026.** These are Windows x86 measurements on one reported AMD Ryzen 7 9800X3D workstation, plus separate Linux/QEMU development checks. K4 shows a repeated, training-specific, serialization-sensitive fresh-marker cache signature in a pilot and three planned follow-up process sessions. No branch-misprediction counter was measured, mechanism attribution remains incomplete, and no physical privilege-boundary influence was measured. A passing apparatus gate does not by itself identify a hardware mechanism.
+**Evidence reviewed through 4 November 2026 UTC.** These are Windows x86 measurements on one reported AMD Ryzen 7 9800X3D workstation, plus separate Linux/QEMU development checks. K4 shows a repeated, training-specific, serialization-sensitive fresh-marker cache signature in a pilot and three planned follow-up process sessions. K5 now has one audited Windows pilot with a distinct dependency control and a prospective three-boot replication plan. No branch-misprediction counter was measured, mechanism attribution remains incomplete, and no physical privilege-boundary influence was measured. A passing apparatus gate does not by itself identify a hardware mechanism.
 
-## Prospective distinct control and privilege harness
+## K5 audited pilot and K6 privilege harness
 
 [K5](protocols/DEPENDENCY_RECEIVER_K5.md) introduces a resolved-condition
 marker-address dependency as a distinct intervention alongside CPUID. Its native
 development smoke completed with two failed plain matched-training gates and
-remains inconclusive; no K5 Windows result is available. The failed developmental
-PC-recording build was corrected without collecting or reclassifying Windows data.
+remains inconclusive. The failed developmental PC-recording build was corrected
+before the Windows pilot. The pilot on 4 November used seed 1143445439 and source
+revision `7b5208d14b6cecceb024139e6e0a0fe667549eac`. All 393216 rows replay;
+all 88 gates pass, source/artifact hashes verify, and the saved analysis is
+reproduced exactly. Primary p0 plain-minus-mask is +99.683 percentage points,
+95% within-run interval [+99.414,+99.878]. Mask is +0.000 [0.000,0.000] and
+CPUID is +0.000 [-0.073,+0.073]. Recorded CPUID hypervisor=1 agrees with
+Windows HypervisorPresent=true. A targeted linked-harness consistency review
+found no mismatch in the preparation, shared-site, architectural-return or
+reload paths. These observations do not establish a specific predictor mechanism.
+
+The original evidence ZIP SHA256 is
+`d059e2a7b588dc328e5d08599061d4b845129801823ed217521ba60d438bf36f`;
+the original session ZIP SHA256 is
+`f149443349c7a6767e59b5ec16278f2ef777434cb895c43aa5626fffa5c873a8`.
+The session wrapper reported an archive-counting error after K5 completed:
+its wildcard included the separate source ZIP. That packaging bug was repaired
+in `25a7f7d0160298895c798b52d663f77b28230d5d` without modifying the measurements.
+The [prospective replication](protocols/DEPENDENCY_RECEIVER_K5_REPLICATION.md)
+excludes this exploratory pilot and retains three new fixed-seed attempts on
+three new Windows boots. No new replication measurements are reported yet.
 
 [K6](protocols/FRACTAL_PRIVILEGE_K6.md) uses actual user and kernel fthreads in
 the pinned upstream Fractal x86 OS. The [development record](results/k5-k6-development/README.md)

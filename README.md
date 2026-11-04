@@ -7,8 +7,11 @@ The Windows studies in this repository run in one ordinary user-mode process. Th
 ## Current evidence
 
 [K5](protocols/DEPENDENCY_RECEIVER_K5.md) adds a distinct resolved-condition
-marker-address dependency alongside plain and CPUID modes. Its Windows pilot is
-pending. [K6](protocols/FRACTAL_PRIVILEGE_K6.md) supplies a pinned Fractal x86
+marker-address dependency alongside plain and CPUID modes. The audited Windows
+pilot on 4 November passes 88/88 gates and has a +99.683 percentage-point primary
+contrast, with 95% within-run interval [+99.414,+99.878]. Both CPUID and host
+inventory report a hypervisor present. A separate [three-boot replication plan](protocols/DEPENDENCY_RECEIVER_K5_REPLICATION.md)
+is prepared; its new measurements remain pending. [K6](protocols/FRACTAL_PRIVILEGE_K6.md) supplies a pinned Fractal x86
 payload for user/user, kernel/kernel, user/kernel and kernel/user pairs. The
 recorded [QEMU smoke](results/k5-k6-development/README.md) verifies actual CPLs
 and a common measured instruction address across all four pairs. Physical K6
@@ -34,8 +37,9 @@ Both runners report collection status separately from scientific validity. An in
 ## Run on Windows in VS Code
 
 1. Install [VS Code](https://code.visualstudio.com/), Visual Studio Build Tools with **Desktop development with C++** and a Windows SDK, and Python 3.
-2. Open this repository in VS Code. Select **Terminal → Run Task → K4 context-prefix diagnostic (Windows)** for the current apparatus follow-up.
-3. At completion, retain the full `out\context-receiver-windows-*.zip` printed after `READY TO SHARE:`. It contains the executable, raw trace, linked disassembly, build provenance and analysis. A failed control also produces an evidence ZIP and must be kept.
+2. Open this repository in VS Code. Select **Terminal → Run Task → K5 replication: collect next Windows session**. The first invocation freezes the source and all three seeds without collecting data.
+3. Restart Windows and run that same task once. Complete three new-boot attempts, restarting Windows before each attempt. The controller retains failed/null runs and prevents same-boot retries or a fourth attempt.
+4. After `Recorded attempts: 3/3`, retain the latest `out\k5-replication-evidence-*.zip` printed after `READY TO SHARE:`. It contains every attempt, raw evidence, the frozen plan/source and independently replayed analysis. The **K5 replication: validate and package evidence** task performs no collection.
 
 For the broader baseline and exploratory suite, select **Complete Windows research pilot (all studies)**. That task writes a single `out\suite-evidence-*.zip`. Other named tasks in `.vscode/tasks.json` run individual studies. The `out/` directory is ignored by Git; review host inventory files before sharing them.
 
