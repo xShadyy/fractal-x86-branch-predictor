@@ -20,13 +20,17 @@ try {
     }
     Copy-Item -LiteralPath $manifestPath -Destination (Join-Path $session 'boot-manifest.json')
     if (-not $SkipWindows) {
-        $before = @((Get-ChildItem -LiteralPath $out -Filter 'dependency-receiver-windows-*.zip').FullName)
+        # The runner also writes .sources.zip; count only the complete evidence ZIP.
+        $k5ArchivePattern = '^dependency-receiver-windows-[0-9]{8}T[0-9]{9}Z[.]zip$'
+        $before = @(Get-ChildItem -LiteralPath $out -File -Filter 'dependency-receiver-windows-*.zip' |
+            Where-Object { $_.Name -cmatch $k5ArchivePattern } | Select-Object -ExpandProperty FullName)
         try {
             & powershell.exe -NoProfile -ExecutionPolicy Bypass -File (Join-Path $root 'scripts\check_dependency_receiver_windows.ps1')
             if ($LASTEXITCODE -ne 0) { throw "K5 runner exited with $LASTEXITCODE" }
             $status.windows_k5 = 'collected_see_its_analysis_for_validity'
         } catch { $status.windows_k5='software_error'; $status.failures += $_.Exception.Message }
-        $new = @(Get-ChildItem -LiteralPath $out -Filter 'dependency-receiver-windows-*.zip' | Where-Object { $before -notcontains $_.FullName })
+        $new = @(Get-ChildItem -LiteralPath $out -File -Filter 'dependency-receiver-windows-*.zip' |
+            Where-Object { $_.Name -cmatch $k5ArchivePattern -and $before -notcontains $_.FullName })
         foreach ($file in $new) { Copy-Item -LiteralPath $file.FullName -Destination $session }
         if ($new.Count -ne 1) { $status.failures += 'Expected exactly one new K5 archive; inspect out/.' }
     }
