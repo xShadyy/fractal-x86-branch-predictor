@@ -1,0 +1,52 @@
+{
+  "source_sha256": "8ee05fcccc9c80769c812bdd9f698226b48155aee2dbb6f491798da668182ac2",
+  "positive_validation": {
+    "source_trace_hashes_verified": 48,
+    "alternate_frequency_counter_rank_probability_checks": 48,
+    "total_rows": 240192,
+    "training_label_counts_after_four": [
+      [
+        2419,
+        2581
+      ]
+    ]
+  },
+  "negative_validation": [
+    {
+      "case": "Missing experiment stop marker",
+      "rejected": true,
+      "reason": "Missing or duplicate experiment markers: i_p_uk_e.txt"
+    },
+    {
+      "case": "Duplicate experiment start marker",
+      "rejected": true,
+      "reason": "Missing or duplicate experiment markers: i_p_uk_e.txt"
+    },
+    {
+      "case": "Filename and receiver privilege disagree",
+      "rejected": true,
+      "reason": "Filename/header mismatch: i_p_uu_e.txt"
+    },
+    {
+      "case": "Unrecognized experiment filename",
+      "rejected": true,
+      "reason": "Unexpected trace filename: unrecognized.txt"
+    },
+    {
+      "case": "One sample missing",
+      "rejected": true,
+      "reason": "Expected 5004 published rows: i_p_uk_e.txt"
+    },
+    {
+      "case": "Invalid training label",
+      "rejected": true,
+      "reason": "Malformed latency row: i_p_uk_e.txt"
+    },
+    {
+      "case": "One-byte changed source archive",
+      "rejected": true,
+      "reason": "Source SHA256 mismatch; analysis output not created"
+    }
+  ],
+  "result": "pass"
+}

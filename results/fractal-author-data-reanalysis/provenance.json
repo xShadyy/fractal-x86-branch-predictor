@@ -1,0 +1,89 @@
+{
+  "scope": "Authors M1 data reanalysis only. No new Windows, AMD, cross-privilege, or other hardware measurements.",
+  "source": {
+    "concept_doi": "10.5281/zenodo.19556693",
+    "version_doi": "10.5281/zenodo.19557478",
+    "url": "https://zenodo.org/api/records/19557478/files/fractal.zip/content",
+    "bytes": 887119,
+    "sha256": "8ee05fcccc9c80769c812bdd9f698226b48155aee2dbb6f491798da668182ac2"
+  },
+  "analysis": {
+    "recorded_command": "python reanalyze_authors_data.py --archive ../fractal-official-artifact-research/fractal.zip --output portable-results --plots",
+    "recorded_cwd": "/workspace/scratch/b239a0078955/fractal-official-reanalysis-20261105",
+    "repo_command": "python scripts/reanalyze_fractal_authors_data.py --archive out/fractal-authors-19557478.zip --download --output out/fractal-author-data-reanalysis --plots",
+    "exit_code": 0,
+    "source_script_sha256": "f0fb373de1f43f83b55835d19ff6114e95843cdacb01a007b8042976d8c05d7f",
+    "implementation": "Independent Python analyzer; does not import or execute author code"
+  },
+  "environment": {
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.39",
+    "matplotlib": "3.10.8",
+    "numpy": "2.3.5"
+  },
+  "private_author_plot_check": {
+    "unmodified": {
+      "scripts": [
+        "latencies.py",
+        "histograms.py",
+        "plot_all.py"
+      ],
+      "all_exit_code": 1,
+      "failure": "LaTeX type1ec.sty unavailable"
+    },
+    "style_only_adaptation": {
+      "text.usetex": "True -> False",
+      "font.serif": "Computer Modern -> DejaVu Serif",
+      "all_exit_code": 0,
+      "produced": [
+        "figure5.pdf",
+        "figure6.pdf",
+        "figure7.pdf",
+        "figure8.pdf",
+        "table1.pdf"
+      ]
+    },
+    "scope": "Private rendering compatibility check only, not pixel-identical reproduction; original scripts and private outputs not included in repository"
+  },
+  "validation": "validation.json records input integrity, 48 alternate-calculation checks, and seven invalid-input rejection cases",
+  "licensing_discrepancy": "Zenodo record CC-BY-4.0; sibling metadata.toml GPL-3.0 URL; no LICENSE/COPYING file in ZIP. No original source or raw traces vendored.",
+  "output_hash_note": "Recorded file hashes identify this run. PDF/SVG metadata can prevent bit-identical plot files across runs; verify numeric JSON/CSV contents and source hash.",
+  "outputs": {
+    "authors-data-summary.csv": {
+      "bytes": 9767,
+      "sha256": "8504ea90c6c93521334da600c53d862ea7fa41115766b072ae893da731a43111"
+    },
+    "authors-data-summary.json": {
+      "bytes": 54180,
+      "sha256": "b48ac8e82304eef4b4692e84b0ee2ea3d7d66032e80b384416bae4b2d302eb1e"
+    },
+    "authors-m1-descriptive-matrix.pdf": {
+      "bytes": 25792,
+      "sha256": "b9337b06108cb94daf1b61d85e5735a0f2bbb2e677fdcee71270b8f89b39f8af"
+    },
+    "authors-m1-descriptive-matrix.png": {
+      "bytes": 160381,
+      "sha256": "48317c497429b1d5fd9200162a2f0b1e137be3e51a9e6eaf88371d66f2934ca7"
+    },
+    "authors-m1-descriptive-matrix.svg": {
+      "bytes": 125109,
+      "sha256": "af82d5d2dfb2dec3a51097b73ed0e666e16eece7cc709f0d6a4903d41c1561a6"
+    },
+    "authors-m1-reference-traces.pdf": {
+      "bytes": 23935,
+      "sha256": "20c8d85028738779a4ca1d2b219e5aa43ab50c1d4c5362af904a202a7701b878"
+    },
+    "authors-m1-reference-traces.png": {
+      "bytes": 170962,
+      "sha256": "45d01b11a47b296ebd9aae12d26e8cf72f6496bc118cdcb69031e858e1664c92"
+    },
+    "authors-m1-reference-traces.svg": {
+      "bytes": 197519,
+      "sha256": "c4ce68522870f8575e0b14599ec6bcb868867cd225c6215b8be0197c3c8bac8f"
+    },
+    "validation.json": {
+      "bytes": 1432,
+      "sha256": "768c06dbc798807bcec549cdc50775b0cac595f17e73ac3b119474973d97baec"
+    }
+  }
+}
