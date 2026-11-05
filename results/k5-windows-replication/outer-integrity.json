@@ -1,0 +1,33 @@
+{
+  "archives": [
+    {
+      "archive": "k5-replication-evidence-20261105T141140878Z-2ab6eab2.zip",
+      "sha256": "7061d2fe89a232b64e0fe6480e1537e18f26386830d1128e2ea1f123d270ad1b",
+      "outer_hashes_verified": 31,
+      "frozen_sources_matched": 16,
+      "plan_sha256": "8c381e36c4cc12df599bcd56aa55dca6247d873774f234d8312c5721d838a0aa",
+      "recorded_attempts": 1,
+      "outcome": "pending_sessions"
+    },
+    {
+      "archive": "k5-replication-evidence-20261105T141417328Z-a331cf71.zip",
+      "sha256": "dc09137a1dcc12a1721ce13bef5bd2e542e8d3cc65c13446c4205213d4f89bf9",
+      "outer_hashes_verified": 37,
+      "frozen_sources_matched": 16,
+      "plan_sha256": "8c381e36c4cc12df599bcd56aa55dca6247d873774f234d8312c5721d838a0aa",
+      "recorded_attempts": 2,
+      "outcome": "pending_sessions"
+    },
+    {
+      "archive": "k5-replication-evidence-20261105T141751734Z-5dc97b6d.zip",
+      "sha256": "5bc63b07782e23d16eee4f03bd81babf10ff5c7b120329cd51f9ea1cc8a29440",
+      "outer_hashes_verified": 43,
+      "frozen_sources_matched": 16,
+      "plan_sha256": "8c381e36c4cc12df599bcd56aa55dca6247d873774f234d8312c5721d838a0aa",
+      "recorded_attempts": 3,
+      "outcome": "replicated_k5_numerical_signature_this_host_configuration"
+    }
+  ],
+  "all_progress_snapshots_preserve_previous_records": true,
+  "same_plan_as_previous_day": true
+}

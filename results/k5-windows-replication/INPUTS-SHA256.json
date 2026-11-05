@@ -1,0 +1,17 @@
+{
+  "k5-replication-audit-20261105.zip": {
+    "bytes": 17369,
+    "copied_byte_for_byte": true,
+    "sha256": "51bace2b72d45caa6c13b26cd20b50731ee44d30d8b0a4d5cd9fd88b3eab8529"
+  },
+  "k5-replication-evidence-20261104T175337116Z-3241a92d.zip": {
+    "bytes": 54942,
+    "copied_byte_for_byte": true,
+    "sha256": "d09285e939f9980fba3aa834d6d1980802dabb29b054f38d6d1ac10ed57ff16e"
+  },
+  "k5-replication-evidence-20261105T141751734Z-5dc97b6d.zip": {
+    "bytes": 17539308,
+    "copied_byte_for_byte": true,
+    "sha256": "5bc63b07782e23d16eee4f03bd81babf10ff5c7b120329cd51f9ea1cc8a29440"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "copy_validation_date": "2026-11-05",
+  "input_files_copied_byte_for_byte": true,
+  "zip_crc_checks_passed": true,
+  "final_outer_manifest_entries": 43,
+  "prior_outer_manifest_entries": 25,
+  "all_input_hashes_match": true,
+  "plan_unchanged_from_prior_day": true,
+  "prior_records_preserved": true,
+  "frozen_sources_match_commit": 16,
+  "saved_aggregate_equals_previously_replayed_analysis": true,
+  "primary_table_matches_summary": true,
+  "original_raw_evidence_unmodified": true,
+  "no_new_measurements": true
+}

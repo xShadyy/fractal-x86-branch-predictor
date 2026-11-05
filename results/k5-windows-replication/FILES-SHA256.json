@@ -1,0 +1,13 @@
+{
+  "INPUTS-SHA256.json": "8d6cb87f6ba599f9608a3081cd42886206a29b66c6ff3da3b7288a89ff40bd33",
+  "PUBLICATION-VALIDATION.json": "708a7a7a91408ed45af42d1d33baa515cd8eb74f04b7f6ba05fe91991b9e2cab",
+  "README.md": "f23be6e0805abffab9194edf2e7195ca2976faeed0f1e25074c0cd5ac9d84684",
+  "analysis-replayed.json": "91c67c440a3629a57a6a0d9df7577ffd342a630c6e8c7d0ef3d6ce382877b97f",
+  "audit_raw_counts.py": "cefe75031af6d6f5f468f950243b26de933bab4c7c54187cd9a1f1ba42c5468d",
+  "independent-counts-and-pe.json": "23ede0dd0a9da189f007ff621276fef7ebd3a7f22316842a655ffb277bbeb5a1",
+  "k5-replication-audit-20261105.zip": "51bace2b72d45caa6c13b26cd20b50731ee44d30d8b0a4d5cd9fd88b3eab8529",
+  "k5-replication-evidence-20261104T175337116Z-3241a92d.zip": "d09285e939f9980fba3aa834d6d1980802dabb29b054f38d6d1ac10ed57ff16e",
+  "k5-replication-evidence-20261105T141751734Z-5dc97b6d.zip": "5bc63b07782e23d16eee4f03bd81babf10ff5c7b120329cd51f9ea1cc8a29440",
+  "outer-integrity.json": "1b910e17f7cab4923f9d68b2d142b137b1d498aa8b04d89bad6a9dc698f1076f",
+  "summary.json": "0a77e615fcc016cb7b9aa82cbbe46eed91f018ff421020c0b7cd9ed6e8b942c9"
+}

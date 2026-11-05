@@ -1,0 +1,239 @@
+{
+  "plan_id": "b79e0257-13a1-421c-b30f-ec33f3fb7cdf",
+  "source_revision": "09d6a7f4da1ceda061cfb07cdca344f282dbcedc",
+  "aggregate_replay_matches": true,
+  "outcome": "replicated_k5_numerical_signature_this_host_configuration",
+  "recorded_attempts": 3,
+  "validated_runs": 3,
+  "total_samples": 1179648,
+  "deviations": [],
+  "descriptive_primary_mean_pp": 99.71516927083334,
+  "descriptive_primary_range_pp": [
+    99.609375,
+    99.8291015625
+  ],
+  "mechanism_proven": false,
+  "fractal_paper_claims_reproduced": false,
+  "user_to_kernel_tested": false,
+  "sessions": [
+    {
+      "ordinal": 1,
+      "seed": 1059577839,
+      "boot_utc": "2026-11-05T12:15:18.5000000Z",
+      "sample_count": 393216,
+      "validated": true,
+      "controls_passed": true,
+      "gates_passed": 88,
+      "gates_total": 88,
+      "numerical_signature": true,
+      "archive": "dependency-receiver-windows-20261105T141143898Z.zip",
+      "archive_sha256": "aa60c838c31c69b714fa71385f0382a0e0fda3d71a907d5876276ba722f191fc",
+      "primary_p0": {
+        "plain_adjusted": {
+          "effect_pp": 99.7314453125,
+          "ci95_pp": [
+            99.5361328125,
+            99.90234375
+          ]
+        },
+        "mask_adjusted": {
+          "effect_pp": 0.0244140625,
+          "ci95_pp": [
+            0,
+            0.0732421875
+          ]
+        },
+        "cpuid_adjusted": {
+          "effect_pp": 0.0244140625,
+          "ci95_pp": [
+            0,
+            0.0732421875
+          ]
+        },
+        "interaction": {
+          "effect_pp": 99.70703125,
+          "ci95_pp": [
+            99.51171875,
+            99.8779296875
+          ]
+        }
+      },
+      "secondary_p1": {
+        "plain_adjusted": {
+          "effect_pp": 99.755859375,
+          "ci95_pp": [
+            99.6337890625,
+            99.853515625
+          ]
+        },
+        "mask_adjusted": {
+          "effect_pp": 0,
+          "ci95_pp": [
+            0,
+            0
+          ]
+        },
+        "cpuid_adjusted": {
+          "effect_pp": 0.0244140625,
+          "ci95_pp": [
+            0,
+            0.0732421875
+          ]
+        },
+        "interaction": {
+          "effect_pp": 99.755859375,
+          "ci95_pp": [
+            99.6337890625,
+            99.853515625
+          ]
+        }
+      }
+    },
+    {
+      "ordinal": 2,
+      "seed": 3249956994,
+      "boot_utc": "2026-11-05T14:13:47.5000000Z",
+      "sample_count": 393216,
+      "validated": true,
+      "controls_passed": true,
+      "gates_passed": 88,
+      "gates_total": 88,
+      "numerical_signature": true,
+      "archive": "dependency-receiver-windows-20261105T141420260Z.zip",
+      "archive_sha256": "239ea5f78bd144a7157c5f5ce0686c145d705d08689f9481b4c97a891dfd57dd",
+      "primary_p0": {
+        "plain_adjusted": {
+          "effect_pp": 99.609375,
+          "ci95_pp": [
+            99.4384765625,
+            99.7802734375
+          ]
+        },
+        "mask_adjusted": {
+          "effect_pp": 0,
+          "ci95_pp": [
+            0,
+            0
+          ]
+        },
+        "cpuid_adjusted": {
+          "effect_pp": -0.0244140625,
+          "ci95_pp": [
+            -0.0732421875,
+            0
+          ]
+        },
+        "interaction": {
+          "effect_pp": 99.609375,
+          "ci95_pp": [
+            99.4384765625,
+            99.7802734375
+          ]
+        }
+      },
+      "secondary_p1": {
+        "plain_adjusted": {
+          "effect_pp": 99.8291015625,
+          "ci95_pp": [
+            99.6337890625,
+            99.9755859375
+          ]
+        },
+        "mask_adjusted": {
+          "effect_pp": 0,
+          "ci95_pp": [
+            0,
+            0
+          ]
+        },
+        "cpuid_adjusted": {
+          "effect_pp": 0,
+          "ci95_pp": [
+            0,
+            0
+          ]
+        },
+        "interaction": {
+          "effect_pp": 99.8291015625,
+          "ci95_pp": [
+            99.6337890625,
+            99.9755859375
+          ]
+        }
+      }
+    },
+    {
+      "ordinal": 3,
+      "seed": 1849279219,
+      "boot_utc": "2026-11-05T14:17:05.5000000Z",
+      "sample_count": 393216,
+      "validated": true,
+      "controls_passed": true,
+      "gates_passed": 88,
+      "gates_total": 88,
+      "numerical_signature": true,
+      "archive": "dependency-receiver-windows-20261105T141754999Z.zip",
+      "archive_sha256": "ef523eb16e9b392be5b78db8f5be976971f5a2c9564439cbdb4d4cc49fa39889",
+      "primary_p0": {
+        "plain_adjusted": {
+          "effect_pp": 99.8291015625,
+          "ci95_pp": [
+            99.70703125,
+            99.9267578125
+          ]
+        },
+        "mask_adjusted": {
+          "effect_pp": 0,
+          "ci95_pp": [
+            0,
+            0
+          ]
+        },
+        "cpuid_adjusted": {
+          "effect_pp": 0,
+          "ci95_pp": [
+            0,
+            0
+          ]
+        },
+        "interaction": {
+          "effect_pp": 99.8291015625,
+          "ci95_pp": [
+            99.70703125,
+            99.9267578125
+          ]
+        }
+      },
+      "secondary_p1": {
+        "plain_adjusted": {
+          "effect_pp": 99.7802734375,
+          "ci95_pp": [
+            99.6337890625,
+            99.9267578125
+          ]
+        },
+        "mask_adjusted": {
+          "effect_pp": 0,
+          "ci95_pp": [
+            0,
+            0
+          ]
+        },
+        "cpuid_adjusted": {
+          "effect_pp": 0,
+          "ci95_pp": [
+            0,
+            0
+          ]
+        },
+        "interaction": {
+          "effect_pp": 99.7802734375,
+          "ci95_pp": [
+            99.6337890625,
+            99.9267578125
+          ]
+        }
+      }
+    }
+  ]
+}

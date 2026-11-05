@@ -1,0 +1,1729 @@
+{
+  "bootstrap_scope": "per-run 16-block cycles; no pooled between-host confidence interval",
+  "descriptive_primary_mean": 0.9971516927083334,
+  "descriptive_primary_range": [
+    0.99609375,
+    0.998291015625
+  ],
+  "deviations": [],
+  "environment_scope": "one Windows host with a hypervisor present",
+  "exploratory_pilot_included": false,
+  "fractal_paper_claims_reproduced": false,
+  "local_boot_records_are_independent_attestation": false,
+  "mechanism_proven": false,
+  "outcome": "replicated_k5_numerical_signature_this_host_configuration",
+  "plan_id": "b79e0257-13a1-421c-b30f-ec33f3fb7cdf",
+  "planned_runs": 3,
+  "recorded_attempts": 3,
+  "results": [
+    {
+      "archive": "dependency-receiver-windows-20261105T141143898Z.zip",
+      "archive_sha256": "aa60c838c31c69b714fa71385f0382a0e0fda3d71a907d5876276ba722f191fc",
+      "boot_utc": "2026-11-05T12:15:18.5000000Z",
+      "controls_passed": true,
+      "cpu": {
+        "clflush_bytes": "64",
+        "hypervisor": "1",
+        "invariant_tsc": "1",
+        "rdtscp": "1",
+        "signature": "0x00b40f40",
+        "vendor": "AuthenticAMD"
+      },
+      "failed_gates": [],
+      "gates_passed": 88,
+      "gates_total": 88,
+      "mechanism_conclusion": "not_proven",
+      "numerical_signature": true,
+      "ordinal": 1,
+      "primary": {
+        "components": {
+          "cpuid": {
+            "candidate": {
+              "ci95": [
+                0,
+                0
+              ],
+              "cycle_differences": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "hit_rate_difference": 0,
+              "interval_scope": "within_run_16_block_cycles"
+            },
+            "no_probe": {
+              "ci95": [
+                -0.000732421875,
+                0
+              ],
+              "cycle_differences": [
+                0,
+                -0.00390625,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "hit_rate_difference": -0.000244140625,
+              "interval_scope": "within_run_16_block_cycles"
+            }
+          },
+          "mask": {
+            "candidate": {
+              "ci95": [
+                0,
+                0.000732421875
+              ],
+              "cycle_differences": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0.00390625,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "hit_rate_difference": 0.000244140625,
+              "interval_scope": "within_run_16_block_cycles"
+            },
+            "no_probe": {
+              "ci95": [
+                0,
+                0
+              ],
+              "cycle_differences": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "hit_rate_difference": 0,
+              "interval_scope": "within_run_16_block_cycles"
+            }
+          },
+          "plain": {
+            "candidate": {
+              "ci95": [
+                0.995361328125,
+                0.9990234375
+              ],
+              "cycle_differences": [
+                1,
+                0.99609375,
+                0.9921875,
+                1,
+                1,
+                0.9921875,
+                0.98828125,
+                1,
+                1,
+                1,
+                1,
+                1,
+                0.99609375,
+                1,
+                0.9921875,
+                1
+              ],
+              "hit_rate_difference": 0.997314453125,
+              "interval_scope": "within_run_16_block_cycles"
+            },
+            "no_probe": {
+              "ci95": [
+                0,
+                0
+              ],
+              "cycle_differences": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "hit_rate_difference": 0,
+              "interval_scope": "within_run_16_block_cycles"
+            }
+          }
+        },
+        "cpuid_adjusted": {
+          "ci95": [
+            0,
+            0.000732421875
+          ],
+          "cycle_differences": [
+            0,
+            0.00390625,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "hit_rate_difference": 0.000244140625,
+          "interval_scope": "within_run_16_block_cycles"
+        },
+        "interaction": {
+          "ci95": [
+            0.9951171875,
+            0.998779296875
+          ],
+          "cycle_differences": [
+            1,
+            0.99609375,
+            0.9921875,
+            1,
+            1,
+            0.9921875,
+            0.98828125,
+            1,
+            1,
+            1,
+            0.99609375,
+            1,
+            0.99609375,
+            1,
+            0.9921875,
+            1
+          ],
+          "hit_rate_difference": 0.9970703125,
+          "interval_scope": "within_run_16_block_cycles"
+        },
+        "mask_adjusted": {
+          "ci95": [
+            0,
+            0.000732421875
+          ],
+          "cycle_differences": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0.00390625,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "hit_rate_difference": 0.000244140625,
+          "interval_scope": "within_run_16_block_cycles"
+        },
+        "plain_adjusted": {
+          "ci95": [
+            0.995361328125,
+            0.9990234375
+          ],
+          "cycle_differences": [
+            1,
+            0.99609375,
+            0.9921875,
+            1,
+            1,
+            0.9921875,
+            0.98828125,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0.99609375,
+            1,
+            0.9921875,
+            1
+          ],
+          "hit_rate_difference": 0.997314453125,
+          "interval_scope": "within_run_16_block_cycles"
+        }
+      },
+      "sample_count": 393216,
+      "secondary": {
+        "components": {
+          "cpuid": {
+            "candidate": {
+              "ci95": [
+                0,
+                0
+              ],
+              "cycle_differences": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "hit_rate_difference": 0,
+              "interval_scope": "within_run_16_block_cycles"
+            },
+            "no_probe": {
+              "ci95": [
+                -0.000732421875,
+                0
+              ],
+              "cycle_differences": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                -0.00390625
+              ],
+              "hit_rate_difference": -0.000244140625,
+              "interval_scope": "within_run_16_block_cycles"
+            }
+          },
+          "mask": {
+            "candidate": {
+              "ci95": [
+                0,
+                0
+              ],
+              "cycle_differences": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "hit_rate_difference": 0,
+              "interval_scope": "within_run_16_block_cycles"
+            },
+            "no_probe": {
+              "ci95": [
+                0,
+                0
+              ],
+              "cycle_differences": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "hit_rate_difference": 0,
+              "interval_scope": "within_run_16_block_cycles"
+            }
+          },
+          "plain": {
+            "candidate": {
+              "ci95": [
+                0.996337890625,
+                0.99853515625
+              ],
+              "cycle_differences": [
+                1,
+                0.99609375,
+                1,
+                0.9921875,
+                0.99609375,
+                0.99609375,
+                0.99609375,
+                1,
+                0.99609375,
+                0.99609375,
+                1,
+                1,
+                0.99609375,
+                0.99609375,
+                1,
+                1
+              ],
+              "hit_rate_difference": 0.99755859375,
+              "interval_scope": "within_run_16_block_cycles"
+            },
+            "no_probe": {
+              "ci95": [
+                0,
+                0
+              ],
+              "cycle_differences": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "hit_rate_difference": 0,
+              "interval_scope": "within_run_16_block_cycles"
+            }
+          }
+        },
+        "cpuid_adjusted": {
+          "ci95": [
+            0,
+            0.000732421875
+          ],
+          "cycle_differences": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0.00390625
+          ],
+          "hit_rate_difference": 0.000244140625,
+          "interval_scope": "within_run_16_block_cycles"
+        },
+        "interaction": {
+          "ci95": [
+            0.996337890625,
+            0.99853515625
+          ],
+          "cycle_differences": [
+            1,
+            0.99609375,
+            1,
+            0.9921875,
+            0.99609375,
+            0.99609375,
+            0.99609375,
+            1,
+            0.99609375,
+            0.99609375,
+            1,
+            1,
+            0.99609375,
+            0.99609375,
+            1,
+            1
+          ],
+          "hit_rate_difference": 0.99755859375,
+          "interval_scope": "within_run_16_block_cycles"
+        },
+        "mask_adjusted": {
+          "ci95": [
+            0,
+            0
+          ],
+          "cycle_differences": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "hit_rate_difference": 0,
+          "interval_scope": "within_run_16_block_cycles"
+        },
+        "plain_adjusted": {
+          "ci95": [
+            0.996337890625,
+            0.99853515625
+          ],
+          "cycle_differences": [
+            1,
+            0.99609375,
+            1,
+            0.9921875,
+            0.99609375,
+            0.99609375,
+            0.99609375,
+            1,
+            0.99609375,
+            0.99609375,
+            1,
+            1,
+            0.99609375,
+            0.99609375,
+            1,
+            1
+          ],
+          "hit_rate_difference": 0.99755859375,
+          "interval_scope": "within_run_16_block_cycles"
+        }
+      },
+      "seed": 1059577839,
+      "thresholds": {
+        "p0": 352,
+        "p1": 329
+      },
+      "user_to_kernel": "not_tested",
+      "validated": true
+    },
+    {
+      "archive": "dependency-receiver-windows-20261105T141420260Z.zip",
+      "archive_sha256": "239ea5f78bd144a7157c5f5ce0686c145d705d08689f9481b4c97a891dfd57dd",
+      "boot_utc": "2026-11-05T14:13:47.5000000Z",
+      "controls_passed": true,
+      "cpu": {
+        "clflush_bytes": "64",
+        "hypervisor": "1",
+        "invariant_tsc": "1",
+        "rdtscp": "1",
+        "signature": "0x00b40f40",
+        "vendor": "AuthenticAMD"
+      },
+      "failed_gates": [],
+      "gates_passed": 88,
+      "gates_total": 88,
+      "mechanism_conclusion": "not_proven",
+      "numerical_signature": true,
+      "ordinal": 2,
+      "primary": {
+        "components": {
+          "cpuid": {
+            "candidate": {
+              "ci95": [
+                -0.000732421875,
+                0
+              ],
+              "cycle_differences": [
+                0,
+                0,
+                -0.00390625,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "hit_rate_difference": -0.000244140625,
+              "interval_scope": "within_run_16_block_cycles"
+            },
+            "no_probe": {
+              "ci95": [
+                0,
+                0
+              ],
+              "cycle_differences": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "hit_rate_difference": 0,
+              "interval_scope": "within_run_16_block_cycles"
+            }
+          },
+          "mask": {
+            "candidate": {
+              "ci95": [
+                0,
+                0
+              ],
+              "cycle_differences": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "hit_rate_difference": 0,
+              "interval_scope": "within_run_16_block_cycles"
+            },
+            "no_probe": {
+              "ci95": [
+                0,
+                0
+              ],
+              "cycle_differences": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "hit_rate_difference": 0,
+              "interval_scope": "within_run_16_block_cycles"
+            }
+          },
+          "plain": {
+            "candidate": {
+              "ci95": [
+                0.994384765625,
+                0.997802734375
+              ],
+              "cycle_differences": [
+                1,
+                0.9921875,
+                0.99609375,
+                0.9921875,
+                0.99609375,
+                1,
+                0.9921875,
+                0.99609375,
+                1,
+                0.9921875,
+                0.99609375,
+                0.9921875,
+                1,
+                1,
+                0.9921875,
+                1
+              ],
+              "hit_rate_difference": 0.99609375,
+              "interval_scope": "within_run_16_block_cycles"
+            },
+            "no_probe": {
+              "ci95": [
+                0,
+                0
+              ],
+              "cycle_differences": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "hit_rate_difference": 0,
+              "interval_scope": "within_run_16_block_cycles"
+            }
+          }
+        },
+        "cpuid_adjusted": {
+          "ci95": [
+            -0.000732421875,
+            0
+          ],
+          "cycle_differences": [
+            0,
+            0,
+            -0.00390625,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "hit_rate_difference": -0.000244140625,
+          "interval_scope": "within_run_16_block_cycles"
+        },
+        "interaction": {
+          "ci95": [
+            0.994384765625,
+            0.997802734375
+          ],
+          "cycle_differences": [
+            1,
+            0.9921875,
+            0.99609375,
+            0.9921875,
+            0.99609375,
+            1,
+            0.9921875,
+            0.99609375,
+            1,
+            0.9921875,
+            0.99609375,
+            0.9921875,
+            1,
+            1,
+            0.9921875,
+            1
+          ],
+          "hit_rate_difference": 0.99609375,
+          "interval_scope": "within_run_16_block_cycles"
+        },
+        "mask_adjusted": {
+          "ci95": [
+            0,
+            0
+          ],
+          "cycle_differences": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "hit_rate_difference": 0,
+          "interval_scope": "within_run_16_block_cycles"
+        },
+        "plain_adjusted": {
+          "ci95": [
+            0.994384765625,
+            0.997802734375
+          ],
+          "cycle_differences": [
+            1,
+            0.9921875,
+            0.99609375,
+            0.9921875,
+            0.99609375,
+            1,
+            0.9921875,
+            0.99609375,
+            1,
+            0.9921875,
+            0.99609375,
+            0.9921875,
+            1,
+            1,
+            0.9921875,
+            1
+          ],
+          "hit_rate_difference": 0.99609375,
+          "interval_scope": "within_run_16_block_cycles"
+        }
+      },
+      "sample_count": 393216,
+      "secondary": {
+        "components": {
+          "cpuid": {
+            "candidate": {
+              "ci95": [
+                0,
+                0
+              ],
+              "cycle_differences": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "hit_rate_difference": 0,
+              "interval_scope": "within_run_16_block_cycles"
+            },
+            "no_probe": {
+              "ci95": [
+                0,
+                0
+              ],
+              "cycle_differences": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "hit_rate_difference": 0,
+              "interval_scope": "within_run_16_block_cycles"
+            }
+          },
+          "mask": {
+            "candidate": {
+              "ci95": [
+                0,
+                0
+              ],
+              "cycle_differences": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "hit_rate_difference": 0,
+              "interval_scope": "within_run_16_block_cycles"
+            },
+            "no_probe": {
+              "ci95": [
+                0,
+                0
+              ],
+              "cycle_differences": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "hit_rate_difference": 0,
+              "interval_scope": "within_run_16_block_cycles"
+            }
+          },
+          "plain": {
+            "candidate": {
+              "ci95": [
+                0.996337890625,
+                0.99951171875
+              ],
+              "cycle_differences": [
+                1,
+                0.99609375,
+                0.99609375,
+                1,
+                1,
+                1,
+                0.98828125,
+                1,
+                1,
+                1,
+                0.9921875,
+                1,
+                0.99609375,
+                1,
+                1,
+                1
+              ],
+              "hit_rate_difference": 0.998046875,
+              "interval_scope": "within_run_16_block_cycles"
+            },
+            "no_probe": {
+              "ci95": [
+                -0.000732421875,
+                0
+              ],
+              "cycle_differences": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                -0.00390625,
+                0,
+                0,
+                0
+              ],
+              "hit_rate_difference": -0.000244140625,
+              "interval_scope": "within_run_16_block_cycles"
+            }
+          }
+        },
+        "cpuid_adjusted": {
+          "ci95": [
+            0,
+            0
+          ],
+          "cycle_differences": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "hit_rate_difference": 0,
+          "interval_scope": "within_run_16_block_cycles"
+        },
+        "interaction": {
+          "ci95": [
+            0.996337890625,
+            0.999755859375
+          ],
+          "cycle_differences": [
+            1,
+            0.99609375,
+            0.99609375,
+            1,
+            1,
+            1,
+            0.98828125,
+            1,
+            1,
+            1,
+            0.9921875,
+            1,
+            1.0,
+            1,
+            1,
+            1
+          ],
+          "hit_rate_difference": 0.998291015625,
+          "interval_scope": "within_run_16_block_cycles"
+        },
+        "mask_adjusted": {
+          "ci95": [
+            0,
+            0
+          ],
+          "cycle_differences": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "hit_rate_difference": 0,
+          "interval_scope": "within_run_16_block_cycles"
+        },
+        "plain_adjusted": {
+          "ci95": [
+            0.996337890625,
+            0.999755859375
+          ],
+          "cycle_differences": [
+            1,
+            0.99609375,
+            0.99609375,
+            1,
+            1,
+            1,
+            0.98828125,
+            1,
+            1,
+            1,
+            0.9921875,
+            1,
+            1.0,
+            1,
+            1,
+            1
+          ],
+          "hit_rate_difference": 0.998291015625,
+          "interval_scope": "within_run_16_block_cycles"
+        }
+      },
+      "seed": 3249956994,
+      "thresholds": {
+        "p0": 399,
+        "p1": 352
+      },
+      "user_to_kernel": "not_tested",
+      "validated": true
+    },
+    {
+      "archive": "dependency-receiver-windows-20261105T141754999Z.zip",
+      "archive_sha256": "ef523eb16e9b392be5b78db8f5be976971f5a2c9564439cbdb4d4cc49fa39889",
+      "boot_utc": "2026-11-05T14:17:05.5000000Z",
+      "controls_passed": true,
+      "cpu": {
+        "clflush_bytes": "64",
+        "hypervisor": "1",
+        "invariant_tsc": "1",
+        "rdtscp": "1",
+        "signature": "0x00b40f40",
+        "vendor": "AuthenticAMD"
+      },
+      "failed_gates": [],
+      "gates_passed": 88,
+      "gates_total": 88,
+      "mechanism_conclusion": "not_proven",
+      "numerical_signature": true,
+      "ordinal": 3,
+      "primary": {
+        "components": {
+          "cpuid": {
+            "candidate": {
+              "ci95": [
+                0,
+                0
+              ],
+              "cycle_differences": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "hit_rate_difference": 0,
+              "interval_scope": "within_run_16_block_cycles"
+            },
+            "no_probe": {
+              "ci95": [
+                0,
+                0
+              ],
+              "cycle_differences": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "hit_rate_difference": 0,
+              "interval_scope": "within_run_16_block_cycles"
+            }
+          },
+          "mask": {
+            "candidate": {
+              "ci95": [
+                0,
+                0
+              ],
+              "cycle_differences": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "hit_rate_difference": 0,
+              "interval_scope": "within_run_16_block_cycles"
+            },
+            "no_probe": {
+              "ci95": [
+                0,
+                0
+              ],
+              "cycle_differences": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "hit_rate_difference": 0,
+              "interval_scope": "within_run_16_block_cycles"
+            }
+          },
+          "plain": {
+            "candidate": {
+              "ci95": [
+                0.9970703125,
+                0.999267578125
+              ],
+              "cycle_differences": [
+                0.99609375,
+                0.99609375,
+                1,
+                1,
+                0.99609375,
+                1,
+                1,
+                1,
+                1,
+                0.99609375,
+                0.9921875,
+                1,
+                1,
+                0.99609375,
+                1,
+                1
+              ],
+              "hit_rate_difference": 0.998291015625,
+              "interval_scope": "within_run_16_block_cycles"
+            },
+            "no_probe": {
+              "ci95": [
+                0,
+                0
+              ],
+              "cycle_differences": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "hit_rate_difference": 0,
+              "interval_scope": "within_run_16_block_cycles"
+            }
+          }
+        },
+        "cpuid_adjusted": {
+          "ci95": [
+            0,
+            0
+          ],
+          "cycle_differences": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "hit_rate_difference": 0,
+          "interval_scope": "within_run_16_block_cycles"
+        },
+        "interaction": {
+          "ci95": [
+            0.9970703125,
+            0.999267578125
+          ],
+          "cycle_differences": [
+            0.99609375,
+            0.99609375,
+            1,
+            1,
+            0.99609375,
+            1,
+            1,
+            1,
+            1,
+            0.99609375,
+            0.9921875,
+            1,
+            1,
+            0.99609375,
+            1,
+            1
+          ],
+          "hit_rate_difference": 0.998291015625,
+          "interval_scope": "within_run_16_block_cycles"
+        },
+        "mask_adjusted": {
+          "ci95": [
+            0,
+            0
+          ],
+          "cycle_differences": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "hit_rate_difference": 0,
+          "interval_scope": "within_run_16_block_cycles"
+        },
+        "plain_adjusted": {
+          "ci95": [
+            0.9970703125,
+            0.999267578125
+          ],
+          "cycle_differences": [
+            0.99609375,
+            0.99609375,
+            1,
+            1,
+            0.99609375,
+            1,
+            1,
+            1,
+            1,
+            0.99609375,
+            0.9921875,
+            1,
+            1,
+            0.99609375,
+            1,
+            1
+          ],
+          "hit_rate_difference": 0.998291015625,
+          "interval_scope": "within_run_16_block_cycles"
+        }
+      },
+      "sample_count": 393216,
+      "secondary": {
+        "components": {
+          "cpuid": {
+            "candidate": {
+              "ci95": [
+                0,
+                0
+              ],
+              "cycle_differences": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "hit_rate_difference": 0,
+              "interval_scope": "within_run_16_block_cycles"
+            },
+            "no_probe": {
+              "ci95": [
+                0,
+                0
+              ],
+              "cycle_differences": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "hit_rate_difference": 0,
+              "interval_scope": "within_run_16_block_cycles"
+            }
+          },
+          "mask": {
+            "candidate": {
+              "ci95": [
+                0,
+                0
+              ],
+              "cycle_differences": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "hit_rate_difference": 0,
+              "interval_scope": "within_run_16_block_cycles"
+            },
+            "no_probe": {
+              "ci95": [
+                0,
+                0
+              ],
+              "cycle_differences": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "hit_rate_difference": 0,
+              "interval_scope": "within_run_16_block_cycles"
+            }
+          },
+          "plain": {
+            "candidate": {
+              "ci95": [
+                0.996337890625,
+                0.999267578125
+              ],
+              "cycle_differences": [
+                0.9921875,
+                1,
+                1,
+                1,
+                1,
+                0.99609375,
+                0.99609375,
+                1,
+                0.9921875,
+                1,
+                1,
+                1,
+                0.99609375,
+                0.9921875,
+                1,
+                1
+              ],
+              "hit_rate_difference": 0.997802734375,
+              "interval_scope": "within_run_16_block_cycles"
+            },
+            "no_probe": {
+              "ci95": [
+                0,
+                0
+              ],
+              "cycle_differences": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "hit_rate_difference": 0,
+              "interval_scope": "within_run_16_block_cycles"
+            }
+          }
+        },
+        "cpuid_adjusted": {
+          "ci95": [
+            0,
+            0
+          ],
+          "cycle_differences": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "hit_rate_difference": 0,
+          "interval_scope": "within_run_16_block_cycles"
+        },
+        "interaction": {
+          "ci95": [
+            0.996337890625,
+            0.999267578125
+          ],
+          "cycle_differences": [
+            0.9921875,
+            1,
+            1,
+            1,
+            1,
+            0.99609375,
+            0.99609375,
+            1,
+            0.9921875,
+            1,
+            1,
+            1,
+            0.99609375,
+            0.9921875,
+            1,
+            1
+          ],
+          "hit_rate_difference": 0.997802734375,
+          "interval_scope": "within_run_16_block_cycles"
+        },
+        "mask_adjusted": {
+          "ci95": [
+            0,
+            0
+          ],
+          "cycle_differences": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "hit_rate_difference": 0,
+          "interval_scope": "within_run_16_block_cycles"
+        },
+        "plain_adjusted": {
+          "ci95": [
+            0.996337890625,
+            0.999267578125
+          ],
+          "cycle_differences": [
+            0.9921875,
+            1,
+            1,
+            1,
+            1,
+            0.99609375,
+            0.99609375,
+            1,
+            0.9921875,
+            1,
+            1,
+            1,
+            0.99609375,
+            0.9921875,
+            1,
+            1
+          ],
+          "hit_rate_difference": 0.997802734375,
+          "interval_scope": "within_run_16_block_cycles"
+        }
+      },
+      "seed": 1849279219,
+      "thresholds": {
+        "p0": 305,
+        "p1": 329
+      },
+      "user_to_kernel": "not_tested",
+      "validated": true
+    }
+  ],
+  "schema": 1,
+  "source_revision": "09d6a7f4da1ceda061cfb07cdca344f282dbcedc",
+  "study": "k5_windows_three_boot_replication_v1",
+  "user_to_kernel_tested": false,
+  "validated_runs": 3
+}

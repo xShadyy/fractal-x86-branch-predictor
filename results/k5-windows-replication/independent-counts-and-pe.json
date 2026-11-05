@@ -1,0 +1,856 @@
+{
+  "all_checks_passed": true,
+  "input_sha256": "5bc63b07782e23d16eee4f03bd81babf10ff5c7b120329cd51f9ea1cc8a29440",
+  "scope": "Independent raw cell counts and PE/dumpbin bytes; no executable rerun and no new measurements",
+  "sessions": [
+    {
+      "cell_hit_and_decoy_rates_reproduced": 96,
+      "confidence_intervals": "Checked separately by exact frozen-analysis replay; no pooled interval",
+      "cpl_counts": {
+        "probe_cpl_255": 196608,
+        "probe_cpl_3": 196608,
+        "training_cpl_3": 393216
+      },
+      "gates_passed": 88,
+      "gates_reproduced": 88,
+      "heldout_records": 196608,
+      "linked_disassembly_consistency": {
+        "all_text_section_bytes_covered": true,
+        "bytes_verified": 107520,
+        "instruction_rows": 31365,
+        "text_identical_to_previously_reviewed_pilot": true,
+        "text_sha256": "62e686e78ce63a547cd665796a63a2584a9458d04ea45fdf3338c9ff8e090468"
+      },
+      "one_branch_pc_within_run": true,
+      "per_cell_counts": {
+        "cpuid/arch_load_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 4096
+        },
+        "cpuid/arch_load_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 4094
+        },
+        "cpuid/candidate_t0_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "cpuid/candidate_t0_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "cpuid/candidate_t1_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "cpuid/candidate_t1_p1": {
+          "count": 4096,
+          "decoy_hits": 1,
+          "hits": 0
+        },
+        "cpuid/cold_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "cpuid/cold_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "cpuid/hot_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 4095
+        },
+        "cpuid/hot_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 4094
+        },
+        "cpuid/no_probe_t0_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 1
+        },
+        "cpuid/no_probe_t0_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "cpuid/no_probe_t1_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "cpuid/no_probe_t1_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 1
+        },
+        "cpuid/warm_mismatch_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "cpuid/warm_mismatch_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "mask/arch_load_p0": {
+          "count": 4096,
+          "decoy_hits": 1,
+          "hits": 4096
+        },
+        "mask/arch_load_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 4095
+        },
+        "mask/candidate_t0_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "mask/candidate_t0_p1": {
+          "count": 4096,
+          "decoy_hits": 2,
+          "hits": 0
+        },
+        "mask/candidate_t1_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 1
+        },
+        "mask/candidate_t1_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "mask/cold_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "mask/cold_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "mask/hot_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 4094
+        },
+        "mask/hot_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 4094
+        },
+        "mask/no_probe_t0_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "mask/no_probe_t0_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "mask/no_probe_t1_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "mask/no_probe_t1_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "mask/warm_mismatch_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 1
+        },
+        "mask/warm_mismatch_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "plain/arch_load_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 4095
+        },
+        "plain/arch_load_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 4096
+        },
+        "plain/candidate_t0_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 10
+        },
+        "plain/candidate_t0_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 4086
+        },
+        "plain/candidate_t1_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 4095
+        },
+        "plain/candidate_t1_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "plain/cold_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "plain/cold_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 1
+        },
+        "plain/hot_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 4094
+        },
+        "plain/hot_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 4095
+        },
+        "plain/no_probe_t0_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "plain/no_probe_t0_p1": {
+          "count": 4096,
+          "decoy_hits": 1,
+          "hits": 0
+        },
+        "plain/no_probe_t1_p0": {
+          "count": 4096,
+          "decoy_hits": 1,
+          "hits": 0
+        },
+        "plain/no_probe_t1_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "plain/warm_mismatch_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 317
+        },
+        "plain/warm_mismatch_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 282
+        }
+      },
+      "point_estimates_reproduced": 8,
+      "primary_and_secondary_pp": {
+        "p0": {
+          "cpuid_adjusted": 0.0244140625,
+          "interaction": 99.70703125,
+          "mask_adjusted": 0.0244140625,
+          "plain_adjusted": 99.7314453125
+        },
+        "p1": {
+          "cpuid_adjusted": 0.0244140625,
+          "interaction": 99.755859375,
+          "mask_adjusted": 0.0,
+          "plain_adjusted": 99.755859375
+        }
+      },
+      "records": 393216,
+      "session": "session-01/artifacts/dependency-receiver-windows-20261105T141143898Z.zip",
+      "thresholds": {
+        "0": 352,
+        "1": 329
+      }
+    },
+    {
+      "cell_hit_and_decoy_rates_reproduced": 96,
+      "confidence_intervals": "Checked separately by exact frozen-analysis replay; no pooled interval",
+      "cpl_counts": {
+        "probe_cpl_255": 196608,
+        "probe_cpl_3": 196608,
+        "training_cpl_3": 393216
+      },
+      "gates_passed": 88,
+      "gates_reproduced": 88,
+      "heldout_records": 196608,
+      "linked_disassembly_consistency": {
+        "all_text_section_bytes_covered": true,
+        "bytes_verified": 107520,
+        "instruction_rows": 31365,
+        "text_identical_to_previously_reviewed_pilot": true,
+        "text_sha256": "62e686e78ce63a547cd665796a63a2584a9458d04ea45fdf3338c9ff8e090468"
+      },
+      "one_branch_pc_within_run": true,
+      "per_cell_counts": {
+        "cpuid/arch_load_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 4096
+        },
+        "cpuid/arch_load_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 4094
+        },
+        "cpuid/candidate_t0_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 1
+        },
+        "cpuid/candidate_t0_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "cpuid/candidate_t1_p0": {
+          "count": 4096,
+          "decoy_hits": 1,
+          "hits": 0
+        },
+        "cpuid/candidate_t1_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "cpuid/cold_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "cpuid/cold_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "cpuid/hot_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 4095
+        },
+        "cpuid/hot_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 4094
+        },
+        "cpuid/no_probe_t0_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "cpuid/no_probe_t0_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "cpuid/no_probe_t1_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "cpuid/no_probe_t1_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "cpuid/warm_mismatch_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 1
+        },
+        "cpuid/warm_mismatch_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "mask/arch_load_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 4095
+        },
+        "mask/arch_load_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 4096
+        },
+        "mask/candidate_t0_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "mask/candidate_t0_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "mask/candidate_t1_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "mask/candidate_t1_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "mask/cold_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "mask/cold_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "mask/hot_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 4092
+        },
+        "mask/hot_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 4096
+        },
+        "mask/no_probe_t0_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "mask/no_probe_t0_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "mask/no_probe_t1_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "mask/no_probe_t1_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "mask/warm_mismatch_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "mask/warm_mismatch_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "plain/arch_load_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 4096
+        },
+        "plain/arch_load_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 4095
+        },
+        "plain/candidate_t0_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 14
+        },
+        "plain/candidate_t0_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 4090
+        },
+        "plain/candidate_t1_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 4094
+        },
+        "plain/candidate_t1_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 2
+        },
+        "plain/cold_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "plain/cold_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "plain/hot_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 4092
+        },
+        "plain/hot_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 4094
+        },
+        "plain/no_probe_t0_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "plain/no_probe_t0_p1": {
+          "count": 4096,
+          "decoy_hits": 1,
+          "hits": 0
+        },
+        "plain/no_probe_t1_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "plain/no_probe_t1_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 1
+        },
+        "plain/warm_mismatch_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 366
+        },
+        "plain/warm_mismatch_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 315
+        }
+      },
+      "point_estimates_reproduced": 8,
+      "primary_and_secondary_pp": {
+        "p0": {
+          "cpuid_adjusted": -0.0244140625,
+          "interaction": 99.609375,
+          "mask_adjusted": 0.0,
+          "plain_adjusted": 99.609375
+        },
+        "p1": {
+          "cpuid_adjusted": 0.0,
+          "interaction": 99.8291015625,
+          "mask_adjusted": 0.0,
+          "plain_adjusted": 99.8291015625
+        }
+      },
+      "records": 393216,
+      "session": "session-02/artifacts/dependency-receiver-windows-20261105T141420260Z.zip",
+      "thresholds": {
+        "0": 399,
+        "1": 352
+      }
+    },
+    {
+      "cell_hit_and_decoy_rates_reproduced": 96,
+      "confidence_intervals": "Checked separately by exact frozen-analysis replay; no pooled interval",
+      "cpl_counts": {
+        "probe_cpl_255": 196608,
+        "probe_cpl_3": 196608,
+        "training_cpl_3": 393216
+      },
+      "gates_passed": 88,
+      "gates_reproduced": 88,
+      "heldout_records": 196608,
+      "linked_disassembly_consistency": {
+        "all_text_section_bytes_covered": true,
+        "bytes_verified": 107520,
+        "instruction_rows": 31365,
+        "text_identical_to_previously_reviewed_pilot": true,
+        "text_sha256": "62e686e78ce63a547cd665796a63a2584a9458d04ea45fdf3338c9ff8e090468"
+      },
+      "one_branch_pc_within_run": true,
+      "per_cell_counts": {
+        "cpuid/arch_load_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 4096
+        },
+        "cpuid/arch_load_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 4095
+        },
+        "cpuid/candidate_t0_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "cpuid/candidate_t0_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "cpuid/candidate_t1_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "cpuid/candidate_t1_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "cpuid/cold_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "cpuid/cold_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "cpuid/hot_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 4095
+        },
+        "cpuid/hot_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 4096
+        },
+        "cpuid/no_probe_t0_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "cpuid/no_probe_t0_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "cpuid/no_probe_t1_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "cpuid/no_probe_t1_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "cpuid/warm_mismatch_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "cpuid/warm_mismatch_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "mask/arch_load_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 4094
+        },
+        "mask/arch_load_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 4096
+        },
+        "mask/candidate_t0_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "mask/candidate_t0_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "mask/candidate_t1_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "mask/candidate_t1_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "mask/cold_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "mask/cold_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "mask/hot_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 4096
+        },
+        "mask/hot_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 4095
+        },
+        "mask/no_probe_t0_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "mask/no_probe_t0_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "mask/no_probe_t1_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "mask/no_probe_t1_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "mask/warm_mismatch_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "mask/warm_mismatch_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "plain/arch_load_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 4096
+        },
+        "plain/arch_load_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 4096
+        },
+        "plain/candidate_t0_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 7
+        },
+        "plain/candidate_t0_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 4088
+        },
+        "plain/candidate_t1_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 4096
+        },
+        "plain/candidate_t1_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 1
+        },
+        "plain/cold_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "plain/cold_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "plain/hot_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 4096
+        },
+        "plain/hot_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 4095
+        },
+        "plain/no_probe_t0_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "plain/no_probe_t0_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "plain/no_probe_t1_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "plain/no_probe_t1_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 0
+        },
+        "plain/warm_mismatch_p0": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 342
+        },
+        "plain/warm_mismatch_p1": {
+          "count": 4096,
+          "decoy_hits": 0,
+          "hits": 329
+        }
+      },
+      "point_estimates_reproduced": 8,
+      "primary_and_secondary_pp": {
+        "p0": {
+          "cpuid_adjusted": 0.0,
+          "interaction": 99.8291015625,
+          "mask_adjusted": 0.0,
+          "plain_adjusted": 99.8291015625
+        },
+        "p1": {
+          "cpuid_adjusted": 0.0,
+          "interaction": 99.7802734375,
+          "mask_adjusted": 0.0,
+          "plain_adjusted": 99.7802734375
+        }
+      },
+      "records": 393216,
+      "session": "session-03/artifacts/dependency-receiver-windows-20261105T141754999Z.zip",
+      "thresholds": {
+        "0": 305,
+        "1": 329
+      }
+    }
+  ]
+}
