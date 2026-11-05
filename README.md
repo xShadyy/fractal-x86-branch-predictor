@@ -10,13 +10,50 @@ The Windows studies in this repository run in one ordinary user-mode process. Th
 marker-address dependency alongside plain and CPUID modes. The audited Windows
 pilot on 4 November passes 88/88 gates and has a +99.683 percentage-point primary
 contrast, with 95% within-run interval [+99.414,+99.878]. Both CPUID and host
-inventory report a hypervisor present. A separate [three-boot replication plan](protocols/DEPENDENCY_RECEIVER_K5_REPLICATION.md)
-is prepared; its new measurements remain pending. [K6](protocols/FRACTAL_PRIVILEGE_K6.md) supplies a pinned Fractal x86
+inventory report a hypervisor present. The separate [three-boot replication](results/k5-windows-replication/README.md)
+completed on 5 November: all three planned attempts pass 88/88 gates, with primary
+effects +99.707, +99.609 and +99.829 percentage points. The 1,179,648 recorded
+episodes, original plan, binaries and raw traces are retained with exact replay
+and independent count/code-byte checks. This establishes the defined signature's
+repeatability on the recorded Windows/Ryzen configuration; mechanism attribution
+and physical cross-privilege behavior remain open.
+
+[K6](protocols/FRACTAL_PRIVILEGE_K6.md) supplies a pinned Fractal x86
 payload for user/user, kernel/kernel, user/kernel and kernel/user pairs. The
 recorded [QEMU smoke](results/k5-k6-development/README.md) verifies actual CPLs
 and a common measured instruction address across all four pairs. Physical K6
 collection and user-to-kernel influence remain untested; emulation is not
 branch-predictor evidence. The new runners preserve all nulls and failures.
+
+## Published Fractal data and the next hardware study
+
+The authors also release a separate [evaluated M1 artifact](https://doi.org/10.5281/zenodo.19556693)
+containing experiment code and 48 precollected traces. The
+[author-data reanalysis](results/fractal-author-data-reanalysis/README.md) adds an
+independent portable reader, descriptive statistics and figures for all 240,192
+published rows. This is a reanalysis of Ravichandran and Yan's supplied data,
+separate from our independently collected Windows K5 evidence. It is not a new
+M1 run or a claim that an AMD CPU has the same microarchitecture.
+
+The [research decision and options](RESEARCH_ROUTE.md) inspect the actual released
+sources, compare the practical routes and set a finite completion plan. The
+recommended physical extension is a controlled conditional-branch privilege
+study on native Linux using a reviewed published x86 research backend. Native
+Fractal remains the closest methodological target after boot/export validation;
+a new Windows driver and a hardware VM are separately scoped alternatives.
+
+To reproduce the authors' data analysis without collecting measurements, run
+from this repository with Python 3:
+
+```text
+python scripts/reanalyze_fractal_authors_data.py --archive out/fractal-official-artifact.zip --download --output out/fractal-author-reanalysis
+```
+
+The script downloads only the pinned official artifact if missing, verifies its
+SHA256 and parses the supplied traces. Its default statistics use the standard
+library. Optional `--plots` requires matplotlib. Source attribution, exact data
+handling and the artifact's licensing-metadata discrepancy are recorded with the
+result. The authors' experiment/plotting code is not vendored into this project.
 
 [K4](results/k4-context-windows/README.md) now has one Windows pilot and three preselected follow-up process sessions. All four pass 58/58 controls and detect the frozen training-specific fresh-marker signature. Follow-up primary effects are +99.878, +99.512 and +99.731 percentage points. They establish recurrence on one reported host within minutes; mechanism attribution and the Fractal privilege-boundary question remain open.
 

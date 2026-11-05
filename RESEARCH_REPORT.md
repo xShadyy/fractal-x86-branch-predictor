@@ -1,6 +1,6 @@
 # Native x86 branch studies: consolidated research record
 
-**Evidence reviewed through 4 November 2026 UTC.** These are Windows x86 measurements on one reported AMD Ryzen 7 9800X3D workstation, plus separate Linux/QEMU development checks. K4 shows a repeated, training-specific, serialization-sensitive fresh-marker cache signature in a pilot and three planned follow-up process sessions. K5 now has one audited Windows pilot with a distinct dependency control and a prospective three-boot replication plan. No branch-misprediction counter was measured, mechanism attribution remains incomplete, and no physical privilege-boundary influence was measured. A passing apparatus gate does not by itself identify a hardware mechanism.
+**Evidence reviewed through 5 November 2026.** These are Windows x86 measurements on one reported AMD Ryzen 7 9800X3D workstation, plus separate Linux/QEMU development checks and an explicitly separate reanalysis of the Fractal authors' published M1 data. K4 shows a repeated, training-specific, serialization-sensitive fresh-marker cache signature in a pilot and three planned follow-up process sessions. K5 now has one audited Windows pilot and three completed prospective new-boot attempts, all passing their frozen criteria. No branch-misprediction counter was measured, mechanism attribution remains incomplete, and no physical privilege-boundary influence was measured in our work. A passing apparatus gate does not by itself identify a hardware mechanism.
 
 ## K5 audited pilot and K6 privilege harness
 
@@ -27,7 +27,36 @@ its wildcard included the separate source ZIP. That packaging bug was repaired
 in `25a7f7d0160298895c798b52d663f77b28230d5d` without modifying the measurements.
 The [prospective replication](protocols/DEPENDENCY_RECEIVER_K5_REPLICATION.md)
 excludes this exploratory pilot and retains three new fixed-seed attempts on
-three new Windows boots. No new replication measurements are reported yet.
+three new Windows boots. Those attempts completed on 5 November using source
+`09d6a7f4da1ceda061cfb07cdca344f282dbcedc`, with seeds 1059577839, 3249956994
+and 1849279219. All 88 gates pass in each run. The p0 primary effects are
++99.707031 [+99.511719,+99.877930], +99.609375 [+99.438477,+99.780273] and
++99.829102 [+99.707031,+99.926758] percentage points, with original within-run
+95% intervals. All raw analysis and independent cell-count checks reproduce.
+The [complete replication record](results/k5-windows-replication/README.md)
+retains the original evidence and the same byte-identical plan supplied before
+the measurements. The series completes the declared repeatability study, not
+mechanism attribution or a user-to-kernel finding.
+
+## Separate reanalysis of the authors' released M1 traces
+
+The evaluated Fractal artifact is separate from the public kernel repository.
+Its original experiment backend targets Apple M1/AArch64 and is not a native
+Windows x86 program. Its 48 precollected traces can nevertheless be inspected
+and reanalysed without owning an M1. The
+[portable reanalysis](results/fractal-author-data-reanalysis/README.md) validates
+all 240,192 published rows and reports descriptive training-label separation,
+with explicit handling of the first four rows and attribution to the original
+authors. No new M1 measurements were collected. No arbitrary cutoff converts
+the descriptive matrix into inferred hardware pass/fail claims.
+
+The [research-route assessment](RESEARCH_ROUTE.md) records reusable source paths,
+upstream/version and licensing distinctions, current Windows profiling/kernel
+constraints, physical Fractal boot/export obstacles and published native Linux
+research backends. It recommends a bounded conditional-branch domain study,
+without assuming AMD must match M1 or that a VM reproduces bare-metal behavior.
+
+## Existing Fractal privilege harness
 
 [K6](protocols/FRACTAL_PRIVILEGE_K6.md) uses actual user and kernel fthreads in
 the pinned upstream Fractal x86 OS. The [development record](results/k5-k6-development/README.md)
