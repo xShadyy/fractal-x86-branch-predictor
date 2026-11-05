@@ -1,0 +1,8 @@
+# Preserve hash-recorded artifacts across Windows and Unix checkouts.
+results/k5-windows-replication/** -text
+results/fractal-author-data-reanalysis/** -text
+scripts/reanalyze_fractal_authors_data.py -text
+
+# These generated formats contain intentional CRLF or SVG path whitespace.
+results/fractal-author-data-reanalysis/*.csv -whitespace
+results/fractal-author-data-reanalysis/*.svg -whitespace
