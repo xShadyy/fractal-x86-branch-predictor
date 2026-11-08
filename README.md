@@ -4,6 +4,29 @@ Controlled branch and cache measurements on an AMD Ryzen 7 9800X3D running Windo
 
 The Windows studies in this repository run in one ordinary user-mode process. They do not boot Fractal, cross a user/kernel boundary, or reproduce the paper's M1 results. Timing and cache-hit differences alone do not identify mispredictions or transient execution.
 
+## New Windows follow-up: K7/K8, collection pending
+
+The [prospective causal follow-up](protocols/WINDOWS_CAUSAL_FOLLOWUP.md) adds two
+bounded studies: matched true/sham dependency interventions, and encoder-load
+ablation/private-bank address controls. Both preserve one measured branch site
+within each process and retain full raw evidence. This is prepared software,
+not a report of new Windows measurements. The completed K5 study is unchanged.
+
+Run from the clean repository using the existing MSVC/Python prerequisites:
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/run_causal_receiver_windows.ps1
+```
+
+One invocation freezes a local plan and runs three fresh processes per study,
+six attempts total, on one unchanged boot. No restart between attempts is
+needed. It records 983,040 episodes and prints a final `READY TO SHARE:` ZIP,
+including nulls and failed attempts. Keep the separate plan-only ZIP as well.
+The loaded Python image is resolved directly rather than hashing a Store alias.
+Repeated invocation does not replace completed attempts. Read the protocol
+before interpreting effects: each mode applies to both training and probing,
+and the private-bank control measures only the public-bank response.
+
 ## Current evidence
 
 [K5](protocols/DEPENDENCY_RECEIVER_K5.md) adds a distinct resolved-condition

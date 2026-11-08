@@ -1,0 +1,66 @@
+{
+  "schema": 1,
+  "study": "windows_causal_followup_v1",
+  "attempts_per_study": 3,
+  "studies": [
+    "dependency",
+    "receiver"
+  ],
+  "blocks": 512,
+  "episodes_per_cell_per_block": 4,
+  "modes_per_study": 5,
+  "conditions": 16,
+  "warmup_blocks": 8,
+  "calibration_blocks": 256,
+  "heldout_blocks": 256,
+  "episodes_per_attempt": 163840,
+  "total_planned_episodes": 983040,
+  "one_unchanged_boot": true,
+  "bootstrap": {
+    "draws": 2048,
+    "seed": 20261108,
+    "cluster_blocks": 16,
+    "percentile": true,
+    "confirmatory_family_size": 6,
+    "confirmatory_family_alpha": 0.05,
+    "coverage_unit": "one scheduled dependency/receiver repetition pair; not all three repetitions simultaneously",
+    "supporting_confidence": 0.95
+  },
+  "practical_margin_hit_rate_difference": 0.1,
+  "calibration": "HOT/COLD only in first256 blocks pooled over modes separately by observed public bank; frozen balanced-accuracy select_threshold with deterministic median-midpoint tie break",
+  "heldout_gates": {
+    "hot_min": 0.95,
+    "cold_max": 0.05,
+    "no_probe_max": 0.05,
+    "training_matched_candidate_max": 0.05,
+    "all_decoys_max": 0.05,
+    "architectural_public_load_min_when_present": 0.95,
+    "architectural_public_load_max_when_absent": 0.05
+  },
+  "primary_endpoints": [
+    "p0_sham_minus_true",
+    "p0_plain_minus_sham",
+    "p0_plain_minus_ablate_one",
+    "p1_plain_minus_ablate_zero",
+    "p0_plain_minus_sink_both",
+    "p1_plain_minus_sink_both"
+  ],
+  "no_automatic_replacement": true,
+  "source_files": [
+    "programs/causal_receiver.c",
+    "programs/causal_receiver_layout.S",
+    "programs/causal_receiver_code.h",
+    "programs/cpu_features.c",
+    "programs/cpu_features.h",
+    "scripts/causal_receiver_contract.py",
+    "scripts/generate_causal_receiver.py",
+    "scripts/analyze_cache_probe.py",
+    "scripts/analyze_causal_receiver.py",
+    "scripts/causal_receiver_study.py",
+    "scripts/run_causal_receiver_windows.ps1",
+    "scripts/capture_causal_host_windows.ps1",
+    "protocols/WINDOWS_CAUSAL_FOLLOWUP.md",
+    "protocols/WINDOWS_CAUSAL_POLICY.json"
+  ],
+  "mechanism_proven": false
+}

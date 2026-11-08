@@ -6,3 +6,9 @@ scripts/reanalyze_fractal_authors_data.py -text
 # These generated formats contain intentional CRLF or SVG path whitespace.
 results/fractal-author-data-reanalysis/*.csv -whitespace
 results/fractal-author-data-reanalysis/*.svg -whitespace
+
+# Keep the prospective Windows follow-up source snapshots byte-stable.
+programs/causal_receiver* -text
+scripts/*causal* -text
+protocols/WINDOWS_CAUSAL_* -text
+tests/test_causal* -text
