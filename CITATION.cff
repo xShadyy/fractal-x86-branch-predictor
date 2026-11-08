@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "Please cite this repository for its independent x86 artifact, and cite the original Fractal paper separately for the OS and M1 findings."
+type: software
+title: "Fractal-inspired x86 Branch Predictor Experiments"
+authors:
+  - family-names: "Netter"
+    given-names: "Tymoteusz"
+repository-code: "https://github.com/xShadyy/fractal-x86-branch-predictor"
+url: "https://github.com/xShadyy/fractal-x86-branch-predictor"
+license: MIT
+abstract: "Independent Windows user-mode branch and cache experiments on AMD Ryzen 7 9800X3D, with frozen plans, raw evidence and audited analyses. A separately labeled reanalysis uses the original Fractal authors' supplied M1 data."

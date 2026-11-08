@@ -1,6 +1,78 @@
 # Native x86 branch studies: consolidated research record
 
-**Evidence reviewed through 5 November 2026.** These are Windows x86 measurements on one reported AMD Ryzen 7 9800X3D workstation, plus separate Linux/QEMU development checks and an explicitly separate reanalysis of the Fractal authors' published M1 data. K4 shows a repeated, training-specific, serialization-sensitive fresh-marker cache signature in a pilot and three planned follow-up process sessions. K5 now has one audited Windows pilot and three completed prospective new-boot attempts, all passing their frozen criteria. No branch-misprediction counter was measured, mechanism attribution remains incomplete, and no physical privilege-boundary influence was measured in our work. A passing apparatus gate does not by itself identify a hardware mechanism.
+**Measurements through 8 November 2026; publication review 9 November 2026.** These are Windows x86 measurements on one reported AMD Ryzen 7 9800X3D workstation, plus separate Linux/QEMU development checks and an explicitly separate reanalysis of the Fractal authors' published M1 data. K4 repeats a training-specific fresh-marker cache signature with CPUID sensitivity. K5 has an audited pilot and three completed prospective new-boot attempts. K7/K8 add three planned process attempts per study on one later Windows boot: matched dependency, encoder-load removal and bank-relocation interventions all meet their frozen criteria. The cold-condition sham equivalence has an important warm-condition qualification. No branch-misprediction counter, instruction-fetch receiver or physical privilege-boundary influence was measured in our work. Mechanism attribution remains incomplete.
+
+## K7/K8 audited Windows intervention studies
+
+The [complete K7/K8 record](results/k7-k8-windows-causal/README.md) retains both
+original uploaded ZIPs, the frozen plan, all six exact analysis replays,
+independent raw-count checks, a targeted review of the actual MSVC binary,
+figures and reproduction scripts. The
+[protocol](protocols/WINDOWS_CAUSAL_FOLLOWUP.md) and source revision
+`8080faed480a9eef086f1fc0396e38dba7de31c7` were fixed before the six attempts.
+The supplied plan-only ZIP has an empty attempt ledger and the same plan,
+sources and build artifacts as the final evidence. Its local chronology is
+consistent with collection, but it was supplied alongside the final ZIP and
+is not an externally timestamped preregistration.
+
+Each attempt records 163,840 episodes and passes **140/140 held-out apparatus
+gates**, with classification `valid_response`. The six attempts contain
+**983,040 recorded episodes**, including **491,520 held-out episodes**. All six
+saved analysis objects reproduce exactly; a separate count implementation
+matches the 12 thresholds, all 840 gates, 60 adjusted outcomes and 18 primary
+point estimates. Source, runtime bytes, bindings, architectural returns and
+recorded CPL/PC/AUX checks also agree. The binary was inspected as data and was
+not executed during the audit.
+
+K7 compares a true resolved-condition marker-address dependency with an
+independent-register sham having matched TEST/CMOV instruction topology.
+The primary p0 sham-minus-true effects are +99.902 [+99.609,+100.000],
++99.707 [+98.535,+100.000] and +99.414 [+98.535,+100.000] percentage points.
+The p0 plain-minus-sham estimates are -0.098, +0.098 and +0.098 pp; all three
+adjusted intervals lie inside the predeclared equivalence margin of -10 to
++10 pp. True-mask, LFENCE and CPUID adjusted responses are zero in the recorded
+held-out samples of both banks. Resampling all-zero cluster contrasts yields
+zero empirical intervals, not proof of an exactly zero population effect or
+a universal serialization guarantee.
+
+K8 removes the queried encoder load, removes the other bank's load, removes
+both loads, or retains the plain opcodes while binding the encoder to private
+banks. All four prespecified queried-bank ablation/relocation contrasts clear
+the +10 pp practical margin in every process; point estimates range from
++99.414 to +100.098 pp. Removing only the other bank's load preserves a large
+queried-bank response. The private-bank condition measures loss of the public
+response, without a private-bank heat sensor. Corrected contrasts can exceed
+100 pp because the no-probe training contrast is subtracted; they are not
+individual hit probabilities and are not clipped.
+
+The six primary intervals use the frozen six-contrast Bonferroni rule,
+approximately 99.1667% nominal coverage per endpoint and 95% per scheduled
+dependency/receiver repetition pair. They resample 16 paired clusters of
+16 held-out blocks within each run. This is approximate within-run coverage,
+not coverage across all 18 intervals or independent processes, boots or hosts.
+The [result table](results/k7-k8-windows-causal/README.md#prespecified-primary-results)
+retains every interval; the separate figures use supporting 95% intervals.
+
+Sham equivalence applies to the declared **cold-condition primary endpoint**.
+With a warm condition line, p0's supporting sham response is lower than plain
+by **15.332, 16.309 and 14.160 pp** across the three dependency attempts.
+This exploratory 14.16–16.31 pp difference is outside the confirmatory family
+and shows that the sham is not universally inert. The data do not uniquely
+identify its cause. The
+[warm-condition counts and figure](results/k7-k8-windows-causal/README.md#important-exploratory-qualification-the-warm-condition-sham)
+remain part of the result.
+
+These studies strengthen attribution to the tested marker-encoding path.
+The selected mode acts during **both training and probing**, so the result
+does not isolate a probe-only intervention or prove an exclusively transient
+path. All training and probing remain at CPL3. Three fresh processes per study
+on one reported boot are not independent-boot replication. Receiver ran before
+dependency in every randomly drawn pair, so study order and time are not
+counterbalanced. All 1,966,080 wanted/decoy timings are multiples of **47 TSC
+ticks**, of unresolved cause. No precise instruction-cycle or unique
+branch-predictor mechanism is inferred. This bounded Windows collection is
+complete; further hardware work should begin with a new question and a validated
+native Linux backend, after inventorying the available laptop.
 
 ## K5 audited pilot and K6 privilege harness
 
@@ -94,7 +166,7 @@ This repository runs ordinary user-mode code in one Windows process on AMD x86. 
 
 | Paper category | Local measurement status |
 | --- | --- |
-| Conditional branch present, same-domain data execution | Conditional cache baseline and K1/K2 pilots. K1 fails frozen skip gates. K2 detects schedule-sensitive skip-line heat without trained-label specificity. K3 fails matched-training negatives. K4 repeats training-specific fresh-marker and serialization-sensitive signatures in four Windows runs. |
+| Conditional branch present, same-domain data execution | K1/K3 retain failed negative gates and K2 finds schedule-sensitive heat without trained-label specificity. K4 repeats a training-specific fresh-marker signature; K5 repeats masking/CPUID contrasts on three new boots. K7/K8 meet matched dependency and encoder-intervention criteria in three fresh processes per study on one boot, with a retained warm-condition sham qualification. |
 | Indirect branch present, same-domain data execution | I calibrates its receiver but shows no convincing opposite-target signal; H's small-work sensitivity fails. |
 | Instruction fetch, including proposed J | No target-specific isolated instruction-cache receiver. J is unimplemented; whole-call timing would not isolate fetch. |
 | Branch removed / Phantom | No audited same-address branch-to-NOP receiver experiment. Unimplemented. |
@@ -102,9 +174,11 @@ This repository runs ordinary user-mode code in one Windows process on AMD x86. 
 
 ## Host, evidence, and statistical rules
 
-Archived snapshots and later traces identify AMD Ryzen 7 9800X3D, `AuthenticAMD` signature `0x00b40f40`, Windows 11 Pro build 26200, reported hypervisor presence, and process affinity to logical CPU 0. Batch totals show an observed 47-TSC-tick GCD, of unknown cause. Microcode, SMT-sibling load, mitigation state, thermal/frequency drift and competing work were not controlled across sessions.
+Archived snapshots and later traces identify AMD Ryzen 7 9800X3D, `AuthenticAMD` signature `0x00b40f40`, Windows 11 Pro build 26200, reported hypervisor presence, and process affinity to logical CPU 0. K7/K8 record build 26200.9168, BIOS FA9, raw microcode bytes `3540400b`, Balanced power plan, VBS status 2 and one reported boot beginning 8 November at 11:32:04.5000000Z. Before/after inventories match that plan. These records do not establish every security feature's state or independently attest hardware execution. Constant TSC_AUX=0 under the reported hypervisor is a weak independent migration witness. The exposed LFENCE-always-serializing bit is zero; this does not determine the actual LFENCE configuration or turn observed suppression into a universal guarantee.
 
-Randomized complete blocks, frozen gates, held-out calibration, raw traces, executable hashes, and linked PE inspection constrain interpretations. All reported 95% bootstrap intervals resample complete block cycles **within one run**. They are not intervals across runs, dates, hosts, or a processor population. A zero-containing interval is not proof of equivalence; a pilot-informed follow-up is not independent confirmation of the pilot. The [machine-readable results ledger](results/RESULTS_LEDGER.json) preserves archive identifiers, evidence locations, and a digest of historical reports. ZIP SHA/CRC, manifest, strict replay, source tree, and `.text` checks establish internal consistency, not independent attestation of host conditions.
+Earlier batch totals show a 47-TSC-tick GCD. The independent K7/K8 count audit finds that every recorded wanted and decoy timing is also a multiple of 47 ticks; calibration HOT medians are 94 ticks and COLD medians 470 ticks. Held-out class separation passes, while the cause of this quantization remains unknown. TSC differences must not be treated as precise instruction-cycle measurements. SMT-sibling load, thermal/frequency drift and competing work were not independently controlled; the studies do not vary microcode or mitigation settings to establish their effects.
+
+Randomized complete blocks, frozen gates, held-out calibration, raw traces, executable hashes, and linked PE inspection constrain interpretations. Earlier 95% intervals and the K7/K8 adjusted primary intervals resample complete block cycles **within one run**. They are not intervals across runs, dates, hosts, or a processor population. K7/K8's six-endpoint family concerns one scheduled repetition pair; it does not supply simultaneous coverage across all three repetitions. A zero-containing interval is not proof of equivalence; a pilot-informed follow-up is not independent confirmation of the pilot. The [machine-readable results ledger](results/RESULTS_LEDGER.json) preserves archive identifiers, evidence locations, and a digest of historical reports. ZIP SHA/CRC, manifest, strict replay, source tree, and `.text` checks establish internal consistency, not independent attestation of host conditions.
 
 ## A and B: two-date timing replication
 
@@ -184,4 +258,4 @@ The three linked `.text` sections are byte-identical, SHA-256 `54d9af2ea69a7acff
 
 Raw A/B and branch-batch traces/binaries, JSON summaries, plot scripts and original-file ledgers are under [results/](results/). The suite/B2/K1/K2 original ZIPs were supplied separately; their exact hashes appear here and in the [results ledger](results/RESULTS_LEDGER.json). For an original ZIP, verify SHA-256 and manifest, replay the matching `scripts/analyze_*.py` against its `.log` at the recorded source tree, and compare executable and linked `.text` hashes. `scripts/summarize_followup_series.py` recomputes A/B from raw files, and `scripts/summarize_b2_outcome_replicates.py` reads the B2 outer ZIP. Unit tests check parsing and analysis, not physical host execution.
 
-The supported observations include the earlier A/B timing and K2 scheduling associations, the retained B2/K1/K3 limits, and K4's repeated training-specific fresh-marker signature with CPUID sensitivity. K4 provides stronger target selectivity than the earlier receiver studies and supports the transient-execution interpretation. Mechanism attribution remains bounded by CPUID/host and alternative-cache-path questions. No predictor table size, path-history-register length, misprediction count, privilege/ASID transfer, Phantom effect or M1 finding is established. The next stage requires a distinct mechanism control and, for the original Fractal question, a same-domain-validated physical Fractal receiver before changing privilege.
+The supported observations include the earlier A/B timing and K2 scheduling associations, the retained B2/K1/K3 limits, K4's repeated training-specific fresh-marker signature, K5's three new-boot masking/CPUID contrasts, and K7/K8's matched dependency and encoder-intervention results. The latter strengthen attribution to the tested encoding path while retaining the warm-condition sham difference and the fact that interventions act during training and probing. Mechanism attribution remains bounded by host, timing and alternative-path questions. No predictor table size, path-history-register length, misprediction count, privilege/ASID transfer, Phantom effect or M1 finding is established. The bounded Windows phase is complete. Native Linux host selection requires the available laptop's CPU inventory; physical Fractal boot/export and privilege-boundary experiments remain separate, unvalidated hardware work.

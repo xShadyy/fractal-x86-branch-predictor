@@ -1,0 +1,1180 @@
+{
+  "all_six_recorded_analyses_identical": true,
+  "analysis_execution_scope": "Only trusted frozen Python analyzer executed. Uploaded EXE, object files, scripts, and runtime machine code were treated as data and never executed.",
+  "analyzer_path": "/workspace/scratch/b239a0078955/windows-followup-repo/scripts/analyze_causal_receiver.py",
+  "analyzer_sha256_lf": "27d8e366101f7843fa3e45be163dfcbf1f256a8ecd3b391e1dd995c643daebc6",
+  "attempts": [
+    {
+      "attempt": {
+        "number": 1,
+        "repetition": 1,
+        "seed": 1995552508,
+        "study": "receiver"
+      },
+      "checks": {
+        "all_recorded_analysis_values_identical": true,
+        "baseline_eligibility": {
+          "p0": {
+            "decision": "response_in_expected_direction",
+            "interval_role": "descriptive_95_percent_not_an_additional_confirmatory_endpoint",
+            "is_apparatus_gate": false,
+            "supporting_metric": {
+              "ci": [
+                0.9951171875,
+                1.0
+              ],
+              "cluster_differences": [
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                0.984375,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                0.984375,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "confirmatory_family_size": null,
+              "hit_rate_difference": 0.998046875,
+              "interval_scope": "within_run_paired_16_block_cluster_bootstrap",
+              "nominal_confidence": 0.95
+            }
+          },
+          "p1": {
+            "decision": "response_in_expected_direction",
+            "interval_role": "descriptive_95_percent_not_an_additional_confirmatory_endpoint",
+            "is_apparatus_gate": false,
+            "supporting_metric": {
+              "ci": [
+                0.9912109375,
+                0.998046875
+              ],
+              "cluster_differences": [
+                0.984375,
+                1.0,
+                1.0,
+                1.0,
+                0.984375,
+                0.984375,
+                0.984375,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                0.984375,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "confirmatory_family_size": null,
+              "hit_rate_difference": 0.9951171875,
+              "interval_scope": "within_run_paired_16_block_cluster_bootstrap",
+              "nominal_confidence": 0.95
+            }
+          }
+        },
+        "classification": "valid_response",
+        "code_and_binary_audit": {
+          "binary_hash_matched_trace": false,
+          "binary_sha256": "f3132ca14a107b1be70ec85c32ede0cef723c3f647d5ef0494cbfd1ec2d446b8",
+          "linked_harness_review": "not_automatically_attested",
+          "runtime_code_sha256": {
+            "ablate_both": "1da955d67548fc920793777346831cb8dda1a3f2b7f7882e7441e9387b9fcdbd",
+            "ablate_one": "111297e316c59698655b1a72af3be7046be6cce166f8fd22af411cba0c9d0558",
+            "ablate_zero": "611a04be70a72b99a029470ab4c617fcbfc34a85d9c272bdaf1f4ae2d398afff",
+            "plain": "f0985b036e8c015ccd4ee8f408bef51425306df5dac4603e6026382c34f052f1",
+            "sink_both": "f0985b036e8c015ccd4ee8f408bef51425306df5dac4603e6026382c34f052f1"
+          },
+          "runtime_snapshots_verified": true,
+          "template_present_in_linked_image": true
+        },
+        "controls_passed": 140,
+        "controls_total": 140,
+        "observed_aux": 0,
+        "plan_study_seed_match": true,
+        "primary_endpoints": {
+          "p0_plain_minus_ablate_one": {
+            "ci": [
+              0.994140625,
+              1.0
+            ],
+            "cluster_differences": [
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              0.984375,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              0.984375,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "confirmatory_family_size": 6,
+            "decision": "response_in_expected_direction",
+            "hit_rate_difference": 0.998046875,
+            "interval_scope": "within_run_paired_16_block_cluster_bootstrap",
+            "nominal_confidence": 0.9916666666666667,
+            "practical_margin": 0.1,
+            "purpose": "suppression"
+          },
+          "p0_plain_minus_sink_both": {
+            "ci": [
+              0.994140625,
+              1.0
+            ],
+            "cluster_differences": [
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              0.984375,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              0.984375,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "confirmatory_family_size": 6,
+            "decision": "response_in_expected_direction",
+            "hit_rate_difference": 0.998046875,
+            "interval_scope": "within_run_paired_16_block_cluster_bootstrap",
+            "nominal_confidence": 0.9916666666666667,
+            "practical_margin": 0.1,
+            "purpose": "suppression"
+          },
+          "p1_plain_minus_ablate_zero": {
+            "ci": [
+              0.990234375,
+              1.001953125
+            ],
+            "cluster_differences": [
+              0.984375,
+              1.0,
+              1.0,
+              1.0,
+              0.984375,
+              0.984375,
+              0.984375,
+              1.0,
+              1.0,
+              1.0,
+              1.015625,
+              0.984375,
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "confirmatory_family_size": 6,
+            "decision": "response_in_expected_direction",
+            "hit_rate_difference": 0.99609375,
+            "interval_scope": "within_run_paired_16_block_cluster_bootstrap",
+            "nominal_confidence": 0.9916666666666667,
+            "practical_margin": 0.1,
+            "purpose": "suppression"
+          },
+          "p1_plain_minus_sink_both": {
+            "ci": [
+              0.9892578125,
+              0.9990234375
+            ],
+            "cluster_differences": [
+              0.984375,
+              1.0,
+              1.0,
+              1.0,
+              0.984375,
+              0.984375,
+              0.984375,
+              0.984375,
+              1.0,
+              1.0,
+              1.0,
+              0.984375,
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "confirmatory_family_size": 6,
+            "decision": "response_in_expected_direction",
+            "hit_rate_difference": 0.994140625,
+            "interval_scope": "within_run_paired_16_block_cluster_bootstrap",
+            "nominal_confidence": 0.9916666666666667,
+            "practical_margin": 0.1,
+            "purpose": "suppression"
+          }
+        },
+        "recorded_analysis_differences": [],
+        "thresholds": {
+          "p0": 305,
+          "p1": 352
+        },
+        "trace_sha256": "5771f422f1e6d0ebb98a6e2d293011d9dc3bfa4f187fa7ae09ec4a2ab6b51f36",
+        "untargeted_bank_ablation_contrasts": {
+          "p0_plain_minus_ablate_zero": {
+            "ci95": [
+              -0.001953125,
+              0.005859375
+            ],
+            "difference": 0.001953125,
+            "role": "exploratory_supporting_contrast_not_in_six_endpoint_family"
+          },
+          "p1_plain_minus_ablate_one": {
+            "ci95": [
+              -0.005859375,
+              0.00390625
+            ],
+            "difference": -0.0009765625,
+            "role": "exploratory_supporting_contrast_not_in_six_endpoint_family"
+          }
+        }
+      }
+    },
+    {
+      "attempt": {
+        "number": 2,
+        "repetition": 1,
+        "seed": 1518277132,
+        "study": "dependency"
+      },
+      "checks": {
+        "all_recorded_analysis_values_identical": true,
+        "baseline_eligibility": {
+          "p0": {
+            "decision": "response_in_expected_direction",
+            "interval_role": "descriptive_95_percent_not_an_additional_confirmatory_endpoint",
+            "is_apparatus_gate": false,
+            "supporting_metric": {
+              "ci": [
+                0.9951171875,
+                1.0
+              ],
+              "cluster_differences": [
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                0.984375,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                0.984375,
+                1.0
+              ],
+              "confirmatory_family_size": null,
+              "hit_rate_difference": 0.998046875,
+              "interval_scope": "within_run_paired_16_block_cluster_bootstrap",
+              "nominal_confidence": 0.95
+            }
+          }
+        },
+        "classification": "valid_response",
+        "code_and_binary_audit": {
+          "binary_hash_matched_trace": false,
+          "binary_sha256": "f3132ca14a107b1be70ec85c32ede0cef723c3f647d5ef0494cbfd1ec2d446b8",
+          "linked_harness_review": "not_automatically_attested",
+          "runtime_code_sha256": {
+            "cpuid": "6d68eec0f2d032339dea7128fb686c246727c18525ff72dcaefa93e06d677712",
+            "lfence": "f96a0b2d9d5b15aa0ffa5d5dc026e81bac9f03bda1e67759f1fa7c5f3b7d94da",
+            "plain": "f0985b036e8c015ccd4ee8f408bef51425306df5dac4603e6026382c34f052f1",
+            "sham_mask": "946530157630aa817868509208988eae8842526fe48c87543aa93cd0bc1462e9",
+            "true_mask": "ebd79245143461c1000d328b54c03ab936d2f3f9c9234db69037c2c091d84ed8"
+          },
+          "runtime_snapshots_verified": true,
+          "template_present_in_linked_image": true
+        },
+        "controls_passed": 140,
+        "controls_total": 140,
+        "observed_aux": 0,
+        "plan_study_seed_match": true,
+        "primary_endpoints": {
+          "p0_plain_minus_sham": {
+            "ci": [
+              -0.00390625,
+              0.0
+            ],
+            "cluster_differences": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              -0.015625,
+              0.0
+            ],
+            "confirmatory_family_size": 6,
+            "decision": "equivalent_within_practical_margin",
+            "hit_rate_difference": -0.0009765625,
+            "interval_scope": "within_run_paired_16_block_cluster_bootstrap",
+            "nominal_confidence": 0.9916666666666667,
+            "practical_margin": 0.1,
+            "purpose": "equivalence"
+          },
+          "p0_sham_minus_true": {
+            "ci": [
+              0.99609375,
+              1.0
+            ],
+            "cluster_differences": [
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              0.984375,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "confirmatory_family_size": 6,
+            "decision": "response_in_expected_direction",
+            "hit_rate_difference": 0.9990234375,
+            "interval_scope": "within_run_paired_16_block_cluster_bootstrap",
+            "nominal_confidence": 0.9916666666666667,
+            "practical_margin": 0.1,
+            "purpose": "suppression"
+          }
+        },
+        "recorded_analysis_differences": [],
+        "thresholds": {
+          "p0": 329,
+          "p1": 329
+        },
+        "trace_sha256": "be377fb345424a5b659c0b03349fbce4b80fe47a4667ef6f82b57b97297c391c"
+      }
+    },
+    {
+      "attempt": {
+        "number": 3,
+        "repetition": 2,
+        "seed": 1943616535,
+        "study": "receiver"
+      },
+      "checks": {
+        "all_recorded_analysis_values_identical": true,
+        "baseline_eligibility": {
+          "p0": {
+            "decision": "response_in_expected_direction",
+            "interval_role": "descriptive_95_percent_not_an_additional_confirmatory_endpoint",
+            "is_apparatus_gate": false,
+            "supporting_metric": {
+              "ci": [
+                0.994140625,
+                1.0
+              ],
+              "cluster_differences": [
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                0.984375,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                0.984375,
+                1.0,
+                1.0,
+                0.984375,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "confirmatory_family_size": null,
+              "hit_rate_difference": 0.9970703125,
+              "interval_scope": "within_run_paired_16_block_cluster_bootstrap",
+              "nominal_confidence": 0.95
+            }
+          },
+          "p1": {
+            "decision": "response_in_expected_direction",
+            "interval_role": "descriptive_95_percent_not_an_additional_confirmatory_endpoint",
+            "is_apparatus_gate": false,
+            "supporting_metric": {
+              "ci": [
+                1.0,
+                1.0029296875
+              ],
+              "cluster_differences": [
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.015625,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "confirmatory_family_size": null,
+              "hit_rate_difference": 1.0009765625,
+              "interval_scope": "within_run_paired_16_block_cluster_bootstrap",
+              "nominal_confidence": 0.95
+            }
+          }
+        },
+        "classification": "valid_response",
+        "code_and_binary_audit": {
+          "binary_hash_matched_trace": false,
+          "binary_sha256": "f3132ca14a107b1be70ec85c32ede0cef723c3f647d5ef0494cbfd1ec2d446b8",
+          "linked_harness_review": "not_automatically_attested",
+          "runtime_code_sha256": {
+            "ablate_both": "1da955d67548fc920793777346831cb8dda1a3f2b7f7882e7441e9387b9fcdbd",
+            "ablate_one": "111297e316c59698655b1a72af3be7046be6cce166f8fd22af411cba0c9d0558",
+            "ablate_zero": "611a04be70a72b99a029470ab4c617fcbfc34a85d9c272bdaf1f4ae2d398afff",
+            "plain": "f0985b036e8c015ccd4ee8f408bef51425306df5dac4603e6026382c34f052f1",
+            "sink_both": "f0985b036e8c015ccd4ee8f408bef51425306df5dac4603e6026382c34f052f1"
+          },
+          "runtime_snapshots_verified": true,
+          "template_present_in_linked_image": true
+        },
+        "controls_passed": 140,
+        "controls_total": 140,
+        "observed_aux": 0,
+        "plan_study_seed_match": true,
+        "primary_endpoints": {
+          "p0_plain_minus_ablate_one": {
+            "ci": [
+              0.9931640625,
+              1.0
+            ],
+            "cluster_differences": [
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              0.984375,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              0.984375,
+              1.0,
+              1.0,
+              0.984375,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "confirmatory_family_size": 6,
+            "decision": "response_in_expected_direction",
+            "hit_rate_difference": 0.9970703125,
+            "interval_scope": "within_run_paired_16_block_cluster_bootstrap",
+            "nominal_confidence": 0.9916666666666667,
+            "practical_margin": 0.1,
+            "purpose": "suppression"
+          },
+          "p0_plain_minus_sink_both": {
+            "ci": [
+              0.9931640625,
+              1.0
+            ],
+            "cluster_differences": [
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              0.984375,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              0.984375,
+              1.0,
+              1.0,
+              0.984375,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "confirmatory_family_size": 6,
+            "decision": "response_in_expected_direction",
+            "hit_rate_difference": 0.9970703125,
+            "interval_scope": "within_run_paired_16_block_cluster_bootstrap",
+            "nominal_confidence": 0.9916666666666667,
+            "practical_margin": 0.1,
+            "purpose": "suppression"
+          },
+          "p1_plain_minus_ablate_zero": {
+            "ci": [
+              1.0,
+              1.00390625
+            ],
+            "cluster_differences": [
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.015625,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "confirmatory_family_size": 6,
+            "decision": "response_in_expected_direction",
+            "hit_rate_difference": 1.0009765625,
+            "interval_scope": "within_run_paired_16_block_cluster_bootstrap",
+            "nominal_confidence": 0.9916666666666667,
+            "practical_margin": 0.1,
+            "purpose": "suppression"
+          },
+          "p1_plain_minus_sink_both": {
+            "ci": [
+              1.0,
+              1.00390625
+            ],
+            "cluster_differences": [
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.015625,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "confirmatory_family_size": 6,
+            "decision": "response_in_expected_direction",
+            "hit_rate_difference": 1.0009765625,
+            "interval_scope": "within_run_paired_16_block_cluster_bootstrap",
+            "nominal_confidence": 0.9916666666666667,
+            "practical_margin": 0.1,
+            "purpose": "suppression"
+          }
+        },
+        "recorded_analysis_differences": [],
+        "thresholds": {
+          "p0": 352,
+          "p1": 352
+        },
+        "trace_sha256": "6699234c90d483f64dba22bba2b11bbe5cd3b7435c8cc30ff887b56ac274cbe1",
+        "untargeted_bank_ablation_contrasts": {
+          "p0_plain_minus_ablate_zero": {
+            "ci95": [
+              -0.005859375,
+              0.0
+            ],
+            "difference": -0.0029296875,
+            "role": "exploratory_supporting_contrast_not_in_six_endpoint_family"
+          },
+          "p1_plain_minus_ablate_one": {
+            "ci95": [
+              0.001953125,
+              0.0087890625
+            ],
+            "difference": 0.0048828125,
+            "role": "exploratory_supporting_contrast_not_in_six_endpoint_family"
+          }
+        }
+      }
+    },
+    {
+      "attempt": {
+        "number": 4,
+        "repetition": 2,
+        "seed": 1237717043,
+        "study": "dependency"
+      },
+      "checks": {
+        "all_recorded_analysis_values_identical": true,
+        "baseline_eligibility": {
+          "p0": {
+            "decision": "response_in_expected_direction",
+            "interval_role": "descriptive_95_percent_not_an_additional_confirmatory_endpoint",
+            "is_apparatus_gate": false,
+            "supporting_metric": {
+              "ci": [
+                0.9951171875,
+                1.0
+              ],
+              "cluster_differences": [
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                0.984375,
+                1.0,
+                1.0,
+                1.0,
+                0.984375,
+                1.0
+              ],
+              "confirmatory_family_size": null,
+              "hit_rate_difference": 0.998046875,
+              "interval_scope": "within_run_paired_16_block_cluster_bootstrap",
+              "nominal_confidence": 0.95
+            }
+          }
+        },
+        "classification": "valid_response",
+        "code_and_binary_audit": {
+          "binary_hash_matched_trace": false,
+          "binary_sha256": "f3132ca14a107b1be70ec85c32ede0cef723c3f647d5ef0494cbfd1ec2d446b8",
+          "linked_harness_review": "not_automatically_attested",
+          "runtime_code_sha256": {
+            "cpuid": "6d68eec0f2d032339dea7128fb686c246727c18525ff72dcaefa93e06d677712",
+            "lfence": "f96a0b2d9d5b15aa0ffa5d5dc026e81bac9f03bda1e67759f1fa7c5f3b7d94da",
+            "plain": "f0985b036e8c015ccd4ee8f408bef51425306df5dac4603e6026382c34f052f1",
+            "sham_mask": "946530157630aa817868509208988eae8842526fe48c87543aa93cd0bc1462e9",
+            "true_mask": "ebd79245143461c1000d328b54c03ab936d2f3f9c9234db69037c2c091d84ed8"
+          },
+          "runtime_snapshots_verified": true,
+          "template_present_in_linked_image": true
+        },
+        "controls_passed": 140,
+        "controls_total": 140,
+        "observed_aux": 0,
+        "plan_study_seed_match": true,
+        "primary_endpoints": {
+          "p0_plain_minus_sham": {
+            "ci": [
+              -0.0048828125,
+              0.0126953125
+            ],
+            "cluster_differences": [
+              0.046875,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              -0.015625,
+              0.0,
+              0.0,
+              0.0,
+              -0.015625,
+              0.0
+            ],
+            "confirmatory_family_size": 6,
+            "decision": "equivalent_within_practical_margin",
+            "hit_rate_difference": 0.0009765625,
+            "interval_scope": "within_run_paired_16_block_cluster_bootstrap",
+            "nominal_confidence": 0.9916666666666667,
+            "practical_margin": 0.1,
+            "purpose": "equivalence"
+          },
+          "p0_sham_minus_true": {
+            "ci": [
+              0.9853515625,
+              1.0
+            ],
+            "cluster_differences": [
+              0.953125,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "confirmatory_family_size": 6,
+            "decision": "response_in_expected_direction",
+            "hit_rate_difference": 0.9970703125,
+            "interval_scope": "within_run_paired_16_block_cluster_bootstrap",
+            "nominal_confidence": 0.9916666666666667,
+            "practical_margin": 0.1,
+            "purpose": "suppression"
+          }
+        },
+        "recorded_analysis_differences": [],
+        "thresholds": {
+          "p0": 352,
+          "p1": 399
+        },
+        "trace_sha256": "7bf943361cdfe7fe6680e2e7e587f61b3059048faeaeaa81d0f572f34f4310d1"
+      }
+    },
+    {
+      "attempt": {
+        "number": 5,
+        "repetition": 3,
+        "seed": 227777600,
+        "study": "receiver"
+      },
+      "checks": {
+        "all_recorded_analysis_values_identical": true,
+        "baseline_eligibility": {
+          "p0": {
+            "decision": "response_in_expected_direction",
+            "interval_role": "descriptive_95_percent_not_an_additional_confirmatory_endpoint",
+            "is_apparatus_gate": false,
+            "supporting_metric": {
+              "ci": [
+                0.9951171875,
+                1.0
+              ],
+              "cluster_differences": [
+                0.984375,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                0.984375,
+                1.0,
+                1.0
+              ],
+              "confirmatory_family_size": null,
+              "hit_rate_difference": 0.998046875,
+              "interval_scope": "within_run_paired_16_block_cluster_bootstrap",
+              "nominal_confidence": 0.95
+            }
+          },
+          "p1": {
+            "decision": "response_in_expected_direction",
+            "interval_role": "descriptive_95_percent_not_an_additional_confirmatory_endpoint",
+            "is_apparatus_gate": false,
+            "supporting_metric": {
+              "ci": [
+                0.9951171875,
+                1.0
+              ],
+              "cluster_differences": [
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                0.984375,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                0.984375,
+                1.0
+              ],
+              "confirmatory_family_size": null,
+              "hit_rate_difference": 0.998046875,
+              "interval_scope": "within_run_paired_16_block_cluster_bootstrap",
+              "nominal_confidence": 0.95
+            }
+          }
+        },
+        "classification": "valid_response",
+        "code_and_binary_audit": {
+          "binary_hash_matched_trace": false,
+          "binary_sha256": "f3132ca14a107b1be70ec85c32ede0cef723c3f647d5ef0494cbfd1ec2d446b8",
+          "linked_harness_review": "not_automatically_attested",
+          "runtime_code_sha256": {
+            "ablate_both": "1da955d67548fc920793777346831cb8dda1a3f2b7f7882e7441e9387b9fcdbd",
+            "ablate_one": "111297e316c59698655b1a72af3be7046be6cce166f8fd22af411cba0c9d0558",
+            "ablate_zero": "611a04be70a72b99a029470ab4c617fcbfc34a85d9c272bdaf1f4ae2d398afff",
+            "plain": "f0985b036e8c015ccd4ee8f408bef51425306df5dac4603e6026382c34f052f1",
+            "sink_both": "f0985b036e8c015ccd4ee8f408bef51425306df5dac4603e6026382c34f052f1"
+          },
+          "runtime_snapshots_verified": true,
+          "template_present_in_linked_image": true
+        },
+        "controls_passed": 140,
+        "controls_total": 140,
+        "observed_aux": 0,
+        "plan_study_seed_match": true,
+        "primary_endpoints": {
+          "p0_plain_minus_ablate_one": {
+            "ci": [
+              0.994140625,
+              1.0
+            ],
+            "cluster_differences": [
+              0.984375,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              0.984375,
+              1.0,
+              1.0
+            ],
+            "confirmatory_family_size": 6,
+            "decision": "response_in_expected_direction",
+            "hit_rate_difference": 0.998046875,
+            "interval_scope": "within_run_paired_16_block_cluster_bootstrap",
+            "nominal_confidence": 0.9916666666666667,
+            "practical_margin": 0.1,
+            "purpose": "suppression"
+          },
+          "p0_plain_minus_sink_both": {
+            "ci": [
+              0.994140625,
+              1.0
+            ],
+            "cluster_differences": [
+              0.984375,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              0.984375,
+              1.0,
+              1.0
+            ],
+            "confirmatory_family_size": 6,
+            "decision": "response_in_expected_direction",
+            "hit_rate_difference": 0.998046875,
+            "interval_scope": "within_run_paired_16_block_cluster_bootstrap",
+            "nominal_confidence": 0.9916666666666667,
+            "practical_margin": 0.1,
+            "purpose": "suppression"
+          },
+          "p1_plain_minus_ablate_zero": {
+            "ci": [
+              0.9931640625,
+              1.0
+            ],
+            "cluster_differences": [
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              0.984375,
+              1.0,
+              0.984375,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              0.984375,
+              1.0
+            ],
+            "confirmatory_family_size": 6,
+            "decision": "response_in_expected_direction",
+            "hit_rate_difference": 0.9970703125,
+            "interval_scope": "within_run_paired_16_block_cluster_bootstrap",
+            "nominal_confidence": 0.9916666666666667,
+            "practical_margin": 0.1,
+            "purpose": "suppression"
+          },
+          "p1_plain_minus_sink_both": {
+            "ci": [
+              0.994140625,
+              1.0
+            ],
+            "cluster_differences": [
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              0.984375,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              0.984375,
+              1.0
+            ],
+            "confirmatory_family_size": 6,
+            "decision": "response_in_expected_direction",
+            "hit_rate_difference": 0.998046875,
+            "interval_scope": "within_run_paired_16_block_cluster_bootstrap",
+            "nominal_confidence": 0.9916666666666667,
+            "practical_margin": 0.1,
+            "purpose": "suppression"
+          }
+        },
+        "recorded_analysis_differences": [],
+        "thresholds": {
+          "p0": 305,
+          "p1": 399
+        },
+        "trace_sha256": "11a9caed999e69440855f2e2293a2061763f8e084479a9563f30f4ead109c4a9",
+        "untargeted_bank_ablation_contrasts": {
+          "p0_plain_minus_ablate_zero": {
+            "ci95": [
+              -0.0029296875,
+              0.0068359375
+            ],
+            "difference": 0.001953125,
+            "role": "exploratory_supporting_contrast_not_in_six_endpoint_family"
+          },
+          "p1_plain_minus_ablate_one": {
+            "ci95": [
+              -0.001953125,
+              0.005859375
+            ],
+            "difference": 0.001953125,
+            "role": "exploratory_supporting_contrast_not_in_six_endpoint_family"
+          }
+        }
+      }
+    },
+    {
+      "attempt": {
+        "number": 6,
+        "repetition": 3,
+        "seed": 2664525160,
+        "study": "dependency"
+      },
+      "checks": {
+        "all_recorded_analysis_values_identical": true,
+        "baseline_eligibility": {
+          "p0": {
+            "decision": "response_in_expected_direction",
+            "interval_role": "descriptive_95_percent_not_an_additional_confirmatory_endpoint",
+            "is_apparatus_gate": false,
+            "supporting_metric": {
+              "ci": [
+                0.9912109375,
+                0.998046875
+              ],
+              "cluster_differences": [
+                1.0,
+                0.984375,
+                1.0,
+                1.0,
+                0.984375,
+                0.984375,
+                1.0,
+                1.0,
+                0.984375,
+                1.0,
+                1.0,
+                1.0,
+                0.984375,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "confirmatory_family_size": null,
+              "hit_rate_difference": 0.9951171875,
+              "interval_scope": "within_run_paired_16_block_cluster_bootstrap",
+              "nominal_confidence": 0.95
+            }
+          }
+        },
+        "classification": "valid_response",
+        "code_and_binary_audit": {
+          "binary_hash_matched_trace": false,
+          "binary_sha256": "f3132ca14a107b1be70ec85c32ede0cef723c3f647d5ef0494cbfd1ec2d446b8",
+          "linked_harness_review": "not_automatically_attested",
+          "runtime_code_sha256": {
+            "cpuid": "6d68eec0f2d032339dea7128fb686c246727c18525ff72dcaefa93e06d677712",
+            "lfence": "f96a0b2d9d5b15aa0ffa5d5dc026e81bac9f03bda1e67759f1fa7c5f3b7d94da",
+            "plain": "f0985b036e8c015ccd4ee8f408bef51425306df5dac4603e6026382c34f052f1",
+            "sham_mask": "946530157630aa817868509208988eae8842526fe48c87543aa93cd0bc1462e9",
+            "true_mask": "ebd79245143461c1000d328b54c03ab936d2f3f9c9234db69037c2c091d84ed8"
+          },
+          "runtime_snapshots_verified": true,
+          "template_present_in_linked_image": true
+        },
+        "controls_passed": 140,
+        "controls_total": 140,
+        "observed_aux": 0,
+        "plan_study_seed_match": true,
+        "primary_endpoints": {
+          "p0_plain_minus_sham": {
+            "ci": [
+              -0.0068359375,
+              0.01171875
+            ],
+            "cluster_differences": [
+              0.0,
+              -0.015625,
+              0.0,
+              0.0,
+              -0.015625,
+              0.0,
+              0.046875,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              -0.015625,
+              0.0,
+              0.015625,
+              0.0
+            ],
+            "confirmatory_family_size": 6,
+            "decision": "equivalent_within_practical_margin",
+            "hit_rate_difference": 0.0009765625,
+            "interval_scope": "within_run_paired_16_block_cluster_bootstrap",
+            "nominal_confidence": 0.9916666666666667,
+            "practical_margin": 0.1,
+            "purpose": "equivalence"
+          },
+          "p0_sham_minus_true": {
+            "ci": [
+              0.9853515625,
+              1.0
+            ],
+            "cluster_differences": [
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              0.984375,
+              0.953125,
+              1.0,
+              0.984375,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              0.984375,
+              1.0
+            ],
+            "confirmatory_family_size": 6,
+            "decision": "response_in_expected_direction",
+            "hit_rate_difference": 0.994140625,
+            "interval_scope": "within_run_paired_16_block_cluster_bootstrap",
+            "nominal_confidence": 0.9916666666666667,
+            "practical_margin": 0.1,
+            "purpose": "suppression"
+          }
+        },
+        "recorded_analysis_differences": [],
+        "thresholds": {
+          "p0": 329,
+          "p1": 376
+        },
+        "trace_sha256": "2cd5b7d9e594da1e6ba4e0d1fe6b24528879db9132156cd2dcb2bffdee19597f"
+      }
+    }
+  ],
+  "material_scope": "Three fresh processes per study on one unchanged reported Windows boot/configuration; all training/probing CPL3. Within-run intervals do not become independent-boot replication or mechanism proof. Hypervisor/VBS exposure is recorded, not inferred away.",
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.39",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "total_recorded_rows": 983040,
+  "trusted_source_revision": "8080faed480a9eef086f1fc0396e38dba7de31c7",
+  "uploaded_source_archive_matches_plan": true,
+  "uploaded_source_archive_sha256": "25a1fe07d3410a02e6da74d1ca5c3688f46185b1955a00d4ff6804f82e417a61",
+  "uploaded_source_files_match_trusted_frozen_sources": {
+    "programs/causal_receiver.c": true,
+    "programs/causal_receiver_code.h": true,
+    "programs/causal_receiver_layout.S": true,
+    "programs/cpu_features.c": true,
+    "programs/cpu_features.h": true,
+    "protocols/WINDOWS_CAUSAL_FOLLOWUP.md": true,
+    "protocols/WINDOWS_CAUSAL_POLICY.json": true,
+    "scripts/analyze_cache_probe.py": true,
+    "scripts/analyze_causal_receiver.py": true,
+    "scripts/capture_causal_host_windows.ps1": true,
+    "scripts/causal_receiver_contract.py": true,
+    "scripts/causal_receiver_study.py": true,
+    "scripts/generate_causal_receiver.py": true,
+    "scripts/run_causal_receiver_windows.ps1": true
+  }
+}

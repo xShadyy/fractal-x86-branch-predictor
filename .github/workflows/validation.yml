@@ -1,0 +1,37 @@
+name: Software validation
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: software-validation-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  software:
+    name: Analysis fixtures and documentation
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Check out source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Set up Python 3.12
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.12'
+      - name: Run software unit tests
+        run: python -m unittest discover -s tests -v
+      - name: Check generated K7/K8 instruction contract
+        run: python scripts/generate_causal_receiver.py --check
+      - name: Check documentation links, assets, and citation metadata
+        run: python scripts/check_documentation.py
+
+# These checks exercise software fixtures and source consistency. They do not
+# collect Windows measurements or certify a physical result or mechanism.

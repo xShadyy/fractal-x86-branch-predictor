@@ -1,0 +1,419 @@
+
+k7-k8-review-20261108/evidence/build/collector.exe:     file format pei-x86-64
+
+
+Disassembly of section .text:
+
+0000000140002740 <.text+0x1740>:
+   140002740:	40 53                	rex push rbx
+   140002742:	55                   	push   rbp
+   140002743:	56                   	push   rsi
+   140002744:	57                   	push   rdi
+   140002745:	41 54                	push   r12
+   140002747:	41 55                	push   r13
+   140002749:	41 56                	push   r14
+   14000274b:	41 57                	push   r15
+   14000274d:	48 83 ec 28          	sub    rsp,0x28
+   140002751:	0f b6 59 30          	movzx  ebx,BYTE PTR [rcx+0x30]
+   140002755:	4c 8b f1             	mov    r14,rcx
+   140002758:	44 8b fb             	mov    r15d,ebx
+   14000275b:	44 8b e3             	mov    r12d,ebx
+   14000275e:	41 c1 ef 03          	shr    r15d,0x3
+   140002762:	41 83 e4 07          	and    r12d,0x7
+   140002766:	41 bd 01 00 00 00    	mov    r13d,0x1
+   14000276c:	f6 c3 04             	test   bl,0x4
+   14000276f:	75 05                	jne    0x140002776
+   140002771:	41 23 dd             	and    ebx,r13d
+   140002774:	eb 10                	jmp    0x140002786
+   140002776:	41 8b c5             	mov    eax,r13d
+   140002779:	41 8b df             	mov    ebx,r15d
+   14000277c:	41 2b c7             	sub    eax,r15d
+   14000277f:	41 83 fc 07          	cmp    r12d,0x7
+   140002783:	0f 44 d8             	cmove  ebx,eax
+   140002786:	33 f6                	xor    esi,esi
+   140002788:	33 ed                	xor    ebp,ebp
+   14000278a:	40 88 35 6f 88 02 00 	mov    BYTE PTR [rip+0x2886f],sil        # 0x14002b000
+   140002791:	33 ff                	xor    edi,edi
+   140002793:	40 88 35 66 78 02 00 	mov    BYTE PTR [rip+0x27866],sil        # 0x14002a000
+   14000279a:	66 0f 1f 44 00 00    	nop    WORD PTR [rax+rax*1+0x0]
+   1400027a0:	8b c7                	mov    eax,edi
+   1400027a2:	d1 e8                	shr    eax,1
+   1400027a4:	41 23 c5             	and    eax,r13d
+   1400027a7:	88 05 53 68 02 00    	mov    BYTE PTR [rip+0x26853],al        # 0x140029000
+   1400027ad:	e8 ee f5 ff ff       	call   0x140001da0
+   1400027b2:	03 e8                	add    ebp,eax
+   1400027b4:	ff c7                	inc    edi
+   1400027b6:	81 ff 80 00 00 00    	cmp    edi,0x80
+   1400027bc:	72 e2                	jb     0x1400027a0
+   1400027be:	bf 00 01 00 00       	mov    edi,0x100
+   1400027c3:	88 1d 37 68 02 00    	mov    BYTE PTR [rip+0x26837],bl        # 0x140029000
+   1400027c9:	e8 d2 f5 ff ff       	call   0x140001da0
+   1400027ce:	03 f0                	add    esi,eax
+   1400027d0:	83 c7 ff             	add    edi,0xffffffff
+   1400027d3:	75 ee                	jne    0x1400027c3
+   1400027d5:	41 89 6e 20          	mov    DWORD PTR [r14+0x20],ebp
+   1400027d9:	41 89 76 24          	mov    DWORD PTR [r14+0x24],esi
+   1400027dd:	8b 05 45 98 12 00    	mov    eax,DWORD PTR [rip+0x129845]        # 0x14012c028
+   1400027e3:	41 88 46 36          	mov    BYTE PTR [r14+0x36],al
+   1400027e7:	48 8b 05 42 98 12 00 	mov    rax,QWORD PTR [rip+0x129842]        # 0x14012c030
+   1400027ee:	49 89 46 38          	mov    QWORD PTR [r14+0x38],rax
+   1400027f2:	81 fd c0 00 00 00    	cmp    ebp,0xc0
+   1400027f8:	75 0d                	jne    0x140002807
+   1400027fa:	c1 e3 08             	shl    ebx,0x8
+   1400027fd:	81 c3 00 01 00 00    	add    ebx,0x100
+   140002803:	3b f3                	cmp    esi,ebx
+   140002805:	74 06                	je     0x14000280d
+   140002807:	ff 05 2b 98 12 00    	inc    DWORD PTR [rip+0x12982b]        # 0x14012c038
+   14000280d:	41 0f b6 46 32       	movzx  eax,BYTE PTR [r14+0x32]
+   140002812:	45 2b ef             	sub    r13d,r15d
+   140002815:	88 05 e5 77 02 00    	mov    BYTE PTR [rip+0x277e5],al        # 0x14002a000
+   14000281b:	41 83 fc 06          	cmp    r12d,0x6
+   14000281f:	41 0f b6 46 33       	movzx  eax,BYTE PTR [r14+0x33]
+   140002824:	88 05 d6 87 02 00    	mov    BYTE PTR [rip+0x287d6],al        # 0x14002b000
+   14000282a:	45 0f 45 ef          	cmovne r13d,r15d
+   14000282e:	0f ae 3d cb 97 02 00 	clflush BYTE PTR [rip+0x297cb]        # 0x14002c000
+   140002835:	0f ae 3d c4 97 06 00 	clflush BYTE PTR [rip+0x697c4]        # 0x14006c000
+   14000283c:	0f ae 3d bd 97 0a 00 	clflush BYTE PTR [rip+0xa97bd]        # 0x1400ac000
+   140002843:	0f ae 3d b6 97 0e 00 	clflush BYTE PTR [rip+0xe97b6]        # 0x1400ec000
+   14000284a:	0f ae 3d af a7 02 00 	clflush BYTE PTR [rip+0x2a7af]        # 0x14002d000
+   140002851:	0f ae 3d a8 a7 06 00 	clflush BYTE PTR [rip+0x6a7a8]        # 0x14006d000
+   140002858:	0f ae 3d a1 a7 0a 00 	clflush BYTE PTR [rip+0xaa7a1]        # 0x1400ad000
+   14000285f:	0f ae 3d 9a a7 0e 00 	clflush BYTE PTR [rip+0xea79a]        # 0x1400ed000
+   140002866:	0f ae 3d 93 b7 02 00 	clflush BYTE PTR [rip+0x2b793]        # 0x14002e000
+   14000286d:	0f ae 3d 8c b7 06 00 	clflush BYTE PTR [rip+0x6b78c]        # 0x14006e000
+   140002874:	0f ae 3d 85 b7 0a 00 	clflush BYTE PTR [rip+0xab785]        # 0x1400ae000
+   14000287b:	0f ae 3d 7e b7 0e 00 	clflush BYTE PTR [rip+0xeb77e]        # 0x1400ee000
+   140002882:	0f ae 3d 77 c7 02 00 	clflush BYTE PTR [rip+0x2c777]        # 0x14002f000
+   140002889:	0f ae 3d 70 c7 06 00 	clflush BYTE PTR [rip+0x6c770]        # 0x14006f000
+   140002890:	0f ae 3d 69 c7 0a 00 	clflush BYTE PTR [rip+0xac769]        # 0x1400af000
+   140002897:	0f ae 3d 62 c7 0e 00 	clflush BYTE PTR [rip+0xec762]        # 0x1400ef000
+   14000289e:	0f ae 3d 5b d7 02 00 	clflush BYTE PTR [rip+0x2d75b]        # 0x140030000
+   1400028a5:	0f ae 3d 54 d7 06 00 	clflush BYTE PTR [rip+0x6d754]        # 0x140070000
+   1400028ac:	0f ae 3d 4d d7 0a 00 	clflush BYTE PTR [rip+0xad74d]        # 0x1400b0000
+   1400028b3:	0f ae 3d 46 d7 0e 00 	clflush BYTE PTR [rip+0xed746]        # 0x1400f0000
+   1400028ba:	0f ae 3d 3f e7 02 00 	clflush BYTE PTR [rip+0x2e73f]        # 0x140031000
+   1400028c1:	0f ae 3d 38 e7 06 00 	clflush BYTE PTR [rip+0x6e738]        # 0x140071000
+   1400028c8:	0f ae 3d 31 e7 0a 00 	clflush BYTE PTR [rip+0xae731]        # 0x1400b1000
+   1400028cf:	0f ae 3d 2a e7 0e 00 	clflush BYTE PTR [rip+0xee72a]        # 0x1400f1000
+   1400028d6:	0f ae 3d 23 f7 02 00 	clflush BYTE PTR [rip+0x2f723]        # 0x140032000
+   1400028dd:	0f ae 3d 1c f7 06 00 	clflush BYTE PTR [rip+0x6f71c]        # 0x140072000
+   1400028e4:	0f ae 3d 15 f7 0a 00 	clflush BYTE PTR [rip+0xaf715]        # 0x1400b2000
+   1400028eb:	0f ae 3d 0e f7 0e 00 	clflush BYTE PTR [rip+0xef70e]        # 0x1400f2000
+   1400028f2:	0f ae 3d 07 07 03 00 	clflush BYTE PTR [rip+0x30707]        # 0x140033000
+   1400028f9:	0f ae 3d 00 07 07 00 	clflush BYTE PTR [rip+0x70700]        # 0x140073000
+   140002900:	0f ae 3d f9 06 0b 00 	clflush BYTE PTR [rip+0xb06f9]        # 0x1400b3000
+   140002907:	0f ae 3d f2 06 0f 00 	clflush BYTE PTR [rip+0xf06f2]        # 0x1400f3000
+   14000290e:	0f ae 3d eb 16 03 00 	clflush BYTE PTR [rip+0x316eb]        # 0x140034000
+   140002915:	0f ae 3d e4 16 07 00 	clflush BYTE PTR [rip+0x716e4]        # 0x140074000
+   14000291c:	0f ae 3d dd 16 0b 00 	clflush BYTE PTR [rip+0xb16dd]        # 0x1400b4000
+   140002923:	0f ae 3d d6 16 0f 00 	clflush BYTE PTR [rip+0xf16d6]        # 0x1400f4000
+   14000292a:	0f ae 3d cf 26 03 00 	clflush BYTE PTR [rip+0x326cf]        # 0x140035000
+   140002931:	0f ae 3d c8 26 07 00 	clflush BYTE PTR [rip+0x726c8]        # 0x140075000
+   140002938:	0f ae 3d c1 26 0b 00 	clflush BYTE PTR [rip+0xb26c1]        # 0x1400b5000
+   14000293f:	0f ae 3d ba 26 0f 00 	clflush BYTE PTR [rip+0xf26ba]        # 0x1400f5000
+   140002946:	0f ae 3d b3 36 03 00 	clflush BYTE PTR [rip+0x336b3]        # 0x140036000
+   14000294d:	0f ae 3d ac 36 07 00 	clflush BYTE PTR [rip+0x736ac]        # 0x140076000
+   140002954:	0f ae 3d a5 36 0b 00 	clflush BYTE PTR [rip+0xb36a5]        # 0x1400b6000
+   14000295b:	0f ae 3d 9e 36 0f 00 	clflush BYTE PTR [rip+0xf369e]        # 0x1400f6000
+   140002962:	0f ae 3d 97 46 03 00 	clflush BYTE PTR [rip+0x34697]        # 0x140037000
+   140002969:	0f ae 3d 90 46 07 00 	clflush BYTE PTR [rip+0x74690]        # 0x140077000
+   140002970:	0f ae 3d 89 46 0b 00 	clflush BYTE PTR [rip+0xb4689]        # 0x1400b7000
+   140002977:	0f ae 3d 82 46 0f 00 	clflush BYTE PTR [rip+0xf4682]        # 0x1400f7000
+   14000297e:	0f ae 3d 7b 56 03 00 	clflush BYTE PTR [rip+0x3567b]        # 0x140038000
+   140002985:	0f ae 3d 74 56 07 00 	clflush BYTE PTR [rip+0x75674]        # 0x140078000
+   14000298c:	0f ae 3d 6d 56 0b 00 	clflush BYTE PTR [rip+0xb566d]        # 0x1400b8000
+   140002993:	0f ae 3d 66 56 0f 00 	clflush BYTE PTR [rip+0xf5666]        # 0x1400f8000
+   14000299a:	0f ae 3d 5f 66 03 00 	clflush BYTE PTR [rip+0x3665f]        # 0x140039000
+   1400029a1:	0f ae 3d 58 66 07 00 	clflush BYTE PTR [rip+0x76658]        # 0x140079000
+   1400029a8:	0f ae 3d 51 66 0b 00 	clflush BYTE PTR [rip+0xb6651]        # 0x1400b9000
+   1400029af:	0f ae 3d 4a 66 0f 00 	clflush BYTE PTR [rip+0xf664a]        # 0x1400f9000
+   1400029b6:	0f ae 3d 43 76 03 00 	clflush BYTE PTR [rip+0x37643]        # 0x14003a000
+   1400029bd:	0f ae 3d 3c 76 07 00 	clflush BYTE PTR [rip+0x7763c]        # 0x14007a000
+   1400029c4:	0f ae 3d 35 76 0b 00 	clflush BYTE PTR [rip+0xb7635]        # 0x1400ba000
+   1400029cb:	0f ae 3d 2e 76 0f 00 	clflush BYTE PTR [rip+0xf762e]        # 0x1400fa000
+   1400029d2:	0f ae 3d 27 86 03 00 	clflush BYTE PTR [rip+0x38627]        # 0x14003b000
+   1400029d9:	0f ae 3d 20 86 07 00 	clflush BYTE PTR [rip+0x78620]        # 0x14007b000
+   1400029e0:	0f ae 3d 19 86 0b 00 	clflush BYTE PTR [rip+0xb8619]        # 0x1400bb000
+   1400029e7:	0f ae 3d 12 86 0f 00 	clflush BYTE PTR [rip+0xf8612]        # 0x1400fb000
+   1400029ee:	0f ae 3d 0b 96 03 00 	clflush BYTE PTR [rip+0x3960b]        # 0x14003c000
+   1400029f5:	0f ae 3d 04 96 07 00 	clflush BYTE PTR [rip+0x79604]        # 0x14007c000
+   1400029fc:	0f ae 3d fd 95 0b 00 	clflush BYTE PTR [rip+0xb95fd]        # 0x1400bc000
+   140002a03:	0f ae 3d f6 95 0f 00 	clflush BYTE PTR [rip+0xf95f6]        # 0x1400fc000
+   140002a0a:	0f ae 3d ef a5 03 00 	clflush BYTE PTR [rip+0x3a5ef]        # 0x14003d000
+   140002a11:	0f ae 3d e8 a5 07 00 	clflush BYTE PTR [rip+0x7a5e8]        # 0x14007d000
+   140002a18:	0f ae 3d e1 a5 0b 00 	clflush BYTE PTR [rip+0xba5e1]        # 0x1400bd000
+   140002a1f:	0f ae 3d da a5 0f 00 	clflush BYTE PTR [rip+0xfa5da]        # 0x1400fd000
+   140002a26:	0f ae 3d d3 b5 03 00 	clflush BYTE PTR [rip+0x3b5d3]        # 0x14003e000
+   140002a2d:	44 88 2d cc 65 02 00 	mov    BYTE PTR [rip+0x265cc],r13b        # 0x140029000
+   140002a34:	0f ae 3d c5 b5 07 00 	clflush BYTE PTR [rip+0x7b5c5]        # 0x14007e000
+   140002a3b:	0f ae 3d be b5 0b 00 	clflush BYTE PTR [rip+0xbb5be]        # 0x1400be000
+   140002a42:	0f ae 3d b7 b5 0f 00 	clflush BYTE PTR [rip+0xfb5b7]        # 0x1400fe000
+   140002a49:	0f ae 3d b0 c5 03 00 	clflush BYTE PTR [rip+0x3c5b0]        # 0x14003f000
+   140002a50:	0f ae 3d a9 c5 07 00 	clflush BYTE PTR [rip+0x7c5a9]        # 0x14007f000
+   140002a57:	0f ae 3d a2 c5 0b 00 	clflush BYTE PTR [rip+0xbc5a2]        # 0x1400bf000
+   140002a5e:	0f ae 3d 9b c5 0f 00 	clflush BYTE PTR [rip+0xfc59b]        # 0x1400ff000
+   140002a65:	0f ae 3d 94 d5 03 00 	clflush BYTE PTR [rip+0x3d594]        # 0x140040000
+   140002a6c:	0f ae 3d 8d d5 07 00 	clflush BYTE PTR [rip+0x7d58d]        # 0x140080000
+   140002a73:	0f ae 3d 86 d5 0b 00 	clflush BYTE PTR [rip+0xbd586]        # 0x1400c0000
+   140002a7a:	0f ae 3d 7f d5 0f 00 	clflush BYTE PTR [rip+0xfd57f]        # 0x140100000
+   140002a81:	0f ae 3d 78 e5 03 00 	clflush BYTE PTR [rip+0x3e578]        # 0x140041000
+   140002a88:	0f ae 3d 71 e5 07 00 	clflush BYTE PTR [rip+0x7e571]        # 0x140081000
+   140002a8f:	0f ae 3d 6a e5 0b 00 	clflush BYTE PTR [rip+0xbe56a]        # 0x1400c1000
+   140002a96:	0f ae 3d 63 e5 0f 00 	clflush BYTE PTR [rip+0xfe563]        # 0x140101000
+   140002a9d:	0f ae 3d 5c f5 03 00 	clflush BYTE PTR [rip+0x3f55c]        # 0x140042000
+   140002aa4:	0f ae 3d 55 f5 07 00 	clflush BYTE PTR [rip+0x7f555]        # 0x140082000
+   140002aab:	0f ae 3d 4e f5 0b 00 	clflush BYTE PTR [rip+0xbf54e]        # 0x1400c2000
+   140002ab2:	0f ae 3d 47 f5 0f 00 	clflush BYTE PTR [rip+0xff547]        # 0x140102000
+   140002ab9:	0f ae 3d 40 05 04 00 	clflush BYTE PTR [rip+0x40540]        # 0x140043000
+   140002ac0:	0f ae 3d 39 05 08 00 	clflush BYTE PTR [rip+0x80539]        # 0x140083000
+   140002ac7:	0f ae 3d 32 05 0c 00 	clflush BYTE PTR [rip+0xc0532]        # 0x1400c3000
+   140002ace:	0f ae 3d 2b 05 10 00 	clflush BYTE PTR [rip+0x10052b]        # 0x140103000
+   140002ad5:	0f ae 3d 24 15 04 00 	clflush BYTE PTR [rip+0x41524]        # 0x140044000
+   140002adc:	0f ae 3d 1d 15 08 00 	clflush BYTE PTR [rip+0x8151d]        # 0x140084000
+   140002ae3:	0f ae 3d 16 15 0c 00 	clflush BYTE PTR [rip+0xc1516]        # 0x1400c4000
+   140002aea:	0f ae 3d 0f 15 10 00 	clflush BYTE PTR [rip+0x10150f]        # 0x140104000
+   140002af1:	0f ae 3d 08 25 04 00 	clflush BYTE PTR [rip+0x42508]        # 0x140045000
+   140002af8:	0f ae 3d 01 25 08 00 	clflush BYTE PTR [rip+0x82501]        # 0x140085000
+   140002aff:	0f ae 3d fa 24 0c 00 	clflush BYTE PTR [rip+0xc24fa]        # 0x1400c5000
+   140002b06:	0f ae 3d f3 24 10 00 	clflush BYTE PTR [rip+0x1024f3]        # 0x140105000
+   140002b0d:	0f ae 3d ec 34 04 00 	clflush BYTE PTR [rip+0x434ec]        # 0x140046000
+   140002b14:	0f ae 3d e5 34 08 00 	clflush BYTE PTR [rip+0x834e5]        # 0x140086000
+   140002b1b:	0f ae 3d de 34 0c 00 	clflush BYTE PTR [rip+0xc34de]        # 0x1400c6000
+   140002b22:	0f ae 3d d7 34 10 00 	clflush BYTE PTR [rip+0x1034d7]        # 0x140106000
+   140002b29:	0f ae 3d d0 44 04 00 	clflush BYTE PTR [rip+0x444d0]        # 0x140047000
+   140002b30:	0f ae 3d c9 44 08 00 	clflush BYTE PTR [rip+0x844c9]        # 0x140087000
+   140002b37:	0f ae 3d c2 44 0c 00 	clflush BYTE PTR [rip+0xc44c2]        # 0x1400c7000
+   140002b3e:	0f ae 3d bb 44 10 00 	clflush BYTE PTR [rip+0x1044bb]        # 0x140107000
+   140002b45:	0f ae 3d b4 54 04 00 	clflush BYTE PTR [rip+0x454b4]        # 0x140048000
+   140002b4c:	0f ae 3d ad 54 08 00 	clflush BYTE PTR [rip+0x854ad]        # 0x140088000
+   140002b53:	0f ae 3d a6 54 0c 00 	clflush BYTE PTR [rip+0xc54a6]        # 0x1400c8000
+   140002b5a:	0f ae 3d 9f 54 10 00 	clflush BYTE PTR [rip+0x10549f]        # 0x140108000
+   140002b61:	0f ae 3d 98 64 04 00 	clflush BYTE PTR [rip+0x46498]        # 0x140049000
+   140002b68:	0f ae 3d 91 64 08 00 	clflush BYTE PTR [rip+0x86491]        # 0x140089000
+   140002b6f:	0f ae 3d 8a 64 0c 00 	clflush BYTE PTR [rip+0xc648a]        # 0x1400c9000
+   140002b76:	0f ae 3d 83 64 10 00 	clflush BYTE PTR [rip+0x106483]        # 0x140109000
+   140002b7d:	0f ae 3d 7c 74 04 00 	clflush BYTE PTR [rip+0x4747c]        # 0x14004a000
+   140002b84:	0f ae 3d 75 74 08 00 	clflush BYTE PTR [rip+0x87475]        # 0x14008a000
+   140002b8b:	0f ae 3d 6e 74 0c 00 	clflush BYTE PTR [rip+0xc746e]        # 0x1400ca000
+   140002b92:	0f ae 3d 67 74 10 00 	clflush BYTE PTR [rip+0x107467]        # 0x14010a000
+   140002b99:	0f ae 3d 60 84 04 00 	clflush BYTE PTR [rip+0x48460]        # 0x14004b000
+   140002ba0:	0f ae 3d 59 84 08 00 	clflush BYTE PTR [rip+0x88459]        # 0x14008b000
+   140002ba7:	0f ae 3d 52 84 0c 00 	clflush BYTE PTR [rip+0xc8452]        # 0x1400cb000
+   140002bae:	0f ae 3d 4b 84 10 00 	clflush BYTE PTR [rip+0x10844b]        # 0x14010b000
+   140002bb5:	0f ae 3d 44 94 04 00 	clflush BYTE PTR [rip+0x49444]        # 0x14004c000
+   140002bbc:	0f ae 3d 3d 94 08 00 	clflush BYTE PTR [rip+0x8943d]        # 0x14008c000
+   140002bc3:	0f ae 3d 36 94 0c 00 	clflush BYTE PTR [rip+0xc9436]        # 0x1400cc000
+   140002bca:	0f ae 3d 2f 94 10 00 	clflush BYTE PTR [rip+0x10942f]        # 0x14010c000
+   140002bd1:	0f ae 3d 28 a4 04 00 	clflush BYTE PTR [rip+0x4a428]        # 0x14004d000
+   140002bd8:	0f ae 3d 21 a4 08 00 	clflush BYTE PTR [rip+0x8a421]        # 0x14008d000
+   140002bdf:	0f ae 3d 1a a4 0c 00 	clflush BYTE PTR [rip+0xca41a]        # 0x1400cd000
+   140002be6:	0f ae 3d 13 a4 10 00 	clflush BYTE PTR [rip+0x10a413]        # 0x14010d000
+   140002bed:	0f ae 3d 0c b4 04 00 	clflush BYTE PTR [rip+0x4b40c]        # 0x14004e000
+   140002bf4:	0f ae 3d 05 b4 08 00 	clflush BYTE PTR [rip+0x8b405]        # 0x14008e000
+   140002bfb:	0f ae 3d fe b3 0c 00 	clflush BYTE PTR [rip+0xcb3fe]        # 0x1400ce000
+   140002c02:	0f ae 3d f7 b3 10 00 	clflush BYTE PTR [rip+0x10b3f7]        # 0x14010e000
+   140002c09:	0f ae 3d f0 c3 04 00 	clflush BYTE PTR [rip+0x4c3f0]        # 0x14004f000
+   140002c10:	0f ae 3d e9 c3 08 00 	clflush BYTE PTR [rip+0x8c3e9]        # 0x14008f000
+   140002c17:	0f ae 3d e2 c3 0c 00 	clflush BYTE PTR [rip+0xcc3e2]        # 0x1400cf000
+   140002c1e:	0f ae 3d db c3 10 00 	clflush BYTE PTR [rip+0x10c3db]        # 0x14010f000
+   140002c25:	0f ae 3d d4 d3 04 00 	clflush BYTE PTR [rip+0x4d3d4]        # 0x140050000
+   140002c2c:	0f ae 3d cd d3 08 00 	clflush BYTE PTR [rip+0x8d3cd]        # 0x140090000
+   140002c33:	0f ae 3d c6 d3 0c 00 	clflush BYTE PTR [rip+0xcd3c6]        # 0x1400d0000
+   140002c3a:	0f ae 3d bf d3 10 00 	clflush BYTE PTR [rip+0x10d3bf]        # 0x140110000
+   140002c41:	0f ae 3d b8 e3 04 00 	clflush BYTE PTR [rip+0x4e3b8]        # 0x140051000
+   140002c48:	0f ae 3d b1 e3 08 00 	clflush BYTE PTR [rip+0x8e3b1]        # 0x140091000
+   140002c4f:	0f ae 3d aa e3 0c 00 	clflush BYTE PTR [rip+0xce3aa]        # 0x1400d1000
+   140002c56:	0f ae 3d a3 e3 10 00 	clflush BYTE PTR [rip+0x10e3a3]        # 0x140111000
+   140002c5d:	0f ae 3d 9c f3 04 00 	clflush BYTE PTR [rip+0x4f39c]        # 0x140052000
+   140002c64:	0f ae 3d 95 f3 08 00 	clflush BYTE PTR [rip+0x8f395]        # 0x140092000
+   140002c6b:	0f ae 3d 8e f3 0c 00 	clflush BYTE PTR [rip+0xcf38e]        # 0x1400d2000
+   140002c72:	0f ae 3d 87 f3 10 00 	clflush BYTE PTR [rip+0x10f387]        # 0x140112000
+   140002c79:	0f ae 3d 80 03 05 00 	clflush BYTE PTR [rip+0x50380]        # 0x140053000
+   140002c80:	0f ae 3d 79 03 09 00 	clflush BYTE PTR [rip+0x90379]        # 0x140093000
+   140002c87:	0f ae 3d 72 03 0d 00 	clflush BYTE PTR [rip+0xd0372]        # 0x1400d3000
+   140002c8e:	0f ae 3d 6b 03 11 00 	clflush BYTE PTR [rip+0x11036b]        # 0x140113000
+   140002c95:	0f ae 3d 64 13 05 00 	clflush BYTE PTR [rip+0x51364]        # 0x140054000
+   140002c9c:	0f ae 3d 5d 13 09 00 	clflush BYTE PTR [rip+0x9135d]        # 0x140094000
+   140002ca3:	0f ae 3d 56 13 0d 00 	clflush BYTE PTR [rip+0xd1356]        # 0x1400d4000
+   140002caa:	0f ae 3d 4f 13 11 00 	clflush BYTE PTR [rip+0x11134f]        # 0x140114000
+   140002cb1:	0f ae 3d 48 23 05 00 	clflush BYTE PTR [rip+0x52348]        # 0x140055000
+   140002cb8:	0f ae 3d 41 23 09 00 	clflush BYTE PTR [rip+0x92341]        # 0x140095000
+   140002cbf:	0f ae 3d 3a 23 0d 00 	clflush BYTE PTR [rip+0xd233a]        # 0x1400d5000
+   140002cc6:	0f ae 3d 33 23 11 00 	clflush BYTE PTR [rip+0x112333]        # 0x140115000
+   140002ccd:	0f ae 3d 2c 33 05 00 	clflush BYTE PTR [rip+0x5332c]        # 0x140056000
+   140002cd4:	0f ae 3d 25 33 09 00 	clflush BYTE PTR [rip+0x93325]        # 0x140096000
+   140002cdb:	0f ae 3d 1e 33 0d 00 	clflush BYTE PTR [rip+0xd331e]        # 0x1400d6000
+   140002ce2:	0f ae 3d 17 33 11 00 	clflush BYTE PTR [rip+0x113317]        # 0x140116000
+   140002ce9:	0f ae 3d 10 43 05 00 	clflush BYTE PTR [rip+0x54310]        # 0x140057000
+   140002cf0:	0f ae 3d 09 43 09 00 	clflush BYTE PTR [rip+0x94309]        # 0x140097000
+   140002cf7:	0f ae 3d 02 43 0d 00 	clflush BYTE PTR [rip+0xd4302]        # 0x1400d7000
+   140002cfe:	0f ae 3d fb 42 11 00 	clflush BYTE PTR [rip+0x1142fb]        # 0x140117000
+   140002d05:	0f ae 3d f4 52 05 00 	clflush BYTE PTR [rip+0x552f4]        # 0x140058000
+   140002d0c:	0f ae 3d ed 52 09 00 	clflush BYTE PTR [rip+0x952ed]        # 0x140098000
+   140002d13:	0f ae 3d e6 52 0d 00 	clflush BYTE PTR [rip+0xd52e6]        # 0x1400d8000
+   140002d1a:	0f ae 3d df 52 11 00 	clflush BYTE PTR [rip+0x1152df]        # 0x140118000
+   140002d21:	0f ae 3d d8 62 05 00 	clflush BYTE PTR [rip+0x562d8]        # 0x140059000
+   140002d28:	0f ae 3d d1 62 09 00 	clflush BYTE PTR [rip+0x962d1]        # 0x140099000
+   140002d2f:	0f ae 3d ca 62 0d 00 	clflush BYTE PTR [rip+0xd62ca]        # 0x1400d9000
+   140002d36:	0f ae 3d c3 62 11 00 	clflush BYTE PTR [rip+0x1162c3]        # 0x140119000
+   140002d3d:	0f ae 3d bc 72 05 00 	clflush BYTE PTR [rip+0x572bc]        # 0x14005a000
+   140002d44:	0f ae 3d b5 72 09 00 	clflush BYTE PTR [rip+0x972b5]        # 0x14009a000
+   140002d4b:	0f ae 3d ae 72 0d 00 	clflush BYTE PTR [rip+0xd72ae]        # 0x1400da000
+   140002d52:	0f ae 3d a7 72 11 00 	clflush BYTE PTR [rip+0x1172a7]        # 0x14011a000
+   140002d59:	0f ae 3d a0 82 05 00 	clflush BYTE PTR [rip+0x582a0]        # 0x14005b000
+   140002d60:	0f ae 3d 99 82 09 00 	clflush BYTE PTR [rip+0x98299]        # 0x14009b000
+   140002d67:	0f ae 3d 92 82 0d 00 	clflush BYTE PTR [rip+0xd8292]        # 0x1400db000
+   140002d6e:	0f ae 3d 8b 82 11 00 	clflush BYTE PTR [rip+0x11828b]        # 0x14011b000
+   140002d75:	0f ae 3d 84 92 05 00 	clflush BYTE PTR [rip+0x59284]        # 0x14005c000
+   140002d7c:	0f ae 3d 7d 92 09 00 	clflush BYTE PTR [rip+0x9927d]        # 0x14009c000
+   140002d83:	0f ae 3d 76 92 0d 00 	clflush BYTE PTR [rip+0xd9276]        # 0x1400dc000
+   140002d8a:	0f ae 3d 6f 92 11 00 	clflush BYTE PTR [rip+0x11926f]        # 0x14011c000
+   140002d91:	0f ae 3d 68 a2 05 00 	clflush BYTE PTR [rip+0x5a268]        # 0x14005d000
+   140002d98:	0f ae 3d 61 a2 09 00 	clflush BYTE PTR [rip+0x9a261]        # 0x14009d000
+   140002d9f:	0f ae 3d 5a a2 0d 00 	clflush BYTE PTR [rip+0xda25a]        # 0x1400dd000
+   140002da6:	0f ae 3d 53 a2 11 00 	clflush BYTE PTR [rip+0x11a253]        # 0x14011d000
+   140002dad:	0f ae 3d 4c b2 05 00 	clflush BYTE PTR [rip+0x5b24c]        # 0x14005e000
+   140002db4:	0f ae 3d 45 b2 09 00 	clflush BYTE PTR [rip+0x9b245]        # 0x14009e000
+   140002dbb:	0f ae 3d 3e b2 0d 00 	clflush BYTE PTR [rip+0xdb23e]        # 0x1400de000
+   140002dc2:	0f ae 3d 37 b2 11 00 	clflush BYTE PTR [rip+0x11b237]        # 0x14011e000
+   140002dc9:	0f ae 3d 30 c2 05 00 	clflush BYTE PTR [rip+0x5c230]        # 0x14005f000
+   140002dd0:	0f ae 3d 29 c2 09 00 	clflush BYTE PTR [rip+0x9c229]        # 0x14009f000
+   140002dd7:	0f ae 3d 22 c2 0d 00 	clflush BYTE PTR [rip+0xdc222]        # 0x1400df000
+   140002dde:	0f ae 3d 1b c2 11 00 	clflush BYTE PTR [rip+0x11c21b]        # 0x14011f000
+   140002de5:	0f ae 3d 14 d2 05 00 	clflush BYTE PTR [rip+0x5d214]        # 0x140060000
+   140002dec:	0f ae 3d 0d d2 09 00 	clflush BYTE PTR [rip+0x9d20d]        # 0x1400a0000
+   140002df3:	0f ae 3d 06 d2 0d 00 	clflush BYTE PTR [rip+0xdd206]        # 0x1400e0000
+   140002dfa:	0f ae 3d ff d1 11 00 	clflush BYTE PTR [rip+0x11d1ff]        # 0x140120000
+   140002e01:	0f ae 3d f8 e1 05 00 	clflush BYTE PTR [rip+0x5e1f8]        # 0x140061000
+   140002e08:	0f ae 3d f1 e1 09 00 	clflush BYTE PTR [rip+0x9e1f1]        # 0x1400a1000
+   140002e0f:	0f ae 3d ea e1 0d 00 	clflush BYTE PTR [rip+0xde1ea]        # 0x1400e1000
+   140002e16:	0f ae 3d e3 e1 11 00 	clflush BYTE PTR [rip+0x11e1e3]        # 0x140121000
+   140002e1d:	0f ae 3d dc f1 05 00 	clflush BYTE PTR [rip+0x5f1dc]        # 0x140062000
+   140002e24:	0f ae 3d d5 f1 09 00 	clflush BYTE PTR [rip+0x9f1d5]        # 0x1400a2000
+   140002e2b:	0f ae 3d ce f1 0d 00 	clflush BYTE PTR [rip+0xdf1ce]        # 0x1400e2000
+   140002e32:	0f ae 3d c7 f1 11 00 	clflush BYTE PTR [rip+0x11f1c7]        # 0x140122000
+   140002e39:	0f ae 3d c0 01 06 00 	clflush BYTE PTR [rip+0x601c0]        # 0x140063000
+   140002e40:	0f ae 3d b9 01 0a 00 	clflush BYTE PTR [rip+0xa01b9]        # 0x1400a3000
+   140002e47:	0f ae 3d b2 01 0e 00 	clflush BYTE PTR [rip+0xe01b2]        # 0x1400e3000
+   140002e4e:	0f ae 3d ab 01 12 00 	clflush BYTE PTR [rip+0x1201ab]        # 0x140123000
+   140002e55:	0f ae 3d a4 11 06 00 	clflush BYTE PTR [rip+0x611a4]        # 0x140064000
+   140002e5c:	0f ae 3d 9d 11 0a 00 	clflush BYTE PTR [rip+0xa119d]        # 0x1400a4000
+   140002e63:	0f ae 3d 96 11 0e 00 	clflush BYTE PTR [rip+0xe1196]        # 0x1400e4000
+   140002e6a:	0f ae 3d 8f 11 12 00 	clflush BYTE PTR [rip+0x12118f]        # 0x140124000
+   140002e71:	0f ae 3d 88 21 06 00 	clflush BYTE PTR [rip+0x62188]        # 0x140065000
+   140002e78:	0f ae 3d 81 21 0a 00 	clflush BYTE PTR [rip+0xa2181]        # 0x1400a5000
+   140002e7f:	0f ae 3d 7a 21 0e 00 	clflush BYTE PTR [rip+0xe217a]        # 0x1400e5000
+   140002e86:	0f ae 3d 73 21 12 00 	clflush BYTE PTR [rip+0x122173]        # 0x140125000
+   140002e8d:	0f ae 3d 6c 31 06 00 	clflush BYTE PTR [rip+0x6316c]        # 0x140066000
+   140002e94:	0f ae 3d 65 31 0a 00 	clflush BYTE PTR [rip+0xa3165]        # 0x1400a6000
+   140002e9b:	0f ae 3d 5e 31 0e 00 	clflush BYTE PTR [rip+0xe315e]        # 0x1400e6000
+   140002ea2:	0f ae 3d 57 31 12 00 	clflush BYTE PTR [rip+0x123157]        # 0x140126000
+   140002ea9:	0f ae 3d 50 41 06 00 	clflush BYTE PTR [rip+0x64150]        # 0x140067000
+   140002eb0:	0f ae 3d 49 41 0a 00 	clflush BYTE PTR [rip+0xa4149]        # 0x1400a7000
+   140002eb7:	0f ae 3d 42 41 0e 00 	clflush BYTE PTR [rip+0xe4142]        # 0x1400e7000
+   140002ebe:	0f ae 3d 3b 41 12 00 	clflush BYTE PTR [rip+0x12413b]        # 0x140127000
+   140002ec5:	0f ae 3d 34 51 06 00 	clflush BYTE PTR [rip+0x65134]        # 0x140068000
+   140002ecc:	0f ae 3d 2d 51 0a 00 	clflush BYTE PTR [rip+0xa512d]        # 0x1400a8000
+   140002ed3:	0f ae 3d 26 51 0e 00 	clflush BYTE PTR [rip+0xe5126]        # 0x1400e8000
+   140002eda:	0f ae 3d 1f 51 12 00 	clflush BYTE PTR [rip+0x12511f]        # 0x140128000
+   140002ee1:	0f ae 3d 18 61 06 00 	clflush BYTE PTR [rip+0x66118]        # 0x140069000
+   140002ee8:	0f ae 3d 11 61 0a 00 	clflush BYTE PTR [rip+0xa6111]        # 0x1400a9000
+   140002eef:	0f ae 3d 0a 61 0e 00 	clflush BYTE PTR [rip+0xe610a]        # 0x1400e9000
+   140002ef6:	0f ae 3d 03 61 12 00 	clflush BYTE PTR [rip+0x126103]        # 0x140129000
+   140002efd:	0f ae 3d fc 70 06 00 	clflush BYTE PTR [rip+0x670fc]        # 0x14006a000
+   140002f04:	0f ae 3d f5 70 0a 00 	clflush BYTE PTR [rip+0xa70f5]        # 0x1400aa000
+   140002f0b:	0f ae 3d ee 70 0e 00 	clflush BYTE PTR [rip+0xe70ee]        # 0x1400ea000
+   140002f12:	0f ae 3d e7 70 12 00 	clflush BYTE PTR [rip+0x1270e7]        # 0x14012a000
+   140002f19:	0f ae 3d e0 80 06 00 	clflush BYTE PTR [rip+0x680e0]        # 0x14006b000
+   140002f20:	0f ae 3d d9 80 0a 00 	clflush BYTE PTR [rip+0xa80d9]        # 0x1400ab000
+   140002f27:	0f ae 3d d2 80 0e 00 	clflush BYTE PTR [rip+0xe80d2]        # 0x1400eb000
+   140002f2e:	0f ae 3d cb 80 12 00 	clflush BYTE PTR [rip+0x1280cb]        # 0x14012b000
+   140002f35:	41 83 fc 07          	cmp    r12d,0x7
+   140002f39:	74 07                	je     0x140002f42
+   140002f3b:	0f ae 3d be 60 02 00 	clflush BYTE PTR [rip+0x260be]        # 0x140029000
+   140002f42:	0f ae f0             	mfence
+   140002f45:	48 83 c4 28          	add    rsp,0x28
+   140002f49:	41 5f                	pop    r15
+   140002f4b:	41 5e                	pop    r14
+   140002f4d:	41 5d                	pop    r13
+   140002f4f:	41 5c                	pop    r12
+   140002f51:	5f                   	pop    rdi
+   140002f52:	5e                   	pop    rsi
+   140002f53:	5d                   	pop    rbp
+   140002f54:	5b                   	pop    rbx
+   140002f55:	48 ff 25 fc 90 c6 00 	rex.W jmp QWORD PTR [rip+0xc690fc]        # 0x140c6c058
+   140002f5c:	cc                   	int3
+   140002f5d:	cc                   	int3
+   140002f5e:	cc                   	int3
+   140002f5f:	cc                   	int3
+   140002f60:	48 89 4c 24 08       	mov    QWORD PTR [rsp+0x8],rcx
+   140002f65:	48 89 54 24 10       	mov    QWORD PTR [rsp+0x10],rdx
+   140002f6a:	4c 89 44 24 18       	mov    QWORD PTR [rsp+0x18],r8
+   140002f6f:	4c 89 4c 24 20       	mov    QWORD PTR [rsp+0x20],r9
+   140002f74:	53                   	push   rbx
+   140002f75:	56                   	push   rsi
+   140002f76:	57                   	push   rdi
+   140002f77:	48 83 ec 30          	sub    rsp,0x30
+   140002f7b:	48 8b f9             	mov    rdi,rcx
+   140002f7e:	48 8d 74 24 58       	lea    rsi,[rsp+0x58]
+   140002f83:	b9 01 00 00 00       	mov    ecx,0x1
+   140002f88:	e8 23 39 00 00       	call   0x1400068b0
+   140002f8d:	48 8b d8             	mov    rbx,rax
+   140002f90:	e8 6b e0 ff ff       	call   0x140001000
+   140002f95:	45 33 c9             	xor    r9d,r9d
+   140002f98:	48 89 74 24 20       	mov    QWORD PTR [rsp+0x20],rsi
+   140002f9d:	4c 8b c7             	mov    r8,rdi
+   140002fa0:	48 8b d3             	mov    rdx,rbx
+   140002fa3:	48 8b 08             	mov    rcx,QWORD PTR [rax]
+   140002fa6:	e8 4d 71 00 00       	call   0x14000a0f8
+   140002fab:	48 83 c4 30          	add    rsp,0x30
+   140002faf:	5f                   	pop    rdi
+   140002fb0:	5e                   	pop    rsi
+   140002fb1:	5b                   	pop    rbx
+   140002fb2:	c3                   	ret
+   140002fb3:	cc                   	int3
+   140002fb4:	cc                   	int3
+   140002fb5:	cc                   	int3
+   140002fb6:	cc                   	int3
+   140002fb7:	cc                   	int3
+   140002fb8:	cc                   	int3
+   140002fb9:	cc                   	int3
+   140002fba:	cc                   	int3
+   140002fbb:	cc                   	int3
+   140002fbc:	cc                   	int3
+   140002fbd:	cc                   	int3
+   140002fbe:	cc                   	int3
+   140002fbf:	cc                   	int3
+   140002fc0:	40 53                	rex push rbx
+   140002fc2:	48 83 ec 20          	sub    rsp,0x20
+   140002fc6:	48 8b d9             	mov    rbx,rcx
+   140002fc9:	e8 72 f7 ff ff       	call   0x140002740
+   140002fce:	e8 cd ed ff ff       	call   0x140001da0
+   140002fd3:	89 43 28             	mov    DWORD PTR [rbx+0x28],eax
+   140002fd6:	8b 05 4c 90 12 00    	mov    eax,DWORD PTR [rip+0x12904c]        # 0x14012c028
+   140002fdc:	88 43 37             	mov    BYTE PTR [rbx+0x37],al
+   140002fdf:	48 8b 05 4a 90 12 00 	mov    rax,QWORD PTR [rip+0x12904a]        # 0x14012c030
+   140002fe6:	48 89 43 40          	mov    QWORD PTR [rbx+0x40],rax
+   140002fea:	48 83 c4 20          	add    rsp,0x20
+   140002fee:	5b                   	pop    rbx
+   140002fef:	c3                   	ret
+   140002ff0:	48 89 5c 24 08       	mov    QWORD PTR [rsp+0x8],rbx
+   140002ff5:	57                   	push   rdi
+   140002ff6:	48 83 ec 20          	sub    rsp,0x20
+   140002ffa:	48 8b fa             	mov    rdi,rdx
+   140002ffd:	48 8b d9             	mov    rbx,rcx
+   140003000:	e8 3b f7 ff ff       	call   0x140002740
+   140003005:	48 8b cf             	mov    rcx,rdi
+   140003008:	c7 43 28 00 00 00 00 	mov    DWORD PTR [rbx+0x28],0x0
+   14000300f:	48 8b 5c 24 30       	mov    rbx,QWORD PTR [rsp+0x30]
+   140003014:	48 83 c4 20          	add    rsp,0x20
+   140003018:	5f                   	pop    rdi
+   140003019:	48 ff 25 40 90 c6 00 	rex.W jmp QWORD PTR [rip+0xc69040]        # 0x140c6c060
+   140003020:	40 53                	rex push rbx
+   140003022:	48 83 ec 20          	sub    rsp,0x20
+   140003026:	48 8b d9             	mov    rbx,rcx
+   140003029:	e8 12 f7 ff ff       	call   0x140002740
+   14000302e:	c7 43 28 00 00 00 00 	mov    DWORD PTR [rbx+0x28],0x0
+   140003035:	48 83 c4 20          	add    rsp,0x20
+   140003039:	5b                   	pop    rbx
+   14000303a:	c3                   	ret

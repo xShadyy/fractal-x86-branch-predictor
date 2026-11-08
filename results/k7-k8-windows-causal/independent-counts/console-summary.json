@@ -1,0 +1,89 @@
+{
+  "all_comparisons_pass": true,
+  "attempts": [
+    {
+      "attempt": "attempt-01",
+      "study": "receiver",
+      "thresholds": {
+        "0": 305,
+        "1": 352
+      },
+      "gates": "140/140",
+      "endpoints_pp": {
+        "p0_plain_minus_ablate_one": 99.8046875,
+        "p1_plain_minus_ablate_zero": 99.609375,
+        "p0_plain_minus_sink_both": 99.8046875,
+        "p1_plain_minus_sink_both": 99.4140625
+      }
+    },
+    {
+      "attempt": "attempt-02",
+      "study": "dependency",
+      "thresholds": {
+        "0": 329,
+        "1": 329
+      },
+      "gates": "140/140",
+      "endpoints_pp": {
+        "p0_sham_minus_true": 99.90234375,
+        "p0_plain_minus_sham": -0.09765625
+      }
+    },
+    {
+      "attempt": "attempt-03",
+      "study": "receiver",
+      "thresholds": {
+        "0": 352,
+        "1": 352
+      },
+      "gates": "140/140",
+      "endpoints_pp": {
+        "p0_plain_minus_ablate_one": 99.70703125,
+        "p1_plain_minus_ablate_zero": 100.09765625,
+        "p0_plain_minus_sink_both": 99.70703125,
+        "p1_plain_minus_sink_both": 100.09765625
+      }
+    },
+    {
+      "attempt": "attempt-04",
+      "study": "dependency",
+      "thresholds": {
+        "0": 352,
+        "1": 399
+      },
+      "gates": "140/140",
+      "endpoints_pp": {
+        "p0_sham_minus_true": 99.70703125,
+        "p0_plain_minus_sham": 0.09765625
+      }
+    },
+    {
+      "attempt": "attempt-05",
+      "study": "receiver",
+      "thresholds": {
+        "0": 305,
+        "1": 399
+      },
+      "gates": "140/140",
+      "endpoints_pp": {
+        "p0_plain_minus_ablate_one": 99.8046875,
+        "p1_plain_minus_ablate_zero": 99.70703125,
+        "p0_plain_minus_sink_both": 99.8046875,
+        "p1_plain_minus_sink_both": 99.8046875
+      }
+    },
+    {
+      "attempt": "attempt-06",
+      "study": "dependency",
+      "thresholds": {
+        "0": 329,
+        "1": 376
+      },
+      "gates": "140/140",
+      "endpoints_pp": {
+        "p0_sham_minus_true": 99.4140625,
+        "p0_plain_minus_sham": 0.09765625
+      }
+    }
+  ]
+}

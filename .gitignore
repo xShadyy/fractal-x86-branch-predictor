@@ -8,6 +8,12 @@
 /notes/
 *.local.md
 
+# Public README translations and repository artwork.
+!/docs/
+/docs/*
+!/docs/i18n/
+!/docs/assets/
+
 # Generated binaries and archives.
 *.o
 *.elf

@@ -1,0 +1,18 @@
+{
+  "status": "frozen_criteria_met_all_six_attempts_and_audits_passed",
+  "source_revision": "8080faed480a9eef086f1fc0396e38dba7de31c7",
+  "plan_id": "393a8d31-fca4-408b-806d-db3021a10a8f",
+  "recorded_episodes": 983040,
+  "heldout_episodes": 491520,
+  "apparatus_gates_passed": 840,
+  "apparatus_gates_total": 840,
+  "dependency_response_processes": 3,
+  "receiver_response_processes": 3,
+  "boot_count": 1,
+  "mechanism_proven": false,
+  "user_to_kernel_tested": false,
+  "new_measurements_during_audit": false,
+  "warm_sham_global_inertness_supported": false,
+  "timing_quantum_gcd_tsc_ticks": 47,
+  "recommendation": "Close the bounded Windows collection; document now, then select a Linux host after laptop inventory."
+}

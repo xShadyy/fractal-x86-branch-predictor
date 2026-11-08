@@ -1,119 +1,153 @@
-# x86 Branch Predictor Experiments
+<p align="center">
+  <img src="docs/assets/research-banner.png" alt="Fractal / x86: independent branch-predictor experiments" width="100%">
+</p>
 
-Controlled branch and cache measurements on an AMD Ryzen 7 9800X3D running Windows x64. This is independent work inspired by Joseph Ravichandran and Mengjia Yan's [Fractal paper](https://people.csail.mit.edu/mengjia/data/2026.SP.fractal.pdf). Their [Fractal operating system](https://github.com/jprx/fractal) and Apple M1 findings are credited to the authors. The upstream revision used for development is pinned in [`UPSTREAM_FRACTAL_REVISION`](UPSTREAM_FRACTAL_REVISION).
+<p align="center">
+  <strong>English</strong> · <a href="docs/i18n/README.pl.md">Polski</a> · <a href="docs/i18n/README.nl.md">Nederlands</a> · <a href="docs/i18n/README.de.md">Deutsch</a>
+</p>
 
-The Windows studies in this repository run in one ordinary user-mode process. They do not boot Fractal, cross a user/kernel boundary, or reproduce the paper's M1 results. Timing and cache-hit differences alone do not identify mispredictions or transient execution.
+<p align="center">
+  <a href="https://github.com/xShadyy/fractal-x86-branch-predictor/actions/workflows/validation.yml"><img src="https://github.com/xShadyy/fractal-x86-branch-predictor/actions/workflows/validation.yml/badge.svg?branch=main" alt="Software validation workflow"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/github/license/xShadyy/fractal-x86-branch-predictor?style=flat-square&amp;color=287f91" alt="Code license: MIT"></a>
+  <a href="https://github.com/xShadyy/fractal-x86-branch-predictor/commits/main"><img src="https://img.shields.io/github/last-commit/xShadyy/fractal-x86-branch-predictor?style=flat-square&amp;color=287f91" alt="Latest GitHub commit"></a>
+  <a href="#scope-and-limits"><img src="https://img.shields.io/badge/measurements-user%20mode-53677d?style=flat-square" alt="Measurement scope: user mode"></a>
+</p>
 
-## New Windows follow-up: K7/K8, collection pending
+<h1 align="center">Controlled x86 branch and cache experiments</h1>
 
-The [prospective causal follow-up](protocols/WINDOWS_CAUSAL_FOLLOWUP.md) adds two
-bounded studies: matched true/sham dependency interventions, and encoder-load
-ablation/private-bank address controls. Both preserve one measured branch site
-within each process and retain full raw evidence. This is prepared software,
-not a report of new Windows measurements. The completed K5 study is unchanged.
+An independent research artifact on the **AMD Ryzen 7 9800X3D running Windows
+x64**, inspired by Joseph Ravichandran and Mengjia Yan's
+[Fractal paper](https://people.csail.mit.edu/mengjia/data/2026.SP.fractal.pdf).
+It combines locally prespecified plans, raw traces, executable provenance,
+matched controls and independently replayed analyses. The current Windows
+collection phase is complete. The measured result is a repeatable,
+training-sensitive cache response whose sensitivity to data dependencies and
+encoder interventions is explicitly tested.
 
-Run from the clean repository using the existing MSVC/Python prerequisites:
+**The original Fractal OS and Apple M1 discoveries belong to their authors.**
+This repository contains independent x86 experiments and a separately labeled
+reanalysis of their supplied data.
 
-```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/run_causal_receiver_windows.ps1
+[Research report](RESEARCH_REPORT.md) · [K7/K8 evidence](results/k7-k8-windows-causal/README.md) · [Reproduction guide](results/k7-k8-windows-causal/REPRODUCE.md) · [Research routes](RESEARCH_ROUTE.md)
+
+## Evidence at a glance
+
+| Study | Replication unit | Recorded result | Evidence |
+|---|---|---|---|
+| First K3 pilot | One Windows process | **Inconclusive:** 56/58 gates; failed negative controls retained | [Pilot audit](results/k3-fresh-windows/README.md) |
+| K4 context control | Pilot and three follow-up processes on one host | 58/58 gates in each; defined response recurs | [K4 record](results/k4-context-windows/README.md) |
+| K5 dependency control | Three distinct Windows boots | **1,179,648 episodes**; 88/88 gates in each attempt | [Frozen replication](results/k5-windows-replication/README.md) |
+| K7 matched dependency | Three fresh processes within one boot | 140/140 gates in each; cold-condition primary criteria met | [Audited K7/K8 results](results/k7-k8-windows-causal/README.md) |
+| K8 encoder interventions | Three fresh processes in that same boot | 140/140 gates in each; public-response intervention criteria met | [Audited K7/K8 results](results/k7-k8-windows-causal/README.md) |
+| K6 privilege harness | QEMU TCG functional smoke only | Actual CPL/PC software checks; physical collection pending | [Development record](results/k5-k6-development/README.md) |
+
+K7 and K8 together contain **983,040 recorded episodes**, including 491,520
+held-out episodes. Episodes are observations within a process, not independent
+replications. Passing a gate establishes its declared apparatus condition.
+It does not establish a specific hardware mechanism. Earlier studies and
+inconclusive results remain in the [consolidated record](RESEARCH_REPORT.md).
+
+## What the interventions show
+
+For the declared **cold-condition p0 primary endpoint**, the sham-minus-true-mask
+contrast repeats at +99.902, +99.707 and +99.414 percentage points.
+Plain-minus-sham intervals lie inside the prespecified +/-10 pp equivalence
+margin. Removing the queried bank's encoder load or changing the encoder's bank
+bindings suppresses the public response; removing only the other bank's load
+leaves a large response. This strengthens attribution to the tested encoding
+path while leaving the exact predictor and transient path unresolved.
+
+![K7 and K8 supporting cold-condition results](results/k7-k8-windows-causal/windows-causal-responses.png)
+
+*Each point is a process estimate. Whiskers are supporting 95% within-run
+cluster-bootstrap intervals. The [18 confirmatory contrast intervals](results/k7-k8-windows-causal/endpoint-table.csv)
+use the separate frozen Bonferroni rule, approximately 99.17% per endpoint.
+The six-contrast family covers one scheduled repetition pair, not all 18
+intervals simultaneously. No pooled or across-host interval is shown.
+Adjusted contrasts can exceed 100 pp.*
+
+**A qualification worth retaining:** the sham lowers hits by 14.16–16.31 pp in
+the exploratory warm-condition p0 control. Its equivalence is specific to the
+declared cold primary endpoint, not universal across timing conditions.
+
+<details>
+<summary>Inspect the exploratory warm-condition result</summary>
+
+![Exploratory warm-condition plain and sham counts](results/k7-k8-windows-causal/warm-sham-exploratory.png)
+
+These are descriptive counts from a supporting condition, outside the six
+confirmatory contrasts. They do not uniquely identify why the response changes.
+
+</details>
+
+## Recheck the data
+
+The count audit uses Python 3.10+ and its standard library. From the repository
+root, reproduce thresholds, cell counts, gates and primary point estimates:
+
+```sh
+python results/k7-k8-windows-causal/independent-counts/audit_counts.py results/k7-k8-windows-causal/inputs/causal-windows-evidence-20261108T173801487095Z-6d4bcf3a.zip --output out/k7-k8-count-recheck
 ```
 
-One invocation freezes a local plan and runs three fresh processes per study,
-six attempts total, on one unchanged boot. No restart between attempts is
-needed. It records 983,040 episodes and prints a final `READY TO SHARE:` ZIP,
-including nulls and failed attempts. Keep the separate plan-only ZIP as well.
-The loaded Python image is resolved directly rather than hashing a Store alias.
-Repeated invocation does not replace completed attempts. Read the protocol
-before interpreting effects: each mode applies to both training and probing,
-and the private-bank control measures only the public-bank response.
+This reads archived data without executing the collector. Exact frozen-analysis
+and code-audit instructions are in the [reproduction guide](results/k7-k8-windows-causal/REPRODUCE.md).
+Original evidence ZIPs and hashes are retained. Software CI checks parsers,
+analysis, source generation and documentation; it does not rerun the physical
+Windows experiments or certify their mechanism.
 
-## Current evidence
+The completed studies have frozen source revisions. New collection requires
+its own plan; do not extend or silently replace the existing attempts.
+MSVC x64 Build Tools and a Windows SDK are needed for Windows collection,
+but not for the read-only count audit above.
 
-[K5](protocols/DEPENDENCY_RECEIVER_K5.md) adds a distinct resolved-condition
-marker-address dependency alongside plain and CPUID modes. The audited Windows
-pilot on 4 November passes 88/88 gates and has a +99.683 percentage-point primary
-contrast, with 95% within-run interval [+99.414,+99.878]. Both CPUID and host
-inventory report a hypervisor present. The separate [three-boot replication](results/k5-windows-replication/README.md)
-completed on 5 November: all three planned attempts pass 88/88 gates, with primary
-effects +99.707, +99.609 and +99.829 percentage points. The 1,179,648 recorded
-episodes, original plan, binaries and raw traces are retained with exact replay
-and independent count/code-byte checks. This establishes the defined signature's
-repeatability on the recorded Windows/Ryzen configuration; mechanism attribution
-and physical cross-privilege behavior remain open.
+## Separate reference: the authors' M1 data
 
-[K6](protocols/FRACTAL_PRIVILEGE_K6.md) supplies a pinned Fractal x86
-payload for user/user, kernel/kernel, user/kernel and kernel/user pairs. The
-recorded [QEMU smoke](results/k5-k6-development/README.md) verifies actual CPLs
-and a common measured instruction address across all four pairs. Physical K6
-collection and user-to-kernel influence remain untested; emulation is not
-branch-predictor evidence. The new runners preserve all nulls and failures.
+The [portable author-data reanalysis](results/fractal-author-data-reanalysis/README.md)
+validates **48 supplied traces and 240,192 published rows**. It provides JSON,
+CSV and figures without requiring a Mac. Those rows are Ravichandran and Yan's
+measurements. They are separate from this project's newly collected Windows
+data. The reader, provenance and artifact licensing distinction are documented
+with the result.
 
-## Published Fractal data and the next hardware study
+## Scope and limits
 
-The authors also release a separate [evaluated M1 artifact](https://doi.org/10.5281/zenodo.19556693)
-containing experiment code and 48 precollected traces. The
-[author-data reanalysis](results/fractal-author-data-reanalysis/README.md) adds an
-independent portable reader, descriptive statistics and figures for all 240,192
-published rows. This is a reanalysis of Ravichandran and Yan's supplied data,
-separate from our independently collected Windows K5 evidence. It is not a new
-M1 run or a claim that an AMD CPU has the same microarchitecture.
+- One reported Ryzen workstation. K5 spans three boots; K7/K8 use three
+  processes per study within one boot, with hypervisor presence and VBS recorded.
+- K7/K8 modes affect both training and probing. The private-bank control measures
+  the public response, without a private-bank heat sensor.
+- All recorded K7/K8 sensor timings are multiples of 47 TSC ticks. These are
+  calibrated cache-class measurements, not precise instruction-cycle estimates.
+- The exact predictor mechanism, exclusively transient path and physical
+  user-to-kernel influence remain unestablished. No new M1 measurement or
+  comparative Fractal noise advantage is claimed.
 
-The [research decision and options](RESEARCH_ROUTE.md) inspect the actual released
-sources, compare the practical routes and set a finite completion plan. The
-recommended physical extension is a controlled conditional-branch privilege
-study on native Linux using a reviewed published x86 research backend. Native
-Fractal remains the closest methodological target after boot/export validation;
-a new Windows driver and a hardware VM are separately scoped alternatives.
+The [route assessment](RESEARCH_ROUTE.md) describes the next bounded native
+Linux study and the separate boot/export gate for physical Fractal.
 
-To reproduce the authors' data analysis without collecting measurements, run
-from this repository with Python 3:
+## Repository map
 
-```text
-python scripts/reanalyze_fractal_authors_data.py --archive out/fractal-official-artifact.zip --download --output out/fractal-author-reanalysis
-```
+| Path | Purpose |
+|---|---|
+| [`programs/`](programs/) | C programs and readable assembly measurement sites |
+| [`protocols/`](protocols/) | Frozen collection and analysis decisions |
+| [`scripts/`](scripts/) | Collectors, analyzers, provenance and audit tools |
+| [`tests/`](tests/) | Software fixtures and regression checks |
+| [`results/`](results/) | Original evidence, numerical records and figures |
+| [`RESEARCH_REPORT.md`](RESEARCH_REPORT.md) | Consolidated measured findings and claim boundaries |
+| [`RESEARCH_ROUTE.md`](RESEARCH_ROUTE.md) | Hardware feasibility and next-study assessment |
 
-The script downloads only the pinned official artifact if missing, verifies its
-SHA256 and parses the supplied traces. Its default statistics use the standard
-library. Optional `--plots` requires matplotlib. Source attribution, exact data
-handling and the artifact's licensing-metadata discrepancy are recorded with the
-result. The authors' experiment/plotting code is not vendored into this project.
+## Attribution and citation
 
-[K4](results/k4-context-windows/README.md) now has one Windows pilot and three preselected follow-up process sessions. All four pass 58/58 controls and detect the frozen training-specific fresh-marker signature. Follow-up primary effects are +99.878, +99.512 and +99.731 percentage points. They establish recurrence on one reported host within minutes; mechanism attribution and the Fractal privilege-boundary question remain open.
+Maintained by [Tymoteusz Netter](https://github.com/xShadyy).
+Use [CITATION.cff](CITATION.cff) to cite this artifact. Cite the original paper
+separately when discussing Fractal's OS or M1 findings:
 
-The K2 conditional-receiver diagnostic has three physical runs with different seeds on one Windows host, spanning two UTC dates. All 20 apparatus gates passed in each run. Its prespecified grouped condition-entry contrast recurred, while the candidate comparisons did not establish which target had been trained. The unexpectedly high interleaved architectural-skip hit rate remains unexplained. The earlier K1 receiver failed its separate skip-control gate and remains inconclusive.
+> Joseph Ravichandran and Mengjia Yan. *Fractal: An Operating System Designed
+> for Microarchitecture Reverse Engineering*. IEEE Symposium on Security and
+> Privacy, 2026. [Paper](https://people.csail.mit.edu/mengjia/data/2026.SP.fractal.pdf)
+> · [Upstream OS](https://github.com/jprx/fractal)
+> · [Evaluated artifact](https://doi.org/10.5281/zenodo.19556693)
 
-The [research report](RESEARCH_REPORT.md) gives the measured results, links to raw evidence and analysis code, instruction audits, limits and a claim ledger. Frozen protocols for [K1](protocols/CONDITIONAL_RECEIVER_V1.md), [K2](protocols/RECEIVER_ORDER_K2.md), and the [B2 outcome](protocols/B2_OUTCOME_V4.md) and [replication](protocols/B2_REPLICATION_V1.md) studies retain the decisions made before their respective measurements. Original evidence ZIPs should be kept unchanged.
-
-## K3 Windows pilot and K4 results
-
-The first [K3 Windows pilot](results/k3-fresh-windows/README.md) completed 131,072 samples. Its original ZIP, source snapshot and frozen analysis verify, but two matched-training negatives failed: 8.94% and 9.52% hits against a 5% maximum. The primary interval includes zero. K3 remains inconclusive. Cache hits cluster near grouped-cell entry, including with matched training; the linked harness also reaches training and probing through different preceding branch paths.
-
-The separate [K4 protocol](protocols/CONTEXT_RECEIVER_K4.md) adds an identical 256-branch prefix to every training and probe call and interleaves conditions. Its [Windows series](results/k4-context-windows/README.md) passes the frozen gates in every run, with identical source hashes, linked code and RX snapshots. K4 constrains local context; it does not establish a predictor reset. Earlier native server development checks still failed their matched-candidate gates and remain in the record.
-
-The [series auditor](scripts/audit_context_receiver_series.py) reproduces every original analysis and independently recomputes the primary from raw rows. The recorded count and seeds were specified in chat after the pilot and before the follow-ups; all intervals remain within-run. The supported observation is a repeated same-process signature, with further mechanism controls required. Existing measurement code and criteria are unchanged.
-
-Both runners report collection status separately from scientific validity. An inconclusive completed run prints its failed gates and returns zero by default; add `-RequireValidControls` to make it a failing automation gate. Build, runtime and invalid-evidence errors remain failures. No exit code establishes transient execution.
-
-## Run on Windows in VS Code
-
-1. Install [VS Code](https://code.visualstudio.com/), Visual Studio Build Tools with **Desktop development with C++** and a Windows SDK, and Python 3.
-2. Open this repository in VS Code. Select **Terminal → Run Task → K5 replication: collect next Windows session**. The first invocation freezes the source and all three seeds without collecting data.
-3. Restart Windows and run that same task once. Complete three new-boot attempts, restarting Windows before each attempt. The controller retains failed/null runs and prevents same-boot retries or a fourth attempt.
-4. After `Recorded attempts: 3/3`, retain the latest `out\k5-replication-evidence-*.zip` printed after `READY TO SHARE:`. It contains every attempt, raw evidence, the frozen plan/source and independently replayed analysis. The **K5 replication: validate and package evidence** task performs no collection.
-
-For the broader baseline and exploratory suite, select **Complete Windows research pilot (all studies)**. That task writes a single `out\suite-evidence-*.zip`. Other named tasks in `.vscode/tasks.json` run individual studies. The `out/` directory is ignored by Git; review host inventory files before sharing them.
-
-The K4 task selects a fresh seed, builds with MSVC, pins the measurement thread to an allowed logical CPU, validates a complete trace, calibrates on the first half and evaluates outcomes on the held-out half. The pilot and three-session follow-up are complete; future collection needs its own stated purpose and plan. Retain failed controls and null results. Its within-run bootstrap interval does not describe variability across days or hosts.
-
-## Repository layout
-
-| Path | Contents |
-| --- | --- |
-| `programs/` | C and x64 assembly measurement sites |
-| `scripts/` | Windows runners, trace analyzers and evidence checks |
-| `tests/` | Analyzer and trace-format tests |
-| `protocols/` | Frozen measurement decisions for active standalone studies |
-| `results/` | Original traces, paired binaries, manifests, figures and reproduction scripts |
-| `RESEARCH_REPORT.md` | Consolidated measurements, paper boundary and limitations |
-
-For a Linux development calibration check, run `./scripts/check_native.sh`. QEMU is useful for build and boot debugging; its timings are not evidence about the physical processor's branch predictor.
+Project code: [MIT](LICENSE). Upstream components and the separate author
+artifact retain their own attribution and licensing terms. See the
+[author-data record](results/fractal-author-data-reanalysis/README.md).

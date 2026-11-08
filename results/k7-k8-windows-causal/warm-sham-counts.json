@@ -1,0 +1,47 @@
+{
+  "scope": "Exploratory descriptive counts only",
+  "rows": [
+    {
+      "repetition": 1,
+      "mode": "plain",
+      "hits": 317,
+      "n": 1024,
+      "rate_percent": 30.95703125
+    },
+    {
+      "repetition": 1,
+      "mode": "sham_mask",
+      "hits": 160,
+      "n": 1024,
+      "rate_percent": 15.625
+    },
+    {
+      "repetition": 2,
+      "mode": "plain",
+      "hits": 293,
+      "n": 1024,
+      "rate_percent": 28.61328125
+    },
+    {
+      "repetition": 2,
+      "mode": "sham_mask",
+      "hits": 126,
+      "n": 1024,
+      "rate_percent": 12.3046875
+    },
+    {
+      "repetition": 3,
+      "mode": "plain",
+      "hits": 275,
+      "n": 1024,
+      "rate_percent": 26.85546875
+    },
+    {
+      "repetition": 3,
+      "mode": "sham_mask",
+      "hits": 130,
+      "n": 1024,
+      "rate_percent": 12.6953125
+    }
+  ]
+}

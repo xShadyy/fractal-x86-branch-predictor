@@ -1,0 +1,225 @@
+{
+  "all_before_after_host_inventories_match_plan": true,
+  "attempts": [
+    {
+      "attempt": {
+        "number": 1,
+        "repetition": 1,
+        "seed": 1995552508,
+        "study": "receiver"
+      },
+      "classification": "valid_response",
+      "execution_seconds": 3.717109,
+      "finished_utc": "2026-11-08T17:36:39.125294+00:00",
+      "gates_passed": 140,
+      "gates_total": 140,
+      "heldout_rows": 81920,
+      "host_identity_before_after_equal": true,
+      "observed_aux": 0,
+      "rows": 163840,
+      "runtime_code_address": "0x1ae413c0000",
+      "started_utc": "2026-11-08T17:36:29.027955+00:00"
+    },
+    {
+      "attempt": {
+        "number": 2,
+        "repetition": 1,
+        "seed": 1518277132,
+        "study": "dependency"
+      },
+      "classification": "valid_response",
+      "execution_seconds": 10.078967,
+      "finished_utc": "2026-11-08T17:36:55.597415+00:00",
+      "gates_passed": 140,
+      "gates_total": 140,
+      "heldout_rows": 81920,
+      "host_identity_before_after_equal": true,
+      "observed_aux": 0,
+      "rows": 163840,
+      "runtime_code_address": "0x254d8290000",
+      "started_utc": "2026-11-08T17:36:39.191276+00:00"
+    },
+    {
+      "attempt": {
+        "number": 3,
+        "repetition": 2,
+        "seed": 1943616535,
+        "study": "receiver"
+      },
+      "classification": "valid_response",
+      "execution_seconds": 3.211275,
+      "finished_utc": "2026-11-08T17:37:05.169142+00:00",
+      "gates_passed": 140,
+      "gates_total": 140,
+      "heldout_rows": 81920,
+      "host_identity_before_after_equal": true,
+      "observed_aux": 0,
+      "rows": 163840,
+      "runtime_code_address": "0x2a6c88c0000",
+      "started_utc": "2026-11-08T17:36:55.664711+00:00"
+    },
+    {
+      "attempt": {
+        "number": 4,
+        "repetition": 2,
+        "seed": 1237717043,
+        "study": "dependency"
+      },
+      "classification": "valid_response",
+      "execution_seconds": 10.499124,
+      "finished_utc": "2026-11-08T17:37:22.148554+00:00",
+      "gates_passed": 140,
+      "gates_total": 140,
+      "heldout_rows": 81920,
+      "host_identity_before_after_equal": true,
+      "observed_aux": 0,
+      "rows": 163840,
+      "runtime_code_address": "0x27cccaa0000",
+      "started_utc": "2026-11-08T17:37:05.255219+00:00"
+    },
+    {
+      "attempt": {
+        "number": 5,
+        "repetition": 3,
+        "seed": 227777600,
+        "study": "receiver"
+      },
+      "classification": "valid_response",
+      "execution_seconds": 3.701707,
+      "finished_utc": "2026-11-08T17:37:32.327928+00:00",
+      "gates_passed": 140,
+      "gates_total": 140,
+      "heldout_rows": 81920,
+      "host_identity_before_after_equal": true,
+      "observed_aux": 0,
+      "rows": 163840,
+      "runtime_code_address": "0x2482d600000",
+      "started_utc": "2026-11-08T17:37:22.224353+00:00"
+    },
+    {
+      "attempt": {
+        "number": 6,
+        "repetition": 3,
+        "seed": 2664525160,
+        "study": "dependency"
+      },
+      "classification": "valid_response",
+      "execution_seconds": 11.358739,
+      "finished_utc": "2026-11-08T17:37:50.323814+00:00",
+      "gates_passed": 140,
+      "gates_total": 140,
+      "heldout_rows": 81920,
+      "host_identity_before_after_equal": true,
+      "observed_aux": 0,
+      "rows": 163840,
+      "runtime_code_address": "0x1a2c2640000",
+      "started_utc": "2026-11-08T17:37:32.431684+00:00"
+    }
+  ],
+  "collected_binary_sha256": "f3132ca14a107b1be70ec85c32ede0cef723c3f647d5ef0494cbfd1ec2d446b8",
+  "final_archive": {
+    "bytes": 14259962,
+    "entries": 85,
+    "filename": "causal-windows-evidence-20261108T173801487095Z-6d4bcf3a.zip",
+    "hashed_entries": 84,
+    "sha256": "9fe89126c57bb68f25ccb8a451fdd7200a96b5b7e29dbbcbaa1b9e626d46d787",
+    "zip_crc_and_exact_manifest_valid": true
+  },
+  "host_identity": {
+    "baseboard": {
+      "Manufacturer": "Gigabyte Technology Co., Ltd.",
+      "Product": "X870E AORUS ELITE WIFI7"
+    },
+    "bios": {
+      "ReleaseDate": "2026-02-05T00:00:00.0000000Z",
+      "SMBIOSBIOSVersion": "FA9"
+    },
+    "boot_utc": "2026-11-08T11:32:04.5000000Z",
+    "cpu": [
+      {
+        "Manufacturer": "AuthenticAMD",
+        "Name": "AMD Ryzen 7 9800X3D 8-Core Processor",
+        "NumberOfCores": 8,
+        "NumberOfLogicalProcessors": 16,
+        "Revision": 17408
+      }
+    ],
+    "hypervisor_present": true,
+    "microcode_query_status": "available",
+    "microcode_update_revision_hex": "3540400b",
+    "os": {
+      "BuildNumber": "26200",
+      "Caption": "Microsoft Windows 11 Pro",
+      "UBR": 9168,
+      "Version": "10.0.26200",
+      "ubr_query_status": "available"
+    },
+    "power_plan": {
+      "exit_code": 0,
+      "query_status": "available",
+      "raw": "Power Scheme GUID: 381b4222-f694-41f0-9685-ff5bb260df2e  (Balanced)"
+    },
+    "vbs": {
+      "query_status": "available",
+      "services_configured": [
+        0
+      ],
+      "services_running": [
+        0
+      ],
+      "status": 2
+    }
+  },
+  "ledger_entries_verified": 12,
+  "limitations": [
+    "Plan-only archive was supplied alongside final evidence, not externally timestamped before collection.",
+    "Local metadata and hashes establish consistency, not cryptographic CPU attestation.",
+    "One boot, one reported workstation, three fresh processes per study."
+  ],
+  "passed": true,
+  "plan_and_sources_and_build_preserved_from_prior_archive": [
+    "build/build.json",
+    "build/build.log",
+    "build/causal_receiver.obj",
+    "build/collector.disasm.txt",
+    "build/collector.exe",
+    "build/cpu_features.obj",
+    "build/initial-host.json",
+    "plan.json",
+    "plan.sha256",
+    "sources.zip"
+  ],
+  "plan_created_utc": "2026-11-08T17:36:28.813992+00:00",
+  "plan_id": "393a8d31-fca4-408b-806d-db3021a10a8f",
+  "plan_only_zero_attempts": true,
+  "plan_sha256": "c99ea01daf6a5d16dc17572ec191e8b730a15d2254c84c64147cc45580197ca2",
+  "prior_plan_archive": {
+    "bytes": 471454,
+    "entries": 13,
+    "filename": "causal-plan-20261108T173628840158Z-ddcc9de4.zip",
+    "hashed_entries": 12,
+    "sha256": "87d57816c1ce47a332cffa87d7346e164b2bd306d08344baf0c02b108369b683",
+    "zip_crc_and_exact_manifest_valid": true
+  },
+  "scope": "Read-only file, local timestamp and source consistency checks. No executable or uploaded script executed; not independent hardware attestation.",
+  "source_files_verified": {
+    "programs/causal_receiver.c": "180e12c7b487735361bd66652e16eb47475205a35bc253b933cc5ff2d0a1bc8c",
+    "programs/causal_receiver_code.h": "d2e02f75e30646d9ff5fa6a7d1a03d5e4d27e331b7fa3bd38cd8256029d6adee",
+    "programs/causal_receiver_layout.S": "ad02088abf0fb81db107edbe66133315a516cd11bca2bd4a6947c599f6c75875",
+    "programs/cpu_features.c": "d20d0e73c0078c07202493a22ac1187a50e98d2f73b431e02534e8463733370a",
+    "programs/cpu_features.h": "60aeace9e1b812f10c1de5454e9db9536360d15c9254eebc0ec4a8d4b88d07da",
+    "protocols/WINDOWS_CAUSAL_FOLLOWUP.md": "607ed58048ed1634fee890cc0564f96bbad35fbe23f426316ce31f90b656b17f",
+    "protocols/WINDOWS_CAUSAL_POLICY.json": "514013578aea8eec9545e73d4f8486ee945b12b79ecc4789ed65d62ef0372664",
+    "scripts/analyze_cache_probe.py": "8d119ec1679bcb98463f429d9eaa95daeec405eae470353301038c7e1cf2079c",
+    "scripts/analyze_causal_receiver.py": "27d8e366101f7843fa3e45be163dfcbf1f256a8ecd3b391e1dd995c643daebc6",
+    "scripts/capture_causal_host_windows.ps1": "96d0b1fe7a771fc0119137bb15f090d2dd23f565aa8517fabac448961a7314a0",
+    "scripts/causal_receiver_contract.py": "f50daf1ef326f3f6b247cd6522b1c1f9b6b2a64eb45f2a1e71756c1b5c51f317",
+    "scripts/causal_receiver_study.py": "ad86ebf85b997e1ccb07b31d95b8f656255309305c5e35cae3f046f9e6c1da03",
+    "scripts/generate_causal_receiver.py": "34061d0c509ea05b5933456adb258bfacebb6b505fa59103e551eb453b55ab8d",
+    "scripts/run_causal_receiver_windows.ps1": "89df0e1eaf529c408327ce583327af369d7ab7f3cbc4ece7b931ae9175457fea"
+  },
+  "source_revision": "8080faed480a9eef086f1fc0396e38dba7de31c7",
+  "summary_outcome": "complete_controls_valid_series",
+  "total_heldout_rows": 491520,
+  "total_recorded_rows": 983040
+}

@@ -12,3 +12,9 @@ programs/causal_receiver* -text
 scripts/*causal* -text
 protocols/WINDOWS_CAUSAL_* -text
 tests/test_causal* -text
+
+# Preserve the audited Windows publication record and its hash inventories.
+results/k7-k8-windows-causal/** -text
+results/k7-k8-windows-causal/*.svg -whitespace
+results/k7-k8-windows-causal/*.csv -whitespace
+results/k7-k8-windows-causal/independent-counts/*.csv -whitespace

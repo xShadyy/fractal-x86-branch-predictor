@@ -1,0 +1,299 @@
+
+k7-k8-review-20261108/evidence/attempt-01/runtime.plain.bin:     file format binary
+
+
+Disassembly of section .data:
+
+000000000000053c <.data+0x53c>:
+ 53c:	90                   	nop
+ 53d:	90                   	nop
+ 53e:	90                   	nop
+ 53f:	90                   	nop
+ 540:	53                   	push   rbx
+ 541:	56                   	push   rsi
+ 542:	57                   	push   rdi
+ 543:	31 f6                	xor    esi,esi
+ 545:	bf 01 00 00 00       	mov    edi,0x1
+ 54a:	31 c0                	xor    eax,eax
+ 54c:	66 8c c8             	mov    ax,cs
+ 54f:	83 e0 03             	and    eax,0x3
+ 552:	89 41 28             	mov    DWORD PTR [rcx+0x28],eax
+ 555:	48 8d 05 1e 00 00 00 	lea    rax,[rip+0x1e]        # 0x57a
+ 55c:	48 89 41 30          	mov    QWORD PTR [rcx+0x30],rax
+ 560:	48 8b 11             	mov    rdx,QWORD PTR [rcx]
+ 563:	4c 8b 41 08          	mov    r8,QWORD PTR [rcx+0x8]
+ 567:	4c 8b 49 10          	mov    r9,QWORD PTR [rcx+0x10]
+ 56b:	4c 8b 51 18          	mov    r10,QWORD PTR [rcx+0x18]
+ 56f:	4c 8b 59 20          	mov    r11,QWORD PTR [rcx+0x20]
+ 573:	31 c0                	xor    eax,eax
+ 575:	0f b6 12             	movzx  edx,BYTE PTR [rdx]
+ 578:	85 d2                	test   edx,edx
+ 57a:	0f 84 a0 00 00 00    	je     0x620
+ 580:	90                   	nop
+ 581:	90                   	nop
+ 582:	90                   	nop
+ 583:	41 0f b6 01          	movzx  eax,BYTE PTR [r9]
+ 587:	48 c1 e0 0c          	shl    rax,0xc
+ 58b:	90                   	nop
+ 58c:	90                   	nop
+ 58d:	90                   	nop
+ 58e:	90                   	nop
+ 58f:	90                   	nop
+ 590:	90                   	nop
+ 591:	90                   	nop
+ 592:	90                   	nop
+ 593:	90                   	nop
+ 594:	90                   	nop
+ 595:	90                   	nop
+ 596:	41 0f b6 04 03       	movzx  eax,BYTE PTR [r11+rax*1]
+ 59b:	5f                   	pop    rdi
+ 59c:	5e                   	pop    rsi
+ 59d:	5b                   	pop    rbx
+ 59e:	c3                   	ret
+ 59f:	cc                   	int3
+ 5a0:	cc                   	int3
+ 5a1:	cc                   	int3
+ 5a2:	cc                   	int3
+ 5a3:	cc                   	int3
+ 5a4:	cc                   	int3
+ 5a5:	cc                   	int3
+ 5a6:	cc                   	int3
+ 5a7:	cc                   	int3
+ 5a8:	cc                   	int3
+ 5a9:	cc                   	int3
+ 5aa:	cc                   	int3
+ 5ab:	cc                   	int3
+ 5ac:	cc                   	int3
+ 5ad:	cc                   	int3
+ 5ae:	cc                   	int3
+ 5af:	cc                   	int3
+ 5b0:	cc                   	int3
+ 5b1:	cc                   	int3
+ 5b2:	cc                   	int3
+ 5b3:	cc                   	int3
+ 5b4:	cc                   	int3
+ 5b5:	cc                   	int3
+ 5b6:	cc                   	int3
+ 5b7:	cc                   	int3
+ 5b8:	cc                   	int3
+ 5b9:	cc                   	int3
+ 5ba:	cc                   	int3
+ 5bb:	cc                   	int3
+ 5bc:	cc                   	int3
+ 5bd:	cc                   	int3
+ 5be:	cc                   	int3
+ 5bf:	cc                   	int3
+ 5c0:	cc                   	int3
+ 5c1:	cc                   	int3
+ 5c2:	cc                   	int3
+ 5c3:	cc                   	int3
+ 5c4:	cc                   	int3
+ 5c5:	cc                   	int3
+ 5c6:	cc                   	int3
+ 5c7:	cc                   	int3
+ 5c8:	cc                   	int3
+ 5c9:	cc                   	int3
+ 5ca:	cc                   	int3
+ 5cb:	cc                   	int3
+ 5cc:	cc                   	int3
+ 5cd:	cc                   	int3
+ 5ce:	cc                   	int3
+ 5cf:	cc                   	int3
+ 5d0:	cc                   	int3
+ 5d1:	cc                   	int3
+ 5d2:	cc                   	int3
+ 5d3:	cc                   	int3
+ 5d4:	cc                   	int3
+ 5d5:	cc                   	int3
+ 5d6:	cc                   	int3
+ 5d7:	cc                   	int3
+ 5d8:	cc                   	int3
+ 5d9:	cc                   	int3
+ 5da:	cc                   	int3
+ 5db:	cc                   	int3
+ 5dc:	cc                   	int3
+ 5dd:	cc                   	int3
+ 5de:	cc                   	int3
+ 5df:	cc                   	int3
+ 5e0:	cc                   	int3
+ 5e1:	cc                   	int3
+ 5e2:	cc                   	int3
+ 5e3:	cc                   	int3
+ 5e4:	cc                   	int3
+ 5e5:	cc                   	int3
+ 5e6:	cc                   	int3
+ 5e7:	cc                   	int3
+ 5e8:	cc                   	int3
+ 5e9:	cc                   	int3
+ 5ea:	cc                   	int3
+ 5eb:	cc                   	int3
+ 5ec:	cc                   	int3
+ 5ed:	cc                   	int3
+ 5ee:	cc                   	int3
+ 5ef:	cc                   	int3
+ 5f0:	cc                   	int3
+ 5f1:	cc                   	int3
+ 5f2:	cc                   	int3
+ 5f3:	cc                   	int3
+ 5f4:	cc                   	int3
+ 5f5:	cc                   	int3
+ 5f6:	cc                   	int3
+ 5f7:	cc                   	int3
+ 5f8:	cc                   	int3
+ 5f9:	cc                   	int3
+ 5fa:	cc                   	int3
+ 5fb:	cc                   	int3
+ 5fc:	cc                   	int3
+ 5fd:	cc                   	int3
+ 5fe:	cc                   	int3
+ 5ff:	cc                   	int3
+ 600:	cc                   	int3
+ 601:	cc                   	int3
+ 602:	cc                   	int3
+ 603:	cc                   	int3
+ 604:	cc                   	int3
+ 605:	cc                   	int3
+ 606:	cc                   	int3
+ 607:	cc                   	int3
+ 608:	cc                   	int3
+ 609:	cc                   	int3
+ 60a:	cc                   	int3
+ 60b:	cc                   	int3
+ 60c:	cc                   	int3
+ 60d:	cc                   	int3
+ 60e:	cc                   	int3
+ 60f:	cc                   	int3
+ 610:	cc                   	int3
+ 611:	cc                   	int3
+ 612:	cc                   	int3
+ 613:	cc                   	int3
+ 614:	cc                   	int3
+ 615:	cc                   	int3
+ 616:	cc                   	int3
+ 617:	cc                   	int3
+ 618:	cc                   	int3
+ 619:	cc                   	int3
+ 61a:	cc                   	int3
+ 61b:	cc                   	int3
+ 61c:	cc                   	int3
+ 61d:	cc                   	int3
+ 61e:	cc                   	int3
+ 61f:	cc                   	int3
+ 620:	90                   	nop
+ 621:	90                   	nop
+ 622:	90                   	nop
+ 623:	41 0f b6 00          	movzx  eax,BYTE PTR [r8]
+ 627:	48 c1 e0 0c          	shl    rax,0xc
+ 62b:	90                   	nop
+ 62c:	90                   	nop
+ 62d:	90                   	nop
+ 62e:	90                   	nop
+ 62f:	90                   	nop
+ 630:	90                   	nop
+ 631:	90                   	nop
+ 632:	90                   	nop
+ 633:	90                   	nop
+ 634:	90                   	nop
+ 635:	90                   	nop
+ 636:	41 0f b6 04 02       	movzx  eax,BYTE PTR [r10+rax*1]
+ 63b:	5f                   	pop    rdi
+ 63c:	5e                   	pop    rsi
+ 63d:	5b                   	pop    rbx
+ 63e:	c3                   	ret
+ 63f:	cc                   	int3
+ 640:	53                   	push   rbx
+ 641:	49 89 ca             	mov    r10,rcx
+ 644:	49 89 d1             	mov    r9,rdx
+ 647:	31 c0                	xor    eax,eax
+ 649:	0f a2                	cpuid
+ 64b:	0f 01 f9             	rdtscp
+ 64e:	41 89 cb             	mov    r11d,ecx
+ 651:	48 c1 e2 20          	shl    rdx,0x20
+ 655:	48 09 d0             	or     rax,rdx
+ 658:	49 89 c0             	mov    r8,rax
+ 65b:	0f ae e8             	lfence
+ 65e:	41 0f b6 02          	movzx  eax,BYTE PTR [r10]
+ 662:	0f 01 f9             	rdtscp
+ 665:	0f ae e8             	lfence
+ 668:	45 89 19             	mov    DWORD PTR [r9],r11d
+ 66b:	41 89 49 04          	mov    DWORD PTR [r9+0x4],ecx
+ 66f:	48 c1 e2 20          	shl    rdx,0x20
+ 673:	48 09 d0             	or     rax,rdx
+ 676:	4c 29 c0             	sub    rax,r8
+ 679:	5b                   	pop    rbx
+ 67a:	c3                   	ret
+ 67b:	cc                   	int3
+ 67c:	cc                   	int3
+ 67d:	cc                   	int3
+ 67e:	cc                   	int3
+ 67f:	cc                   	int3
+ 680:	53                   	push   rbx
+ 681:	31 c0                	xor    eax,eax
+ 683:	0f a2                	cpuid
+ 685:	5b                   	pop    rbx
+ 686:	c3                   	ret
+ 687:	cc                   	int3
+ 688:	cc                   	int3
+ 689:	cc                   	int3
+ 68a:	cc                   	int3
+ 68b:	cc                   	int3
+ 68c:	cc                   	int3
+ 68d:	cc                   	int3
+ 68e:	cc                   	int3
+ 68f:	cc                   	int3
+ 690:	cc                   	int3
+ 691:	cc                   	int3
+ 692:	cc                   	int3
+ 693:	cc                   	int3
+ 694:	cc                   	int3
+ 695:	cc                   	int3
+ 696:	cc                   	int3
+ 697:	cc                   	int3
+ 698:	cc                   	int3
+ 699:	cc                   	int3
+ 69a:	cc                   	int3
+ 69b:	cc                   	int3
+ 69c:	cc                   	int3
+ 69d:	cc                   	int3
+ 69e:	cc                   	int3
+ 69f:	cc                   	int3
+ 6a0:	cc                   	int3
+ 6a1:	cc                   	int3
+ 6a2:	cc                   	int3
+ 6a3:	cc                   	int3
+ 6a4:	cc                   	int3
+ 6a5:	cc                   	int3
+ 6a6:	cc                   	int3
+ 6a7:	cc                   	int3
+ 6a8:	cc                   	int3
+ 6a9:	cc                   	int3
+ 6aa:	cc                   	int3
+ 6ab:	cc                   	int3
+ 6ac:	cc                   	int3
+ 6ad:	cc                   	int3
+ 6ae:	cc                   	int3
+ 6af:	cc                   	int3
+ 6b0:	cc                   	int3
+ 6b1:	cc                   	int3
+ 6b2:	cc                   	int3
+ 6b3:	cc                   	int3
+ 6b4:	cc                   	int3
+ 6b5:	cc                   	int3
+ 6b6:	cc                   	int3
+ 6b7:	cc                   	int3
+ 6b8:	cc                   	int3
+ 6b9:	cc                   	int3
+ 6ba:	cc                   	int3
+ 6bb:	cc                   	int3
+ 6bc:	cc                   	int3
+ 6bd:	cc                   	int3
+ 6be:	cc                   	int3
+ 6bf:	cc                   	int3
+ 6c0:	53                   	push   rbx
+ 6c1:	49 89 ca             	mov    r10,rcx
+ 6c4:	31 c0                	xor    eax,eax
+ 6c6:	0f a2                	cpuid
+ 6c8:	41 0f b6 02          	movzx  eax,BYTE PTR [r10]
+ 6cc:	5b                   	pop    rbx
+ 6cd:	c3                   	ret
+ 6ce:	cc                   	int3

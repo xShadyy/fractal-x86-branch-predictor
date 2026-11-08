@@ -1,0 +1,13 @@
+{
+  "asset": "research-banner.png",
+  "role": "Decorative research identity, not a plot or hardware diagram",
+  "created_date": "2026-11-09",
+  "generation": "Built-in image generation",
+  "text": [
+    "FRACTAL / x86",
+    "Independent branch-predictor experiments",
+    "Windows user-mode research"
+  ],
+  "sha256": "9bc73cf9aba7a1eefaf145643662d1447ecb262f31bf58d3e8d507ac0beb4853",
+  "bytes": 1584474
+}
