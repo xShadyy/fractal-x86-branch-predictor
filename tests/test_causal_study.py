@@ -283,7 +283,7 @@ class CausalStudyTests(unittest.TestCase):
     def test_complete_package_replays_each_saved_analysis_exactly(self):
         self.collect();self.analysis_calls.clear();result=self.package()
         self.assertEqual(self.analysis_calls,list(range(1,7)))
-        self.assertEqual(result['outcome'],'complete_valid_intervention_series')
+        self.assertEqual(result['outcome'],'complete_controls_valid_series')
         self.assertEqual(result['recorded_attempts'],6)
         self.assertFalse(result['mechanism_proven'])
         report=study.read(self.folder/'summary.json')

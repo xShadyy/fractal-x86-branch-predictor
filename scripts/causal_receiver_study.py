@@ -288,7 +288,10 @@ def collect(repo,folder):
                 write(target/'analysis.json',analysis,exclusive=True)
                 result['outcome']='completed_valid' if analysis['apparatus_controls_pass'] else 'completed_inconclusive_controls'
                 result['apparatus_controls_pass']=analysis['apparatus_controls_pass']
-                print('  '+result['outcome']+'; response and equivalence intervals retained.',flush=True)
+                print('  '+result['outcome']+'; classification: '+analysis.get('classification','not_classified'),flush=True)
+                for name,metric in analysis.get('primary_endpoints',{}).items():
+                    lower,upper=metric['ci']
+                    print(f'  {name}: {100*metric["hit_rate_difference"]:+.3f} pp; adjusted within-run CI [{100*lower:+.3f},{100*upper:+.3f}]',flush=True)
             except Exception as e:
                 result['failure']=str(e)
                 result['outcome']='failed_attempt_retained'
@@ -353,10 +356,19 @@ def package(repo,folder):
             report['attempts'].append(entry)
         if report['recorded_attempts']==6:
             valid=all(e.get('analysis',{}).get('apparatus_controls_pass',False) for e in report['attempts'])
-            report['outcome']='complete_valid_intervention_series' if valid else 'complete_inconclusive_series'
+            report['outcome']='complete_controls_valid_series' if valid else 'complete_inconclusive_series'
         else:
             report['outcome']='incomplete_series'
         report['all_saved_analyses_replayed']=True
+        report['classification_counts_by_study']={}
+        for name in ('dependency','receiver'):
+            counts={}
+            for entry in report['attempts']:
+                if entry['attempt']['study']==name:
+                    label=entry.get('analysis',{}).get('classification',entry['outcome'])
+                    counts[label]=counts.get(label,0)+1
+            report['classification_counts_by_study'][name]=counts
+        report['series_inference']='Descriptive consistency across three fresh processes per study in one boot; no pooled interval or new host replication.'
         # Effects remain per attempt; processes on one boot are not host replications.
     except Exception as e:
         report['failures'].append(str(e))
