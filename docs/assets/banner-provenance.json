@@ -3,11 +3,13 @@
   "role": "Decorative research identity, not a plot or hardware diagram",
   "created_date": "2026-11-09",
   "generation": "Built-in image generation",
+  "style_reference": "User-supplied H5Reclaim banner, used for visual style only",
   "text": [
-    "FRACTAL / x86",
-    "Independent branch-predictor experiments",
-    "Windows user-mode research"
+    "Fractal x86",
+    "Independent x86 branch-predictor research"
   ],
-  "sha256": "9bc73cf9aba7a1eefaf145643662d1447ecb262f31bf58d3e8d507ac0beb4853",
-  "bytes": 1584474
+  "sha256": "01f45f46a8a596840a31c4a7263dea2dcd94714ad6781575af2cbc3ec9a5ece9",
+  "bytes": 1224063,
+  "width": 1905,
+  "height": 825
 }

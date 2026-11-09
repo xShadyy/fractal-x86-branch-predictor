@@ -1,7 +1,7 @@
 # Repository visuals
 
 `research-banner.png` is generated decorative artwork for this independent
-project. Its branching motif is not a diagram of a measured predictor.
+project. Its minimalist monogram is not a diagram of a measured predictor.
 `banner-provenance.json` records its identity and purpose.
 
 The README's quantitative charts are separate, programmatically generated
