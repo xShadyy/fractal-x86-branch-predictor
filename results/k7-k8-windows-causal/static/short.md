@@ -1,6 +1,6 @@
 # K7/K8 static machine-code review
 
-The reviewed evidence matches the intended preparation, shared branch site, timer, and patch controls. No material static implementation defect was found. This is a code and provenance review, not a determination of the physical mechanism. No uploaded executable was run.
+The emitted MSVC code and runtime snapshots match the intended preparation, shared branch site, timer and patch controls. No material static implementation defect was found. The review read the executable as bytes without running it.
 
 | Check | Result |
 | --- | --- |
@@ -19,6 +19,6 @@ The runtime site preserves Windows x64 nonvolatile `RBX`, `RSI`, and `RDI`. The 
 
 All traces report a hypervisor and `lfence_always_serializing=0`. That reported bit does not establish the actual LFENCE configuration. Every recorded AUX value is zero, so equality provides limited independent evidence about physical-core migration when a hypervisor may supply a fixed value. Affinity still requests Windows logical CPU 0.
 
-Snapshots were captured during initial mode installation. The source and emitted code recheck later installations, but the archive has no externally attested instruction trace for every episode. Source hashes and the embedded template also do not constitute a reproducible MSVC build or independent compiler attestation. These checks support interpretation of the measured user-mode apparatus; they cannot establish speculative-path execution, kernel influence, Apple behavior, or independent-boot replication.
+Snapshots were captured during initial mode installation. The source and emitted code recheck later installations, but the archive has no externally attested instruction trace for every episode. Source hashes and the embedded template also do not constitute a reproducible MSVC build or independent compiler attestation. The review establishes consistency among the source, image and recorded metadata. It provides no instruction-level observation of the transient path.
 
 The exact mechanical checks are reproducible with `audit_static_code.py`; their machine-readable results are in `static-code-review.json`.

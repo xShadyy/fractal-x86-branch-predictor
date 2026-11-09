@@ -1,178 +1,143 @@
 <p align="center">
-  <img src="../assets/research-banner.png" alt="Fractal / x86: unabhängige Experimente zur Sprungvorhersage" width="100%">
+  <img src="../assets/research-banner.png" alt="Fractal x86" width="100%">
 </p>
 
 <p align="center">
-  <a href="../../README.md">English</a> · <a href="README.pl.md">Polski</a> · <a href="README.nl.md">Nederlands</a> · <strong>Deutsch</strong>
+  <a href="../../README.md#reproduce"><img src="https://img.shields.io/badge/Python-3.10%2B-3156f3?style=flat-square&amp;logo=python&amp;logoColor=white" alt="Python 3.10+"></a>
+  <a href="../../LICENSE"><img src="https://img.shields.io/badge/License-MIT-263a63?style=flat-square" alt="Lizenz: MIT"></a>
 </p>
 
 <p align="center">
-  <a href="https://github.com/xShadyy/fractal-x86-branch-predictor/actions/workflows/validation.yml"><img src="https://github.com/xShadyy/fractal-x86-branch-predictor/actions/workflows/validation.yml/badge.svg?branch=main" alt="Workflow zur Softwarevalidierung"></a>
-  <a href="../../LICENSE"><img src="https://img.shields.io/github/license/xShadyy/fractal-x86-branch-predictor?style=flat-square&amp;color=287f91" alt="Codelizenz: MIT"></a>
-  <a href="https://github.com/xShadyy/fractal-x86-branch-predictor/commits/main"><img src="https://img.shields.io/github/last-commit/xShadyy/fractal-x86-branch-predictor?style=flat-square&amp;color=287f91" alt="Neuester GitHub-Commit"></a>
-  <a href="#geltungsbereich-und-grenzen"><img src="https://img.shields.io/badge/measurements-user%20mode-53677d?style=flat-square" alt="Messbereich: Benutzermodus"></a>
+  <a href="../../README.md">English</a> · <a href="README.pl.md">Polski</a> · <strong>Deutsch</strong> · <a href="README.fr.md">Français</a> · <a href="README.es.md">Español</a> · <a href="README.pt-BR.md">Português (Brasil)</a><br>
+  <a href="README.zh-CN.md">简体中文</a> · <a href="README.ja.md">日本語</a> · <a href="README.ko.md">한국어</a> · <a href="README.ru.md">Русский</a> · <a href="README.ar.md">العربية</a> · <a href="README.nl.md">Nederlands</a>
 </p>
 
-<h1 align="center">Kontrollierte x86-Experimente zu Sprüngen und Caches</h1>
+# Fractal x86
 
-Ein unabhängiges Forschungsartefakt für den **AMD Ryzen 7 9800X3D unter Windows
-x64**, inspiriert vom
-[Fractal-Paper](https://people.csail.mit.edu/mengjia/data/2026.SP.fractal.pdf)
-von Joseph Ravichandran und Mengjia Yan.
-Es verbindet lokal vorab festgelegte Versuchspläne, Rohdatenprotokolle,
-Herkunftsnachweise der ausführbaren Dateien, abgestimmte Kontrollen und unabhängig
-nachgerechnete Analysen. Die aktuelle Datenerhebung unter Windows ist
-abgeschlossen. Das gemessene Ergebnis ist eine wiederholbare, vom Training
-abhängige Cache-Reaktion. Ihr Verhalten bei Datenabhängigkeiten und Eingriffen
-in die Kodierung wird ausdrücklich untersucht.
+Experimente zur Sprungvorhersage und zum Cache auf einem **AMD Ryzen 7
+9800X3D mit Windows x64**, inspiriert von Joseph Ravichandrans und Mengjia Yans
+[Fractal](https://people.csail.mit.edu/mengjia/data/2026.SP.fractal.pdf).
+Die Forschungsdokumentation enthält vorab festgelegte Protokolle, Rohdaten,
+abgeglichene Kontrollbedingungen, Hashes der ausführbaren Dateien und
+Analysen, die sich erneut ausführen lassen.
 
-**Das ursprüngliche Fractal-Betriebssystem und die Entdeckungen zum Apple M1 sind
-die Arbeit ihrer Autoren.** Dieses Repository enthält unabhängige
-x86-Experimente sowie eine gesondert gekennzeichnete Neuanalyse der von den
-Autoren bereitgestellten Daten.
+Die Windows-Studien messen eine wiederholbare Cache-Antwort, die von der
+Trainingssequenz abhängt. Abhängigkeitskontrollen und Eingriffe in den Encoder
+prüfen, welche Änderungen diese Antwort unterdrücken.
 
-[Forschungsbericht](../../RESEARCH_REPORT.md) · [K7/K8-Nachweise](../../results/k7-k8-windows-causal/README.md) · [Reproduktionsanleitung](../../results/k7-k8-windows-causal/REPRODUCE.md) · [Forschungswege](../../RESEARCH_ROUTE.md)
+[Forschungsbericht](../../RESEARCH_REPORT.md) · [Ergebnisse und Daten](../../results/k7-k8-windows-causal/README.md) · [Reproduktionsanleitung](../../results/k7-k8-windows-causal/REPRODUCE.md) · [Weitere Studien](../../RESEARCH_ROUTE.md)
 
-## Nachweise im Überblick
+## Ergebnisse
 
-| Studie | Replikationseinheit | Aufgezeichnetes Ergebnis | Nachweise |
+| Studie | Replikation | Ergebnis | Dokumentation |
 |---|---|---|---|
-| Erster K3-Pilotversuch | Ein Windows-Prozess | **Nicht schlüssig:** 56/58 Kontrollkriterien; fehlgeschlagene Negativkontrollen bleiben erhalten | [Pilotaudit](../../results/k3-fresh-windows/README.md) |
-| K4-Kontextkontrolle | Pilotversuch und drei Folgeprozesse auf einem Rechner | Jeweils 58/58 Kontrollkriterien; die definierte Reaktion tritt wiederholt auf | [K4-Dokumentation](../../results/k4-context-windows/README.md) |
-| K5-Abhängigkeitskontrolle | Drei getrennte Windows-Systemstarts | **1,179,648 Episoden**; 88/88 Kontrollkriterien in jedem Versuch | [Festgeschriebene Replikation](../../results/k5-windows-replication/README.md) |
-| K7 mit abgestimmter Abhängigkeitskontrolle | Drei neu gestartete Prozesse innerhalb eines Systemstarts | Jeweils 140/140 Kontrollkriterien; Primärkriterien unter kalter Bedingung erfüllt | [Auditierte K7/K8-Ergebnisse](../../results/k7-k8-windows-causal/README.md) |
-| K8 mit Eingriffen in die Kodierung | Drei neu gestartete Prozesse innerhalb desselben Systemstarts | Jeweils 140/140 Kontrollkriterien; Interventionskriterien für die öffentliche Reaktion erfüllt | [Auditierte K7/K8-Ergebnisse](../../results/k7-k8-windows-causal/README.md) |
-| K6-Testumgebung für Privilegstufen | Nur funktionaler Kurztest mit QEMU TCG | Softwareprüfungen der tatsächlichen CPL/PC-Werte; Datenerhebung auf physischer Hardware steht aus | [Entwicklungsdokumentation](../../results/k5-k6-development/README.md) |
+| K3: neuer Empfänger | Ein Prozess | Nicht eindeutig: 56/58 Kontrollkriterien; Negativkontrollen fehlgeschlagen | [K3](../../results/k3-fresh-windows/README.md) |
+| K4: Kontextkontrolle | Pilotversuch und drei Folgeprozesse | Jeweils 58/58 Kontrollkriterien; Antwort tritt erneut auf | [K4](../../results/k4-context-windows/README.md) |
+| K5: Abhängigkeitskontrolle | Drei Windows-Systemstarts | 1,179,648 Episoden; 88/88 Kontrollkriterien pro Versuch | [K5](../../results/k5-windows-replication/README.md) |
+| K7: Abhängigkeit mit abgeglichener Kontrolle | Drei neue Prozesse ohne Neustart | Jeweils 140/140 Kontrollkriterien; primäre Kriterien bei kalter Bedingung erfüllt | [K7/K8](../../results/k7-k8-windows-causal/README.md) |
+| K8: Encoder-Eingriffe | Drei neue Prozesse in derselben Sitzung | Jeweils 140/140 Kontrollkriterien; Eingriffskriterien für die öffentliche Antwort erfüllt | [K7/K8](../../results/k7-k8-windows-causal/README.md) |
+| K6: Privilegientest | Software-Funktionstest mit QEMU TCG | CPL/PC-Prüfungen bestanden; physische Messdaten stehen aus | [K6](../../results/k5-k6-development/README.md) |
 
-K7 und K8 umfassen zusammen **983,040 aufgezeichnete Episoden**, darunter 491,520
-Episoden im zurückgehaltenen Auswertungsteil. Episoden sind Beobachtungen
-innerhalb eines Prozesses, keine unabhängigen Replikationen. Ein erfülltes
-Kontrollkriterium bestätigt die dafür festgelegte Apparaturbedingung.
-Es weist keinen bestimmten Hardwaremechanismus nach. Frühere Studien und
-nicht schlüssige Ergebnisse bleiben in der
-[Gesamtdokumentation](../../RESEARCH_REPORT.md) erhalten.
+K7/K8 enthalten **983,040 Episoden**, darunter 491,520 zurückgehaltene
+Validierungsepisoden. Die Replikation wird über Prozesse hinweg beurteilt;
+Episoden innerhalb eines Prozesses teilen dieselben Laufbedingungen.
 
-## Was die Eingriffe zeigen
+## Wirkung von Abhängigkeiten und Encoder-Eingriffen
 
-Für den festgelegten **p0-Primärendpunkt unter kalter Bedingung** beträgt der
-Kontrast Sham-Maske minus echte Maske wiederholt +99.902, +99.707 und +99.414
-Prozentpunkte. Die Plain-minus-Sham-Intervalle liegen innerhalb der vorab
-festgelegten Äquivalenzgrenze von +/-10 pp. Wird der Kodierungs-Ladezugriff der
-abgefragten Bank entfernt oder werden die Bankzuordnungen der Kodierung geändert,
-nimmt die öffentliche Reaktion ab. Wird nur der Ladezugriff der jeweils anderen
-Bank entfernt, bleibt eine große Reaktion bestehen. Dies stärkt die Zuordnung
-zum untersuchten Kodierpfad. Der genaue Sprungprädiktor und der transiente
-Ausführungspfad bleiben jedoch ungeklärt.
+Beim primären p0-Endpunkt mit kalter Cachezeile für die Bedingung beträgt der
+Kontrast sham-minus-true-mask in den drei Wiederholungen +99.902, +99.707 und
++99.414 Prozentpunkte. Die plain-minus-sham-Intervalle liegen innerhalb der
+vorab festgelegten Äquivalenzgrenze von +/-10 pp. Das Entfernen des
+Encoder-Ladezugriffs auf die abgefragte Bank oder das Umleiten beider
+Encoder-Ladezugriffe unterdrückt die öffentliche Antwort. Wird nur der
+Ladezugriff auf die andere Bank entfernt, bleibt die Antwort erhalten.
 
-![Unterstützende K7- und K8-Ergebnisse unter kalter Bedingung](../../results/k7-k8-windows-causal/windows-causal-responses.png)
+![Wirkung von Abhängigkeiten und Encoder-Eingriffen über drei Wiederholungen](../../results/k7-k8-windows-causal/windows-causal-responses.png)
 
-*Jeder Punkt ist eine Schätzung aus einem Prozess. Die Fehlerbalken zeigen
-unterstützende 95%-Cluster-Bootstrap-Intervalle innerhalb eines Laufs.
-Für die [18 konfirmatorischen Kontrastintervalle](../../results/k7-k8-windows-causal/endpoint-table.csv)
-gilt die gesonderte, festgeschriebene Bonferroni-Regel mit ungefähr 99.17% je
-Endpunkt. Die Familie aus sechs Kontrasten umfasst jeweils ein planmäßig
-zusammengehöriges Wiederholungspaar, nicht alle 18 Intervalle gleichzeitig.
-Es wird kein zusammengefasstes oder rechnerübergreifendes Intervall gezeigt.
+*Punkte zeigen Prozessschätzungen, Fehlerbalken die ergänzenden
+95%-Cluster-Bootstrap-Intervalle innerhalb eines Laufs.
+Die [18 primären Kontrastintervalle](../../results/k7-k8-windows-causal/endpoint-table.csv)
+verwenden die festgelegte Bonferroni-Regel mit ungefähr 99.17% pro Endpunkt.
+Jede Familie aus sechs Kontrasten umfasst ein geplantes Wiederholungspaar.
 Bereinigte Kontraste können 100 pp überschreiten.*
 
-**Eine wichtige Einschränkung:** Die Sham-Maske senkt die Trefferquote in der
-explorativen p0-Kontrolle unter warmer Bedingung um 14.16–16.31 pp. Ihre
-Äquivalenz gilt für den festgelegten kalten Primärendpunkt, nicht allgemein für
-alle Zeitbedingungen.
+In der explorativen p0-Kontrolle mit warmer Cachezeile für die Bedingung
+senkt die Sham-Variante die Trefferhäufigkeit um 14.16–16.31 pp. Das
+Äquivalenzergebnis bei kalter Bedingung gilt daher nur für diesen primären Endpunkt.
 
 <details>
-<summary>Das explorative Ergebnis unter warmer Bedingung ansehen</summary>
+<summary>Kontrolle bei warmer Bedingung</summary>
 
-![Explorative Plain- und Sham-Zählwerte unter warmer Bedingung](../../results/k7-k8-windows-causal/warm-sham-exploratory.png)
+![Explorative Zählungen für plain und sham bei warmer Bedingung](../../results/k7-k8-windows-causal/warm-sham-exploratory.png)
 
-Dies sind deskriptive Zählwerte aus einer unterstützenden Bedingung außerhalb
-der sechs konfirmatorischen Kontraste. Sie erklären nicht eindeutig, warum sich
-die Reaktion ändert.
+Deskriptive Zählungen aus der ergänzenden warmen Bedingung, außerhalb der
+sechs primären Kontraste.
 
 </details>
 
-## Daten erneut prüfen
+## Reproduktion
 
-Das Zählaudit benötigt Python 3.10+ und dessen Standardbibliothek. Vom
-Stammverzeichnis des Repositorys aus lassen sich Schwellenwerte, Zellzählwerte,
-Kontrollkriterien und primäre Punktschätzungen reproduzieren:
+Mit Python 3.10+ und seiner Standardbibliothek lassen sich Schwellenwerte,
+Zellzählungen, Kontrollkriterien und primäre Punktschätzungen aus dem
+Originalarchiv nachprüfen:
 
 ```sh
 python results/k7-k8-windows-causal/independent-counts/audit_counts.py results/k7-k8-windows-causal/inputs/causal-windows-evidence-20261108T173801487095Z-6d4bcf3a.zip --output out/k7-k8-count-recheck
 ```
 
-Dabei werden archivierte Daten gelesen, ohne das Messprogramm auszuführen.
-Die genaue Anleitung zur Wiederholung der festgeschriebenen Analyse und zum
-Codeaudit steht in der
-[Reproduktionsanleitung](../../results/k7-k8-windows-causal/REPRODUCE.md).
-Die ursprünglichen Nachweis-ZIPs und Hashwerte bleiben erhalten. Die
-Software-CI prüft Parser, Analysen, Quellcodegenerierung und Dokumentation. Sie
-wiederholt weder die physischen Windows-Experimente noch bestätigt sie deren
-Mechanismus.
+Die [Reproduktionsanleitung](../../results/k7-k8-windows-causal/REPRODUCE.md)
+beschreibt die exakte Wiederholung der Analyse, die Diagrammerstellung und
+die Codeprüfung. Originalarchive und Hashes liegen jedem Ergebnis bei.
+Die [Softwarevalidierung](https://github.com/xShadyy/fractal-x86-branch-predictor/actions/workflows/validation.yml)
+prüft Analyse-Testdaten, generierten Quellcode und Dokumentation.
 
-Die abgeschlossenen Studien besitzen festgeschriebene Quellcodestände. Eine
-neue Datenerhebung benötigt einen eigenen Plan; bestehende Versuche dürfen
-nicht erweitert oder stillschweigend ersetzt werden.
-Für die Windows-Datenerhebung werden MSVC x64 Build Tools und ein Windows SDK
-benötigt, nicht jedoch für das obige Zählaudit mit reinem Lesezugriff.
+Abgeschlossene Studien behalten ihre festgelegten Pläne und Quellcodestände.
+Eine neue Datenerhebung beginnt mit einem neuen Plan. Für Windows-Messungen
+werden MSVC x64 Build Tools und ein Windows SDK benötigt.
 
-## Gesonderte Referenz: die M1-Daten der Autoren
+## Neuanalyse der Fractal-Autorendaten
 
-Die [portable Neuanalyse der Autorendaten](../../results/fractal-author-data-reanalysis/README.md)
-validiert **48 bereitgestellte Rohdatenprotokolle und 240,192 veröffentlichte
-Zeilen**. Sie liefert JSON, CSV und Abbildungen, ohne einen Mac zu benötigen.
-Diese Zeilen sind Messungen von Ravichandran und Yan. Sie sind von den neu
-erhobenen Windows-Daten dieses Projekts getrennt. Das Einlesen, die Herkunft
-und die unterschiedlichen Lizenzbedingungen der Artefakte sind zusammen mit
-dem Ergebnis dokumentiert.
+Die [Neuanalyse des M1-Artefakts](../../results/fractal-author-data-reanalysis/README.md)
+prüft **48 Traces und 240,192 veröffentlichte Zeilen** aus den freigegebenen
+Messdaten von Ravichandran und Yan. JSON, CSV und Abbildungen stehen zusammen
+mit der Herkunfts- und Lizenzdokumentation des Artefakts bereit.
 
-## Geltungsbereich und Grenzen
+## Messkontext
 
-- Ein angegebener Ryzen-Rechner. K5 umfasst drei Systemstarts; K7/K8 verwenden
-  je drei Prozesse pro Studie innerhalb eines Systemstarts. Die Anwesenheit
-  eines Hypervisors und VBS wurden dokumentiert. Alle neu erhobenen
-  Windows-Messungen erfolgen im Benutzermodus (CPL 3), nicht im Kernelmodus.
-- Die K7/K8-Modi beeinflussen sowohl Training als auch Prüfung. Die Kontrolle
-  mit privater Bank misst die öffentliche Reaktion, ohne einen Sensor für die
-  Cache-Belegung der privaten Bank.
-- Alle aufgezeichneten K7/K8-Sensorzeiten sind Vielfache von 47 TSC-Ticks. Es
-  handelt sich um kalibrierte Messungen von Cache-Klassen, nicht um genaue
-  Schätzungen der Zyklenzahl einzelner Instruktionen.
-- Der genaue Prädiktormechanismus, ein ausschließlich transienter
-  Ausführungspfad und ein physischer Einfluss vom Benutzer- auf den Kernelmodus
-  sind weiterhin nicht nachgewiesen. Es werden weder neue M1-Messungen noch ein
-  vergleichender Vorteil von Fractal hinsichtlich des Messrauschens behauptet.
+Die Windows-Messprogramme laufen im Benutzermodus. K5 umfasst drei Systemstarts
+auf einem Rechner. K7/K8 verwenden drei Prozesse pro Studie innerhalb einer
+Sitzung ohne Neustart; Hypervisor-Präsenz und VBS sind dokumentiert. Die
+Eingriffe gelten sowohl beim Training als auch bei der Messprobe; die
+Kontrolle mit privaten Banken beobachtet die öffentliche Antwort.
 
-Die [Bewertung der Forschungswege](../../RESEARCH_ROUTE.md) beschreibt die nächste
-klar eingegrenzte native Linux-Studie sowie die gesonderte Prüfung der
-Bootfähigkeit und Datenexportmöglichkeit für physisches Fractal.
+Die K7/K8-Sensorzeiten sind Vielfache von 47 TSC-Ticks und ermöglichen
+kalibrierte Cache-Klassifikationen. Der genaue Prädiktor, der Pfad der
+transienten Ausführung und ein physischer Einfluss vom Benutzer- auf den
+Kernelmodus bleiben offene Fragen.
+Die Seite [Weitere Studien](../../RESEARCH_ROUTE.md) beschreibt die Messwege mit
+nativem Linux und Fractal auf physischer Hardware.
 
-## Aufbau des Repositorys
+## Projektdateien
 
-| Pfad | Zweck |
+| Pfad | Inhalt |
 |---|---|
-| [`programs/`](../../programs/) | C-Programme und lesbare Messstellen in Assembler |
-| [`protocols/`](../../protocols/) | Festgeschriebene Entscheidungen zur Erhebung und Analyse |
-| [`scripts/`](../../scripts/) | Messprogramme, Analyseprogramme sowie Herkunfts- und Auditwerkzeuge |
+| [`programs/`](../../programs/) | Messprogramme in C und Messstellen in Assembler |
+| [`protocols/`](../../protocols/) | Erhebungspläne und Analyseregeln |
+| [`scripts/`](../../scripts/) | Werkzeuge für Datenerhebung, Analyse und Herkunftsnachweise |
 | [`tests/`](../../tests/) | Software-Testdaten und Regressionstests |
-| [`results/`](../../results/) | Ursprüngliche Nachweise, numerische Aufzeichnungen und Abbildungen |
-| [`RESEARCH_REPORT.md`](../../RESEARCH_REPORT.md) | Zusammengefasste Messergebnisse und Grenzen der Aussagen |
-| [`RESEARCH_ROUTE.md`](../../RESEARCH_ROUTE.md) | Hardwaretauglichkeit und Bewertung der nächsten Studie |
+| [`results/`](../../results/) | Rohdaten, numerische Tabellen und Abbildungen |
 
-## Urheberschaft und Zitierung
+## Zitieren
 
-Gepflegt von [Tymoteusz Netter](https://github.com/xShadyy).
-Dieses Artefakt lässt sich mit [CITATION.cff](../../CITATION.cff) zitieren. Bei
-Ausführungen zum Fractal-Betriebssystem oder zu den M1-Ergebnissen ist das
-Originalpaper gesondert zu zitieren:
+Betreut von [Tymoteusz Netter](https://github.com/xShadyy).
+Zum Zitieren dieser Software dient [CITATION.cff](../../CITATION.cff).
 
 > Joseph Ravichandran und Mengjia Yan. *Fractal: An Operating System Designed
 > for Microarchitecture Reverse Engineering*. IEEE Symposium on Security and
-> Privacy, 2026. [Paper](https://people.csail.mit.edu/mengjia/data/2026.SP.fractal.pdf)
-> · [Ursprüngliches Betriebssystem](https://github.com/jprx/fractal)
-> · [Evaluiertes Artefakt](https://doi.org/10.5281/zenodo.19556693)
+> Privacy, 2026. [Publikation](https://people.csail.mit.edu/mengjia/data/2026.SP.fractal.pdf)
+> · [Fractal OS](https://github.com/jprx/fractal)
+> · [Forschungsartefakt](https://doi.org/10.5281/zenodo.19556693)
 
-Projektcode: [MIT](../../LICENSE). Komponenten des ursprünglichen Projekts und
-das gesonderte Autorenartefakt behalten ihre eigenen Urheberschafts- und
-Lizenzbedingungen. Siehe die
-[Dokumentation der Autorendaten](../../results/fractal-author-data-reanalysis/README.md).
+Der Projektcode steht unter der [MIT-Lizenz](../../LICENSE). Eingebundene
+Komponenten und das Artefakt der Autoren behalten ihre jeweiligen Lizenzen
+und Urheberangaben.

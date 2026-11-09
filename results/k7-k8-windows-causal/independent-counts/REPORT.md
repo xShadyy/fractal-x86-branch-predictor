@@ -1,6 +1,6 @@
 # Independent K7/K8 raw-count audit
 
-All six uploaded Windows traces agree exactly with their archived calibration thresholds, all 80 heldout wanted rates, all 80 decoy rates, all 140 apparatus gates, every adjusted outcome and all primary point estimates. The script uses only the Python standard library and never imports the project analyzers or executes the uploaded EXE.
+For each of the six Windows traces, this independent count implementation matches the archived thresholds, 80 heldout wanted rates, 80 decoy rates, 140 apparatus gates, every adjusted outcome and all primary point estimates. Across the six traces, that is 480 wanted rates, 480 decoy rates and 840 gates. The script uses the Python standard library without importing the project analyzers or executing the uploaded EXE.
 
 Each trace has 163,840 rows: 81,920 calibration and 81,920 heldout rows. Each heldout mode/condition cell has exactly 1,024 observations, four in every heldout block. The six runs therefore contain 983,040 recorded rows and 491,520 heldout rows.
 
@@ -16,23 +16,23 @@ Each trace has 163,840 rows: 81,920 calibration and 81,920 heldout rows. Each he
 | Attempt | Declared primary endpoint | Exact point estimate (pp) |
 |---|---|---:|
 | attempt-01 | p0_plain_minus_ablate_one | +99.804687500 |
-| attempt-01 | p1_plain_minus_ablate_zero | +99.609375000 |
 | attempt-01 | p0_plain_minus_sink_both | +99.804687500 |
+| attempt-01 | p1_plain_minus_ablate_zero | +99.609375000 |
 | attempt-01 | p1_plain_minus_sink_both | +99.414062500 |
-| attempt-02 | p0_sham_minus_true | +99.902343750 |
 | attempt-02 | p0_plain_minus_sham | -0.097656250 |
+| attempt-02 | p0_sham_minus_true | +99.902343750 |
 | attempt-03 | p0_plain_minus_ablate_one | +99.707031250 |
-| attempt-03 | p1_plain_minus_ablate_zero | +100.097656250 |
 | attempt-03 | p0_plain_minus_sink_both | +99.707031250 |
+| attempt-03 | p1_plain_minus_ablate_zero | +100.097656250 |
 | attempt-03 | p1_plain_minus_sink_both | +100.097656250 |
-| attempt-04 | p0_sham_minus_true | +99.707031250 |
 | attempt-04 | p0_plain_minus_sham | +0.097656250 |
+| attempt-04 | p0_sham_minus_true | +99.707031250 |
 | attempt-05 | p0_plain_minus_ablate_one | +99.804687500 |
-| attempt-05 | p1_plain_minus_ablate_zero | +99.707031250 |
 | attempt-05 | p0_plain_minus_sink_both | +99.804687500 |
+| attempt-05 | p1_plain_minus_ablate_zero | +99.707031250 |
 | attempt-05 | p1_plain_minus_sink_both | +99.804687500 |
-| attempt-06 | p0_sham_minus_true | +99.414062500 |
 | attempt-06 | p0_plain_minus_sham | +0.097656250 |
+| attempt-06 | p0_sham_minus_true | +99.414062500 |
 
 ## Exact count interpretation
 
@@ -79,6 +79,6 @@ The timing gcd is computed across every wanted and decoy timing, including calib
 
 ## Limits
 
-This audit confirms arithmetic agreement with the recorded traces. It does not independently attest physical hardware, boot history or provenance, and does not recompute bootstrap intervals. The interventions act during both training and probing; suppression therefore concerns the whole intervention. The private-bank control measures loss of the public-bank response, without a private-bank heat sensor. Same-boot fresh processes are not independent boot or host replications.
+This audit independently checks recorded-count arithmetic; bootstrap intervals remain the frozen analyzer's outputs. Collection metadata records three fresh processes per study on one reported boot. Interventions act during training and probing. The private-bank control observes the public response without measuring private-bank heat.
 
-All six CPU records report hypervisor=1, IBS=0 and LFenceAlwaysSerializing=0. This last feature bit being zero does not by itself establish that LFENCE is nonserializing in the recorded environment; any LFENCE suppression is an observed intervention outcome under that environment. None of these arithmetic checks proves a unique predictor mechanism or user-to-kernel influence.
+All six CPU records report hypervisor=1, IBS=0 and LFenceAlwaysSerializing=0. The absent advertised bit does not determine LFENCE's actual configuration. Its suppression is an observed result in this environment. The [result report](../README.md#host-and-measurement-scope) documents the host and measurement limits.

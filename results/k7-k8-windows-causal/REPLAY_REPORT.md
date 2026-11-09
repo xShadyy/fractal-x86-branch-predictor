@@ -1,8 +1,8 @@
 # Frozen replay review of the Windows K7/K8 results
 
-This focused replay record is complemented by the [consolidated result](README.md), which includes the later independent-count and static-code reviews, the warm-condition qualification, and the limits of interventions applied during both training and probing.
+This record reproduces the frozen numerical analysis. The [result report](README.md) adds independent-count and static-code reviews and the warm-condition qualification.
 
-Every recorded analysis reproduces exactly from its raw trace under trusted commit `8080faed480a9eef086f1fc0396e38dba7de31c7`. All six attempts contain 163,840 recorded episodes, pass 140 of 140 apparatus gates, and meet their frozen `valid_response` rule. Total recorded episodes: **983,040**. No uploaded executable, object file, script, or runtime machine code was executed. The only executed analysis code came from the clean, hash-matched frozen repository.
+All six saved analyses reproduce exactly from their raw traces under trusted commit `8080faed480a9eef086f1fc0396e38dba7de31c7`. Each attempt contains 163,840 episodes, passes 140 of 140 apparatus gates, and meets its frozen `valid_response` rule. Total recorded episodes: **983,040**. The replay used the clean, hash-matched Python analysis code and treated the uploaded executable, object files and runtime code as data.
 
 `replay.json` contains the checks and per-attempt endpoints. Each `attempt-XX-replayed-analysis.json` is the complete recomputation. The JSON objects match all uploaded `analysis.json` values without differences. `endpoint-table.csv` and `supporting-mode-table.csv` retain unrounded values in percentage points.
 
@@ -72,11 +72,9 @@ These differences are small relative to the roughly 100 pp queried-bank suppress
 
 `sink_both` retains the same runtime opcode image as `plain`; validated context bindings move the marker loads to private banks. Loss of the public response supports attribution to the selected public marker access. Private-bank heating was not measured, so this is not a direct private-cache observation.
 
-## What these results support
+## Interpretation
 
-The repeated user-mode cache signature depends on the tested condition-dependent encoding path. A true resolved-condition dependency suppresses it while the instruction-topology-matched sham preserves it; removing the queried marker load or moving its bank pointers removes the public response; removing the other bank largely preserves it. These interventions narrow several competing explanations more substantially than another unchanged K5 run would.
-
-All observed training and probing remain at CPL3. This supports a tightly scoped, repeatable Windows user-mode result on the reported Ryzen 9800X3D configuration. It does not uniquely identify a predictor structure, directly measure instruction fetch, establish user-to-kernel influence, independently reproduce the M1 findings, or establish independence across Windows boots, OSes, machines, or mitigation configurations. The plan explicitly calls for three fresh processes per study on one unchanged boot.
+The [result report](README.md#supported-result) interprets these contrasts alongside the warm-condition counts and code review. Training and probing both use the installed mode and remain at CPL3. The three fresh processes per study share one reported boot; these within-run intervals do not quantify between-boot or between-host variation.
 
 ## Provenance notes
 
@@ -84,5 +82,5 @@ All observed training and probing remain at CPL3. This supports a tightly scoped
 - The evidence and plan archives contain byte-identical plan JSON. The uploaded source archive SHA-256 matches the frozen plan.
 - Strict trace replay verifies every planned episode order, seed-dependent token/decoy/reload order, timing checksum, event hash, architectural return, CPL/PC record, code snapshot, context binding, and stable observed TSC_AUX identity.
 - All observed AUX values are 0. AUX equality with the Windows processor index was not assumed.
-- The uploaded binary was inspected as bytes only: hash and template membership match the frozen audit. This is not automatic linked-harness attestation or independent physical-host attestation.
+- Byte inspection confirms the binary hash and embedded template. The emitted-code review is recorded separately in [static/short.md](static/short.md).
 - Full manifest, ledger, host-before/after, and linked-path review are complementary provenance checks. This report concentrates on exact frozen raw-trace analysis and its interpretation.

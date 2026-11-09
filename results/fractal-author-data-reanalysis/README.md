@@ -1,8 +1,8 @@
 # Reanalysis of the authors' released Fractal M1 data
 
-This directory contains an independent descriptive analysis of the authors' published M1 traces. It contains no new hardware measurements. It does not establish the Fractal findings on AMD, Windows, or this workstation.
-
-The useful result is a reproducible reference: all 48 released conditions can be inspected and summarized on an ordinary Windows or Linux computer, without an Apple machine. It also makes the measurement distinction that a future x86 experiment must preserve explicit.
+This directory provides an independent descriptive analysis of the authors'
+48 published M1 traces. The reader and figures run on Windows or Linux,
+providing a reference for future x86 experiments without requiring a Mac.
 
 ## Source and attribution
 
@@ -44,7 +44,7 @@ Each of the 48 traces contains 5,004 latency rows, for 240,192 published rows in
 
 The authors' latency figures and Table 1 visualization use the first 160 points after removing the initial four (`[4:164]`). Their histogram script uses all 5,004 rows. Our descriptive matrix uses all 5,000 rows after the initial four, and therefore is a different summary from their displayed 160-point traces.
 
-The rank statistic is the fraction of all T/N sample pairs for which T has lower recorded latency, counting equal latencies as half a pair: `P(T < N) + 0.5 P(T = N)`. Values near 1 describe strong separation in the expected direction. A value near 0.5 describes little rank preference in these samples. It is not a null-hypothesis test, proof of absence, confidence interval, cache-hit classification, or automatic reconstruction of the paper's Table 1 check marks. No positive-result cutoff was introduced.
+The rank statistic is the fraction of all T/N sample pairs for which T has lower recorded latency, counting equal latencies as half a pair: `P(T < N) + 0.5 P(T = N)`. Values near 1 describe strong separation in the expected direction. A value near 0.5 describes little rank preference in these samples. This descriptive statistic reports sample separation; every condition retains its value without a pass/fail cutoff.
 
 Selected performance-core indirect-branch observations, after the initial four:
 
@@ -58,9 +58,9 @@ Selected performance-core indirect-branch observations, after the initial four:
 
 These released traces show the paper's central measurement distinction particularly clearly: the user/kernel indirect-branch fetch sensor separates the training labels, while its execution sensor does not show the same large low/high latency separation. Conditional-branch user/kernel execution also separates in this dataset. Phantom fetch conditions separate while their execution distributions overlap substantially.
 
-Do not interpret every execution condition with a small median difference as identical or signal-free. The efficiency-core indirect, different-ASID execution trace has medians of 747 and 748 cycles and a rank statistic of **0.655242**. That one-cycle shift is visible to a rank summary, although it is not the large cache-hot/cache-cold signature shown by the separated reference traces. The complete per-condition numbers are retained instead of replacing such cases with a binary verdict.
+Small median differences can still produce visible rank separation. The efficiency-core indirect, different-ASID execution trace has medians of 747 and 748 cycles and a rank statistic of **0.655242**. That one-cycle shift differs from the large cache-hot/cache-cold signature in the separated reference traces. Complete per-condition values retain that distinction.
 
-The original artifact's `SP_RESULTS.md` states that Figure 8 was corrected after a bug fix relative to the submitted paper. This analysis is pinned to the April 2026 artifact version and does not claim every result is identical to every earlier manuscript version.
+The original artifact's `SP_RESULTS.md` records a Figure 8 correction after a bug fix relative to the submitted paper. This analysis uses the April 2026 artifact version.
 
 ![Descriptive matrix](authors-m1-descriptive-matrix.png)
 
@@ -72,7 +72,10 @@ The recorded run verified the source archive hash, all 48 trace hashes, experime
 
 The authors' three unmodified plotting programs were also tried privately. They failed because this environment lacks LaTeX's `type1ec.sty`. Private copies then produced Figures 5, 6, 7, 8, and the Table 1 latency grid after changing only `text.usetex: True` to `False` and `font.serif: Computer Modern` to `DejaVu Serif` in the style file. Those were rendering compatibility checks, not pixel-identical reproductions. The private copies and their generated PDFs are not included here. The public figures above come from the independent analyzer.
 
-This work checks the published data and provides a portable analysis reference. Independent support for the same mechanism on the user's AMD host still requires new, controlled hardware experiments. The artifact does not provide an x86 version of its M1 experiment backend: it uses ARM instruction generation, Apple performance-counter registers, M1 cache geometry, and m1n1-based hardware control. Booting the x86 Fractal kernel alone would not run these M1 experiments.
+The portable reader and figures form a published-data reference. The artifact's
+hardware backend depends on ARM instruction generation, Apple performance-counter
+registers, M1 cache geometry and m1n1-based control. An AMD port needs an
+independently validated x86 backend.
 
 ## Files
 

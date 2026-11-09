@@ -1,10 +1,9 @@
 # K7/K8 Windows results and independent audit
 
 Measurements collected 8 November 2026; publication review 9 November 2026.
-Both studies meet their frozen criteria in all three planned process attempts. The six saved analyses reproduce exactly from their
-raw traces. Independent counts and a targeted review of the actual MSVC binary
-also agree. The bounded Windows collection is complete; no additional run is
-needed to finish this plan.
+All six planned process attempts meet their frozen criteria. Raw-trace replay,
+independent counts and review of the emitted MSVC code agree with the saved
+results. The Windows collection is complete.
 
 [Reproduction and file guide](REPRODUCE.md) · [Machine-readable summary](SUMMARY.json)
 
@@ -18,12 +17,9 @@ predeclared equivalence margin. Removing the queried bank's encoder load or
 binding the encoder to private banks suppresses the public response. Removing
 only the opposite bank's load leaves a large queried-bank response.
 
-This materially strengthens attribution to the tested marker-encoding path.
-Each intervention changes the mode during both training and probing. These
-results do not isolate a probe-only intervention, uniquely identify a predictor
-structure, prove an exclusively transient execution path, measure instruction
-fetching, or test user-to-kernel influence. They do not reproduce the paper's
-Apple M1 hardware experiment or demonstrate a Fractal OS advantage.
+The comparisons strengthen attribution to the tested marker-encoding path.
+The mode is installed before training and remains active during probing, so
+the measured contrast combines its effects on both phases.
 
 ## Prospective record and validation
 
@@ -62,8 +58,8 @@ Apple M1 hardware experiment or demonstrate a Fractal OS advantage.
   metadata. No material static implementation defect was found. No uploaded
   executable, object file or runtime machine code was executed by this audit.
 
-These are local provenance and code-consistency checks, not independent CPU
-attestation or an independently reproduced compiler build.
+The audit establishes file and code consistency. Hardware attestation and an
+independently reproduced compiler build were outside its scope.
 
 ## Prespecified primary results
 
@@ -88,22 +84,21 @@ results have the same broad pattern. True-mask, LFENCE and CPUID adjusted
 responses are zero in all six dependency bank/run combinations. Zero empirical
 bootstrap intervals do not prove an exactly zero population effect.
 
-The +100.098 pp value is not a probability or arithmetic error. In receiver
-attempt 3, p1's adjusted plain contrast is `(1024 - 0 - 0 + 1) / 1024`, or
-100.09765625 pp, because an omitted-probe correction is subtracted. Contrasts
-of corrected contrasts need not stay inside [0,100] pp. They were not clipped.
+In receiver attempt 3, p1's adjusted plain contrast is
+`(1024 - 0 - 0 + 1) / 1024`, or 100.09765625 pp. Subtracting the omitted-probe
+correction produces the +100.098 pp value. Corrected contrasts can exceed
+100 pp; the table retains those values without clipping.
 
 ![Supporting cold-condition results](windows-causal-responses.png)
 
-The figure shows supporting per-mode adjusted responses and 95% within-run
-intervals. The confirmatory contrast intervals are the different intervals in
-the table above. No interval is formed by pooling episodes across processes.
+Each point in the figure represents one process. Its whiskers are supporting
+95% within-run intervals; the table above reports the separate confirmatory
+contrast intervals. Processes are not pooled.
 
 ## Important exploratory qualification: the warm-condition sham
 
 Sham equivalence applies to the declared **cold-condition primary endpoint**.
-It is not a statement that the sham is universally inert. In the prespecified
-warm-condition p0 supporting cell, the descriptive plain/sham counts are:
+The warm-condition p0 supporting cell gives a different result:
 
 | Repetition | Plain hits / 1,024 | Sham hits / 1,024 | Sham minus plain |
 |---|---:|---:|---:|
@@ -111,10 +106,9 @@ warm-condition p0 supporting cell, the descriptive plain/sham counts are:
 | 2 | 293 | 126 | -16.309 pp |
 | 3 | 275 | 130 | -14.160 pp |
 
-This is an exploratory comparison of a supporting condition, outside the six
-confirmatory contrasts. It shows a timing-condition interaction worth retaining
-in the report. It must not be hidden by a blanket claim that the sham has no
-effect. The data do not uniquely establish why the warm condition differs.
+The sham response is 14.160–16.309 pp lower than plain in these three
+processes. This exploratory comparison is outside the six confirmatory
+contrasts. Its cause remains unresolved.
 
 ![Exploratory warm-condition counts](warm-sham-exploratory.png)
 
@@ -140,28 +134,20 @@ class separation validates the declared classifier on held-out controls, but
 these values must not be read as precise instruction-cycle measurements. The
 cause of the quantization was not established.
 
-Mode snapshots document initial installations, while source and emitted checks
-verify the installation path; there is no independently attested instruction
-trace for every episode. Exact predictor state, private-bank heat and physical
-cross-privilege behavior remain unmeasured. Across-process allocation addresses
-vary and are recorded; the fixed-site claim is within each process.
+All training and probing occur at CPL3. The measurements do not identify the
+exact predictor or isolate an exclusively transient path; instruction fetch,
+private-bank heat and user-to-kernel influence remain unmeasured. Mode snapshots
+record initial installations, and emitted code checks later installations,
+without an independently attested instruction trace for every episode.
+Allocation addresses vary across processes; the fixed-site claim is within
+each process.
 
 ## Decision and use
 
-Close this Windows collection phase and document the measured result with the
-limits above. A defensible GitHub contribution is a reproducible user-mode
-intervention study with original raw evidence, a frozen prospective plan,
-independent numerical/code audit, clear null/failed-control history, and the
-warm-condition qualification. Novelty beyond related work is not established by
-these checks alone.
-
-The next hardware phase should address a new, narrowly specified question on a
-validated native Linux backend. Laptop CPU inventory is still required to choose
-between that laptop and Linux booted directly on the existing Ryzen. Fractal's
-physical boot/export and the user/kernel question remain separate work.
-
-This report is an independent x86 follow-up inspired by Joseph Ravichandran and
-Mengjia Yan's Fractal work. Their OS and original M1 results remain theirs.
+The six-attempt Windows plan is complete. The next hardware phase needs a new
+question and a validated native Linux backend. Inventory the available laptop
+before choosing it or Linux booted directly on the Ryzen. Novelty relative to
+prior work requires a separate literature comparison.
 
 ## Evidence and audit files
 
@@ -171,3 +157,6 @@ collected during this audit. `replay.json` and the six replayed analyses retain
 exact numerical results; `endpoint-table.csv` has all 18 primary intervals;
 `supporting-mode-table.csv` has all 60 per-mode/bank outcomes. Independent
 counts, code reviews, scripts and figure sources are included separately.
+`FIGURE-PROVENANCE.json` records rendering versions, data hashes and uncertainty
+scopes; [the reproduction guide](REPRODUCE.md#regenerate-the-figures) gives the
+plot command.

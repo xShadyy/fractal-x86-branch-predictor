@@ -19,8 +19,10 @@ from urllib.parse import unquote, urlsplit
 import xml.etree.ElementTree as ET
 import zlib
 
-DOCUMENTS = ('README.md', 'docs/i18n/README.pl.md',
-             'docs/i18n/README.nl.md', 'docs/i18n/README.de.md')
+def publication_documents(root):
+    """Include every translated README as languages are added."""
+    return ('README.md', *(path.relative_to(root).as_posix()
+                          for path in sorted((root/'docs/i18n').glob('README.*.md'))))
 
 
 class DocumentationError(ValueError):
@@ -213,7 +215,8 @@ def check_citation(path):
 def check(root):
     root = root.resolve()
     checked, assets, external = 0, set(), 0
-    for name in DOCUMENTS:
+    documents = publication_documents(root)
+    for name in documents:
         document = root / name
         if not document.is_file():
             raise DocumentationError(f'missing publication document: {name}')
@@ -240,7 +243,8 @@ def check(root):
     authors = check_citation(root/'CITATION.cff')
     if not any(path.suffix.lower() == '.png' for path in assets):
         raise DocumentationError('publication documents must link a local PNG image')
-    return dict(documents=len(DOCUMENTS), local_links=checked, assets=len(assets),
+    return dict(documents=len(documents), document_paths=list(documents),
+                local_links=checked, assets=len(assets),
                 external_links_skipped=external, citation_authors=authors,
                 scope='offline local links, headings, PNG/SVG structure and required CFF fields')
 

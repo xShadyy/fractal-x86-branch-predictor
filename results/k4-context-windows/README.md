@@ -7,9 +7,8 @@ reported in the traces. Source revision for all four collections:
 **The frozen numerical fresh-marker signature occurred in the pilot and all
 three follow-up sessions, with 58/58 apparatus gates passing in every run.**
 This establishes recurrence of the controlled same-process signature on one
-reported Ryzen 7 9800X3D host. It supports the transient-execution
-interpretation; mechanism attribution is still incomplete. No privilege
-boundary, Fractal execution, independent host, boot or day was tested.
+reported Ryzen 7 9800X3D host. Mechanism attribution remains incomplete;
+the four Windows user-mode processes provide same-host recurrence evidence.
 
 ## Run-level results
 
@@ -25,8 +24,8 @@ Each interval resamples 16 complete held-out block cycles within that run.
 | Follow-up 3 | 2 Nov 23:43:15 | 3039835034 | 58/58 | +99.731 | [+99.609,+99.854] |
 
 The three follow-ups contain 786,432 recorded episodes, with 1,048,576 across
-all four runs including calibration. Episodes are dependent observations,
-not a million independent replications. The descriptive follow-up mean is
+all four runs including calibration. The process is the replication unit;
+its episodes share state and conditions. The descriptive follow-up mean is
 +99.707 points, range [+99.512,+99.878]. No pooled confidence interval or
 population inference is reported.
 
@@ -46,10 +45,10 @@ These are exactly the supplied three follow-up seeds. K4's pre-existing
 per-run criteria were unchanged. There was no additional prespecified
 pooled statistic or across-host decision rule.
 
-This section is an archival record written after collection. It is not a
-claim that this Markdown file was committed or independently registered
-before those runs. The follow-ups were selected after a positive pilot and
-ran sequentially on the same reported host within minutes.
+This archival summary was written after collection. The chat instructions
+record the planned seeds and session count; external registration was not
+recorded. The follow-ups were selected after a positive pilot and ran
+sequentially on the same reported host within minutes.
 
 ## Reproduced artifact and numerical checks
 
@@ -73,15 +72,15 @@ the recorded Git revision. The full EXE hashes differ; the raw linked
 
 The archived disassembly matches 107,120 linked bytes in 31,282 instruction
 records per run. Both 1,743-byte RX snapshots match the frozen contract.
-The collector used different recorded code-allocation addresses across
-the four processes; no predictor-address-index claim follows from that.
+The collector records different code-allocation addresses across the four
+processes. Each process retains its measured site across modes.
 
 Each full trace replays its schedule and both RNG streams, verifies
 architectural returns and checksums, and reproduces its archived analysis
 exactly. A separate raw-CSV implementation reproduces the primary point,
 cycle contrasts and bootstrap endpoints. `verified-series.json` retains
-the complete results and comparison flags. These checks establish internal
-consistency, not independent attestation of the machine or measurement time.
+the complete results and comparison flags. These are internal consistency
+checks; machine and measurement-time records come from local metadata.
 
 ## Bounded linked-path review
 
@@ -101,26 +100,22 @@ RET/INT3. Training uses page zero; fresh tokens are stored afterward.
 The normal probe architecturally selects the bank opposite the receiver.
 
 The repeated training selectivity, fresh-marker construction, clean no-probe
-and decoy controls, matching committed returns and serialization sensitivity
-support the intended interpretation. The review is bounded: CPUID also
-changes timing and microarchitectural state, and the host reports a
-hypervisor. It does not prove that every alternative cache-fill explanation
-has been eliminated or identify an internal predictor entry. No branch-miss
-counter or independent event trace was collected.
+and decoy controls, matching returns and serialization sensitivity support
+the intended interpretation. CPUID also changes timing and microarchitectural
+state, and the host reports a hypervisor. Distinguishing alternative cache-fill
+paths requires evidence beyond the available code and timing records.
 
 ## Current claim and next milestone
 
 The supported claim is a repeated, training-specific, serialization-sensitive
 fresh-marker cache signature in one Windows user process on this reported
-host. K3 remains inconclusive under its own unchanged criteria; its result
-is not replaced by K4. Earlier native server K4 checks also remain failed
-development observations, not Windows replications.
+host. K3 retains its inconclusive classification under its original criteria.
+Earlier native-server K4 checks retain their failed-development status.
 
 The next mechanism check should distinguish serialization at the target
 from CPUID's wider effects and further test alternative cache-fill paths.
-A Fractal privilege comparison then requires validating the receiver on
-physical Fractal x86 in the same domain before changing privilege. More
-identical sessions alone cannot answer either question.
+A Fractal privilege comparison requires validating the receiver on physical
+Fractal x86 in the same domain before changing privilege.
 
 ## Reproduce
 

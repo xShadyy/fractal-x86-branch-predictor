@@ -1,9 +1,8 @@
 # K7/K8 audit reproduction and file guide
 
-Read [README.md](README.md) for the measured conclusion, all primary intervals, figures,
-warm-condition qualification and limits. `SUMMARY.json` is the short record.
-The bounded six-attempt Windows plan is complete. No additional Windows
-collection is needed to finish it.
+This guide rechecks the archived files and reproduces the analyses and plots.
+[README.md](README.md) contains the measured conclusion, primary intervals and
+warm-condition qualification. `SUMMARY.json` is the short record.
 
 ## Contents
 
@@ -20,9 +19,8 @@ collection is needed to finish it.
 - `*.png`, `*.pdf`, `*.svg`, `make_figures.py`: supporting figures and their
   source. Figure intervals are labeled separately from primary intervals.
 
-The review ran trusted analysis code and read evidence binaries as bytes.
-No uploaded executable, object file or runtime machine code was executed.
-This package is an audit record, not an installer or another collection task.
+The audit scripts read evidence binaries as bytes and run trusted analysis
+code. They do not execute the uploaded collector or start new measurements.
 
 ## Recheck the original archives
 
@@ -52,6 +50,22 @@ The static script additionally needs GNU binutils for independent decoding and
 the same frozen repository plus extracted evidence. Its `--repo`, `--evidence`
 and `--output` arguments replace the recorded review-environment paths.
 
-Keep the two input archives unchanged. `FILES-SHA256.json` inventories this
-audit package. Local hashes/metadata support consistency, not independent
-hardware attestation or an external preregistration timestamp.
+## Regenerate the figures
+
+The renderer uses Matplotlib 3.10.8 and Seaborn 0.13.2, with NumPy 2.3.5 and
+Pandas 2.2.3 in the recorded environment. From this directory:
+
+```sh
+python make_figures.py
+```
+
+The script checks all 60 supporting outcomes and 18 primary contrasts against
+the frozen analyses, then renders the two figures in PNG, PDF and SVG. It reads
+`warm-sham-counts.json` without changing it. `FIGURE-PROVENANCE.json` records
+package versions, input/output hashes and interval scopes. A fixed SVG hash salt
+and omitted PDF/SVG timestamps keep rerenders stable in the same environment.
+
+Keep the two input archives unchanged. `FILES-SHA256.json` inventories the
+published files, including the nested count-audit inventory. Hashes and local
+metadata check consistency; they do not provide hardware attestation or an
+external preregistration timestamp.

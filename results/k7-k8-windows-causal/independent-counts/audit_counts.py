@@ -281,7 +281,7 @@ def audit_attempt(z, prefix, csv_writer):
 
 def markdown_report(report):
     lines = ["# Independent K7/K8 raw-count audit", "",
-        "All six uploaded Windows traces agree exactly with their archived calibration thresholds, all 80 heldout wanted rates, all 80 decoy rates, all 140 apparatus gates, every adjusted outcome and all primary point estimates. The script uses only the Python standard library and never imports the project analyzers or executes the uploaded EXE.", "",
+        "For each of the six Windows traces, this independent count implementation matches the archived thresholds, 80 heldout wanted rates, 80 decoy rates, 140 apparatus gates, every adjusted outcome and all primary point estimates. Across the six traces, that is 480 wanted rates, 480 decoy rates and 840 gates. The script uses the Python standard library without importing the project analyzers or executing the uploaded EXE.", "",
         "Each trace has 163,840 rows: 81,920 calibration and 81,920 heldout rows. Each heldout mode/condition cell has exactly 1,024 observations, four in every heldout block. The six runs therefore contain 983,040 recorded rows and 491,520 heldout rows.", "",
         "| Attempt | Study | Seed | p0 threshold | p1 threshold | Gates |", "|---|---|---:|---:|---:|---:|"]
     for a in report["attempts"]:
@@ -328,8 +328,8 @@ def markdown_report(report):
         lines.append(f'| {a["attempt"]} | {c["hot"]["min_hits"]}–{c["hot"]["max_hits"]} | {c["training_matched_candidate"]["max_hits"]} | {c["omitted_probe"]["max_hits"]} | {c["all_decoys"]["max_hits"]} | {a["timing_gcd_all_wanted_and_decoy"]} |')
     lines += ["", "The timing gcd is computed across every wanted and decoy timing, including calibration. All values are multiples of the recorded gcd; the calibration HOT median is 94 and COLD median is 470 in all banks and attempts. This quantization does not remove the observed cache-class separation, but these values should be described as recorded TSC differences rather than precise instruction-cycle latencies. The audit does not determine the cause of the quantization."]
     lines += ["", "## Limits", "",
-        "This audit confirms arithmetic agreement with the recorded traces. It does not independently attest physical hardware, boot history or provenance, and does not recompute bootstrap intervals. The interventions act during both training and probing; suppression therefore concerns the whole intervention. The private-bank control measures loss of the public-bank response, without a private-bank heat sensor. Same-boot fresh processes are not independent boot or host replications.", "",
-        "All six CPU records report hypervisor=1, IBS=0 and LFenceAlwaysSerializing=0. This last feature bit being zero does not by itself establish that LFENCE is nonserializing in the recorded environment; any LFENCE suppression is an observed intervention outcome under that environment. None of these arithmetic checks proves a unique predictor mechanism or user-to-kernel influence.", ""]
+        "This audit independently checks recorded-count arithmetic; bootstrap intervals remain the frozen analyzer's outputs. Collection metadata records three fresh processes per study on one reported boot. Interventions act during training and probing. The private-bank control observes the public response without measuring private-bank heat.", "",
+        "All six CPU records report hypervisor=1, IBS=0 and LFenceAlwaysSerializing=0. The absent advertised bit does not determine LFENCE's actual configuration. Its suppression is an observed result in this environment. The [result report](../README.md#host-and-measurement-scope) documents the host and measurement limits.", ""]
     return "\n".join(lines)
 
 

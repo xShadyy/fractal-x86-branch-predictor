@@ -1,12 +1,12 @@
 # Native x86 branch studies: consolidated research record
 
-**Measurements through 8 November 2026; publication review 9 November 2026.** These are Windows x86 measurements on one reported AMD Ryzen 7 9800X3D workstation, plus separate Linux/QEMU development checks and an explicitly separate reanalysis of the Fractal authors' published M1 data. K4 repeats a training-specific fresh-marker cache signature with CPUID sensitivity. K5 has an audited pilot and three completed prospective new-boot attempts. K7/K8 add three planned process attempts per study on one later Windows boot: matched dependency, encoder-load removal and bank-relocation interventions all meet their frozen criteria. The cold-condition sham equivalence has an important warm-condition qualification. No branch-misprediction counter, instruction-fetch receiver or physical privilege-boundary influence was measured in our work. Mechanism attribution remains incomplete.
+**Measurements through 8 November 2026; publication review 9 November 2026.** These are Windows x86 measurements on one reported AMD Ryzen 7 9800X3D workstation, plus separate Linux/QEMU development checks and an explicitly separate reanalysis of the Fractal authors' published M1 data. K4 repeats a training-specific fresh-marker cache signature with CPUID sensitivity. K5 has an audited pilot and three completed prospective new-boot attempts. K7/K8 add three planned process attempts per study on one later Windows boot: matched dependency, encoder-load removal and bank-relocation interventions all meet their frozen criteria. The cold-condition sham equivalence has an important warm-condition qualification. The measurements establish repeatable cache responses; their precise mechanism remains open.
 
 ## K7/K8 audited Windows intervention studies
 
 The [complete K7/K8 record](results/k7-k8-windows-causal/README.md) retains both
 original uploaded ZIPs, the frozen plan, all six exact analysis replays,
-independent raw-count checks, a targeted review of the actual MSVC binary,
+independent raw-count checks, a targeted review of the MSVC binary,
 figures and reproduction scripts. The
 [protocol](protocols/WINDOWS_CAUSAL_FOLLOWUP.md) and source revision
 `8080faed480a9eef086f1fc0396e38dba7de31c7` were fixed before the six attempts.
@@ -21,8 +21,7 @@ gates**, with classification `valid_response`. The six attempts contain
 saved analysis objects reproduce exactly; a separate count implementation
 matches the 12 thresholds, all 840 gates, 60 adjusted outcomes and 18 primary
 point estimates. Source, runtime bytes, bindings, architectural returns and
-recorded CPL/PC/AUX checks also agree. The binary was inspected as data and was
-not executed during the audit.
+recorded CPL/PC/AUX checks also agree. The audit inspected the binary as data.
 
 K7 compares a true resolved-condition marker-address dependency with an
 independent-register sham having matched TEST/CMOV instruction topology.
@@ -31,9 +30,9 @@ The primary p0 sham-minus-true effects are +99.902 [+99.609,+100.000],
 The p0 plain-minus-sham estimates are -0.098, +0.098 and +0.098 pp; all three
 adjusted intervals lie inside the predeclared equivalence margin of -10 to
 +10 pp. True-mask, LFENCE and CPUID adjusted responses are zero in the recorded
-held-out samples of both banks. Resampling all-zero cluster contrasts yields
-zero empirical intervals, not proof of an exactly zero population effect or
-a universal serialization guarantee.
+held-out samples of both banks. All-zero cluster contrasts yield zero empirical
+intervals; uncertainty about the population effect and the LFENCE configuration
+remains.
 
 K8 removes the queried encoder load, removes the other bank's load, removes
 both loads, or retains the plain opcodes while binding the encoder to private
@@ -42,8 +41,8 @@ the +10 pp practical margin in every process; point estimates range from
 +99.414 to +100.098 pp. Removing only the other bank's load preserves a large
 queried-bank response. The private-bank condition measures loss of the public
 response, without a private-bank heat sensor. Corrected contrasts can exceed
-100 pp because the no-probe training contrast is subtracted; they are not
-individual hit probabilities and are not clipped.
+100 pp because the no-probe training contrast is subtracted. The report keeps
+these corrected contrasts unclipped.
 
 The six primary intervals use the frozen six-contrast Bonferroni rule,
 approximately 99.1667% nominal coverage per endpoint and 95% per scheduled
@@ -57,24 +56,22 @@ Sham equivalence applies to the declared **cold-condition primary endpoint**.
 With a warm condition line, p0's supporting sham response is lower than plain
 by **15.332, 16.309 and 14.160 pp** across the three dependency attempts.
 This exploratory 14.16–16.31 pp difference is outside the confirmatory family
-and shows that the sham is not universally inert. The data do not uniquely
-identify its cause. The
+and its cause remains open. The
 [warm-condition counts and figure](results/k7-k8-windows-causal/README.md#important-exploratory-qualification-the-warm-condition-sham)
 remain part of the result.
 
 These studies strengthen attribution to the tested marker-encoding path.
-The selected mode acts during **both training and probing**, so the result
-does not isolate a probe-only intervention or prove an exclusively transient
-path. All training and probing remain at CPL3. Three fresh processes per study
-on one reported boot are not independent-boot replication. Receiver ran before
-dependency in every randomly drawn pair, so study order and time are not
+The selected mode acts during both training and probing; its measured effect
+includes both stages. All training and probing remain at CPL3. Replication is
+across three fresh processes per study within one reported boot. Receiver ran
+before dependency in every randomly drawn pair, so study order and time are not
 counterbalanced. All 1,966,080 wanted/decoy timings are multiples of **47 TSC
-ticks**, of unresolved cause. No precise instruction-cycle or unique
-branch-predictor mechanism is inferred. This bounded Windows collection is
+ticks**, of unresolved cause. The calibrated cache classifier supports hit-rate
+contrasts while precise instruction-cycle costs remain unresolved. This Windows collection is
 complete; further hardware work should begin with a new question and a validated
 native Linux backend, after inventorying the available laptop.
 
-## K5 audited pilot and K6 privilege harness
+## K5 audited pilot and K6 privilege experiment
 
 [K5](protocols/DEPENDENCY_RECEIVER_K5.md) introduces a resolved-condition
 marker-address dependency as a distinct intervention alongside CPUID. Its native
@@ -86,9 +83,9 @@ all 88 gates pass, source/artifact hashes verify, and the saved analysis is
 reproduced exactly. Primary p0 plain-minus-mask is +99.683 percentage points,
 95% within-run interval [+99.414,+99.878]. Mask is +0.000 [0.000,0.000] and
 CPUID is +0.000 [-0.073,+0.073]. Recorded CPUID hypervisor=1 agrees with
-Windows HypervisorPresent=true. A targeted linked-harness consistency review
+Windows HypervisorPresent=true. A targeted linked-code consistency review
 found no mismatch in the preparation, shared-site, architectural-return or
-reload paths. These observations do not establish a specific predictor mechanism.
+reload paths. Mechanism attribution remains open.
 
 The original evidence ZIP SHA256 is
 `d059e2a7b588dc328e5d08599061d4b845129801823ed217521ba60d438bf36f`;
@@ -107,28 +104,26 @@ and 1849279219. All 88 gates pass in each run. The p0 primary effects are
 95% intervals. All raw analysis and independent cell-count checks reproduce.
 The [complete replication record](results/k5-windows-replication/README.md)
 retains the original evidence and the same byte-identical plan supplied before
-the measurements. The series completes the declared repeatability study, not
-mechanism attribution or a user-to-kernel finding.
+the measurements. The series completes the declared repeatability study.
 
 ## Separate reanalysis of the authors' released M1 traces
 
 The evaluated Fractal artifact is separate from the public kernel repository.
-Its original experiment backend targets Apple M1/AArch64 and is not a native
-Windows x86 program. Its 48 precollected traces can nevertheless be inspected
-and reanalysed without owning an M1. The
+Its experiment backend targets Apple M1/AArch64. Its 48 precollected traces
+can be inspected and reanalysed on Windows or Linux. The
 [portable reanalysis](results/fractal-author-data-reanalysis/README.md) validates
 all 240,192 published rows and reports descriptive training-label separation,
 with explicit handling of the first four rows and attribution to the original
-authors. No new M1 measurements were collected. No arbitrary cutoff converts
-the descriptive matrix into inferred hardware pass/fail claims.
+authors. The matrix retains descriptive values for every published condition
+without applying a hardware pass/fail cutoff.
 
 The [research-route assessment](RESEARCH_ROUTE.md) records reusable source paths,
 upstream/version and licensing distinctions, current Windows profiling/kernel
 constraints, physical Fractal boot/export obstacles and published native Linux
-research backends. It recommends a bounded conditional-branch domain study,
-without assuming AMD must match M1 or that a VM reproduces bare-metal behavior.
+research backends. It recommends a conditional-branch domain study with its
+own validated platform and controls.
 
-## Existing Fractal privilege harness
+## Existing Fractal privilege code
 
 [K6](protocols/FRACTAL_PRIVILEGE_K6.md) uses actual user and kernel fthreads in
 the pinned upstream Fractal x86 OS. The [development record](results/k5-k6-development/README.md)
@@ -137,8 +132,8 @@ CS.RPL values 3 and 0 inside the measured routine, common conditional address,
 matching runtime bytes, replay and architectural checks. These results validate
 the software path only. The physical payload has separate dimensions and rejects
 the reported emulation platform. A physical UK interpretation additionally requires
-positive UU and KK controls and its own masking/CPUID criteria. No physical K6
-signature, production-OS security result, or M1 replication is claimed.
+positive UU and KK controls and its own masking/CPUID criteria. Physical
+collection remains pending.
 
 ## K3 first Windows pilot and K4 same-host recurrence
 
@@ -162,7 +157,11 @@ Training now selects the fresh-marker response at both named target banks, and t
 
 [Ravichandran and Yan's *Fractal* paper](https://people.csail.mit.edu/mengjia/data/2026.SP.fractal.pdf) develops an OS for low-noise microarchitecture reverse engineering and evaluates Apple M1 branch predictors with instruction-fetch and data-execution receivers across security domains. Its Table 1 reports 48 M1 outcomes: conditional/indirect predictor × performance/efficiency core × ordinary/branch-removed receiver × same user and ASID/user-to-kernel/different ASID × fetch/execution. Those are the authors' findings. The [pinned upstream revision](UPSTREAM_FRACTAL_REVISION) identifies the separate upstream project.
 
-This repository runs ordinary user-mode code in one Windows process on AMD x86. Its TSC and data-cache outcomes cannot reproduce or refute an M1 result. A branch-time difference measures neither speculative instruction fetch nor target execution. A hot data line can support target-execution inference only after target specificity, architectural exclusivity and alternative cache-fill paths are validated.
+The Windows experiments use TSC and data-cache measurements within one user
+process on AMD x86. Inferring target execution from a hot data line requires
+validated target specificity, architectural exclusivity and checks for
+alternative cache-fill paths. Instruction-fetch sensing and physical
+privilege-domain experiments require separate measurement code.
 
 | Paper category | Local measurement status |
 | --- | --- |
@@ -215,7 +214,9 @@ The one-session archive `suite-evidence-suite-20261031T213948Z-8ee83ab7.zip`, SH
 | H indirect target timing | **Inconclusive** | Small-work controls +0.008/+0.143 ticks/probe, intervals include zero; PAUSE alone does not validate fine-scale sensitivity. |
 | B2 original probe length | **Inconclusive** | Probe-1 one-call timer +0.318 [+0.036,+0.587], below frozen +1 magnitude gate; probe-0 +1.116 [+0.669,+1.524] is exploratory only. |
 
-Archived linked-PE inspection supports intended branch/timer/target topology, subject to F's runtime copies and I's fetch-line and exclusivity caveats. An RX copy is not Fractal's gmap. Heterogeneous endpoints and failed gates cannot be pooled into a common effect.
+Archived linked-PE inspection supports the intended branch/timer/target topology,
+subject to F's runtime copies and I's fetch-line and exclusivity caveats. Each
+study retains its own endpoint and control decision.
 
 ## B2: same-site probe outcome
 
@@ -236,7 +237,7 @@ The initial and replication `.text` sections match SHA-256 `1289fa0d276ca798fdf8
 
 Held-out hot 99.82/99.92%, cold ≤0.006%, architectural load 99.88/99.87%, and no-probe ≤0.006% passed. **Architectural skip was 8.25%/8.06%, above K1's frozen ≤5% gate in both directions.** Adjusted mismatch-minus-match estimates were +0.75 [−1.97,+3.05] and +2.66 [−1.82,+7.47] percentage points. K1 is **inconclusive**, neither an eligible positive nor an eligible null; strict exit code 1 reflects the failed gate. Dropping hot first episodes retrospectively would violate its protocol.
 
-Linked PE inspection maps K1's shared conditional branch to RVA `0x2030`, target bodies to `0x20c2`/`0x203d`, and condition/target data to separate pages. Flush, fence, and fenced reload occur in the path. The optimized collector has a branch into HOT's explicit touch after flush; speculation along that harness branch is one possible contaminant. Target code-fetch layout is asymmetric. A post hoc first-five-episode spike motivated K2, but cannot repair K1's gate or establish its cause.
+Linked PE inspection maps K1's shared conditional branch to RVA `0x2030`, target bodies to `0x20c2`/`0x203d`, and condition/target data to separate pages. Flush, fence, and fenced reload occur in the path. The optimized collector has a branch into HOT's explicit touch after flush; speculation along that collector branch is one possible contaminant. Target code-fetch layout is asymmetric. A post hoc first-five-episode spike motivated K2, but cannot repair K1's gate or establish its cause.
 
 ## K2: receiver order diagnostic
 
@@ -250,7 +251,7 @@ Linked PE inspection maps K1's shared conditional branch to RVA `0x2030`, target
 
 All three clear K2's **within-run entry rule** on one host across two UTC dates. Grouped p0 early/late rates were 31.41/0.25%, 50.63/0.25%, and 56.72/0.21%. The eight held-out cycles per run vary widely and the interleaved skip line is often hot. The three distinct-seed runs are observations of between-session recurrence; no three-run confidence interval or population estimate is inferred from the many dependent episodes. K2 was designed from K1's exploratory spike, so K1 and K2 are not independent mechanism discovery and confirmation.
 
-Every K2 candidate **trained-label mismatch-minus-match** interval includes zero in grouped and interleaved modes on all dates. Day-two grouped p1, for example, was +1.343 [−0.024,+3.088] pp. The day-two p1 threshold was 258 ticks versus p0 352; an exploratory 188-tick reclassification preserves the main schedule pattern but does not replace frozen calibration. High skip-line heat could involve branch-path activity, prefetch, global history, condition ordering, harness behavior or host state. It does **not** demonstrate which trained target was selected, misprediction, or transient target execution.
+Every K2 candidate **trained-label mismatch-minus-match** interval includes zero in grouped and interleaved modes on all dates. Day-two grouped p1, for example, was +1.343 [−0.024,+3.088] pp. The day-two p1 threshold was 258 ticks versus p0 352; an exploratory 188-tick reclassification preserves the main schedule pattern but does not replace frozen calibration. High skip-line heat could involve branch-path activity, prefetch, global history, condition ordering, collector behavior or host state. It does **not** demonstrate which trained target was selected, misprediction, or transient target execution.
 
 The three linked `.text` sections are byte-identical, SHA-256 `54d9af2ea69a7acff3ba2a57e1872550f15b2a3455b1d5046be49dd08fda12c8`; full PE hashes differ in timestamps. Static review maps the shared branch to RVA `0x2680`, targets to `0x2712`/`0x268d`, and condition/target data to distinct pages. HOT uses a separate explicit-touch helper; candidate/skip use flush/fence/branch/fenced reload. Target one shares an instruction line with the branch, whereas target zero has another fetch layout. This verifies intended topology, not the causal source of heat. The [three-run figure](results/2026-11-02-windows-receiver-order-day2/three-run-contrast.svg) and [plot source](results/2026-11-02-windows-receiver-order-day2/plot_three_runs.py) display run-level outcomes without treating episodes as independent replications.
 
@@ -258,4 +259,6 @@ The three linked `.text` sections are byte-identical, SHA-256 `54d9af2ea69a7acff
 
 Raw A/B and branch-batch traces/binaries, JSON summaries, plot scripts and original-file ledgers are under [results/](results/). The suite/B2/K1/K2 original ZIPs were supplied separately; their exact hashes appear here and in the [results ledger](results/RESULTS_LEDGER.json). For an original ZIP, verify SHA-256 and manifest, replay the matching `scripts/analyze_*.py` against its `.log` at the recorded source tree, and compare executable and linked `.text` hashes. `scripts/summarize_followup_series.py` recomputes A/B from raw files, and `scripts/summarize_b2_outcome_replicates.py` reads the B2 outer ZIP. Unit tests check parsing and analysis, not physical host execution.
 
-The supported observations include the earlier A/B timing and K2 scheduling associations, the retained B2/K1/K3 limits, K4's repeated training-specific fresh-marker signature, K5's three new-boot masking/CPUID contrasts, and K7/K8's matched dependency and encoder-intervention results. The latter strengthen attribution to the tested encoding path while retaining the warm-condition sham difference and the fact that interventions act during training and probing. Mechanism attribution remains bounded by host, timing and alternative-path questions. No predictor table size, path-history-register length, misprediction count, privilege/ASID transfer, Phantom effect or M1 finding is established. The bounded Windows phase is complete. Native Linux host selection requires the available laptop's CPU inventory; physical Fractal boot/export and privilege-boundary experiments remain separate, unvalidated hardware work.
+The Windows phase is complete. The next step is to inventory the available
+laptop before selecting a native Linux host. Physical Fractal work also needs
+a validated boot/export path before privilege-domain collection.

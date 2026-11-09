@@ -2,9 +2,8 @@
 
 Collected 2 November 2026, 22:49:52 UTC. Reviewed 3 November 2026.
 
-The collector succeeded. The original runner intentionally threw after
-analysis because two frozen scientific controls failed. This is not a
-compiler failure, antivirus error or a refusal by the assistant.
+The collector completed, and the original runner stopped after analysis
+because two frozen scientific controls failed.
 
 The original evidence archive is retained byte for byte as
 `fresh-receiver-windows-20261102T224945699Z.zip`.
@@ -32,8 +31,7 @@ snapshot hashes, the 131,072-row schedule and token replay, architectural
 returns, event/checksum records, EXE hash and both 399-byte RX snapshots.
 The archived analysis is reproduced exactly, including all failed gates.
 The 31,330 instruction records in the archived disassembly account for
-107,360 checked bytes and match the linked PE. This last check establishes
-byte correspondence, not the semantic correctness of the C harness.
+107,360 checked bytes and match the linked PE.
 
 ```bash
 python scripts/audit_fresh_receiver_archive.py \
@@ -41,8 +39,8 @@ python scripts/audit_fresh_receiver_archive.py \
   --output /tmp/k3-audit.json
 ```
 
-These checks establish internal artifact consistency. They do not attest
-physical host conditions, firmware settings or microarchitectural events.
+These checks establish internal artifact consistency. Host conditions,
+firmware state and microarchitectural events require separate measurements.
 
 ## Exploratory episode-position diagnostic
 
@@ -83,19 +81,16 @@ RET/INT3 endings. Tokens are assigned after page-zero training; the measured
 opposite bank is disjoint from the architecturally selected probe bank.
 Returns agree with the selected architectural path in every retained sample.
 
-The linked paths also establish a limitation: the immediately preceding
-instruction paths differ between training and probing. Reusing a conditional
-address does not ensure identical predictor context. The snapshot and linked
-review constrain intended architectural access; they cannot rule out all
-prefetching, speculative control-flow, prior-episode, patching, Hyper-V or
-context effects. No hardware event trace or misprediction counter resolves
-those alternatives. The original pending mechanism conclusion remains valid.
+The immediately preceding instruction paths differ between training and
+probing, leaving predictor context as a confound despite the shared conditional
+address. Prefetching, speculative control flow, prior episodes, patching and
+Hyper-V effects also remain possible. A hardware event trace or misprediction
+counter would provide evidence beyond the recorded snapshots and linked code.
 
 ## Follow-up
 
 K3's collector, byte contract, analyzer and frozen protocol remain unchanged.
 The runner now distinguishes successful evidence collection from failed
 scientific gates. `-RequireValidControls` retains a nonzero gate for automation.
-The separate [K4 protocol](../../protocols/CONTEXT_RECEIVER_K4.md) adds a fixed
-local branch prefix and interleaves conditions. Its design is a prospective
-apparatus diagnostic, not evidence that the confound is resolved.
+The separate [K4 protocol](../../protocols/CONTEXT_RECEIVER_K4.md) tests a fixed
+local branch prefix and interleaved conditions in a new apparatus diagnostic.

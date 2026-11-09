@@ -1,7 +1,6 @@
 # Research route after the Windows K5 replication
 
-Decision and source inspection: 5 November 2026. This is a research assessment,
-not a report of new kernel-mode processor measurements.
+Decision and source inspection: 5 November 2026.
 
 ## Decision
 
@@ -12,14 +11,13 @@ hardware study. The most practical route for reusing published privileged x86
 research code is native Linux on the same Ryzen, using a reviewed subset of
 uARF or related research infrastructure. Physical Fractal is the closest
 methodological match, but must first pass a boot-and-trace-export feasibility
-gate on this motherboard. A new Windows driver is an alternative research
-project, not an already available continuation of K5.
+gate on this motherboard. A Windows driver would require a new implementation
+and validation plan.
 
-This recommendation concerns practical experimental control and code reuse.
-No route guarantees that this AMD processor will reproduce an M1-specific
-positive result. A well-controlled difference is a useful result.
+This recommendation concerns experimental control and code reuse. The next
+study should characterize AMD behavior, including controlled differences from M1.
 
-## What can actually be reused from Fractal
+## Reusable Fractal components
 
 The authors publish both an operating-system repository and a separate evaluated
 artifact. They are different releases:
@@ -39,15 +37,11 @@ space configurations, fetch/execution probes and normal/Phantom variants.
 
 The actual experiment backend is Apple/AArch64-specific: its build selects
 `aarch64-fractal-elf`, Apple M1, ARM instruction generation and Apple performance
-counters. It is not an x86 Windows executable. The existing independent K5/K6
-programs are adaptations inspired by the method, not the authors' original M1
-experiment ported without changes.
+counters. The independent K5/K6 programs adapt the experimental method to x86.
 
 The supplied traces and plotting workflow can be evaluated at home without a
-Mac. This checks data processing and the supplied evidence; it is not an
-independent physical M1 rerun. The artifact also documents a Figure 8 revision
-after a bug fix, so comparisons must identify the exact artifact/manuscript
-version. Agreement must not be assumed from figure labels alone.
+Mac. The artifact documents a Figure 8 revision after a bug fix, so comparisons
+must identify the exact artifact/manuscript version.
 
 The inspected archive has no top-level LICENSE/COPYING file; the Zenodo record
 reports CC-BY-4.0 while the sibling artifact metadata links GPLv3. The kernel's
@@ -63,16 +57,15 @@ Independent analysis code and provenance retain the original authors' credit.
 | The saved K5 analysis follows from the raw measurements | Replayed exactly, with an additional independent count/PE audit |
 | The precise predictor/transient-execution mechanism is identified | Unresolved |
 | User-mode training influences a physical kernel-mode receiver in our project | Not collected |
-| Our Fractal x86 privilege harness executes correct CPLs and one measured site | Functional evidence in QEMU TCG only |
+| Our Fractal x86 privilege code executes correct CPLs and one measured site | Functional evidence in QEMU TCG only |
 | The authors' supplied M1 data can be reanalysed without M1 hardware | Yes; kept separate from new measurements |
-| Ryzen results confirm the exact M1 hardware behavior | Not a supported inference |
 | Fractal is less noisy or offers better experimental control than a comparable Linux/Windows implementation | Requires an explicitly matched comparison |
 
 K5's three primary effects are +99.70703125, +99.609375 and +99.8291015625
 percentage points. The 1,179,648 recorded episodes include calibration; 589,824
 are held out for estimation. The confidence intervals are within-run intervals.
-The recorded host has a hypervisor present and VBS status 2. These are part of
-the tested configuration, not grounds for relabelling it as bare metal.
+The recorded host has a hypervisor present and VBS status 2. Both belong to
+the tested configuration.
 
 ## Practical options
 
@@ -85,11 +78,11 @@ the tested configuration, not grounds for relabelling it as bare metal.
 | Native Windows plus a new research driver | Actual Windows user/kernel measurements | Substantial static-code, signing, address/history and validation work |
 | Hardware QEMU/WHPX on Windows or native KVM on Linux | Guest-user/guest-kernel observations under that hypervisor | Useful separate secondary study; not validated by TCG smoke or CPU-passthrough settings alone |
 | KVM nested inside WSL2/another VM | Behavior under a nested virtualization stack | More layers and feature exposure to validate; poor primary choice for minimizing confounds |
-| QEMU TCG or software M1 emulation | Correct program logic, boot and trace handling | Functional checks only; does not reproduce a real Ryzen/M1 predictor |
-| A model-based CPU simulator | Behavior of the selected model | Potential separate simulation project; no direct silicon confirmation |
+| QEMU TCG or software M1 emulation | Correct program logic, boot and trace handling | Functional checks of a software CPU model |
+| A model-based CPU simulator | Behavior of the selected model | Separate simulation project with its own model assumptions |
 | Another existing physical x86 computer, including the user's Ubuntu laptop if its CPU is suitable | A second-host experiment after identifying its CPU and controls | Useful independent extension; a different CPU is a separate result, not a matched OS comparison |
 | Borrowed physical M1 Mac mini or a lab collaborator | Closest route to new measurements of the paper's specific hardware | No purchase necessary, but physical/custom-boot/console access required; not needed for this x86 plan |
-| Rented remote bare metal | Native tests only when custom boot, console and recovery are genuinely available | Do not assume a normal cloud VM or a Mac rental supports Fractal |
+| Rented remote bare metal | Native tests with custom boot, console and recovery access | Verify these facilities with the provider before booking |
 | A new tiny kernel/UEFI experiment | A custom native measurement environment | Technically possible but recreates infrastructure and distracts from reusing Fractal |
 
 External Linux/Fractal boot is a way to use the existing computer temporarily;
@@ -104,7 +97,7 @@ Fractal itself cites the published uARF research framework. VMScape releases
 on Ubuntu 24.04. The inspected repository is pinned at
 `dfaf83549f3b6c428635515f912887bb5ee61480`. Its library supplies code placement,
 assembly/JIT, cache and counter helpers and supervisor-execution infrastructure.
-These are reusable primitives, not an already validated conditional K5 port.
+Adapting them to the conditional K5 experiment requires new validation.
 
 BPRC's separate published artifact contains
 `experiments/uarch-research-fw` and `exp-test-setup`, and explicitly lists a
@@ -117,8 +110,8 @@ so model-specific event semantics must be independently checked.
 Both inspected research supervisor backends change SMEP/SMAP handling to execute
 controlled callbacks. uARF's domain-analysis instructions also document a
 research boot configuration because dynamic handling was unreliable. Such an
-experiment must report its actual CR4, mitigation and kernel state. It does not
-test an unchanged production OS boundary. Upstream automation can change
+experiment must report its CR4, mitigation and kernel state as a research
+configuration. Upstream automation can change
 packages, kernels and boot configuration; a reviewed minimal setup is required
 instead of running every provided deployment script.
 
@@ -126,9 +119,9 @@ The useful adaptation is our own fresh-marker, matched-training, omitted-probe,
 decoy and architectural-positive design with held-out calibration, fixed
 randomized schedules, actual CPL/PC records and complete raw evidence, using a
 reviewed published backend. The goal is a controlled conditional-branch domain
-matrix, not an end-to-end secret-leaking demonstration.
+matrix.
 
-## Why the other routes are not shortcuts
+## Requirements for other routes
 
 The K6 boot kit expects a legacy UART at fixed I/O base `0x3f8`. The inspected
 Fractal x86 source initializes it before other boot diagnostics; the transmit
@@ -149,7 +142,7 @@ Microsoft's HVCI-compatible-driver rules prohibit dynamic kernel code and
 writable/executable sections. A Windows driver redesign must account for
 different static code sites and user/kernel address relationships. Official
 driver samples and libtea are useful references, not verified Windows 11/Zen 5
-measurement harnesses. A valid signing/testing path remains necessary.
+measurement programs. A valid signing/testing path remains necessary.
 
 AMD uProf 5.3 explicitly disables CPU EBP/IBS profiling on Windows with Hyper-V
 enabled. The current K5 host records a hypervisor/VBS; usable counters must be
@@ -159,8 +152,8 @@ corroboration. Hypervisor presence alone does not prove that HVCI is enabled.
 QEMU WHPX documents BTB flushing associated with guest entry/exit. Our CPUID-heavy
 preparation/timing paths therefore need actual accelerator validation; a missing
 guest cross-privilege signal is uninterpretable if same-domain controls fail.
-Guest CPL 0 is the guest kernel, not the Windows host kernel. Hardware acceleration
-is scientifically useful when the claim is scoped to that virtualized setting.
+Guest CPL 0 executes the guest kernel. Hardware-accelerated measurements
+describe that virtualized setting.
 
 AWS's Mac bare-metal instances are excluded from its EC2 Serial Console service.
 This illustrates why renting physical hardware does not establish the custom
@@ -234,6 +227,5 @@ positive cases. Current mitigations, firmware and microcode can change results.
    <https://www.gigabyte.com/Motherboard/X870E-AORUS-ELITE-WIFI7-rev-13/sp>.
 
 Public frameworks above have their own licenses. They are linked as research
-dependencies, not copied into or relicensed as this project's code. No kernel
-module, driver, deployment playbook, boot-media writer or new hardware experiment
-was executed during this research assessment.
+dependencies under their own terms. This assessment consists of source and
+documentation review.

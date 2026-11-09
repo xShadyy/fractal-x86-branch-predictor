@@ -1,0 +1,53 @@
+{
+  "cold_figure": {
+    "intervals": "Frozen supporting 95% within-run paired-cluster intervals",
+    "points": 60,
+    "pooled_estimate": false,
+    "primary_intervals": "Separate six-contrast Bonferroni family: 99.1667% per endpoint, 95% per scheduled pair",
+    "x_limits_pp": [
+      -5,
+      105
+    ]
+  },
+  "command": "python results/k7-k8-windows-causal/make_figures.py",
+  "inputs_sha256": {
+    "attempt-01-replayed-analysis.json": "849218a966e95740350412f97c85741065a8d14350aede14de1297d43a6fa89b",
+    "attempt-02-replayed-analysis.json": "a4e93f87c15744d44609a233c8c7ea05912544feddb48d15f962117ad615ecf3",
+    "attempt-03-replayed-analysis.json": "dcfca2f04f7367b6dca82d013f7549434523ce4d51b7802a57745e6d6f92a05b",
+    "attempt-04-replayed-analysis.json": "552d1431d96373b06569b67ce702598a478ba538c724e8793f2c3e10f45e00be",
+    "attempt-05-replayed-analysis.json": "1e4c9df2651ae5eb06dbf4abdaf564ba1a079d44dfa9394b3bc313672b0bd664",
+    "attempt-06-replayed-analysis.json": "40fd617ac0454d50aeae5bf1a5885d880552aec0429d9513d2a909e31621b3fb",
+    "endpoint-table.csv": "05574c274a8523b59710e0486bd72d793810813dbca4a9fe1eb2297a67710ac8",
+    "supporting-mode-table.csv": "0dd5c749e7c2f9f442e163e1c31376b95320f780cf91b5dad7a228f6ad46b3f7",
+    "warm-sham-counts.json": "5ec1a92873b7bb0fe0a2fd6d242f3c8d1fc2522c80e7b975c120b433acf37ae1"
+  },
+  "new_measurements": 0,
+  "outputs_sha256": {
+    "warm-sham-exploratory.pdf": "1b94661db1b8a31d397c367798e4dfd155ecac5f62dfdb3e596dfc37b88eb9d4",
+    "warm-sham-exploratory.png": "55eab791534e6bba4a0874bf855eff4098ca054447c89f6e8d0102840d60eb57",
+    "warm-sham-exploratory.svg": "69e6f0ed94262f42ade2a78e408a6146cdf0591eef8449e0a7877ae679285997",
+    "windows-causal-responses.pdf": "91925f5f4d95de9156029f71636606aab32d8a861682e634d1a1734c9fd1b020",
+    "windows-causal-responses.png": "c788674cc0ef5c2bd9e8d41a8ebf72be18df03db0bc6256ee943bd58d991f237",
+    "windows-causal-responses.svg": "45ef6135aee59f76cc92ee1ba9f20d85bbe854459ca88a0bc0fd195fff272ecd"
+  },
+  "packages": {
+    "matplotlib": "3.10.8",
+    "numpy": "2.3.5",
+    "pandas": "2.2.3",
+    "seaborn": "0.13.2"
+  },
+  "purpose": "Rendering only; frozen numerical inputs and uncertainty scopes unchanged",
+  "python": "3.12.14",
+  "script_sha256": "507341ea53ed75a16ebcbd5db05c8a7af95304db636d14d6e6c63a08005561b7",
+  "theme": "Light background; DejaVu Sans; royal blue, teal and orange; shapes supplement color",
+  "warm_figure": {
+    "bars": 6,
+    "intervals": null,
+    "observations_per_bar": 1024,
+    "scope": "Exploratory descriptive counts",
+    "y_limits_percent": [
+      0,
+      40
+    ]
+  }
+}

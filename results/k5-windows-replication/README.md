@@ -6,11 +6,10 @@ Every run passes all 88 apparatus gates. The raw traces, runtime snapshots,
 source and executable hashes validate, and replay of the frozen analysis
 reproduces the saved results exactly. There are no recorded protocol deviations.
 
-This result supports repeatability of the specified user-mode cache response on
-this host/configuration. It does not establish a particular predictor structure,
-prove a transient execution path, test user-to-kernel influence, demonstrate a
-Windows security-boundary break, or reproduce the Fractal authors' Apple M1
-findings. The exploratory pilot is excluded from the three-attempt result.
+This result establishes repeatability of the specified user-mode cache response
+on this host/configuration. Its precise predictor and transient-execution
+mechanism remain unresolved; physical user-to-kernel testing is a separate
+study. The exploratory pilot is excluded from the three-attempt result.
 
 ## Frozen plan and scope
 
@@ -68,9 +67,8 @@ dependency and CPUID equivalence requirements. The aggregate classification is
 
 The descriptive mean primary effect is +99.715169 percentage points; the
 observed run range is [+99.609375,+99.829102]. The intervals use the original
-within-run 16-block-cycle bootstrap. They are not confidence intervals across
-hosts or boots, and no pooled interval is used. The effect is a cache-hit-rate
-contrast, not a probability that a hardware mechanism or paper is correct.
+within-run 16-block-cycle bootstrap, without pooling episodes across hosts or
+boots. The effect is an adjusted cache-hit-rate contrast.
 Complete unrounded effects, intervals and secondary outcomes are in
 [summary.json](summary.json) and [analysis-replayed.json](analysis-replayed.json).
 
@@ -92,8 +90,7 @@ their hashes and unchanged-prefix checks are retained in
 because the final ZIP contains their original attempt records unchanged.
 
 The old Python-alias setup error is retained from 4 November. It happened
-before plan creation, started no measurement and consumed no attempt. It is
-not a discarded measurement failure or a failure of this three-run series.
+before plan creation and consumed no measurement attempt.
 
 The [audit ZIP](k5-replication-audit-20261105.zip) is the previously generated
 validation record. [Independent raw counts and PE checks](independent-counts-and-pe.json)
@@ -107,8 +104,7 @@ The independent check also matches all 31,365 recorded disassembly instruction
 rows and all 107,520 `.text` bytes per executable to the corresponding PE file.
 All three `.text` sections are identical to the previously reviewed pilot,
 SHA256 `62e686e78ce63a547cd665796a63a2584a9458d04ea45fdf3338c9ff8e090468`.
-That static consistency does not establish a specific microarchitectural cause.
-The prior targeted linked-harness review is retained inside the audit ZIP.
+The prior targeted linked-code review is retained inside the audit ZIP.
 
 Original input hashes are in [INPUTS-SHA256.json](INPUTS-SHA256.json). The
 result-directory inventory is in [FILES-SHA256.json](FILES-SHA256.json).
@@ -138,8 +134,6 @@ ZIP into a fresh review folder, then run that revision's
 it does not collect. Later research code should not replace the frozen sources
 or be used to silently reinterpret the original result.
 
-The fixed K5 three-attempt plan is complete. Mechanism attribution and physical
-cross-privilege testing remain separate experiments. This is independent work
-informed by Joseph Ravichandran and Mengjia Yan's
-[Fractal paper](https://people.csail.mit.edu/mengjia/data/2026.SP.fractal.pdf);
-the authors' OS and original M1 discoveries remain theirs.
+Joseph Ravichandran and Mengjia Yan's
+[Fractal paper](https://people.csail.mit.edu/mengjia/data/2026.SP.fractal.pdf)
+provides the methodological context for this independent x86 study.

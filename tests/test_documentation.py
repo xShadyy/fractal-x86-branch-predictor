@@ -27,7 +27,9 @@ class DocumentationTests(unittest.TestCase):
         (self.root/'assets').mkdir()
         (self.root/'assets/banner.png').write_bytes(png())
         (self.root/'assets/mark.svg').write_text('<svg xmlns="http://www.w3.org/2000/svg"/>')
-        for name in docs.DOCUMENTS:
+        self.documents = ('README.md', 'docs/i18n/README.pl.md',
+                          'docs/i18n/README.nl.md', 'docs/i18n/README.de.md')
+        for name in self.documents:
             target = self.root/name
             target.parent.mkdir(parents=True, exist_ok=True)
             prefix = '../../' if name.startswith('docs/') else ''
@@ -50,6 +52,16 @@ class DocumentationTests(unittest.TestCase):
                 (self.root/'README.md').write_text('[Broken]('+destination+')\n')
                 with self.assertRaisesRegex(docs.DocumentationError, 'target'):
                     docs.check(self.root)
+
+    def test_new_language_is_discovered_and_its_local_links_are_checked(self):
+        target = self.root/'docs/i18n/README.ja.md'
+        target.write_text('# 結果\n[Root](../../README.md#main)\n')
+        result = docs.check(self.root)
+        self.assertEqual(result['documents'], 5)
+        self.assertIn('docs/i18n/README.ja.md', result['document_paths'])
+        target.write_text('# 結果\n[Broken](missing.md)\n')
+        with self.assertRaisesRegex(docs.DocumentationError, 'README.ja.md'):
+            docs.check(self.root)
 
     def test_unicode_duplicate_anchors_and_missing_anchor(self):
         target = self.root/'README.md'

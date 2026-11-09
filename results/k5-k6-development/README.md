@@ -1,7 +1,7 @@
 # K5/K6 development record, 3 November 2026
 
-These files are implementation checks, not new physical Windows or Fractal
-branch-predictor results. K4's four original Windows runs remain unchanged.
+These files record K5 implementation checks and K6 boot/trace validation.
+K4's four original Windows runs remain in their separate result record.
 
 ## K5 native smoke
 
@@ -10,8 +10,8 @@ modes, collected with seed 2026110301 on the Linux development host. Replay,
 architecture, CPL 3, measured-PC and all three runtime snapshots validate.
 The frozen analysis passes 86/88 gates. Both plain matched-training candidates
 fail; the p0 primary is +25 percentage points. Its numerical signature is false.
-Mask and CPUID adjusted contrasts are zero in this check. None of these values
-substitutes for the prospective K5 Windows pilot. `k5-analysis.json` is reproduced
+Mask and CPUID adjusted contrasts are zero in this Linux development check.
+`k5-analysis.json` is reproduced
 with `python3 scripts/analyze_dependency_receiver.py
 results/k5-k6-development/k5-smoke-fixed.log --development --json`.
 
@@ -49,14 +49,14 @@ RSDT-based ACPI and motherboard-specific hardware support remain limitations.
 The regression suite covers genuine nulls, distinct masking versus CPUID-only
 suppression, residual/no-probe heat, decoy heat, corruption, CPL/PC changes,
 missing completion, and same-domain positive gating of UK interpretation. The
-first complete suite passed 237 tests; the final suite passes 239, including a
-full-size analysis fixture with explicitly synthetic timings. The final binary
+first complete suite passed 237 tests; the final development suite passed 239,
+including a full-size analysis fixture with explicitly synthetic timings. The final binary
 and ISO recordings, artifact hashes, source hashes and emulation-rejection check
 are preserved in `distribution-validation/` and the distribution build manifest.
 The 393,216-row physical ELF loads and rejects emulation before any collection.
-PowerShell scripts are parsed and packaging branches exercised
-using PowerShell 7 on Linux; MSVC and the Windows measurement path cannot be run
-here. The Windows runner is based on the already-used K4 workflow.
+PowerShell scripts were parsed and packaging branches exercised using
+PowerShell 7 on Linux. MSVC and Windows collection remained pending during
+these development checks. The Windows runner follows the existing K4 workflow.
 
 The distribution includes both compiled payloads, initrds, both boot ISOs, a
 source bundle, upstream source and license, exact patches, tool commands and

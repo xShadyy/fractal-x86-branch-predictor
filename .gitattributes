@@ -1,5 +1,6 @@
 # Preserve hash-recorded artifacts across Windows and Unix checkouts.
 results/k5-windows-replication/** -text
+results/k5-k6-development/** -text
 results/fractal-author-data-reanalysis/** -text
 scripts/reanalyze_fractal_authors_data.py -text
 
