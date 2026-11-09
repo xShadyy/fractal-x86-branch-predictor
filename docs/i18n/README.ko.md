@@ -17,13 +17,11 @@
 **Windows x64를 실행하는 AMD Ryzen 7 9800X3D**에서 수행한 분기 예측 및 캐시 실험입니다.
 Joseph Ravichandran과 Mengjia Yan의
 [Fractal](https://people.csail.mit.edu/mengjia/data/2026.SP.fractal.pdf)에서 착안했습니다.
-연구 기록에는 사전에 정한 프로토콜, 원시 트레이스, 조건을 맞춘 대조군,
-실행 파일 해시, 재실행 가능한 분석이 포함되어 있습니다.
 
 Windows 연구에서는 반복해서 관측되며 훈련에 민감하게 반응하는 캐시 응답을 측정합니다.
 데이터 의존성 대조군과 인코더 개입을 통해 어떤 변경이 이 응답을 억제하는지 확인합니다.
 
-[연구 보고서](../../RESEARCH_REPORT.md) · [결과 및 데이터](../../results/k7-k8-windows-causal/README.md) · [재현 안내](../../results/k7-k8-windows-causal/REPRODUCE.md) · [후속 연구](../../RESEARCH_ROUTE.md)
+[결과 및 데이터](../../results/k7-k8-windows-causal/README.md) · [재현 안내](../../results/k7-k8-windows-causal/REPRODUCE.md)
 
 ## 결과
 
@@ -47,23 +45,15 @@ K7/K8에는 **983,040개 에피소드**가 있으며, 이 중 491,520개는 평�
 제거하거나 두 인코더 로드를 모두 다른 뱅크로 돌리면 공개 캐시 응답이 억제됩니다.
 다른 뱅크의 로드만 제거하면 응답은 유지됩니다.
 
-![세 번의 반복에서 나타난 의존성 및 인코더 개입의 효과](../../results/k7-k8-windows-causal/windows-causal-responses.png)
-
-*점은 프로세스별 추정값을, 오차 막대는 보조 분석의 실행 내 95% 군집 부트스트랩 구간을
-나타냅니다. [18개 주 대비 구간](../../results/k7-k8-windows-causal/endpoint-table.csv)에는
-고정된 Bonferroni 규칙을 적용하며, 평가변수별 신뢰수준은 약 99.17%입니다.
-여섯 대비로 이루어진 각 묶음은 예정된 반복 한 쌍을 대상으로 합니다.
-보정된 대비는 100 pp를 넘을 수 있습니다.*
-
 탐색적 웜 조건의 p0 대조군에서는 sham이 적중률을 14.16–16.31 pp 낮춥니다.
 따라서 콜드 조건의 동등성 결과는 해당 주 평가변수에 한정됩니다.
+
+![세 번의 반복에서 나타난 의존성 및 인코더 개입의 효과](../../results/k7-k8-windows-causal/windows-causal-responses.png)
 
 <details>
 <summary>웜 조건 대조군</summary>
 
 ![탐색적 웜 조건에서 plain과 sham의 집계 건수](../../results/k7-k8-windows-causal/warm-sham-exploratory.png)
-
-보조적인 웜 조건에서 집계한 건수입니다. 여섯 주 대비에는 포함되지 않습니다.
 
 </details>
 
@@ -78,12 +68,6 @@ python results/k7-k8-windows-causal/independent-counts/audit_counts.py results/k
 
 [재현 안내](../../results/k7-k8-windows-causal/REPRODUCE.md)에는 분석의 정확한 재실행,
 차트 생성, 코드 검토 방법이 나와 있습니다. 각 결과에는 원본 아카이브와 해시가 함께 제공됩니다.
-[소프트웨어 검증](https://github.com/xShadyy/fractal-x86-branch-predictor/actions/workflows/validation.yml)은
-분석용 테스트 픽스처, 생성된 소스, 문서를 검사합니다.
-
-완료된 연구의 계획과 소스 리비전은 고정된 상태로 유지합니다. 새로운 데이터 수집은
-새로운 계획으로 시작합니다. Windows 데이터 수집에는 MSVC x64 Build Tools와
-Windows SDK가 필요합니다.
 
 ## Fractal 저자 데이터 재분석
 
@@ -101,18 +85,7 @@ K5는 한 워크스테이션에서 세 번의 부팅에 걸쳐 수행했습니�
 
 K7/K8 센서의 측정 시간은 47 TSC 틱의 배수이며, 보정된 캐시 분류에 사용됩니다.
 정확한 예측기, 트랜지언트 실행 경로, 실물 하드웨어에서 사용자 영역이 커널에 미치는
-영향은 아직 밝혀지지 않았습니다. [후속 연구](../../RESEARCH_ROUTE.md)에서는
-네이티브 Linux와 실물 하드웨어의 Fractal을 통한 데이터 수집 경로를 설명합니다.
-
-## 프로젝트 파일
-
-| 경로 | 내용 |
-|---|---|
-| [`programs/`](../../programs/) | C 수집 프로그램과 어셈블리 측정 지점 |
-| [`protocols/`](../../protocols/) | 데이터 수집 계획 및 분석 규칙 |
-| [`scripts/`](../../scripts/) | 수집, 분석, 출처 확인 도구 |
-| [`tests/`](../../tests/) | 소프트웨어 테스트 픽스처 및 회귀 검사 |
-| [`results/`](../../results/) | 원시 증거, 수치 표, 그림 |
+영향은 아직 밝혀지지 않았습니다.
 
 ## 인용
 

@@ -72,38 +72,70 @@ def figures(records,raw,out):
     matplotlib.use('Agg')
     import matplotlib.pyplot as plt
     import matplotlib.colors as colors
+    from matplotlib import font_manager
+    font_root=Path(__file__).resolve().parents[1]/'docs/assets/fonts'
+    for name in ('Inter-Regular.ttf','Inter-SemiBold.ttf'):
+        font_path=font_root/name
+        if not font_path.is_file():raise FileNotFoundError('Bundled Inter font missing: '+str(font_path))
+        font_manager.fontManager.addfont(font_path)
+    for weight,name in (('normal','Inter-Regular.ttf'),(600,'Inter-SemiBold.ttf')):
+        resolved=font_manager.findfont(font_manager.FontProperties(family='Inter',weight=weight),fallback_to_default=False)
+        if Path(resolved).resolve()!=(font_root/name).resolve():raise ValueError('Plot font did not resolve to bundled Inter: '+resolved)
     conditions=[('uu',False,False),('uk',False,False),('uu',True,False),('uu',False,True),('uk',False,True),('uu',True,True)]
     lookup={(r['branch_type'],r['core_type'],r['domains'],r['different_asid'],r['phantom'],r['measurement']):r for r in records}
     matrix=[]
     rowkeys=[('conditional','performance'),('conditional','efficiency'),('indirect','performance'),('indirect','efficiency')]
     for branch,core in rowkeys:
         matrix.append([lookup[branch,core,domain,asid,phantom,sensor]['after_initial_four']['taken_faster_pair_probability_ties_half'] for domain,asid,phantom in conditions for sensor in ['fetch','execute']])
-    fig,ax=plt.subplots(figsize=(15.5,4.7),layout='constrained')
-    image=ax.imshow(matrix,cmap='coolwarm',norm=colors.Normalize(vmin=0,vmax=1),aspect='auto')
-    for y,row in enumerate(matrix):
-        for x,value in enumerate(row):ax.text(x,y,f'{value:.3f}',ha='center',va='center',fontsize=9,color='white' if value<.12 or value>.88 else 'black')
-    labels=[]
-    for domain,asid,phantom in conditions:
-        group='Different ASID' if asid else ('User/kernel' if domain=='uk' else 'User/user')
-        if phantom:group='Phantom\n'+group
-        labels.extend([group+'\nFetch',group+'\nExecute'])
-    ax.set_xticks(range(12),labels,fontsize=8);ax.set_yticks(range(4),[b.title()+' / '+c for b,c in rowkeys],fontsize=9)
-    ax.set_title("Training-label separation in the authors' released M1 traces\nDescriptive reanalysis of 5,000 rows per condition; no new hardware measurements",fontsize=13,pad=13)
-    fig.colorbar(image,ax=ax,shrink=.8,label='P(T latency < N latency) + 0.5 × ties')
-    fig.supxlabel('0.5 indicates no rank preference; values near 1 mean T is usually faster. This is not an automatic reconstruction of the paper\'s check marks.\nSource: Ravichandran and Yan, Fractal artifact, DOI '+VERSION_DOI,fontsize=8)
-    for ext in ['png','pdf','svg']:fig.savefig(out/('authors-m1-descriptive-matrix.'+ext),dpi=180)
-    plt.close(fig)
-    fig,axes=plt.subplots(2,2,figsize=(12,6),layout='constrained')
-    names=['i_p_uu_e.txt','i_p_uk_e.txt','i_p_uu_f.txt','i_p_uk_f.txt']
-    for ax,name in zip(axes.flat,names):
-        samples=raw[name][4:164]
-        for label,color in [('T','#2563eb'),('N','#dc2626')]:
-            x=[i for i,r in enumerate(samples) if r[0]==label];y=[r[1] for r in samples if r[0]==label]
-            ax.scatter(x,y,s=10,c=color,label=label,alpha=.9)
-        ax.set(title=name,xlabel='Sample after initial four',ylabel='Recorded cycles');ax.grid(alpha=.15);ax.legend(title='Training label',fontsize=8)
-    fig.suptitle("Authors' M1 indirect-branch reference traces: execution and fetch\nFirst 160 points after the initial four; reanalysis only",fontsize=13)
-    for ext in ['png','pdf','svg']:fig.savefig(out/('authors-m1-reference-traces.'+ext),dpi=180)
-    plt.close(fig)
+    with plt.rc_context({'font.family':'Inter','font.size':11,'axes.labelsize':11,
+                         'axes.titlesize':13,'axes.titleweight':600,
+                         'xtick.labelsize':10.5,'ytick.labelsize':10.5,
+                         'text.color':'#263a63','axes.labelcolor':'#263a63',
+                         'axes.edgecolor':'#d7dfea','xtick.color':'#53647b','ytick.color':'#53647b',
+                         'pdf.fonttype':42,'svg.fonttype':'path',
+                         'svg.hashsalt':'fractal-authors-m1-v1'}):
+        fig,ax=plt.subplots(figsize=(16,5.5),layout='constrained')
+        image=ax.imshow(matrix,cmap='coolwarm',norm=colors.Normalize(vmin=0,vmax=1),aspect='auto')
+        for y,row in enumerate(matrix):
+            for x,value in enumerate(row):ax.text(x,y,f'{value:.3f}',ha='center',va='center',fontsize=11.5,color='white' if value<.12 or value>.88 else '#18243b')
+        labels=[]
+        for domain,asid,phantom in conditions:
+            group='Different ASID' if asid else ('User/kernel' if domain=='uk' else 'User/user')
+            if phantom:group='Phantom\n'+group
+            labels.extend([group+'\nFetch',group+'\nExecute'])
+        ax.set_xticks(range(12),labels)
+        ax.set_yticks(range(4),[b.title()+' / '+c for b,c in rowkeys],fontsize=11.5)
+        ax.tick_params(length=0,pad=9)
+        ax.set_title("Authors' M1 traces: training-label separation",fontsize=17,pad=17,loc='left')
+        for spine in ax.spines.values():spine.set_visible(False)
+        colorbar=fig.colorbar(image,ax=ax,orientation='horizontal',shrink=.65,pad=.08,fraction=.08,aspect=45)
+        colorbar.set_label('P(T latency < N latency) + 0.5 × ties',labelpad=8)
+        colorbar.outline.set_visible(False)
+        for ext in ['png','pdf','svg']:
+            metadata={'Software':'Fractal x86 author-data reanalysis'} if ext=='png' else (
+                {'CreationDate':None,'ModDate':None,'Creator':'Fractal x86 author-data reanalysis'} if ext=='pdf' else
+                {'Date':None,'Creator':'Fractal x86 author-data reanalysis'})
+            fig.savefig(out/('authors-m1-descriptive-matrix.'+ext),dpi=180,metadata=metadata)
+        plt.close(fig)
+        fig,axes=plt.subplots(2,2,figsize=(13.5,7.5),layout='constrained')
+        names=['i_p_uu_e.txt','i_p_uk_e.txt','i_p_uu_f.txt','i_p_uk_f.txt']
+        titles=['User/user: execute','User/kernel: execute','User/user: fetch','User/kernel: fetch']
+        for ax,name,title in zip(axes.flat,names,titles):
+            samples=raw[name][4:164]
+            for label,color in [('T','#3156f3'),('N','#d84848')]:
+                x=[i for i,r in enumerate(samples) if r[0]==label];y=[r[1] for r in samples if r[0]==label]
+                ax.scatter(x,y,s=18,c=color,label=label,alpha=.9,linewidths=0)
+            ax.set(title=title,xlabel='Sample after initial four',ylabel='Recorded cycles')
+            ax.grid(alpha=.3,color='#cbd5e3');ax.set_axisbelow(True)
+            ax.spines['top'].set_visible(False);ax.spines['right'].set_visible(False)
+            ax.legend(title='Training label',fontsize=10.5,title_fontsize=10.5,frameon=False)
+        fig.suptitle("Authors' M1 indirect-branch reference traces",fontsize=17,fontweight=600)
+        for ext in ['png','pdf','svg']:
+            metadata={'Software':'Fractal x86 author-data reanalysis'} if ext=='png' else (
+                {'CreationDate':None,'ModDate':None,'Creator':'Fractal x86 author-data reanalysis'} if ext=='pdf' else
+                {'Date':None,'Creator':'Fractal x86 author-data reanalysis'})
+            fig.savefig(out/('authors-m1-reference-traces.'+ext),dpi=180,metadata=metadata)
+        plt.close(fig)
 
 
 def main():

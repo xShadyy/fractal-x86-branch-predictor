@@ -17,15 +17,13 @@
 Experimentos de predicción de saltos y caché en un **AMD Ryzen 7 9800X3D con
 Windows x64**, inspirados en
 [Fractal](https://people.csail.mit.edu/mengjia/data/2026.SP.fractal.pdf),
-de Joseph Ravichandran y Mengjia Yan. El registro de investigación incluye
-protocolos definidos de antemano, trazas sin procesar, controles emparejados,
-hashes de los ejecutables y análisis que se pueden reproducir.
+de Joseph Ravichandran y Mengjia Yan.
 
 Los estudios en Windows miden una respuesta de caché repetible y sensible
 a la secuencia de entrenamiento. Los controles de dependencia y las
 intervenciones en el codificador prueban qué cambios la suprimen.
 
-[Informe de investigación](../../RESEARCH_REPORT.md) · [Resultados y datos](../../results/k7-k8-windows-causal/README.md) · [Guía de reproducción](../../results/k7-k8-windows-causal/REPRODUCE.md) · [Próximos estudios](../../RESEARCH_ROUTE.md)
+[Resultados y datos](../../results/k7-k8-windows-causal/README.md) · [Guía de reproducción](../../results/k7-k8-windows-causal/REPRODUCE.md)
 
 ## Resultados
 
@@ -52,26 +50,16 @@ codificador en el banco consultado o redirigir ambas lecturas del codificador
 suprime la respuesta pública. Suprimir solo la lectura del otro banco
 la conserva.
 
-![Efectos de la dependencia y del codificador en tres repeticiones](../../results/k7-k8-windows-causal/windows-causal-responses.png)
-
-*Los puntos muestran estimaciones por proceso; las barras muestran intervalos
-complementarios del 95% mediante bootstrap por conglomerados dentro de cada
-ejecución. Los [18 intervalos de los contrastes principales](../../results/k7-k8-windows-causal/endpoint-table.csv)
-usan la regla de Bonferroni fijada, aproximadamente un 99.17% por criterio.
-Cada familia de seis contrastes cubre un par de repeticiones programado.
-Los contrastes ajustados pueden superar los 100 pp.*
-
 En el control exploratorio p0 con la línea de condición caliente, la variante
 sham reduce la frecuencia de aciertos de caché en 14.16–16.31 pp. Por tanto,
 el resultado de equivalencia en la condición fría es específico de ese criterio principal.
+
+![Efectos de la dependencia y del codificador en tres repeticiones](../../results/k7-k8-windows-causal/windows-causal-responses.png)
 
 <details>
 <summary>Control con la condición caliente</summary>
 
 ![Recuentos exploratorios de plain y sham con la condición caliente](../../results/k7-k8-windows-causal/warm-sham-exploratory.png)
-
-Recuentos descriptivos de la condición caliente complementaria, fuera de los
-seis contrastes principales.
 
 </details>
 
@@ -88,13 +76,6 @@ python results/k7-k8-windows-causal/independent-counts/audit_counts.py results/k
 La [guía de reproducción](../../results/k7-k8-windows-causal/REPRODUCE.md)
 explica cómo repetir exactamente el análisis, generar los gráficos e inspeccionar
 el código. Los archivos originales y sus hashes acompañan a cada resultado.
-La [validación de software](https://github.com/xShadyy/fractal-x86-branch-predictor/actions/workflows/validation.yml)
-comprueba los datos de prueba de los análisis, el código fuente generado
-y la documentación.
-
-Los estudios completados conservan sus planes y revisiones de código fuente
-fijados. Una nueva recogida de datos empieza con un nuevo plan. Para recoger
-datos en Windows se necesitan MSVC x64 Build Tools y un Windows SDK.
 
 ## Reanálisis de los datos de los autores de Fractal
 
@@ -115,18 +96,6 @@ Los tiempos de los sensores K7/K8 son múltiplos de 47 unidades del contador TSC
 y permiten clasificaciones de caché calibradas. El predictor exacto, la ruta
 de ejecución transitoria y la influencia física del modo usuario sobre
 el núcleo del sistema siguen siendo cuestiones abiertas.
-La página [Próximos estudios](../../RESEARCH_ROUTE.md) describe las vías de recogida
-en Linux nativo y con Fractal en hardware físico.
-
-## Archivos del proyecto
-
-| Ruta | Contenido |
-|---|---|
-| [`programs/`](../../programs/) | Recolectores en C y puntos de medición en ensamblador |
-| [`protocols/`](../../protocols/) | Planes de recogida y reglas de análisis |
-| [`scripts/`](../../scripts/) | Herramientas de recogida, análisis y procedencia |
-| [`tests/`](../../tests/) | Datos de prueba de software y pruebas de regresión |
-| [`results/`](../../results/) | Evidencia sin procesar, tablas numéricas y figuras |
 
 ## Citas
 

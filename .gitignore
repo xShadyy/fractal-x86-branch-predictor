@@ -14,6 +14,11 @@
 !/docs/i18n/
 !/docs/assets/
 
+# Keep working research notes outside the public tree.
+/RESEARCH_REPORT.md
+/RESEARCH_ROUTE.md
+/private-notes/
+
 # Generated binaries and archives.
 *.o
 *.elf

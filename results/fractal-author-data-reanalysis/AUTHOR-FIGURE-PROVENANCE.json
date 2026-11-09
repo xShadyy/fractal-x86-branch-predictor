@@ -1,0 +1,113 @@
+{
+  "font": {
+    "family": "Inter",
+    "files": {
+      "Inter-Regular.ttf": {
+        "bytes": 411640,
+        "family": "Inter",
+        "internal_version": "Version 4.001;git-9221beed3",
+        "path": "docs/assets/fonts/Inter-Regular.ttf",
+        "sha256": "40d692fce188e4471e2b3cba937be967878f631ad3ebbbdcd587687c7ebe0c82",
+        "style": "Regular"
+      },
+      "Inter-SemiBold.ttf": {
+        "bytes": 419744,
+        "family": "Inter",
+        "internal_version": "Version 4.001;git-9221beed3",
+        "path": "docs/assets/fonts/Inter-SemiBold.ttf",
+        "sha256": "78a843fade9d4612a5567302fb595b56976eb5fcebf4fea5a5912d638bafcde3",
+        "style": "SemiBold"
+      }
+    },
+    "license": "SIL Open Font License 1.1",
+    "pdf_output": "TrueType font subsets embedded (pdf.fonttype=42)",
+    "provenance_path": "docs/assets/fonts/Inter-PROVENANCE.json",
+    "provenance_sha256": "186fe35217b3084b4dcb38dbc765eb1a40bed12a2a838967f89fc010d8a76b00",
+    "release": "v4.1",
+    "svg_output": "Inter glyphs converted to paths"
+  },
+  "historical_provenance": {
+    "note": "This original analysis record is preserved byte-for-byte. Its plot and source-script hashes refer to the historical rendering, not the refreshed figures. Current figure hashes are recorded in this file. Its numerical summary and validation hashes remain applicable.",
+    "path": "provenance.json",
+    "sha256": "5d17cb5c3253e4cb79af13aa02c419cca353c1a302f14910a0ab43121998b9c9"
+  },
+  "outputs": {
+    "authors-m1-descriptive-matrix.pdf": {
+      "bytes": 29144,
+      "sha256": "70197daede06913cdd362df817808edc9ba5c72c12ef6093d0cdc245d6a02080"
+    },
+    "authors-m1-descriptive-matrix.png": {
+      "bytes": 141537,
+      "sha256": "aa3bd724999ecf9bae7b043f9e61232a0022f075e3a123742ab2c7295b3e70e7"
+    },
+    "authors-m1-descriptive-matrix.svg": {
+      "bytes": 111277,
+      "sha256": "09a8e1cfc68e4d93fd19f209662f6917cc517e425d5c888600c63b91aa5f0464"
+    },
+    "authors-m1-reference-traces.pdf": {
+      "bytes": 29103,
+      "sha256": "cbffcff156ccc169b8fe440459fdd526bafeb1d4e89e2b396d7929c69d2309b1"
+    },
+    "authors-m1-reference-traces.png": {
+      "bytes": 185300,
+      "sha256": "502a1e0f14ac3c9e9c1645f7c6bfb7cc843a4a73a435bc278abeedc5c13f910e"
+    },
+    "authors-m1-reference-traces.svg": {
+      "bytes": 180641,
+      "sha256": "74c35351cf02e39e92bc62bd910e5954d12ebc378cafa4143e3b2056e69bd984"
+    }
+  },
+  "rendered_utc": "2026-11-09T15:28:40.783668+00:00",
+  "renderer": {
+    "entry_point": "figures(records, raw, out)",
+    "invocation": "Loaded records from preserved authors-data-summary.json, read and verified pinned source traces, called figures() directly. The main() summary writer was not invoked.",
+    "path": "scripts/reanalyze_fractal_authors_data.py",
+    "sha256": "4a08de9746a4d1e40745c1d2dfab9e34e90f7b1d0a9c9c8eaf441f2279352d7d"
+  },
+  "rendering": {
+    "determinism": "Two consecutive renders in the recorded environment produced byte-identical PNG, PDF and SVG files. PDF/SVG date fields omitted and SVG hash salt fixed.",
+    "matplotlib": "3.10.8",
+    "matrix_values": "All 48 unchanged post-initial-four pairwise rank probabilities, displayed to three decimal places. Same condition order, normalization 0 through 1 and coolwarm colormap.",
+    "numpy": "2.3.5",
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.39",
+    "png_dpi": 180,
+    "presentation_changes": [
+      "Bundled Inter regular and semibold with checked font resolution",
+      "Larger axis, cell and legend text",
+      "Clean single-line figure titles",
+      "Removed narrative footer and subtitle text",
+      "Normal data axes and colorbar statistic label retained"
+    ],
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "reference_traces": {
+      "filenames": [
+        "i_p_uu_e.txt",
+        "i_p_uk_e.txt",
+        "i_p_uu_f.txt",
+        "i_p_uk_f.txt"
+      ],
+      "rows": "Original rows[4:164], unchanged indices and latency values."
+    }
+  },
+  "schema": 1,
+  "scope": "Current rendering of the authors' released M1 measurements; no new hardware collection or new statistical analysis.",
+  "source_archive": {
+    "bytes": 887119,
+    "sha256": "8ee05fcccc9c80769c812bdd9f698226b48155aee2dbb6f491798da668182ac2",
+    "version_doi": "10.5281/zenodo.19557478"
+  },
+  "verification": {
+    "author_code_executed": false,
+    "new_processor_measurements": 0,
+    "non_rendering_source_ast_unchanged": true,
+    "preserved_files_sha256": {
+      "authors-data-summary.csv": "8504ea90c6c93521334da600c53d862ea7fa41115766b072ae893da731a43111",
+      "authors-data-summary.json": "b48ac8e82304eef4b4692e84b0ee2ea3d7d66032e80b384416bae4b2d302eb1e",
+      "provenance.json": "5d17cb5c3253e4cb79af13aa02c419cca353c1a302f14910a0ab43121998b9c9",
+      "validation.json": "768c06dbc798807bcec549cdc50775b0cac595f17e73ac3b119474973d97baec"
+    },
+    "source_trace_records_matching_preserved_summary": 48,
+    "total_published_rows": 240192,
+    "two_consecutive_renders_byte_identical": true
+  }
+}

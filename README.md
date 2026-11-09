@@ -17,13 +17,11 @@
 Branch-prediction and cache experiments on an **AMD Ryzen 7 9800X3D running
 Windows x64**, inspired by Joseph Ravichandran and Mengjia Yan's
 [Fractal](https://people.csail.mit.edu/mengjia/data/2026.SP.fractal.pdf).
-The research record includes prespecified protocols, raw traces, matched
-controls, executable hashes and replayable analyses.
 
 The Windows studies measure a repeatable, training-sensitive cache response.
 Dependency controls and encoder interventions test which changes suppress it.
 
-[Research report](RESEARCH_REPORT.md) · [Results and data](results/k7-k8-windows-causal/README.md) · [Reproduction guide](results/k7-k8-windows-causal/REPRODUCE.md) · [Next studies](RESEARCH_ROUTE.md)
+[Results and data](results/k7-k8-windows-causal/README.md) · [Reproduction guide](results/k7-k8-windows-causal/REPRODUCE.md)
 
 ## Results
 
@@ -49,25 +47,16 @@ margin. Removing the queried bank's encoder load or redirecting both encoder
 loads suppresses the public response. Removing only the other bank's load
 preserves it.
 
-![Dependency and encoder effects across three repetitions](results/k7-k8-windows-causal/windows-causal-responses.png)
-
-*Points show process estimates; whiskers show supporting 95% within-run
-cluster-bootstrap intervals. The [18 primary contrast intervals](results/k7-k8-windows-causal/endpoint-table.csv)
-use the frozen Bonferroni rule, approximately 99.17% per endpoint. Each
-six-contrast family covers one scheduled repetition pair. Adjusted contrasts
-can exceed 100 pp.*
-
 In the exploratory warm-condition p0 control, the sham lowers hits by
 14.16–16.31 pp. The cold-condition equivalence result is therefore specific
 to that primary endpoint.
+
+![Dependency and encoder effects across three repetitions](results/k7-k8-windows-causal/windows-causal-responses.png)
 
 <details>
 <summary>Warm-condition control</summary>
 
 ![Exploratory warm-condition plain and sham counts](results/k7-k8-windows-causal/warm-sham-exploratory.png)
-
-Descriptive counts from the supporting warm condition, outside the six
-primary contrasts.
 
 </details>
 
@@ -82,12 +71,7 @@ python results/k7-k8-windows-causal/independent-counts/audit_counts.py results/k
 
 The [reproduction guide](results/k7-k8-windows-causal/REPRODUCE.md) covers exact
 analysis replay, chart generation and code inspection. Original archives and
-hashes accompany each result. [Software validation](https://github.com/xShadyy/fractal-x86-branch-predictor/actions/workflows/validation.yml)
-checks analysis fixtures, generated source and documentation.
-
-Completed studies retain their frozen plans and source revisions. New
-collection starts with a new plan. Windows collection requires MSVC x64 Build
-Tools and a Windows SDK.
+hashes accompany each result.
 
 ## Fractal author-data reanalysis
 
@@ -107,18 +91,6 @@ the public response.
 K7/K8 sensor timings occur in multiples of 47 TSC ticks and support calibrated
 cache classifications. The exact predictor, the transient execution path and
 physical user-to-kernel influence remain open questions.
-[Next studies](RESEARCH_ROUTE.md) describes the native Linux and physical
-Fractal collection routes.
-
-## Project files
-
-| Path | Contents |
-|---|---|
-| [`programs/`](programs/) | C collectors and assembly measurement sites |
-| [`protocols/`](protocols/) | Collection plans and analysis rules |
-| [`scripts/`](scripts/) | Collection, analysis and provenance tools |
-| [`tests/`](tests/) | Software fixtures and regression checks |
-| [`results/`](results/) | Raw evidence, numerical tables and figures |
 
 ## Citation
 

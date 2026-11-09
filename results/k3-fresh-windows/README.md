@@ -84,13 +84,4 @@ Returns agree with the selected architectural path in every retained sample.
 The immediately preceding instruction paths differ between training and
 probing, leaving predictor context as a confound despite the shared conditional
 address. Prefetching, speculative control flow, prior episodes, patching and
-Hyper-V effects also remain possible. A hardware event trace or misprediction
-counter would provide evidence beyond the recorded snapshots and linked code.
-
-## Follow-up
-
-K3's collector, byte contract, analyzer and frozen protocol remain unchanged.
-The runner now distinguishes successful evidence collection from failed
-scientific gates. `-RequireValidControls` retains a nonzero gate for automation.
-The separate [K4 protocol](../../protocols/CONTEXT_RECEIVER_K4.md) tests a fixed
-local branch prefix and interleaved conditions in a new apparatus diagnostic.
+Hyper-V effects also remain possible.

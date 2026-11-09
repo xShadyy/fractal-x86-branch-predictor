@@ -89,11 +89,22 @@ In receiver attempt 3, p1's adjusted plain contrast is
 correction produces the +100.098 pp value. Corrected contrasts can exceed
 100 pp; the table retains those values without clipping.
 
-![Supporting cold-condition results](windows-causal-responses.png)
+## Plot methods
 
-Each point in the figure represents one process. Its whiskers are supporting
-95% within-run intervals; the table above reports the separate confirmatory
-contrast intervals. Processes are not pooled.
+The cold-condition matrices show all 60 supporting per-mode point estimates,
+rounded to two decimal places. Each column is one process within the named
+queried bank. Both matrices use the same continuous color scale, including the
+small negative value and values above 100 pp. Confidence intervals are not
+encoded in the cells: supporting 95% within-run intervals remain in
+`supporting-mode-table.csv`, and the separate confirmatory intervals appear
+in the primary table above. Processes are not pooled.
+
+The warm-condition bars show the six observed counts, each out of 1,024. They
+start at zero and carry no inferred interval or additional confirmatory test.
+The renderer uses bundled Inter fonts; its inputs, versions and font hashes
+are recorded in `FIGURE-PROVENANCE.json`.
+
+![K7 and K8 per-process adjusted contrast matrices](windows-causal-responses.png)
 
 ## Important exploratory qualification: the warm-condition sham
 

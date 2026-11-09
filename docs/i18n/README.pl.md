@@ -17,15 +17,13 @@
 Eksperymenty z predykcją rozgałęzień i pamięcią podręczną na **AMD Ryzen 7
 9800X3D z systemem Windows x64**, inspirowane pracą
 [Fractal](https://people.csail.mit.edu/mengjia/data/2026.SP.fractal.pdf)
-Josepha Ravichandrana i Mengjii Yan. Dokumentacja badań obejmuje ustalone
-z góry protokoły, surowe ślady pomiarowe, dopasowane próby kontrolne,
-sumy kontrolne plików wykonywalnych i analizy, które można odtworzyć.
+Josepha Ravichandrana i Mengjii Yan.
 
 Badania w systemie Windows mierzą powtarzalną odpowiedź pamięci podręcznej
 zależną od sekwencji treningowej. Kontrole zależności i interwencje w koderze
 sprawdzają, które zmiany ją tłumią.
 
-[Raport badawczy](../../RESEARCH_REPORT.md) · [Wyniki i dane](../../results/k7-k8-windows-causal/README.md) · [Instrukcja odtworzenia](../../results/k7-k8-windows-causal/REPRODUCE.md) · [Dalsze badania](../../RESEARCH_ROUTE.md)
+[Wyniki i dane](../../results/k7-k8-windows-causal/README.md) · [Instrukcja odtworzenia](../../results/k7-k8-windows-causal/REPRODUCE.md)
 
 ## Wyniki
 
@@ -51,26 +49,16 @@ ustalonym marginesie równoważności +/-10 pp. Usunięcie odczytu kodera
 w badanym banku lub przekierowanie obu odczytów kodera tłumi odpowiedź
 publicznego banku. Usunięcie odczytu wyłącznie z drugiego banku ją zachowuje.
 
-![Wpływ zależności i kodera w trzech powtórzeniach](../../results/k7-k8-windows-causal/windows-causal-responses.png)
-
-*Punkty przedstawiają oszacowania dla procesów, a wąsy pomocnicze przedziały
-95% z bootstrapu klastrowego wewnątrz pojedynczego uruchomienia.
-[18 przedziałów dla kontrastów głównych](../../results/k7-k8-windows-causal/endpoint-table.csv)
-wykorzystuje zamrożoną regułę Bonferroniego, z poziomem około 99.17% na punkt
-końcowy. Każda rodzina sześciu kontrastów obejmuje jedną zaplanowaną parę
-powtórzeń. Skorygowane kontrasty mogą przekraczać 100 pp.*
-
 W pomocniczej kontroli p0 z ciepłą linią warunku sham obniża częstość trafień
 o 14.16–16.31 pp. Równoważność dla zimnej linii warunku dotyczy więc
 tego konkretnego głównego punktu końcowego.
+
+![Wpływ zależności i kodera w trzech powtórzeniach](../../results/k7-k8-windows-causal/windows-causal-responses.png)
 
 <details>
 <summary>Kontrola z ciepłą linią warunku</summary>
 
 ![Pomocnicze zliczenia plain i sham dla ciepłej linii warunku](../../results/k7-k8-windows-causal/warm-sham-exploratory.png)
-
-Opisowe zliczenia z pomocniczego warunku z ciepłą linią, spoza sześciu
-kontrastów głównych.
 
 </details>
 
@@ -87,12 +75,6 @@ python results/k7-k8-windows-causal/independent-counts/audit_counts.py results/k
 [Instrukcja odtworzenia](../../results/k7-k8-windows-causal/REPRODUCE.md) opisuje
 wierne odtworzenie analizy, generowanie wykresów i inspekcję kodu. Każdemu
 wynikowi towarzyszą oryginalne archiwa i sumy kontrolne.
-[Walidacja oprogramowania](https://github.com/xShadyy/fractal-x86-branch-predictor/actions/workflows/validation.yml)
-sprawdza dane testowe analiz, wygenerowane źródła i dokumentację.
-
-Zakończone badania zachowują zamrożone plany i rewizje kodu źródłowego.
-Nowe pomiary zaczynają się od nowego planu. Zbieranie danych w systemie
-Windows wymaga MSVC x64 Build Tools i Windows SDK.
 
 ## Ponowna analiza danych autorów Fractal
 
@@ -113,18 +95,6 @@ Czasy czujników K7/K8 są wielokrotnościami 47 jednostek licznika TSC
 i umożliwiają skalibrowaną klasyfikację trafień w pamięci podręcznej.
 Dokładny predyktor, ścieżka wykonania przejściowego i fizyczny wpływ
 z trybu użytkownika na jądro pozostają otwartymi pytaniami.
-Dokument [Dalsze badania](../../RESEARCH_ROUTE.md) opisuje ścieżki zbierania danych
-w natywnym systemie Linux i na sprzęcie fizycznym z Fractal.
-
-## Pliki projektu
-
-| Ścieżka | Zawartość |
-|---|---|
-| [`programs/`](../../programs/) | Kolektory C i asemblerowe miejsca pomiarowe |
-| [`protocols/`](../../protocols/) | Plany zbierania danych i reguły analizy |
-| [`scripts/`](../../scripts/) | Narzędzia do zbierania i analizy danych oraz dokumentowania pochodzenia |
-| [`tests/`](../../tests/) | Programowe dane testowe i testy regresji |
-| [`results/`](../../results/) | Surowy materiał dowodowy, tabele liczbowe i wykresy |
 
 ## Cytowanie
 

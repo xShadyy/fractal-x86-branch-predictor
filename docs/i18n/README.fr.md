@@ -17,15 +17,13 @@
 Expériences sur la prédiction de branchement et la mémoire cache sur un
 **AMD Ryzen 7 9800X3D sous Windows x64**, inspirées de
 [Fractal](https://people.csail.mit.edu/mengjia/data/2026.SP.fractal.pdf),
-de Joseph Ravichandran et Mengjia Yan. Le dossier de recherche comprend des
-protocoles définis à l'avance, des traces brutes, des contrôles appariés,
-les empreintes des exécutables et des analyses reproductibles.
+de Joseph Ravichandran et Mengjia Yan.
 
 Les études Windows mesurent une réponse du cache répétable et sensible
 à la séquence d'entraînement. Les contrôles de dépendance et les interventions
 sur l'encodeur testent les modifications qui la suppriment.
 
-[Rapport de recherche](../../RESEARCH_REPORT.md) · [Résultats et données](../../results/k7-k8-windows-causal/README.md) · [Guide de reproduction](../../results/k7-k8-windows-causal/REPRODUCE.md) · [Études suivantes](../../RESEARCH_ROUTE.md)
+[Résultats et données](../../results/k7-k8-windows-causal/README.md) · [Guide de reproduction](../../results/k7-k8-windows-causal/REPRODUCE.md)
 
 ## Résultats
 
@@ -52,26 +50,16 @@ dans la banque interrogée ou rediriger les deux lectures de l'encodeur supprime
 la réponse publique. Supprimer uniquement la lecture dans l'autre banque
 préserve cette réponse.
 
-![Effets des dépendances et de l'encodeur sur trois répétitions](../../results/k7-k8-windows-causal/windows-causal-responses.png)
-
-*Les points représentent les estimations par processus ; les barres indiquent
-les intervalles complémentaires à 95% issus d'un bootstrap par blocs au sein
-d'une exécution. Les [18 intervalles des contrastes principaux](../../results/k7-k8-windows-causal/endpoint-table.csv)
-suivent la règle de Bonferroni figée, soit environ 99.17% par critère.
-Chaque famille de six contrastes couvre une paire de répétitions planifiée.
-Les contrastes ajustés peuvent dépasser 100 pp.*
-
 Dans le contrôle exploratoire p0 avec une ligne de condition chaude, la variante
 sham réduit la fréquence des accès servis par le cache de 14.16–16.31 pp.
 Le résultat d'équivalence à froid est donc propre à ce critère principal.
+
+![Effets des dépendances et de l'encodeur sur trois répétitions](../../results/k7-k8-windows-causal/windows-causal-responses.png)
 
 <details>
 <summary>Contrôle avec une ligne de condition chaude</summary>
 
 ![Comptages exploratoires plain et sham avec une ligne de condition chaude](../../results/k7-k8-windows-causal/warm-sham-exploratory.png)
-
-Comptages descriptifs du contrôle complémentaire à chaud, en dehors des
-six contrastes principaux.
 
 </details>
 
@@ -88,12 +76,7 @@ python results/k7-k8-windows-causal/independent-counts/audit_counts.py results/k
 Le [guide de reproduction](../../results/k7-k8-windows-causal/REPRODUCE.md)
 décrit la réexécution exacte de l'analyse, la génération des graphiques et
 l'inspection du code. Chaque résultat est accompagné des archives originales
-et de leurs empreintes. La [validation logicielle](https://github.com/xShadyy/fractal-x86-branch-predictor/actions/workflows/validation.yml)
-vérifie les jeux de test de l'analyse, le code source généré et la documentation.
-
-Les études terminées conservent leurs plans et révisions de code source figés.
-Toute nouvelle collecte commence par un nouveau plan. La collecte sous Windows
-nécessite MSVC x64 Build Tools et un Windows SDK.
+et de leurs empreintes.
 
 ## Réanalyse des données des auteurs de Fractal
 
@@ -114,18 +97,6 @@ Les temps des capteurs K7/K8 sont des multiples de 47 unités du compteur TSC
 et permettent une classification calibrée des accès au cache. Le prédicteur
 exact, le chemin d'exécution transitoire et l'influence physique du mode
 utilisateur sur le noyau restent des questions ouvertes.
-Le document [Études suivantes](../../RESEARCH_ROUTE.md) décrit les voies de collecte
-sous Linux natif et avec Fractal sur matériel physique.
-
-## Fichiers du projet
-
-| Chemin | Contenu |
-|---|---|
-| [`programs/`](../../programs/) | Collecteurs C et sites de mesure en assembleur |
-| [`protocols/`](../../protocols/) | Plans de collecte et règles d'analyse |
-| [`scripts/`](../../scripts/) | Outils de collecte, d'analyse et de traçabilité |
-| [`tests/`](../../tests/) | Jeux de test logiciels et tests de non-régression |
-| [`results/`](../../results/) | Données brutes, tableaux numériques et figures |
 
 ## Citation
 

@@ -1,4 +1,4 @@
-# K4: Windows pilot and three planned follow-up process sessions
+# K4: Windows pilot and three additional process sessions
 
 Reviewed 3 November 2026. All collection timestamps below are the UTC values
 reported in the traces. Source revision for all four collections:
@@ -105,17 +105,12 @@ the intended interpretation. CPUID also changes timing and microarchitectural
 state, and the host reports a hypervisor. Distinguishing alternative cache-fill
 paths requires evidence beyond the available code and timing records.
 
-## Current claim and next milestone
+## Result
 
 The supported claim is a repeated, training-specific, serialization-sensitive
 fresh-marker cache signature in one Windows user process on this reported
 host. K3 retains its inconclusive classification under its original criteria.
 Earlier native-server K4 checks retain their failed-development status.
-
-The next mechanism check should distinguish serialization at the target
-from CPUID's wider effects and further test alternative cache-fill paths.
-A Fractal privilege comparison requires validating the receiver on physical
-Fractal x86 in the same domain before changing privilege.
 
 ## Reproduce
 

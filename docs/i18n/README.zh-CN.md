@@ -17,13 +17,11 @@
 在运行 **Windows x64 的 AMD Ryzen 7 9800X3D** 上开展的分支预测与缓存实验，
 研究灵感来自 Joseph Ravichandran 和 Mengjia Yan 的
 [Fractal](https://people.csail.mit.edu/mengjia/data/2026.SP.fractal.pdf)。
-研究记录包含预先规定的实验方案、原始跟踪记录、匹配对照、可执行文件哈希，
-以及可重新运行的分析。
 
 Windows 实验测得了可重复、对训练敏感的缓存响应。
 数据依赖对照与编码器干预用于检验哪些改变会抑制这一响应。
 
-[研究报告](../../RESEARCH_REPORT.md) · [结果与数据](../../results/k7-k8-windows-causal/README.md) · [复现指南](../../results/k7-k8-windows-causal/REPRODUCE.md) · [后续研究](../../RESEARCH_ROUTE.md)
+[结果与数据](../../results/k7-k8-windows-causal/README.md) · [复现指南](../../results/k7-k8-windows-causal/REPRODUCE.md)
 
 ## 结果
 
@@ -46,22 +44,15 @@ K7/K8 包含 **983,040 个试次**，其中 491,520 个为留出评估试次。
 +/-10 pp 等效性界限内。移除被查询数据区（bank）的编码器加载指令，或重定向两条
 编码器加载指令，都会抑制公开数据区的响应。仅移除另一数据区的加载指令则会保留该响应。
 
-![三次重复实验中的依赖关系与编码器干预效应](../../results/k7-k8-windows-causal/windows-causal-responses.png)
-
-*各点表示单个进程的估计值；误差线表示辅助分析中每次运行内部的 95% 聚类自助法
-区间。[18 个主要对比区间](../../results/k7-k8-windows-causal/endpoint-table.csv)
-采用冻结的 Bonferroni 规则，每个终点的置信水平约为 99.17%。每组六个对比覆盖
-一对预定的重复实验。调整后的对比可以超过 100 pp。*
-
 在探索性的暖条件 p0 对照中，sham 使命中率降低了 14.16–16.31 pp。
 因此，冷条件下的等效性结论仅适用于该主要终点。
+
+![三次重复实验中的依赖关系与编码器干预效应](../../results/k7-k8-windows-causal/windows-causal-responses.png)
 
 <details>
 <summary>暖条件对照</summary>
 
 ![探索性暖条件下 plain 与 sham 的计数](../../results/k7-k8-windows-causal/warm-sham-exploratory.png)
-
-这些是辅助性暖条件下的描述性计数，不属于六个主要对比。
 
 </details>
 
@@ -76,11 +67,6 @@ python results/k7-k8-windows-causal/independent-counts/audit_counts.py results/k
 
 [复现指南](../../results/k7-k8-windows-causal/REPRODUCE.md)说明了如何精确重放分析、
 生成图表和检查代码。每项结果均附有原始归档及哈希。
-[软件验证](https://github.com/xShadyy/fractal-x86-branch-predictor/actions/workflows/validation.yml)
-检查分析测试样例、生成的源代码和文档。
-
-已完成的研究保留各自冻结的方案和源代码版本。新的数据采集须从新方案开始。
-Windows 数据采集需要 MSVC x64 Build Tools 和 Windows SDK。
 
 ## Fractal 作者数据的再分析
 
@@ -97,18 +83,7 @@ K5 在同一台工作站上跨三次系统启动进行。K7/K8 在同一次系�
 
 K7/K8 传感器记录的时间均为 47 个 TSC 时钟滴答的整数倍，用于经过校准的缓存
 分类。具体的预测器、瞬态执行路径，以及物理硬件上用户态对内核态的影响，
-仍有待查明。[后续研究](../../RESEARCH_ROUTE.md)说明了原生 Linux 和物理硬件上
-Fractal 的数据采集路线。
-
-## 项目文件
-
-| 路径 | 内容 |
-|---|---|
-| [`programs/`](../../programs/) | C 采集程序和汇编测量点 |
-| [`protocols/`](../../protocols/) | 数据采集方案和分析规则 |
-| [`scripts/`](../../scripts/) | 数据采集、分析和来源核查工具 |
-| [`tests/`](../../tests/) | 软件测试样例和回归检查 |
-| [`results/`](../../results/) | 原始证据、数值表格和图表 |
+仍有待查明。
 
 ## 引用
 

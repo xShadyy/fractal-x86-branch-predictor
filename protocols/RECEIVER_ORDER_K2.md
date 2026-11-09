@@ -1,7 +1,7 @@
 # K2: condition-entry and scheduling diagnostic for a conditional receiver
 
 **Pre-physical protocol, version 1.1.** K2 is a new, pilot-informed experiment.
-The [K1 physical pilot](../RESEARCH_REPORT.md)
+The [K1 physical pilot](../results/2026-11-01-windows-conditional-receiver-pilot/)
 was inconclusive because both architectural-skip hit rates exceeded its frozen
 5% gate. Its first five episodes per condition showed an exploratory spike.
 K2 does not remove those K1 episodes, relax K1's gate, or pool K1 with K2.

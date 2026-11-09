@@ -8,8 +8,8 @@ reproduces the saved results exactly. There are no recorded protocol deviations.
 
 This result establishes repeatability of the specified user-mode cache response
 on this host/configuration. Its precise predictor and transient-execution
-mechanism remain unresolved; physical user-to-kernel testing is a separate
-study. The exploratory pilot is excluded from the three-attempt result.
+mechanism remain unresolved. The exploratory pilot is excluded from the
+three-attempt result.
 
 ## Frozen plan and scope
 

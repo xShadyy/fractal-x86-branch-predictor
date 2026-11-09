@@ -1,15 +1,36 @@
 {
   "cold_figure": {
-    "intervals": "Frozen supporting 95% within-run paired-cluster intervals",
-    "points": 60,
+    "cell_values": "Frozen supporting point estimates rounded to 2 decimals for display",
+    "cells": 60,
+    "color_range_pp": [
+      -0.09765625,
+      100.09765625
+    ],
+    "intervals": "Not encoded; supporting 95% intervals in supporting-mode-table.csv and primary intervals in endpoint-table.csv",
     "pooled_estimate": false,
-    "primary_intervals": "Separate six-contrast Bonferroni family: 99.1667% per endpoint, 95% per scheduled pair",
-    "x_limits_pp": [
-      -5,
-      105
-    ]
+    "primary_intervals": "Separate six-contrast Bonferroni family: 99.1667% per endpoint, 95% per scheduled pair"
   },
   "command": "python results/k7-k8-windows-causal/make_figures.py",
+  "font_license": {
+    "name": "SIL Open Font License 1.1",
+    "path": "docs/assets/fonts/Inter-LICENSE.txt",
+    "sha256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a"
+  },
+  "font_source": {
+    "path": "docs/assets/fonts/Inter-PROVENANCE.json",
+    "sha256": "186fe35217b3084b4dcb38dbc765eb1a40bed12a2a838967f89fc010d8a76b00"
+  },
+  "font_verification": "Every visible Text object resolves to one of the two bundled Inter files; fallback raises an error",
+  "fonts": {
+    "docs/assets/fonts/Inter-Regular.ttf": {
+      "family": "Inter",
+      "sha256": "40d692fce188e4471e2b3cba937be967878f631ad3ebbbdcd587687c7ebe0c82"
+    },
+    "docs/assets/fonts/Inter-SemiBold.ttf": {
+      "family": "Inter",
+      "sha256": "78a843fade9d4612a5567302fb595b56976eb5fcebf4fea5a5912d638bafcde3"
+    }
+  },
   "inputs_sha256": {
     "attempt-01-replayed-analysis.json": "849218a966e95740350412f97c85741065a8d14350aede14de1297d43a6fa89b",
     "attempt-02-replayed-analysis.json": "a4e93f87c15744d44609a233c8c7ea05912544feddb48d15f962117ad615ecf3",
@@ -23,12 +44,12 @@
   },
   "new_measurements": 0,
   "outputs_sha256": {
-    "warm-sham-exploratory.pdf": "1b94661db1b8a31d397c367798e4dfd155ecac5f62dfdb3e596dfc37b88eb9d4",
-    "warm-sham-exploratory.png": "55eab791534e6bba4a0874bf855eff4098ca054447c89f6e8d0102840d60eb57",
-    "warm-sham-exploratory.svg": "69e6f0ed94262f42ade2a78e408a6146cdf0591eef8449e0a7877ae679285997",
-    "windows-causal-responses.pdf": "91925f5f4d95de9156029f71636606aab32d8a861682e634d1a1734c9fd1b020",
-    "windows-causal-responses.png": "c788674cc0ef5c2bd9e8d41a8ebf72be18df03db0bc6256ee943bd58d991f237",
-    "windows-causal-responses.svg": "45ef6135aee59f76cc92ee1ba9f20d85bbe854459ca88a0bc0fd195fff272ecd"
+    "warm-sham-exploratory.pdf": "99d45ba2dd0136beb8d6fc7655aa9364cd442991a4866cd43fcfa9a898ad5eb0",
+    "warm-sham-exploratory.png": "b11dd9e29f3ba3538d3c90e94c595bfc624e467a2e1a2ccbab15241674e19a6a",
+    "warm-sham-exploratory.svg": "ca0512b4a104df5539b33b4aba4e72ca870fff6b2808836bfd372928507f93d7",
+    "windows-causal-responses.pdf": "69354eb714f89f4907c8cdb62474f4358474ab4bcd75f36ab93f27304761dedb",
+    "windows-causal-responses.png": "584e89b1d8bc1a05a471b18ec64c383baccdeef4dcb267eda22807e9b441a1ce",
+    "windows-causal-responses.svg": "44cd6e21d9815e1a297eff2993c9ceec28d0c59f40cf47d282cf1890c09a5ef4"
   },
   "packages": {
     "matplotlib": "3.10.8",
@@ -36,10 +57,12 @@
     "pandas": "2.2.3",
     "seaborn": "0.13.2"
   },
+  "pdf_fonts": "Embedded TrueType subsets (fonttype 42)",
   "purpose": "Rendering only; frozen numerical inputs and uncertainty scopes unchanged",
   "python": "3.12.14",
-  "script_sha256": "507341ea53ed75a16ebcbd5db05c8a7af95304db636d14d6e6c63a08005561b7",
-  "theme": "Light background; DejaVu Sans; royal blue, teal and orange; shapes supplement color",
+  "script_sha256": "feba830c5e2f8b38fafc1e1dc54bbe43ce3623c439ba8fefc439293b78579778",
+  "svg_text": "Converted to glyph paths",
+  "theme": "Compact quantitative matrix and zero-baseline bars; verified bundled Inter fonts",
   "warm_figure": {
     "bars": 6,
     "intervals": null,

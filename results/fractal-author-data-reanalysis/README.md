@@ -1,8 +1,7 @@
 # Reanalysis of the authors' released Fractal M1 data
 
 This directory provides an independent descriptive analysis of the authors'
-48 published M1 traces. The reader and figures run on Windows or Linux,
-providing a reference for future x86 experiments without requiring a Mac.
+48 published M1 traces. The reader and figures run on Windows or Linux.
 
 ## Source and attribution
 
@@ -72,10 +71,8 @@ The recorded run verified the source archive hash, all 48 trace hashes, experime
 
 The authors' three unmodified plotting programs were also tried privately. They failed because this environment lacks LaTeX's `type1ec.sty`. Private copies then produced Figures 5, 6, 7, 8, and the Table 1 latency grid after changing only `text.usetex: True` to `False` and `font.serif: Computer Modern` to `DejaVu Serif` in the style file. Those were rendering compatibility checks, not pixel-identical reproductions. The private copies and their generated PDFs are not included here. The public figures above come from the independent analyzer.
 
-The portable reader and figures form a published-data reference. The artifact's
-hardware backend depends on ARM instruction generation, Apple performance-counter
-registers, M1 cache geometry and m1n1-based control. An AMD port needs an
-independently validated x86 backend.
+The reader processes the published logs without invoking the artifact's
+ARM-specific hardware backend.
 
 ## Files
 
@@ -85,3 +82,4 @@ independently validated x86 backend.
 - `authors-m1-reference-traces.{png,pdf,svg}`: the four indirect performance-core reference traces.
 - `validation.json`: recorded checks and rejected invalid inputs.
 - `provenance.json`: exact recorded command, source identity, environment, output hashes, and private rendering-check status.
+- `AUTHOR-FIGURE-PROVENANCE.json`: current Inter figure hashes and rendering checks; the plot hashes in `provenance.json` describe the original rendering.

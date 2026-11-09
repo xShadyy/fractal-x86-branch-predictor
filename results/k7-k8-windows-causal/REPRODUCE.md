@@ -16,8 +16,8 @@ warm-condition qualification. `SUMMARY.json` is the short record.
 - `independent-counts/`: separate histogram/count implementation and full cell
   counts, gate comparisons, strata and timing-quantization findings.
 - `static/`: MSVC PE/disassembly/runtime-code review and its mechanical script.
-- `*.png`, `*.pdf`, `*.svg`, `make_figures.py`: supporting figures and their
-  source. Figure intervals are labeled separately from primary intervals.
+- `*.png`, `*.pdf`, `*.svg`, `make_figures.py`: point-estimate matrices,
+  observed-count bars and their rendering source. Intervals remain in the CSVs.
 
 The audit scripts read evidence binaries as bytes and run trusted analysis
 code. They do not execute the uploaded collector or start new measurements.
@@ -52,18 +52,31 @@ and `--output` arguments replace the recorded review-environment paths.
 
 ## Regenerate the figures
 
-The renderer uses Matplotlib 3.10.8 and Seaborn 0.13.2, with NumPy 2.3.5 and
-Pandas 2.2.3 in the recorded environment. From this directory:
+The recorded renderer uses Python 3.11 or later, Matplotlib 3.10.8,
+Seaborn 0.13.2, NumPy 2.3.5 and Pandas 2.2.3. Install these plotting packages
+and run from this directory:
 
 ```sh
+python -m pip install matplotlib==3.10.8 seaborn==0.13.2 numpy==2.3.5 pandas==2.2.3
 python make_figures.py
 ```
 
 The script checks all 60 supporting outcomes and 18 primary contrasts against
 the frozen analyses, then renders the two figures in PNG, PDF and SVG. It reads
-`warm-sham-counts.json` without changing it. `FIGURE-PROVENANCE.json` records
-package versions, input/output hashes and interval scopes. A fixed SVG hash salt
-and omitted PDF/SVG timestamps keep rerenders stable in the same environment.
+`warm-sham-counts.json` without changing it. The matrices show point estimates;
+confidence intervals stay in the CSVs and primary result table.
+
+[Inter Regular](../../docs/assets/fonts/Inter-Regular.ttf) and
+[Inter SemiBold](../../docs/assets/fonts/Inter-SemiBold.ttf) come from the
+[official Inter v4.1 release](https://github.com/rsms/inter/releases/tag/v4.1).
+The bundled fonts retain the [SIL Open Font License 1.1](../../docs/assets/fonts/Inter-LICENSE.txt).
+No system font installation is needed. The renderer checks that every visible
+text object resolves to those font files, embeds Inter subsets in PDF, and
+converts SVG text to paths for portable display. A fixed SVG hash salt and
+omitted PDF/SVG timestamps keep rerenders stable in the same environment.
+`FIGURE-PROVENANCE.json` records the package versions, input/output hashes,
+font hashes and uncertainty scopes. Font source details are in
+[Inter-PROVENANCE.json](../../docs/assets/fonts/Inter-PROVENANCE.json).
 
 Keep the two input archives unchanged. `FILES-SHA256.json` inventories the
 published files, including the nested count-audit inventory. Hashes and local

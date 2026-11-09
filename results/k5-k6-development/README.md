@@ -62,4 +62,4 @@ The distribution includes both compiled payloads, initrds, both boot ISOs, a
 source bundle, upstream source and license, exact patches, tool commands and
 SHA256 manifests. GRUB license and corresponding source accompany the ISOs.
 QEMU/SeaBIOS/OVMF and the local PowerShell installation are test tools and are
-not redistributed. Physical capture must still be performed and reviewed.
+not redistributed.

@@ -17,13 +17,11 @@
 **Windows x64 を実行する AMD Ryzen 7 9800X3D** 上での分岐予測とキャッシュの実験です。
 Joseph Ravichandran と Mengjia Yan による
 [Fractal](https://people.csail.mit.edu/mengjia/data/2026.SP.fractal.pdf) に着想を得ています。
-研究記録には、事前に規定したプロトコル、生のトレース、条件を揃えた対照、
-実行ファイルのハッシュ、再実行可能な分析を収録しています。
 
 Windows 上の研究では、再現可能で、訓練に応じて変化するキャッシュ応答を測定しています。
 データ依存性の対照とエンコーダーへの介入によって、どの変更が応答を抑制するかを調べます。
 
-[研究報告](../../RESEARCH_REPORT.md) · [結果とデータ](../../results/k7-k8-windows-causal/README.md) · [再現手順](../../results/k7-k8-windows-causal/REPRODUCE.md) · [今後の研究](../../RESEARCH_ROUTE.md)
+[結果とデータ](../../results/k7-k8-windows-causal/README.md) · [再現手順](../../results/k7-k8-windows-causal/REPRODUCE.md)
 
 ## 結果
 
@@ -48,23 +46,15 @@ plain から sham を引いた対比の区間は、事前に規定した +/-10 p
 別のバンクに向けると、公開バンクの応答は抑制されます。他方のバンクのロードだけを
 除去した場合、応答は維持されます。
 
-![3 回の反復における依存性とエンコーダーへの介入の効果](../../results/k7-k8-windows-causal/windows-causal-responses.png)
-
-*点はプロセスごとの推定値、エラーバーは補助分析による実行内の 95% クラスターブートストラップ
-区間を示します。[18 個の主要対比区間](../../results/k7-k8-windows-causal/endpoint-table.csv)には
-固定済みの Bonferroni 規則を適用しており、評価項目ごとの信頼水準は約 99.17% です。
-6 対比からなる各ファミリーは、予定された反復の 1 組を対象とします。
-調整後の対比は 100 pp を超えることがあります。*
-
 探索的なウォーム条件の p0 対照では、sham によってヒット率が 14.16–16.31 pp 下がります。
 したがって、コールド条件での同等性の結果は、その主要評価項目に限られます。
+
+![3 回の反復における依存性とエンコーダーへの介入の効果](../../results/k7-k8-windows-causal/windows-causal-responses.png)
 
 <details>
 <summary>ウォーム条件の対照</summary>
 
 ![探索的なウォーム条件における plain と sham の件数](../../results/k7-k8-windows-causal/warm-sham-exploratory.png)
-
-補助的なウォーム条件での記述的な件数です。6 個の主要対比には含まれません。
 
 </details>
 
@@ -79,12 +69,7 @@ python results/k7-k8-windows-causal/independent-counts/audit_counts.py results/k
 
 [再現手順のガイド](../../results/k7-k8-windows-causal/REPRODUCE.md)には、分析の正確な再実行、
 グラフ生成、コード検査の方法を記載しています。各結果には元のアーカイブとハッシュが
-付属しています。[ソフトウェア検証](https://github.com/xShadyy/fractal-x86-branch-predictor/actions/workflows/validation.yml)では、
-分析用フィクスチャ、生成されたソース、ドキュメントを確認します。
-
-完了した研究では、確定済みの計画とソースのリビジョンを保持します。新しいデータ収集は
-新しい計画から始めます。Windows でのデータ収集には MSVC x64 Build Tools と
-Windows SDK が必要です。
+付属しています。
 
 ## Fractal 著者データの再分析
 
@@ -103,18 +88,7 @@ K5 は 1 台のワークステーションで 3 回の起動にまたがりま�
 
 K7/K8 のセンサーの測定時間は 47 TSC ティックの倍数で、校正されたキャッシュ分類に
 用います。正確な予測器、トランジェント実行の経路、実機上でのユーザー空間からカーネルへの
-影響は、引き続き未解明です。[今後の研究](../../RESEARCH_ROUTE.md)では、ネイティブ Linux と
-実機上の Fractal によるデータ収集の方針を説明しています。
-
-## プロジェクトのファイル
-
-| パス | 内容 |
-|---|---|
-| [`programs/`](../../programs/) | C の測定プログラムとアセンブリの測定箇所 |
-| [`protocols/`](../../protocols/) | データ収集の計画と分析規則 |
-| [`scripts/`](../../scripts/) | データ収集、分析、来歴確認のツール |
-| [`tests/`](../../tests/) | ソフトウェアのフィクスチャと回帰検査 |
-| [`results/`](../../results/) | 生の証拠データ、数値表、図 |
+影響は、引き続き未解明です。
 
 ## 引用
 

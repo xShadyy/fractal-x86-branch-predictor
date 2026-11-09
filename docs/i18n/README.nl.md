@@ -17,15 +17,13 @@
 Experimenten met sprongvoorspelling en caches op een **AMD Ryzen 7 9800X3D met
 Windows x64**, geïnspireerd door
 [Fractal](https://people.csail.mit.edu/mengjia/data/2026.SP.fractal.pdf)
-van Joseph Ravichandran en Mengjia Yan. Het onderzoeksdossier bevat vooraf
-vastgelegde protocollen, ruwe traces, gematchte controles, hashes van de
-uitvoerbare bestanden en analyses die opnieuw kunnen worden uitgevoerd.
+van Joseph Ravichandran en Mengjia Yan.
 
 De Windows-studies meten een herhaalbare cacherespons die gevoelig is voor
 training. Controles op data-afhankelijkheid en ingrepen in de encoder toetsen
 welke veranderingen deze respons onderdrukken.
 
-[Onderzoeksrapport](../../RESEARCH_REPORT.md) · [Resultaten en data](../../results/k7-k8-windows-causal/README.md) · [Reproductiehandleiding](../../results/k7-k8-windows-causal/REPRODUCE.md) · [Vervolgstudies](../../RESEARCH_ROUTE.md)
+[Resultaten en data](../../results/k7-k8-windows-causal/README.md) · [Reproductiehandleiding](../../results/k7-k8-windows-causal/REPRODUCE.md)
 
 ## Resultaten
 
@@ -52,26 +50,16 @@ uitgelezen bank of het omleiden van beide encoderloads onderdrukt de publieke
 respons. Als alleen de load voor de andere bank wordt verwijderd, blijft de
 respons behouden.
 
-![Effecten van afhankelijkheid en encoderingrepen in drie herhalingen](../../results/k7-k8-windows-causal/windows-causal-responses.png)
-
-*Punten geven schattingen per proces weer; foutbalken tonen ondersteunende
-95%-intervallen uit een clusterbootstrap binnen elke run. De
-[18 primaire contrastintervallen](../../results/k7-k8-windows-causal/endpoint-table.csv)
-gebruiken de vastgelegde Bonferroni-regel, ongeveer 99.17% per eindpunt.
-Elke familie van zes contrasten omvat één gepland herhalingspaar.
-Gecorrigeerde contrasten kunnen groter zijn dan 100 pp.*
-
 In de verkennende p0-controle met warme conditie verlaagt de sham het
 hitpercentage met 14.16–16.31 pp. De equivalentie in de koude conditie geldt
 daarom specifiek voor dat primaire eindpunt.
+
+![Effecten van afhankelijkheid en encoderingrepen in drie herhalingen](../../results/k7-k8-windows-causal/windows-causal-responses.png)
 
 <details>
 <summary>Controle met warme conditie</summary>
 
 ![Verkennende aantallen voor plain en sham in de warme conditie](../../results/k7-k8-windows-causal/warm-sham-exploratory.png)
-
-Beschrijvende aantallen uit de ondersteunende warme conditie, buiten de zes
-primaire contrasten.
 
 </details>
 
@@ -88,12 +76,6 @@ python results/k7-k8-windows-causal/independent-counts/audit_counts.py results/k
 De [reproductiehandleiding](../../results/k7-k8-windows-causal/REPRODUCE.md)
 beschrijft het exact herhalen van analyses, het genereren van grafieken en
 code-inspectie. Bij elk resultaat staan de originele archieven en hashes.
-[Softwarevalidatie](https://github.com/xShadyy/fractal-x86-branch-predictor/actions/workflows/validation.yml)
-controleert analysefixtures, gegenereerde broncode en documentatie.
-
-Afgeronde studies behouden hun vastgelegde plannen en broncoderevisies.
-Nieuwe dataverzameling begint met een nieuw plan. Dataverzameling op Windows
-vereist MSVC x64 Build Tools en een Windows SDK.
 
 ## Heranalyse van de Fractal-data van de auteurs
 
@@ -114,18 +96,6 @@ De K7/K8-sensortijden zijn veelvouden van 47 TSC-ticks en ondersteunen
 gekalibreerde cacheclassificaties. De precieze predictor, het pad van
 transient execution en de invloed van gebruikerscode op de kernel op fysieke
 hardware blijven open vragen.
-[Vervolgstudies](../../RESEARCH_ROUTE.md) beschrijft de meetroutes via native
-Linux en Fractal op fysieke hardware.
-
-## Projectbestanden
-
-| Pad | Inhoud |
-|---|---|
-| [`programs/`](../../programs/) | C-meetprogramma's en meetpunten in assembly |
-| [`protocols/`](../../protocols/) | Meetplannen en analyseregels |
-| [`scripts/`](../../scripts/) | Tools voor dataverzameling, analyse en herkomstcontrole |
-| [`tests/`](../../tests/) | Softwarefixtures en regressiecontroles |
-| [`results/`](../../results/) | Ruw bewijsmateriaal, numerieke tabellen en figuren |
 
 ## Citeren
 

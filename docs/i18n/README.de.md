@@ -17,15 +17,12 @@
 Experimente zur Sprungvorhersage und zum Cache auf einem **AMD Ryzen 7
 9800X3D mit Windows x64**, inspiriert von Joseph Ravichandrans und Mengjia Yans
 [Fractal](https://people.csail.mit.edu/mengjia/data/2026.SP.fractal.pdf).
-Die Forschungsdokumentation enthält vorab festgelegte Protokolle, Rohdaten,
-abgeglichene Kontrollbedingungen, Hashes der ausführbaren Dateien und
-Analysen, die sich erneut ausführen lassen.
 
 Die Windows-Studien messen eine wiederholbare Cache-Antwort, die von der
 Trainingssequenz abhängt. Abhängigkeitskontrollen und Eingriffe in den Encoder
 prüfen, welche Änderungen diese Antwort unterdrücken.
 
-[Forschungsbericht](../../RESEARCH_REPORT.md) · [Ergebnisse und Daten](../../results/k7-k8-windows-causal/README.md) · [Reproduktionsanleitung](../../results/k7-k8-windows-causal/REPRODUCE.md) · [Weitere Studien](../../RESEARCH_ROUTE.md)
+[Ergebnisse und Daten](../../results/k7-k8-windows-causal/README.md) · [Reproduktionsanleitung](../../results/k7-k8-windows-causal/REPRODUCE.md)
 
 ## Ergebnisse
 
@@ -52,26 +49,16 @@ Encoder-Ladezugriffs auf die abgefragte Bank oder das Umleiten beider
 Encoder-Ladezugriffe unterdrückt die öffentliche Antwort. Wird nur der
 Ladezugriff auf die andere Bank entfernt, bleibt die Antwort erhalten.
 
-![Wirkung von Abhängigkeiten und Encoder-Eingriffen über drei Wiederholungen](../../results/k7-k8-windows-causal/windows-causal-responses.png)
-
-*Punkte zeigen Prozessschätzungen, Fehlerbalken die ergänzenden
-95%-Cluster-Bootstrap-Intervalle innerhalb eines Laufs.
-Die [18 primären Kontrastintervalle](../../results/k7-k8-windows-causal/endpoint-table.csv)
-verwenden die festgelegte Bonferroni-Regel mit ungefähr 99.17% pro Endpunkt.
-Jede Familie aus sechs Kontrasten umfasst ein geplantes Wiederholungspaar.
-Bereinigte Kontraste können 100 pp überschreiten.*
-
 In der explorativen p0-Kontrolle mit warmer Cachezeile für die Bedingung
 senkt die Sham-Variante die Trefferhäufigkeit um 14.16–16.31 pp. Das
 Äquivalenzergebnis bei kalter Bedingung gilt daher nur für diesen primären Endpunkt.
+
+![Wirkung von Abhängigkeiten und Encoder-Eingriffen über drei Wiederholungen](../../results/k7-k8-windows-causal/windows-causal-responses.png)
 
 <details>
 <summary>Kontrolle bei warmer Bedingung</summary>
 
 ![Explorative Zählungen für plain und sham bei warmer Bedingung](../../results/k7-k8-windows-causal/warm-sham-exploratory.png)
-
-Deskriptive Zählungen aus der ergänzenden warmen Bedingung, außerhalb der
-sechs primären Kontraste.
 
 </details>
 
@@ -88,12 +75,6 @@ python results/k7-k8-windows-causal/independent-counts/audit_counts.py results/k
 Die [Reproduktionsanleitung](../../results/k7-k8-windows-causal/REPRODUCE.md)
 beschreibt die exakte Wiederholung der Analyse, die Diagrammerstellung und
 die Codeprüfung. Originalarchive und Hashes liegen jedem Ergebnis bei.
-Die [Softwarevalidierung](https://github.com/xShadyy/fractal-x86-branch-predictor/actions/workflows/validation.yml)
-prüft Analyse-Testdaten, generierten Quellcode und Dokumentation.
-
-Abgeschlossene Studien behalten ihre festgelegten Pläne und Quellcodestände.
-Eine neue Datenerhebung beginnt mit einem neuen Plan. Für Windows-Messungen
-werden MSVC x64 Build Tools und ein Windows SDK benötigt.
 
 ## Neuanalyse der Fractal-Autorendaten
 
@@ -114,18 +95,6 @@ Die K7/K8-Sensorzeiten sind Vielfache von 47 TSC-Ticks und ermöglichen
 kalibrierte Cache-Klassifikationen. Der genaue Prädiktor, der Pfad der
 transienten Ausführung und ein physischer Einfluss vom Benutzer- auf den
 Kernelmodus bleiben offene Fragen.
-Die Seite [Weitere Studien](../../RESEARCH_ROUTE.md) beschreibt die Messwege mit
-nativem Linux und Fractal auf physischer Hardware.
-
-## Projektdateien
-
-| Pfad | Inhalt |
-|---|---|
-| [`programs/`](../../programs/) | Messprogramme in C und Messstellen in Assembler |
-| [`protocols/`](../../protocols/) | Erhebungspläne und Analyseregeln |
-| [`scripts/`](../../scripts/) | Werkzeuge für Datenerhebung, Analyse und Herkunftsnachweise |
-| [`tests/`](../../tests/) | Software-Testdaten und Regressionstests |
-| [`results/`](../../results/) | Rohdaten, numerische Tabellen und Abbildungen |
 
 ## Zitieren
 

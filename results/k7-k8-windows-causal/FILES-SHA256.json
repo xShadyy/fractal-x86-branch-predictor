@@ -1,8 +1,8 @@
 {
-  "FIGURE-PROVENANCE.json": "180b7d2efe0325d39b69f1bb53c12a70e6f888386d4baab2d997e1e22a37eda9",
-  "README.md": "1c30bf008558dddcdf184d3b67d91827eaab9a9f4597a8cae1fdf741e2cba541",
+  "FIGURE-PROVENANCE.json": "c84fee22397e90227da0117b503675166feed3d051394c3efc13c933b3726fb0",
+  "README.md": "63fc9bc724476900534dc8414f803cda1f52243025c952a47365d1920ec238ea",
   "REPLAY_REPORT.md": "c0c44030f43a73d74e8661c393883b61a7e13ecb2ea8d98755dc36ceac76dccb",
-  "REPRODUCE.md": "3b43d65727812289285f466c1981d81665ed54c185241b80ec312868d49190f9",
+  "REPRODUCE.md": "e9abb4db8cf92b037ef31af492d6689651d0bc719a38c2eeb9a3e996e1c0e40f",
   "SUMMARY.json": "3604eb4b7394280b637a4ca931907400e961fe3268ede968f8824661e7286c6b",
   "attempt-01-replayed-analysis.json": "849218a966e95740350412f97c85741065a8d14350aede14de1297d43a6fa89b",
   "attempt-02-replayed-analysis.json": "a4e93f87c15744d44609a233c8c7ea05912544feddb48d15f962117ad615ecf3",
@@ -21,7 +21,7 @@
   "inputs/causal-plan-20261108T173628840158Z-ddcc9de4.zip": "87d57816c1ce47a332cffa87d7346e164b2bd306d08344baf0c02b108369b683",
   "inputs/causal-windows-evidence-20261108T173801487095Z-6d4bcf3a.zip": "9fe89126c57bb68f25ccb8a451fdd7200a96b5b7e29dbbcbaa1b9e626d46d787",
   "integrity.json": "977643273855ded40a73704d5c844171c20c80b75fa4bebeacfd9e7892b7a60d",
-  "make_figures.py": "507341ea53ed75a16ebcbd5db05c8a7af95304db636d14d6e6c63a08005561b7",
+  "make_figures.py": "feba830c5e2f8b38fafc1e1dc54bbe43ce3623c439ba8fefc439293b78579778",
   "replay.json": "89b4e4cfb04d08df153b48831798195ee8612a94b7069eca9757793fdd676d9e",
   "static/audit_static_code.py": "ee39547fb48c8ef94407ac05d5829ea7891214daf9522e61566207c6295217f3",
   "static/prepare-probes-independent-objdump.txt": "546344ee160e42a3c7e29291c94a7d33c6438e6a36c8d98feac51368711f304e",
@@ -30,10 +30,10 @@
   "static/static-code-review.json": "550957ec07d76d56b0b81f2991ed12b7c3ec215e58f0071abe35370125ce34b9",
   "supporting-mode-table.csv": "0dd5c749e7c2f9f442e163e1c31376b95320f780cf91b5dad7a228f6ad46b3f7",
   "warm-sham-counts.json": "5ec1a92873b7bb0fe0a2fd6d242f3c8d1fc2522c80e7b975c120b433acf37ae1",
-  "warm-sham-exploratory.pdf": "1b94661db1b8a31d397c367798e4dfd155ecac5f62dfdb3e596dfc37b88eb9d4",
-  "warm-sham-exploratory.png": "55eab791534e6bba4a0874bf855eff4098ca054447c89f6e8d0102840d60eb57",
-  "warm-sham-exploratory.svg": "69e6f0ed94262f42ade2a78e408a6146cdf0591eef8449e0a7877ae679285997",
-  "windows-causal-responses.pdf": "91925f5f4d95de9156029f71636606aab32d8a861682e634d1a1734c9fd1b020",
-  "windows-causal-responses.png": "c788674cc0ef5c2bd9e8d41a8ebf72be18df03db0bc6256ee943bd58d991f237",
-  "windows-causal-responses.svg": "45ef6135aee59f76cc92ee1ba9f20d85bbe854459ca88a0bc0fd195fff272ecd"
+  "warm-sham-exploratory.pdf": "99d45ba2dd0136beb8d6fc7655aa9364cd442991a4866cd43fcfa9a898ad5eb0",
+  "warm-sham-exploratory.png": "b11dd9e29f3ba3538d3c90e94c595bfc624e467a2e1a2ccbab15241674e19a6a",
+  "warm-sham-exploratory.svg": "ca0512b4a104df5539b33b4aba4e72ca870fff6b2808836bfd372928507f93d7",
+  "windows-causal-responses.pdf": "69354eb714f89f4907c8cdb62474f4358474ab4bcd75f36ab93f27304761dedb",
+  "windows-causal-responses.png": "584e89b1d8bc1a05a471b18ec64c383baccdeef4dcb267eda22807e9b441a1ce",
+  "windows-causal-responses.svg": "44cd6e21d9815e1a297eff2993c9ceec28d0c59f40cf47d282cf1890c09a5ef4"
 }

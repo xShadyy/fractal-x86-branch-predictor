@@ -9,14 +9,16 @@ import platform
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
-from matplotlib.lines import Line2D
+from matplotlib import font_manager
+from matplotlib.text import Text
 import seaborn as sns
 
 ROOT = Path(__file__).resolve().parent
 BLUE, TEAL, ORANGE = '#2457C5', '#007F82', '#C26B19'
 INK, MUTED, GRID = '#182A43', '#52647B', '#DDE5EF'
 COLORS = {'p0': BLUE, 'p1': TEAL}
-MARKERS = {1: 'o', 2: 's', 3: '^'}
+FONT_DIR = ROOT.parents[1] / 'docs/assets/fonts'
+FONT_PATHS = [FONT_DIR / 'Inter-Regular.ttf', FONT_DIR / 'Inter-SemiBold.ttf']
 INPUTS = ['supporting-mode-table.csv', 'endpoint-table.csv', 'warm-sham-counts.json',
           *[f'attempt-{n:02d}-replayed-analysis.json' for n in range(1, 7)]]
 
@@ -56,16 +58,34 @@ def validate_inputs():
 
 
 def style():
+    for path in FONT_PATHS:
+        if not path.exists():
+            raise ValueError(f'Missing bundled Inter font: {path}')
+        font_manager.fontManager.addfont(path)
+        if font_manager.FontProperties(fname=path).get_name() != 'Inter':
+            raise ValueError('Bundled font is not Inter')
     sns.set_theme(context='notebook', style='ticks', palette=[BLUE, TEAL, ORANGE], rc={
-        'font.family': 'DejaVu Sans', 'font.size': 11, 'axes.labelsize': 11,
-        'axes.labelcolor': MUTED, 'axes.edgecolor': GRID, 'axes.linewidth': .8,
-        'text.color': INK, 'xtick.color': MUTED, 'ytick.color': INK,
-        'xtick.labelsize': 10, 'ytick.labelsize': 11, 'figure.facecolor': 'white',
-        'axes.facecolor': 'white', 'savefig.facecolor': 'white', 'pdf.fonttype': 42,
-        'ps.fonttype': 42, 'svg.fonttype': 'none', 'svg.hashsalt': 'fractal-k7-k8-render-v2'})
+        'font.family': 'Inter', 'font.sans-serif': ['Inter'], 'font.size': 11,
+        'axes.labelsize': 11, 'axes.labelcolor': MUTED, 'axes.edgecolor': GRID,
+        'axes.linewidth': .8, 'text.color': INK, 'xtick.color': MUTED,
+        'ytick.color': INK, 'xtick.labelsize': 10.5, 'ytick.labelsize': 10.5,
+        'figure.facecolor': 'white', 'axes.facecolor': 'white', 'savefig.facecolor': 'white',
+        'pdf.fonttype': 42, 'ps.fonttype': 42, 'svg.fonttype': 'path',
+        'svg.hashsalt': 'fractal-k7-k8-inter-matrix-v3'})
+
+
+def verify_fonts(fig):
+    fig.canvas.draw()
+    allowed = {p.resolve() for p in FONT_PATHS}
+    for text in fig.findobj(match=Text):
+        if text.get_visible() and text.get_text():
+            resolved = Path(font_manager.findfont(text.get_fontproperties(), fallback_to_default=False)).resolve()
+            if resolved not in allowed:
+                raise ValueError(f'Font fallback in chart: {resolved}')
 
 
 def export(fig, stem):
+    verify_fonts(fig)
     paths = []
     for extension in ('png', 'pdf', 'svg'):
         path = ROOT / f'{stem}.{extension}'
@@ -77,64 +97,68 @@ def export(fig, stem):
 
 
 def cold_figure(rows):
-    fig, axes = plt.subplots(2, 1, figsize=(10.6, 10.8), sharex=True)
-    fig.subplots_adjust(left=.255, right=.965, bottom=.145, top=.815, hspace=.38)
-    fig.text(.065, .963, 'Cold-condition cache responses', fontsize=21, weight='semibold', va='top')
-    fig.text(.065, .923, 'Ryzen 7 9800X3D / Windows x64  |  Three processes per study, one boot', color=MUTED, fontsize=10.5, va='top')
-    handles = [Line2D([0], [0], marker='o', linestyle='', color=COLORS[b], markeredgecolor='white', markersize=7, label=label)
-               for b, label in [('p0', 'p0: queried bank1'), ('p1', 'p1: queried bank0')]]
-    handles += [Line2D([0], [0], marker=MARKERS[n], linestyle='', color=MUTED, markeredgecolor='white', markersize=6.5, label=f'Process {n}') for n in (1, 2, 3)]
-    fig.legend(handles=handles, loc='upper left', bbox_to_anchor=(.057, .888), ncol=5, frameon=False, columnspacing=1.3, handletextpad=.4, fontsize=9.5)
+    import numpy as np
+    values = [float(row['adjusted_pp']) for row in rows]
+    minimum, maximum = min(values), max(values)
+    fig = plt.figure(figsize=(12.2, 4.8))
+    grid = fig.add_gridspec(1, 3, width_ratios=[1, 1, .045], left=.155, right=.91,
+                           bottom=.145, top=.69, wspace=.57)
+    axes = [fig.add_subplot(grid[0, i]) for i in (0, 1)]
+    color_axis = fig.add_subplot(grid[0, 2])
+    fig.text(.04, .96, 'Cold-condition cache responses', fontsize=20, weight='semibold', va='top')
+    color_map = sns.blend_palette(['#F2F6FD', '#89C7D0', BLUE], as_cmap=True)
     specs = [
         ('dependency', ['plain', 'sham_mask', 'true_mask', 'lfence', 'cpuid'],
-         ['Plain encoder', 'Matched register sham', 'Condition-dependent\nmask', 'LFENCE', 'CPUID'], 'A   K7: matched dependency controls'),
+         ['Plain encoder', 'Matched sham', 'Condition-dependent\nmask', 'LFENCE', 'CPUID'],
+         'K7  Matched dependency controls'),
         ('receiver', ['plain', 'ablate_zero', 'ablate_one', 'ablate_both', 'sink_both'],
-         ['Plain encoder', 'Remove bank0 load', 'Remove bank1 load', 'Remove both loads', 'Private-bank bindings'], 'B   K8: encoder interventions')]
-    for ax, (study, modes, labels, title) in zip(axes, specs):
-        for pos in range(5):
-            if pos % 2 == 0:
-                ax.axhspan(pos - .45, pos + .45, color='#F4F7FB', linewidth=0, zorder=0)
-        ax.axvline(0, color='#8798AD', linewidth=.9, zorder=1)
-        for row in rows:
-            if row['study'] != study:
-                continue
-            bank, process = row['bank'], int(row['repetition'])
-            y = modes.index(row['mode']) + (-.21 if bank == 'p0' else .21) + (process - 2) * .09
-            point, lower, upper = [float(row[k]) for k in ('adjusted_pp', 'lower95_pp', 'upper95_pp')]
-            if not -5 <= lower <= point <= upper <= 105:
-                raise ValueError('Figure axis would clip a frozen interval')
-            ax.errorbar(point, y, xerr=[[point - lower], [upper - point]], fmt=MARKERS[process], color=COLORS[bank], markersize=6,
-                        markeredgecolor='white', markeredgewidth=.7, elinewidth=1.1, capsize=2.4, capthick=1, zorder=4)
-        ax.set_yticks(range(5), labels); ax.set_ylim(4.55, -.55); ax.set_xlim(-5, 105)
-        ax.set_xticks([0, 25, 50, 75, 100]); ax.grid(axis='x', color=GRID, linewidth=.7, zorder=0)
-        ax.tick_params(axis='y', length=0, pad=12); ax.tick_params(axis='x', length=3, pad=6)
-        ax.set_title(title, loc='left', fontsize=13, color=INK, pad=17, weight='semibold')
-        sns.despine(ax=ax, left=True)
-    axes[-1].set_xlabel('Adjusted training contrast (percentage points)', labelpad=11)
-    axes[0].tick_params(labelbottom=True)
-    fig.text(.065, .054, 'Points: individual processes. Whiskers: supporting 95% within-run cluster-bootstrap intervals; no pooled estimate.', fontsize=8.7, color=MUTED)
-    fig.text(.065, .031, 'Primary intervals are separate: 99.1667% per endpoint; six contrasts per scheduled repetition pair.', fontsize=8.7, color=MUTED)
+         ['Plain encoder', 'Bank0 load off', 'Bank1 load off', 'Both loads off', 'Private banks'],
+         'K8  Encoder interventions')]
+    for index, (axis, (study, modes, labels, title)) in enumerate(zip(axes, specs)):
+        lookup = {(row['bank'], row['mode'], int(row['repetition'])): float(row['adjusted_pp'])
+                  for row in rows if row['study'] == study}
+        matrix = np.array([[lookup[bank, mode, process] for bank in ('p0', 'p1')
+                            for process in (1, 2, 3)] for mode in modes])
+        sns.heatmap(matrix, ax=axis, cmap=color_map, vmin=minimum, vmax=maximum,
+                    annot=True, fmt='.2f', annot_kws={'fontsize': 10.5},
+                    linewidths=.9, linecolor='white', cbar=index == 0,
+                    cbar_ax=color_axis if index == 0 else None,
+                    cbar_kws={'ticks': [minimum, 25, 50, 75, maximum]},
+                    xticklabels=['1', '2', '3', '1', '2', '3'], yticklabels=labels)
+        for annotation in axis.texts:
+            annotation.set_color('white' if float(annotation.get_text()) > 65 else INK)
+        axis.axvline(3, color='white', linewidth=3)
+        axis.text(.25, 1.055, 'p0: bank1', transform=axis.transAxes, ha='center', fontsize=11)
+        axis.text(.75, 1.055, 'p1: bank0', transform=axis.transAxes, ha='center', fontsize=11)
+        axis.set_title(title, loc='left', fontsize=12.5, pad=47, weight='semibold')
+        axis.set_xlabel('Process', labelpad=8)
+        axis.tick_params(axis='both', length=0)
+        axis.set_yticklabels(labels, rotation=0)
+    color_axis.set_yticklabels([f'{minimum:.2f}', '25', '50', '75', f'{maximum:.2f}'])
+    color_axis.set_ylabel('Adjusted contrast (pp)', fontsize=11, labelpad=12)
+    color_axis.tick_params(length=0, pad=5)
     return export(fig, 'windows-causal-responses')
 
 
 def warm_figure(rows):
-    fig, ax = plt.subplots(figsize=(9.5, 5.8))
-    fig.subplots_adjust(left=.11, right=.965, bottom=.19, top=.72)
-    fig.text(.075, .952, 'The sham differs under warm conditions', fontsize=19, weight='semibold', va='top')
-    fig.text(.075, .893, 'Exploratory p0 cell  |  1,024 observations per mode in each process', fontsize=10.5, color=MUTED, va='top')
-    for mode, color, offset, label in [('plain', BLUE, -.18, 'Plain encoder'), ('sham_mask', ORANGE, .18, 'Matched register sham')]:
+    fig, ax = plt.subplots(figsize=(8.8, 4.7))
+    fig.subplots_adjust(left=.11, right=.965, bottom=.14, top=.71)
+    fig.text(.055, .96, 'Exploratory warm-condition p0 responses', fontsize=18, weight='semibold', va='top')
+    for mode, color, offset, label in [('plain', BLUE, -.18, 'Plain encoder'), ('sham_mask', ORANGE, .18, 'Matched sham')]:
         selected = sorted((r for r in rows if r['mode'] == mode), key=lambda r: r['repetition'])
         for index, row in enumerate(selected):
             x, rate = row['repetition'] + offset, row['rate_percent']
-            ax.bar(x, rate, width=.31, color=color, edgecolor='white', linewidth=.8, label=label if index == 0 else None, zorder=3)
-            ax.text(x, rate + 1, f"{row['hits']:,} / {row['n']:,}", ha='center', va='bottom', fontsize=10, color=INK)
-    ax.set_xticks([1, 2, 3], ['Process 1', 'Process 2', 'Process 3']); ax.set_xlim(.45, 3.55)
-    ax.set_ylim(0, 40); ax.set_yticks([0, 10, 20, 30, 40]); ax.set_ylabel('Public marker hit rate (%)', labelpad=10)
-    ax.grid(axis='y', color=GRID, linewidth=.7); ax.tick_params(axis='x', length=0, pad=10); ax.set_axisbelow(True)
-    ax.legend(loc='lower left', bbox_to_anchor=(-.02, 1.01), frameon=False, ncol=2, fontsize=10, handlelength=1.2, columnspacing=2)
+            ax.bar(x, rate, width=.31, color=color, edgecolor='white', linewidth=.8,
+                   label=label if index == 0 else None, zorder=3)
+            ax.text(x, rate + 1, f"{row['hits']:,} / {row['n']:,}", ha='center', va='bottom', fontsize=10.5)
+    ax.set_xticks([1, 2, 3], ['Process 1', 'Process 2', 'Process 3'])
+    ax.set_xlim(.45, 3.55); ax.set_ylim(0, 40); ax.set_yticks([0, 10, 20, 30, 40])
+    ax.set_ylabel('Public marker hit rate (%)', labelpad=10)
+    ax.grid(axis='y', color=GRID, linewidth=.7); ax.tick_params(axis='x', length=0, pad=10)
+    ax.set_axisbelow(True)
+    ax.legend(loc='lower left', bbox_to_anchor=(-.02, 1.01), frameon=False, ncol=2,
+              fontsize=10.5, handlelength=1.2, columnspacing=2)
     sns.despine(ax=ax, left=True)
-    fig.text(.075, .079, 'Observed counts only; no confidence interval or new confirmatory test.', fontsize=9, color=MUTED)
-    fig.text(.075, .042, 'Cold-condition sham equivalence does not extend to this warm-condition cell.', fontsize=9, color=MUTED)
     return export(fig, 'warm-sham-exploratory')
 
 
@@ -148,9 +172,14 @@ def main():
     provenance = dict(purpose='Rendering only; frozen numerical inputs and uncertainty scopes unchanged',
         command='python results/k7-k8-windows-causal/make_figures.py',
         script_sha256=digest(Path(__file__)), python=platform.python_version(), packages=versions,
-        theme='Light background; DejaVu Sans; royal blue, teal and orange; shapes supplement color',
+        theme='Compact quantitative matrix and zero-baseline bars; verified bundled Inter fonts',
         inputs_sha256=hashes, outputs_sha256={p.name: digest(p) for p in outputs},
-        cold_figure=dict(points=60, intervals='Frozen supporting 95% within-run paired-cluster intervals', x_limits_pp=[-5, 105], pooled_estimate=False,
+        fonts={p.relative_to(ROOT.parents[1]).as_posix(): dict(sha256=digest(p), family=font_manager.FontProperties(fname=p).get_name()) for p in FONT_PATHS},
+        font_license=dict(path='docs/assets/fonts/Inter-LICENSE.txt', sha256=digest(FONT_DIR / 'Inter-LICENSE.txt'), name='SIL Open Font License 1.1'),
+        font_source=dict(path='docs/assets/fonts/Inter-PROVENANCE.json', sha256=digest(FONT_DIR / 'Inter-PROVENANCE.json')),
+        font_verification='Every visible Text object resolves to one of the two bundled Inter files; fallback raises an error',
+        svg_text='Converted to glyph paths', pdf_fonts='Embedded TrueType subsets (fonttype 42)',
+        cold_figure=dict(cells=60, cell_values='Frozen supporting point estimates rounded to 2 decimals for display', intervals='Not encoded; supporting 95% intervals in supporting-mode-table.csv and primary intervals in endpoint-table.csv', color_range_pp=[min(float(r['adjusted_pp']) for r in supporting), max(float(r['adjusted_pp']) for r in supporting)], pooled_estimate=False,
                          primary_intervals='Separate six-contrast Bonferroni family: 99.1667% per endpoint, 95% per scheduled pair'),
         warm_figure=dict(bars=6, observations_per_bar=1024, y_limits_percent=[0, 40], intervals=None, scope='Exploratory descriptive counts'), new_measurements=0)
     (ROOT / 'FIGURE-PROVENANCE.json').write_text(json.dumps(provenance, indent=2, sort_keys=True) + '\n')
